@@ -1,0 +1,37 @@
+{
+  "id": "a6fcc3ad-ccff-4429-9aad-43297bed6495",
+  "name": "CAISSE POS",
+  "publisher": "Default publisher",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+    "id": "911df1d8-5422-4cd0-8a83-aa18a8386e16",
+    "name": "TULIPE_EXT",
+    "publisher": "SMART TECHNOLOGIES",
+    "version": "1.0.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "22.0.0.0",
+  "idRanges": [
+    {
+      "from": 70000,
+      "to": 70150
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "11.0"
+  
+}
