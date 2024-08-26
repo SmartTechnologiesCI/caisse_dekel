@@ -8,7 +8,7 @@
             "environmentType": "OnPrem",
             "server": "http://localhost:8080/BC220",
             "serverInstance": "BC220",
-            "authentication": "UserPassword",
+            "authentication": "Windows",
             "startupObjectId": 22,
             "startupObjectType": "Page",
             "breakOnError": "All",
@@ -17,7 +17,7 @@
             "enableSqlInformationDebugger": true,
             "tenant": "default",
             "usePublicURLFromServer": true,
-            "port": 7049,
+            "port": 2249,
             "schemaUpdateMode": "Synchronize"
         }
     ]
