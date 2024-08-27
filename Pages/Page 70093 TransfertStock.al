@@ -209,6 +209,7 @@ page 70093 "Transfert de stock"
 
     actions
     {
+        
         area(Processing)
         {
             action("Valider Transfert")
@@ -405,7 +406,9 @@ page 70093 "Transfert de stock"
                 RunPageMode = View;
                 Enabled = NOT rec.Posted;
             }
+            
         }
+        
     }
 
     var

@@ -84,6 +84,10 @@ tableextension 70005 "Sles Inv. Line" extends "Sales Invoice Line"
             CalcFormula = lookup ("Sales Invoice Header"."Salesperson Code" where("No." = field("Document No.")));
            
         }
+        field(70014; "Item Shpt. Entry No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
 
     }
 

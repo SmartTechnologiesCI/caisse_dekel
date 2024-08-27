@@ -91,26 +91,35 @@ codeunit 70006 "Event Souscriber"
         end;
     end;
 
-    //<<Envoi de nombre de cartons dans écriture comptable article et facture achat enregitrée
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post (Yes/No)", 'OnAfterPost', '', true, true)]
-    local procedure OnAfterPost(var PurchaseHeader: Record "Purchase Header")
+    // //<<Envoi de nombre de cartons dans écriture comptable article et facture achat enregitrée
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post (Yes/No)", 'OnAfterPost', '', true, true)]
+    // local procedure OnAfterPost(var PurchaseHeader: Record "Purchase Header")
+    // var
+    //     PurchInvLine: Record "Purch. Inv. Line";
+    //     PurchaseLine: Record "Purchase Line";
+    // begin
+    //     PurchaseLine.SetRange("Document No.", PurchaseHeader."No.");
+    //     if PurchaseLine.FindSet() then begin
+
+    //         PurchInvLine.SetRange("Line No.", PurchaseLine."Line No.");
+    //         if PurchInvLine.FindFirst() then begin
+    //             PurchInvLine."Lot Qty" := PurchaseLine."Lot Qty";
+    //             PurchInvLine.Modify();
+    //             // Message('a:%1 b:%2', PurchaseLine."Line No.", PurchaseLine."Lot Qty");
+    //         end;
+    //     end;
+    //     // Message('AA');
+
+    // end;
+    [EventSubscriber(ObjectType::Table, Database::"Purch. Inv. Line", 'OnAfterInitFromPurchLine', '', false, false)]
+    local procedure InsertCATaxAmt(PurchLine: Record "Purchase Line";
     var
-        PurchInvLine: Record "Purch. Inv. Line";
-        PurchaseLine: Record "Purchase Line";
+     PurchInvLine: Record "Purch. Inv. Line")
     begin
-        PurchaseLine.SetRange("Document No.", PurchaseHeader."No.");
-        if PurchaseLine.FindSet() then begin
 
-            PurchInvLine.SetRange("Line No.", PurchaseLine."Line No.");
-            if PurchInvLine.FindFirst() then begin
-                PurchInvLine."Lot Qty" := PurchaseLine."Lot Qty";
-                PurchInvLine.Modify();
-                // Message('a:%1 b:%2', PurchaseLine."Line No.", PurchaseLine."Lot Qty");
-            end;
-        end;
-        // Message('AA');
-
+        PurchInvLine."Lot Qty" := PurchLine."Lot Qty";
     end;
+
 
     //<<Insertion de nombre de cartons dans les avoirs achats enregistrés 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Cancel PstdPurchInv (Yes/No)", 'OnBeforeShowPostedPurchaseCreditMemo', '', true, true)]
@@ -170,14 +179,18 @@ codeunit 70006 "Event Souscriber"
         SalesShipmentLine: Record "Sales Shipment Line";//Lignes expéditiopn vente enregistré
 
     begin
+           
         SalesLine.SetRange("Document No.", SalesInvoiceHeader."No.");
         if SalesLine.FindSet() then begin
+            Message('tche');
             repeat begin
                 SalesShipmentLine.SetRange("Item Shpt. Entry No.", SalesLine."Appl.-from Item Entry");
+                Message('yo');
                 if SalesShipmentLine.FindFirst() then begin
                     SalesLine."Nombre de carton" := SalesShipmentLine."Lot Qty";
+                    SalesLine."Item Shpt. Entry No." := SalesShipmentLine."Item Shpt. Entry No.";
                     SalesLine.Modify(true);
-                    // Message('Verry  goog Fabio continous');
+                    Message('Verry  goog Fabio continous');
 
                 end;
             end until SalesLine.Next() = 0;
@@ -198,7 +211,7 @@ codeunit 70006 "Event Souscriber"
         valentry: Integer;
         ItemLedgerEntry: Record "Item Ledger Entry";
         PhysInventoryLedgerEntry: Record "Phys. Inventory Ledger Entry";
-
+        p: Page 132;
 
     //ligneArticle: record 83;
     begin
@@ -238,6 +251,7 @@ codeunit 70006 "Event Souscriber"
         // <<Ecriture comptable inventaire
         //<<Validation inventaire 21_08_24
 
+
     end;
     //<<Tracking quantité en carton feuilles d'inventaires 19_08_24
     [EventSubscriber(ObjectType::Report, Report::"Calculate Inventory", 'OnAfterFunctionInsertItemJnlLine', '', true, true)]
@@ -266,4 +280,5 @@ codeunit 70006 "Event Souscriber"
 
     var
         myInt: Integer;
+        p:Page 132;
 }
