@@ -179,7 +179,7 @@ codeunit 70006 "Event Souscriber"
         SalesShipmentLine: Record "Sales Shipment Line";//Lignes expéditiopn vente enregistré
 
     begin
-           
+
         SalesLine.SetRange("Document No.", SalesInvoiceHeader."No.");
         if SalesLine.FindSet() then begin
             Message('tche');
@@ -260,6 +260,7 @@ codeunit 70006 "Event Souscriber"
         Itm: Record Item;
         ItemLedgerEntry: Record "Item Ledger Entry";
         Totalval: Integer;
+        p: Page 138;
     begin
         ItemLedgerEntry.SetRange("Item No.", ItemNo);
         ItemLedgerEntry.SetRange("Location Code", ItemJournalLine."Location Code");
@@ -273,12 +274,60 @@ codeunit 70006 "Event Souscriber"
             ItemJournalLine.Modify();
         end;
 
+
     end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Correct Posted Purch. Invoice", 'OnAfterCreateCopyDocument', '', true, true)]
+
+    local procedure OnAfterCreateCopyDocument(var PurchaseHeader: Record "Purchase Header"; SkipCopyFromDescription: Boolean; PurchInvHeader: Record "Purch. Inv. Header")
+    var
+        PurchInvLine: Record "Purch. Inv. Line";//<<Ligne facture achat enregistrées
+        // PurchInvLine: Record "Purch. Inv. Line";//<<Ligne facture achat enregistré
+        PurchaseLine: Record "Purchase Line";//<<Ligne avoir acaht
+        // PurchaseHeader: Record "Purchase Header";//<<Entete Avoir achat
+        PurchRcptLine: Record "Purch. Rcpt. Line";//<<Ligne réception achat enregistrée
+
+    begin
+        PurchaseLine.SetRange("Document No.", PurchaseHeader."No.");
+        if PurchaseLine.FindSet() then begin
+            repeat begin
+                PurchRcptLine.SetRange("Item Rcpt. Entry No.", PurchaseLine."Appl.-to Item Entry");
+                if PurchRcptLine.FindFirst() then begin
+                    PurchaseLine."Lot Qty" := PurchRcptLine."Lot Qty";
+
+                    PurchaseLine.Modify();
+                    // Message('a1:%1 b1:%2', PurchaseLine."No.", PurchaseLine."Lot Qty");
+                end;
+            end until PurchaseLine.Next() = 0;
+
+        end;
+        
+
+        // PurchaseLine.SetRange("Order No.",);
+
+        // PurchaseHeader.SetRange("Applies-to Doc. No.", rec."No.");
+        // if PurchaseHeader.FindFirst() then begin
+        //     PurchaseLine.SetRange("Document No.", PurchaseHeader."No.");
+        //     if PurchaseLine.FindSet() then begin
+        //         repeat begin
+        //             PurchRcptLine.SetRange("Item Rcpt. Entry No.", PurchaseLine."Appl.-to Item Entry");
+        //             if PurchRcptLine.FindFirst() then begin
+        //                 PurchaseLine."Lot Qty" := PurchRcptLine."Lot Qty";
+        //                 PurchaseLine.Modify();
+        //                 Message('a1:%1 b1:%2', PurchaseLine."No.", PurchaseLine."Lot Qty");
+        //             end;
+        //         end until PurchaseLine.Next() = 0;
+        //     end;
+        // end;
+    end;
+
+
 
 
 
 
     var
         myInt: Integer;
-        p:Page 132;
+        p: Page 138;
+
 }
