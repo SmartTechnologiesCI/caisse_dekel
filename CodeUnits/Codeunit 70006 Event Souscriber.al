@@ -224,6 +224,7 @@ codeunit 70006 "Event Souscriber"
 
         ItemLedgerEntry.SetRange("Document No.", ItemJournalLine."Document No.");
         ItemLedgerEntry.SetRange("Location Code", ItemJournalLine."Location Code");
+        ItemLedgerEntry.SetRange("Item No.",ItemJournalLine."Item No.");//<<31_08_24
         if ItemLedgerEntry.FindFirst() then begin
             ItemLedgerEntry."Nombre de cartonc" := ItemJournalLine."Nombre de cartonc";
             ItemLedgerEntry."Diff Qty carton" := ItemJournalLine."Diff Qty carton";
@@ -240,6 +241,7 @@ codeunit 70006 "Event Souscriber"
         //<<Ecriture comptable inventaire
         PhysInventoryLedgerEntry.SetRange("Document No.", ItemJournalLine."Document No.");
         PhysInventoryLedgerEntry.SetRange("Location Code", ItemJournalLine."Location Code");
+        PhysInventoryLedgerEntry.SetRange("Item No.",ItemJournalLine."Item No.");//<<31_08_24
         if PhysInventoryLedgerEntry.FindFirst() then begin
             PhysInventoryLedgerEntry."Nombre de carton" := ItemJournalLine."Nombre de carton";
             PhysInventoryLedgerEntry."Nombre de cartonc" := ItemJournalLine."Nombre de cartonc";
@@ -254,22 +256,22 @@ codeunit 70006 "Event Souscriber"
         //<<Validation inventaire 21_08_24
 
         //<<Transfert de stock 29_08_24
-        ItemLedger.SetRange("Document No.", ItemJournalLine."Document No.");
+        // ItemLedger.SetRange("Document No.", ItemJournalLine."Document No.");
 
-        if ItemLedger.FindFirst() then begin
-            repeat begin
-                if ItemJournalLine."Nombre de cartonc" = 0 then begin
-                    ItemLedger."Lot Qty." := ItemJournalLine."Nombre de carton";
-                    ItemLedger.Modify();
-                    if ItemLedger."Entry Type" = ItemLedger."Entry Type"::"Negative Adjmt." then begin
-                        ItemLedger."Lot Qty." := -ItemJournalLine."Nombre de carton";
-                        ItemLedger.Modify();
-                    end;
-                end;
+        // if ItemLedger.FindFirst() then begin
+        //     repeat begin
+        //         if ItemJournalLine."Nombre de cartonc" = 0 then begin
+        //             ItemLedger."Lot Qty." := ItemJournalLine."Nombre de carton";
+        //             ItemLedger.Modify();
+        //             if ItemLedger."Entry Type" = ItemLedger."Entry Type"::"Negative Adjmt." then begin
+        //                 ItemLedger."Lot Qty." := -ItemJournalLine."Nombre de carton";
+        //                 ItemLedger.Modify();
+        //             end;
+        //         end;
                 
-            end until ItemLedger.Next() = 0;
+        //     end until ItemLedger.Next() = 0;
 
-        end;
+        // end;
         //<<Transfert de stock 29_08_24
     end;
     //<<Tracking quantité en carton feuilles d'inventaires 19_08_24
@@ -281,7 +283,7 @@ codeunit 70006 "Event Souscriber"
         Totalval: Integer;
         p: Page 138;
     begin
-        ItemLedgerEntry.SetRange("Item No.", ItemNo);
+        ItemLedgerEntry.SetRange("Item No.", ItemJournalLine."Item No.");
         ItemLedgerEntry.SetRange("Location Code", ItemJournalLine."Location Code");
         Totalval := 0;
         if ItemLedgerEntry.FindFirst() then begin
