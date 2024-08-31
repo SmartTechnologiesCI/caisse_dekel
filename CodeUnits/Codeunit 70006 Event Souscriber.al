@@ -212,6 +212,7 @@ codeunit 70006 "Event Souscriber"
         ItemLedgerEntry: Record "Item Ledger Entry";
         PhysInventoryLedgerEntry: Record "Phys. Inventory Ledger Entry";
         p: Page 132;
+        ItemLedger: Record "Item Ledger Entry";
 
     //ligneArticle: record 83;
     begin
@@ -244,6 +245,7 @@ codeunit 70006 "Event Souscriber"
             PhysInventoryLedgerEntry."Nombre de cartonc" := ItemJournalLine."Nombre de cartonc";
             PhysInventoryLedgerEntry."Diff Qty carton" := ItemJournalLine."Diff Qty carton";
             PhysInventoryLedgerEntry.Modify();
+
             // Message('y11:%1 y22:%2 y33:%3', ItemLedgerEntry."Lot Qty.", ItemLedgerEntry."Nombre de cartonc", ItemLedgerEntry."Diff Qty carton");
 
             // Message('y11:%1 y22:%2 y33:%3', PhysInventoryLedgerEntry."Nombre de carton", PhysInventoryLedgerEntry."Nombre de cartonc", PhysInventoryLedgerEntry."Diff Qty carton");
@@ -251,7 +253,24 @@ codeunit 70006 "Event Souscriber"
         // <<Ecriture comptable inventaire
         //<<Validation inventaire 21_08_24
 
+        //<<Transfert de stock 29_08_24
+        ItemLedger.SetRange("Document No.", ItemJournalLine."Document No.");
 
+        if ItemLedger.FindFirst() then begin
+            repeat begin
+                if ItemJournalLine."Nombre de cartonc" = 0 then begin
+                    ItemLedger."Lot Qty." := ItemJournalLine."Nombre de carton";
+                    ItemLedger.Modify();
+                    if ItemLedger."Entry Type" = ItemLedger."Entry Type"::"Negative Adjmt." then begin
+                        ItemLedger."Lot Qty." := -ItemJournalLine."Nombre de carton";
+                        ItemLedger.Modify();
+                    end;
+                end;
+                
+            end until ItemLedger.Next() = 0;
+
+        end;
+        //<<Transfert de stock 29_08_24
     end;
     //<<Tracking quantité en carton feuilles d'inventaires 19_08_24
     [EventSubscriber(ObjectType::Report, Report::"Calculate Inventory", 'OnAfterFunctionInsertItemJnlLine', '', true, true)]
@@ -301,7 +320,7 @@ codeunit 70006 "Event Souscriber"
             end until PurchaseLine.Next() = 0;
 
         end;
-        
+
 
         // PurchaseLine.SetRange("Order No.",);
 

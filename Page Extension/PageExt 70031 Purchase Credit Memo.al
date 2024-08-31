@@ -82,5 +82,5 @@ pageextension 70031 "Purchase Credit MemoExt" extends "Purchase Credit Memo"
 
     var
         myInt: Integer;
-        p: Page 118;
+        p: Report 70014;
 }
