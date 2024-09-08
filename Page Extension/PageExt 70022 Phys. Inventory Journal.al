@@ -8,6 +8,7 @@ pageextension 70022 "Phys. Inventory JournalEx" extends "Phys. Inventory Journal
             {
                 ApplicationArea = All;
                 Caption = 'Nombre de carton (calculé)';
+                Editable=false;
             }
             field("Nombre de cartonc"; rec."Nombre de cartonc")
             {

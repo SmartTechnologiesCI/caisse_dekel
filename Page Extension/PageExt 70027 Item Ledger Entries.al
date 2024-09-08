@@ -66,4 +66,5 @@ pageextension 70027 "Item Ledger EntriesX" extends "Item Ledger Entries"
 
     var
         myInt: Integer;
+        pp:Page 5740;
 }

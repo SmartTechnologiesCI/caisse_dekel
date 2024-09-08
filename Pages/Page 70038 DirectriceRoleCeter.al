@@ -50,7 +50,7 @@ page 70038 "Director RC"
             action("&Transfert de stock")
             {
                 Caption = 'Transferer du stock';
-                RunObject = page "Transfert de stock";
+                RunObject = page 5742;
                 RunPageMode = Create;
             }
         }

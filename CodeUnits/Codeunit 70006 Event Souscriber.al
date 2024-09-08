@@ -224,7 +224,7 @@ codeunit 70006 "Event Souscriber"
 
         ItemLedgerEntry.SetRange("Document No.", ItemJournalLine."Document No.");
         ItemLedgerEntry.SetRange("Location Code", ItemJournalLine."Location Code");
-        ItemLedgerEntry.SetRange("Item No.",ItemJournalLine."Item No.");//<<31_08_24
+        ItemLedgerEntry.SetRange("Item No.", ItemJournalLine."Item No.");//<<31_08_24
         if ItemLedgerEntry.FindFirst() then begin
             ItemLedgerEntry."Nombre de cartonc" := ItemJournalLine."Nombre de cartonc";
             ItemLedgerEntry."Diff Qty carton" := ItemJournalLine."Diff Qty carton";
@@ -241,7 +241,7 @@ codeunit 70006 "Event Souscriber"
         //<<Ecriture comptable inventaire
         PhysInventoryLedgerEntry.SetRange("Document No.", ItemJournalLine."Document No.");
         PhysInventoryLedgerEntry.SetRange("Location Code", ItemJournalLine."Location Code");
-        PhysInventoryLedgerEntry.SetRange("Item No.",ItemJournalLine."Item No.");//<<31_08_24
+        PhysInventoryLedgerEntry.SetRange("Item No.", ItemJournalLine."Item No.");//<<31_08_24
         if PhysInventoryLedgerEntry.FindFirst() then begin
             PhysInventoryLedgerEntry."Nombre de carton" := ItemJournalLine."Nombre de carton";
             PhysInventoryLedgerEntry."Nombre de cartonc" := ItemJournalLine."Nombre de cartonc";
@@ -268,7 +268,7 @@ codeunit 70006 "Event Souscriber"
         //                 ItemLedger.Modify();
         //             end;
         //         end;
-                
+
         //     end until ItemLedger.Next() = 0;
 
         // end;
@@ -343,6 +343,247 @@ codeunit 70006 "Event Souscriber"
     end;
 
 
+
+    //<<Ordre de transfert 
+    //Non encore reglé
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post (Yes/No)", 'OnAfterPost', '', true, true)]
+    local procedure OnAfterPost(var TransHeader: Record "Transfer Header"; Selection: Option " ",Shipment,Receipt)
+    var
+        TransferShipmentLine: Record "Transfer Shipment Line";
+        ItemLedgerEntry: Record "Item Ledger Entry";
+        TransferLine: Record "Transfer Line";
+        TransferReceiptLine: Record "Transfer Receipt Line";
+        ItemLedgerEntry1: Record "Item Ledger Entry";
+        TransferReceiptLineTempory: Record "Transfer Receipt Line Tempory";
+    begin
+        // TransferLine.SetRange("Document No.",TransHeader."No.");
+        // if TransferLine.Findset then begin
+        //     TransferReceiptLineTempory.SetRange("Transfer Order No.",TransferLine."Document No.");
+        //     TransferReceiptLineTempory.SetRange(Quantity,TransferLine.Quantity);
+        //     if TransferReceiptLineTempory then begin
+
+        //     end;
+        // end;
+        TransferReceiptLineTempory.SetRange("Transfer Order No.", TransHeader."No.");
+        if TransferReceiptLineTempory.FindSet() then begin
+            repeat begin
+                ItemLedgerEntry1.SetRange("Order No.", TransferReceiptLineTempory."Transfer Order No.");
+                ItemLedgerEntry1.SetRange(Open, TransferReceiptLineTempory.Open);
+                ItemLedgerEntry1.SetRange(Quantity, TransferReceiptLineTempory.Quantity);
+                if ItemLedgerEntry1.FindFirst() then begin
+                    if ItemLedgerEntry1."Document Type" = ItemLedgerEntry1."Document Type"::"Transfer Receipt" then begin
+                        ItemLedgerEntry1."Lot Qty." := TransferReceiptLineTempory."Nombre de carton";
+                        ItemLedgerEntry1.Modify();
+                    end;
+                    if ItemLedgerEntry1."Document Type" = ItemLedgerEntry1."Document Type"::"Transfer Shipment" then begin
+                        ItemLedgerEntry1."Lot Qty." := -TransferReceiptLineTempory."Nombre de carton";
+                        ItemLedgerEntry1.Modify();
+                    end;
+
+                    // Message('gg:%1', ItemLedgerEntry1."Lot Qty.");
+                end;
+            end until TransferReceiptLineTempory.Next() = 0;
+        end;
+        // TransferReceiptLine.SetRange("Transfer Order No.",TransHeader."No.");
+        // if TransferReceiptLine.FindFirst() then begin
+        //     ItemLedgerEntry.SetRange("Order No.",TransferReceiptLine."Transfer Order No.");
+        //     if ItemLedgerEntry.FindFirst() then begin
+        //         ItemLedgerEntry."Lot Qty.":=TransferReceiptLine."Nombre de carton";
+        //         ItemLedgerEntry.Modify();
+        //         Message('thank you to God');
+        //     end;
+        // end;
+        // TransferLine.SetRange.findf("Document No.", TransHeader."No.");
+        // if TransferLine.FindFirst() then begin
+
+        //     // Message('yes');
+        //     // ItemLedgerEntry.SetRange("Document No.", TransferLine."Document No.");
+        //     // if ItemLedgerEntry.FindFirst() then begin
+        //     //     ItemLedgerEntry."Nombre de cartonc" := TransferLine."Nombre de carton";
+        //     //     ItemLedgerEntry.Modify();
+        //     //     Message('a:%1', ItemLedgerEntry."Nombre de cartonc");
+        //     // end;
+        // end;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post (Yes/No)", 'OnBeforePost', '', true, true)]
+
+    local procedure OnBeforePost(var TransHeader: Record "Transfer Header"; var IsHandled: Boolean; var TransferOrderPostShipment: Codeunit "TransferOrder-Post Shipment"; var TransferOrderPostReceipt: Codeunit "TransferOrder-Post Receipt"; var PostBatch: Boolean; var TransferOrderPost: Enum "Transfer Order Post")
+    var
+        TransferShipmentLine: Record "Transfer Shipment Line";
+        ItemLedgerEntry: Record "Item Ledger Entry";
+        TransferLine: Record "Transfer Line";
+        TransferShipmentHeader: Record "Transfer Shipment Header";
+    begin
+        // Message('hello1');
+        // TransferLine.SetRange("Document No.", TransHeader."No.");
+        // if TransferLine.FindFirst() then begin
+        //     Message('test');
+        //     TransferShipmentHeader.SetRange("Transfer Order No.", TransferLine."Document No.");
+        //     if TransferShipmentHeader.FindFirst() then begin
+        //         Message('hello man');
+        //     end;
+        //     // TransferShipmentLine.SetRange("Transfer Order No.", TransferLine."Document No.");
+        //     // if TransferShipmentLine.FindFirst() then begin
+        //     //     TransferShipmentLine."Nombre de carton" := TransferLine."Nombre de carton";
+        //     //     TransferShipmentLine.Modify();
+        //     //     Message('a: %1', TransferShipmentLine."Nombre de carton");
+        //     //     // ItemLedgerEntry.SetRange("Document No.", TransferShipmentLine."Document No.");
+        //     //     // if ItemLedgerEntry.FindFirst() then begin
+        //     //     //     ItemLedgerEntry."Nombre de cartonc" := TransferShipmentLine.Quantity;
+        //     //     //     ItemLedgerEntry.Modify();
+        //     //     //     Message('a2:%1', ItemLedgerEntry."Nombre de cartonc");
+        //     //     // end;
+        //     // end;
+
+        // end;
+    end;
+    //<<Ordre de transfert 07_09_24
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post (Yes/No)", 'OnCodeOnBeforePostTransferOrder', '', true, true)]
+    local procedure OnCodeOnBeforePostTransferOrder(var TransHeader: Record "Transfer Header"; var DefaultNumber: Integer; var Selection: Option; var IsHandled: Boolean; var PostBatch: Boolean; var TransferOrderPost: Enum "Transfer Order Post")
+    var
+        TransferShipmentLine: Record "Transfer Shipment Line";
+        ItemLedgerEntry: Record "Item Ledger Entry";
+        TransferLine: Record "Transfer Line";
+        TransferShipmentHeader: Record "Transfer Shipment Header";
+    begin
+        // Message('hello1');
+        // TransferLine.SetRange("Document No.", TransHeader."No.");
+        // if TransferLine.FindFirst() then begin
+        // Message('test');
+        // TransferShipmentHeader.SetRange("Transfer Order No.", TransferLine."Document No.");
+        // if TransferShipmentHeader.FindFirst() then begin
+        //     Message('hello man');
+        // end;
+        // TransferShipmentLine.SetRange("Transfer Order No.", TransferLine."Document No.");
+        // if TransferShipmentLine.FindFirst() then begin
+        //     TransferShipmentLine."Nombre de carton" := TransferLine."Nombre de carton";
+        //     TransferShipmentLine.Modify();
+        //     Message('a: %1', TransferShipmentLine."Nombre de carton");
+        //     // ItemLedgerEntry.SetRange("Document No.", TransferShipmentLine."Document No.");
+        //     // if ItemLedgerEntry.FindFirst() then begin
+        //     //     ItemLedgerEntry."Nombre de cartonc" := TransferShipmentLine.Quantity;
+        //     //     ItemLedgerEntry.Modify();
+        //     //     Message('a2:%1', ItemLedgerEntry."Nombre de cartonc");
+        //     // end;
+        // end;
+
+        // end;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Shipment", 'OnAfterInsertTransShptLine', '', true, true)]
+    local procedure OnAfterInsertTransShptLine(var TransShptLine: Record "Transfer Shipment Line"; TransLine: Record "Transfer Line"; CommitIsSuppressed: Boolean; TransShptHeader: Record "Transfer Shipment Header")
+    var
+        TransferShipmentLine: Record "Transfer Shipment Line";
+        ItemLedgerEntry: Record "Item Ledger Entry";
+        TransferLine: Record "Transfer Line";
+        TransferShipmentHeader: Record "Transfer Shipment Header";
+    begin
+
+        TransShptLine."Nombre de carton" := TransLine."Nombre de carton";
+        TransShptLine.Modify();
+        // ItemLedgerEntry.Reset();
+        // ItemLedgerEntry.SetRange("Document No.", TransShptLine."Document No.");
+        // // ItemLedgerEntry.SetRange("Location Code", TransShptLine."Transfer-to Code");
+        // if ItemLedgerEntry.FindFirst() then begin
+        //     // repeat
+        //         // if ItemLedgerEntry.Quantity < 0 then begin
+        //         // ItemLedgerEntry."Lot Qty." := TransShptLine."Nombre de carton" * (-1);
+        //         // ItemLedgerEntry.Modify();
+        //         Message('CABRA:%1 deux %2 Trois%3', ItemLedgerEntry."Lot Qty.", TransLine."Nombre de carton"
+        //         , TransShptLine."Nombre de carton");
+        //     // end;
+        //     // ItemLedgerEntry."Lot Qty." := TransLine."Nombre de carton" * (-1);
+
+        //     // until ItemLedgerEntry.Next() = 0;
+        // end;
+
+    end;
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Receipt", 'OnAfterInsertTransRcptLine', '', true, true)]
+    local procedure OnAfterInsertTransRcptLine(var TransRcptLine: Record "Transfer Receipt Line"; TransLine: Record "Transfer Line"; CommitIsSuppressed: Boolean; TransferReceiptHeader: Record "Transfer Receipt Header")
+    var
+        ItemLedgerEntry1: Record "Item Ledger Entry";
+        TransferReceiptLineTempory: Record "Transfer Receipt Line Tempory";
+    begin
+        // ItemLedgerEntry1.LockTable(false);
+        TransRcptLine."Nombre de carton" := TransLine."Nombre de carton";
+        TransRcptLine.Modify();
+        if not TransferReceiptLineTempory.IsEmpty then begin
+            TransferReceiptLineTempory.DeleteAll();
+            TransferReceiptLineTempory.Reset();
+        end;
+        TransferReceiptLineTempory."Item Rcpt. Entry No." := TransRcptLine."Item Rcpt. Entry No.";
+        TransferReceiptLineTempory."Transfer Order No." := TransRcptLine."Transfer Order No.";
+        TransferReceiptLineTempory."Nombre de carton" := TransRcptLine."Nombre de carton";
+        TransferReceiptLineTempory.Quantity := TransRcptLine.Quantity;
+        TransferReceiptLineTempory.Open := true;
+        TransferReceiptLineTempory.Insert();
+        TransferReceiptLineTempory."Item Rcpt. Entry No." := TransRcptLine."Item Rcpt. Entry No." + 1;
+        TransferReceiptLineTempory."Transfer Order No." := TransRcptLine."Transfer Order No.";
+        TransferReceiptLineTempory."Nombre de carton" := TransRcptLine."Nombre de carton";
+        TransferReceiptLineTempory.Quantity := -TransRcptLine.Quantity;
+        TransferReceiptLineTempory.Open := false;
+        TransferReceiptLineTempory.Insert();
+        // ItemLedgerEntry1.LockTable();
+        // ItemLedgerEntry1.SetRange("Order No.", TransferReceiptLineTempory."Transfer Order No.");
+        // ItemLedgerEntry1.SetRange(Open, TransferReceiptLineTempory.Open);
+        // ItemLedgerEntry1.SetRange(Quantity, TransferReceiptLineTempory.Quantity);
+        // if ItemLedgerEntry1.FindFirst() then begin
+        //     ItemLedgerEntry1."Lot Qty." := TransferReceiptLineTempory."Nombre de carton";
+        //     ItemLedgerEntry1.Modify();
+        //     Message('Fab:%1', ItemLedgerEntry1."Lot Qty.");
+        // end;
+        // Message('d:%1', TransferReceiptLineTempory."Nombre de carton");
+        // ItemLedgerEntry1.SetRange("Document No.", TransRcptLine."Document No.");
+        // ItemLedgerEntry1.SetRange("Location Code", TransRcptLine."Transfer-to Code");
+        // ItemLedgerEntry1.SetRange("Order No.", TransRcptLine."Transfer Order No.");
+        // ItemLedgerEntry1.SetRange("Entry No.",TransRcptLine."Item Rcpt. Entry No.");
+        // // ItemLedgerEntry1.SetRange(Open, true);
+        // if ItemLedgerEntry1.FindFirst() then begin
+        //     ItemLedgerEntry1."Lot Qty." := TransRcptLine."Nombre de carton";
+        //     ItemLedgerEntry1.Modify();
+        //     Message('aaaa:%1', ItemLedgerEntry1."Lot Qty.")
+        // end;
+        // ItemLedgerEntry1.SetRange("Document No.", TransRcptLine."Document No.");
+        // ItemLedgerEntry1.SetRange("Location Code", TransRcptLine."Transfer-to Code");
+        // ItemLedgerEntry1.SetRange("Order No.", TransLine."Document No.");
+        // ItemLedgerEntry1.SetRange(Open, true);
+        // if ItemLedgerEntry1.FindFirst() then begin
+        //     ItemLedgerEntry1."Lot Qty." := TransLine."Nombre de carton";
+        //     ItemLedgerEntry1.Modify();
+        //     Message('aaaa:%1', ItemLedgerEntry1."Lot Qty.")
+        // end;
+        // if ItemLedgerEntry1.get(TransRcptLine."Item Rcpt. Entry No.") then begin
+
+        //     repeat begin
+        //     if ItemLedgerEntry1."Entry No." = TransRcptLine."Item Rcpt. Entry No." then begin
+        //         ItemLedgerEntry1."Lot Qty." := TransRcptLine."Nombre de carton";
+        //         ItemLedgerEntry1.Modify();
+        //         Message('aaaa:%1', ItemLedgerEntry1."Lot Qty.")
+        //     end;
+        //     end until ItemLedgerEntry1.Next()=0;
+        // end;
+
+
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Receipt", 'OnBeforeInsertTransRcptLine', '', true, true)]
+    local procedure OnBeforeInsertTransRcptLine(var TransRcptLine: Record "Transfer Receipt Line"; TransLine: Record "Transfer Line"; CommitIsSuppressed: Boolean; var IsHandled: Boolean; TransferReceiptHeader: Record "Transfer Receipt Header")
+    var
+        TransferReceiptLineTempory: Record "Transfer Receipt Line Tempory";
+    begin
+        // if not TransferReceiptLineTempory.IsEmpty then begin
+        //     TransferReceiptLineTempory.DeleteAll();
+        //     TransferReceiptLineTempory.Reset();
+        // end;
+        // TransferReceiptLineTempory."Item Rcpt. Entry No." := TransRcptLine."Item Rcpt. Entry No." + 1;
+        // TransferReceiptLineTempory."Transfer Order No." := TransRcptLine."Transfer Order No.";
+        // TransferReceiptLineTempory."Nombre de carton" :=TransLine."Nombre de carton";
+        // TransferReceiptLineTempory.Insert();
+        // Message('d:%1', TransferReceiptLineTempory."Nombre de carton");
+    end;
 
 
 
