@@ -25,7 +25,14 @@ table 70028 "Transfer Receipt Line Tempory"
         {
             DataClassification = ToBeClassified;
         }
-        
+        field(50005; "Item No."; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(50006; "Transfer-to Code"; Code[30])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
     
     keys

@@ -95,7 +95,45 @@ pageextension 70004 "Psted Sles Invoice" extends 143
                 trigger OnAction()
                 var
                     CU: Codeunit 70002;
+                    SalesInvoiceHeader: Record "Sales Invoice Header";
+                    SalesInvoiceLine: Record "Sales Invoice Line";
+                    SalesCrMemoLineTempory: Record "Sales Cr.Memo Line Tempory";
+                    SalesCrMemoLineTempory2: Record "Sales Cr.Memo Line Tempory";
+                    SaleLine: Record "Sales Line";
+                    SaleLine2: Record "Sales Line";
+                    // SalesInvoiceHeader: Record "Sales Invoice Header";//<<Entete Facture vente enregistré
+                    // SalesInvoiceLine: Record "Sales Invoice Line";//<<Ligne facture vente enregistré
+                    SalesShipmentHeader: Record "Sales Shipment Header";//<<Entete expéditions vente enregistrée
+                    SalesShipmentLine: Record "Sales Shipment Line";//<<Ligne expédition vente enregistrée
                 begin
+                    if not SalesCrMemoLineTempory.IsEmpty() then begin
+                        SalesCrMemoLineTempory.DeleteAll();
+                        SalesCrMemoLineTempory.Reset();
+                    end;
+                    // SalesInvoiceLine.SetFilter("Document No.", '=%1', rec."No.");
+                    // SalesInvoiceLine.SetFilter("Appl.-from Item Entry", '<>%1', 0);
+
+                    SalesInvoiceLine.SetRange("Document No.", rec."No.");
+                    if SalesInvoiceLine.Findset then begin
+                        // Message('AAAA');
+                        // repeat begin
+                        SalesShipmentLine.SetRange("Order No.", SalesInvoiceLine."Order No.");
+                        if SalesShipmentLine.FindFirst() then begin
+                            repeat begin
+
+
+                                SalesCrMemoLineTempory.Init();
+                                SalesCrMemoLineTempory."Appl.-from Item Entry" := SalesShipmentLine."Item Shpt. Entry No.";
+                                SalesCrMemoLineTempory."Nombre de carton" := SalesShipmentLine."Lot Qty";
+                                SalesCrMemoLineTempory."Item Shpt. Entry No." := SalesShipmentLine."Item Shpt. Entry No.";
+                                SalesCrMemoLineTempory.Insert();
+                                // Message('Yes Inserted');
+                            end until SalesShipmentLine.Next() = 0;
+                        end;
+                        // end until SalesInvoiceLine.Next() = 0;
+
+                    end;
+
                     CU.CorrectPostedSalesInvoice(rec);
                 end;
             }
@@ -109,7 +147,13 @@ pageextension 70004 "Psted Sles Invoice" extends 143
                 trigger OnAction()
                 var
                     Sih: Record "Sales Invoice Header";
+                    SalCrMemoLineTempory: Record "Sales Cr.Memo Line Tempory";
                 begin
+                    if not SalCrMemoLineTempory.IsEmpty then begin
+                        SalCrMemoLineTempory.DeleteAll();
+                        SalCrMemoLineTempory.Reset();
+                    end;
+
                     sih.Reset();
                     sih.setRange("Statut Livraison", Sih."Statut Livraison"::"Payée partiellement livré");
                     sih.SetRange(Closed, true);

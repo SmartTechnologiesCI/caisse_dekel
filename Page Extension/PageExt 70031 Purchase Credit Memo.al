@@ -28,7 +28,7 @@ pageextension 70031 "Purchase Credit MemoExt" extends "Purchase Credit Memo"
                         PurchCrMemoLineTempory2."Nombre de carton" := PurchaseLine."Lot Qty";
                         PurchCrMemoLineTempory2."Appl.-to Item Entry" := PurchaseLine."Appl.-to Item Entry";
                         PurchCrMemoLineTempory2.Insert();
-                        Message('a:%1 b:%2', PurchCrMemoLineTempory2."Appl.-to Item Entry", PurchCrMemoLineTempory2."Nombre de carton");
+                        // Message('a:%1 b:%2', PurchCrMemoLineTempory2."Appl.-to Item Entry", PurchCrMemoLineTempory2."Nombre de carton");
                     end until PurchaseLine.Next() = 0;
 
                 end;
@@ -71,7 +71,7 @@ pageextension 70031 "Purchase Credit MemoExt" extends "Purchase Credit Memo"
                             if ItemLedgerEntry.FindFirst() then begin
                                 ItemLedgerEntry."Lot Qty." := PurchCrMemoLine2."Lot Qty";
                                 ItemLedgerEntry.Modify();
-                                Message('g1:%1 g2:%2', ItemLedgerEntry."Entry No.", ItemLedgerEntry."Lot Qty.");
+                                // Message('g1:%1 g2:%2', ItemLedgerEntry."Entry No.", ItemLedgerEntry."Lot Qty.");
                             end;
                         end until PurchCrMemoLine2.Next() = 0;
                     end;
