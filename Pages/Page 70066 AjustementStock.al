@@ -325,13 +325,13 @@ page 70066 "Ajustement de stock"
                             // if ItemJournalLine."Nombre de cartonc" = 0 then begin
                             if ItemLedger."Entry Type" = itemJournal."Entry Type"::"Positive Adjmt." then begin
                                 ItemLedger."Lot Qty." := rec."Nombre Cartons";
-                                Message('Positif0:%1', rec."Nombre Cartons");
+                                // Message('Positif0:%1', rec."Nombre Cartons");
                                 ItemLedger.Modify();
                             end;
                             if ItemLedger."Entry Type" = itemJournal."Entry Type"::"Negative Adjmt." then begin
                                 ItemLedger."Lot Qty." := -REC."Nombre Cartons";
                                 ItemLedger.Modify();
-                                Message('Negatif:%1', ItemLedger."Lot Qty.");
+                                // Message('Negatif:%1', ItemLedger."Lot Qty.");
                             end;
                             // end;
 
