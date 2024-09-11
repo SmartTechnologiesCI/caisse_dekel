@@ -226,6 +226,7 @@ codeunit 70006 "Event Souscriber"
         ItemLedgerEntry.SetRange("Document No.", ItemJournalLine."Document No.");
         ItemLedgerEntry.SetRange("Location Code", ItemJournalLine."Location Code");
         ItemLedgerEntry.SetRange("Item No.", ItemJournalLine."Item No.");//<<31_08_24
+        // ItemLedgerEntry.SetFilter("Diff Qty carton", '<>%1', 0);
         if ItemLedgerEntry.FindFirst() then begin
             ItemLedgerEntry."Nombre de cartonc" := ItemJournalLine."Nombre de cartonc";
             ItemLedgerEntry."Diff Qty carton" := ItemJournalLine."Diff Qty carton";
@@ -256,24 +257,24 @@ codeunit 70006 "Event Souscriber"
         // <<Ecriture comptable inventaire
         //<<Validation inventaire 21_08_24
 
-        //<<Transfert de stock 29_08_24
+        // //<<Transfert de stock 29_08_24
         // ItemLedger.SetRange("Document No.", ItemJournalLine."Document No.");
-
+        
         // if ItemLedger.FindFirst() then begin
         //     repeat begin
-        //         if ItemJournalLine."Nombre de cartonc" = 0 then begin
-        //             ItemLedger."Lot Qty." := ItemJournalLine."Nombre de carton";
+        //         // if ItemJournalLine."Nombre de cartonc" = 0 then begin
+        //         ItemLedger."Lot Qty." := ItemJournalLine."Nombre de carton";
+        //         ItemLedger.Modify();
+        //         if ItemLedger."Entry Type" = ItemLedger."Entry Type"::"Negative Adjmt." then begin
+        //             ItemLedger."Lot Qty." := -ItemJournalLine."Nombre de carton";
         //             ItemLedger.Modify();
-        //             if ItemLedger."Entry Type" = ItemLedger."Entry Type"::"Negative Adjmt." then begin
-        //                 ItemLedger."Lot Qty." := -ItemJournalLine."Nombre de carton";
-        //                 ItemLedger.Modify();
-        //             end;
         //         end;
+        //         // end;
 
         //     end until ItemLedger.Next() = 0;
 
         // end;
-        //<<Transfert de stock 29_08_24
+        // //<<Transfert de stock 29_08_24
     end;
     //<<Tracking quantité en carton feuilles d'inventaires 19_08_24
     [EventSubscriber(ObjectType::Report, Report::"Calculate Inventory", 'OnAfterFunctionInsertItemJnlLine', '', true, true)]

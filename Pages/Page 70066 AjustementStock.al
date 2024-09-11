@@ -52,7 +52,7 @@ page 70066 "Ajustement de stock"
                             rec."curr Carton" := item."Cartons Solde";
                             item.CalcFields(Inventory);
                             rec."curr Quantity" := item.Inventory;
-                            rec."curr Carton Mag" := item.ItemCartonStokbyMagasin(rec."Location Code");
+                            rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
                             rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
                         end;
                     end;
@@ -103,7 +103,7 @@ page 70066 "Ajustement de stock"
                             rec."curr Carton" := item."Cartons Solde";
                             item.CalcFields(Inventory);
                             rec."curr Quantity" := item.Inventory;
-                            rec."curr Carton Mag" := item.ItemCartonStokbyMagasin(rec."Location Code");
+                            rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
                             rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
                         end;
                     end;
@@ -166,7 +166,12 @@ page 70066 "Ajustement de stock"
                     ecritureCarton: record "Ecriture cartons articles";
                     ecritureCarton2: record "Ecriture cartons articles";
                     articl: Record Item;
+                    ItemLedger: Record "Item Ledger Entry";
                 begin
+                    if not yitemJournal.IsEmpty() then begin
+                        yitemJournal.DeleteAll();
+                        yitemJournal.Reset();
+                    end;
                     rec.TestField("Location Code");
                     yitemJournal.Reset();
                     yitemJournal.setRange("Journal Template Name", 'ARTICLE');
@@ -190,12 +195,14 @@ page 70066 "Ajustement de stock"
                             itemJournal."Entry Type" := itemJournal."Entry Type"::"Negative Adjmt.";
                             itemJournal.Quantity := rec."Quantité";
                             itemJournal."Nombre de carton" := rec."Nombre Cartons";
+                            // Message('a:%1', itemJournal."Nombre de carton");
                         end
                         else
                             if rec.Type = rec.Type::Positif then begin
                                 itemJournal."Entry Type" := itemJournal."Entry Type"::"Positive Adjmt.";
                                 itemJournal.Quantity := rec."Quantité";
                                 itemJournal."Nombre de carton" := rec."Nombre Cartons";
+                                // Message('b:%1', itemJournal."Nombre de carton");
                             end
                             else
                                 if rec.Type = rec.Type::Inventaire then begin
@@ -310,6 +317,28 @@ page 70066 "Ajustement de stock"
                         itemJournal.Insert();
 
                         CODEUNIT.Run(CODEUNIT::"Item Jnl.-Post", itemJournal);
+                        //<<Transfert de stock 29_08_24
+                        ItemLedger.SetRange("Document No.", itemJournal."Document No.");
+                        if ItemLedger.FindFirst() then begin
+
+                            // repeat begin
+                            // if ItemJournalLine."Nombre de cartonc" = 0 then begin
+                            if ItemLedger."Entry Type" = itemJournal."Entry Type"::"Positive Adjmt." then begin
+                                ItemLedger."Lot Qty." := rec."Nombre Cartons";
+                                Message('Positif0:%1', rec."Nombre Cartons");
+                                ItemLedger.Modify();
+                            end;
+                            if ItemLedger."Entry Type" = itemJournal."Entry Type"::"Negative Adjmt." then begin
+                                ItemLedger."Lot Qty." := -REC."Nombre Cartons";
+                                ItemLedger.Modify();
+                                Message('Negatif:%1', ItemLedger."Lot Qty.");
+                            end;
+                            // end;
+
+                            // end until ItemLedger.Next() = 0;
+
+                        end;
+                        //<<Transfert de stock 29_08_24
                         rec."Posting Date" := WorkDate();
                         rec.Posted := true;
                         CurrPage.Editable := false;
