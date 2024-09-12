@@ -117,7 +117,47 @@ codeunit 70002 "Cancel Psted Sles Inv."
         SalesHeader: Record "Sales Header";
         cancelledDoc: record "Cancelled Document";
         CorrectPostedSalesInvoice: Codeunit "Correct Posted Sales Invoice";
+        //<<12_09_24
+        // CU: Codeunit 70002;
+        SalesInvoiceHeader2: Record "Sales Invoice Header";
+        SalesInvoiceLine: Record "Sales Invoice Line";
+        SalesCrMemoLineTempory: Record "Sales Cr.Memo Line Tempory";
+        SalesCrMemoLineTempory2: Record "Sales Cr.Memo Line Tempory";
+        SaleLine: Record "Sales Line";
+        SaleLine2: Record "Sales Line";
+        SalesShipmentHeader: Record "Sales Shipment Header";//<<Entete expéditions vente enregistrée
+        SalesShipmentLine: Record "Sales Shipment Line";//<<Ligne expédition vente enregistrée
     begin
+        //<<Annulation automatique des factures ventes enregistrées 12_09_24
+        if not SalesCrMemoLineTempory.IsEmpty() then begin
+            SalesCrMemoLineTempory.DeleteAll();
+            SalesCrMemoLineTempory.Reset();
+        end;
+        // SalesInvoiceLine.SetFilter("Document No.", '=%1', rec."No.");
+        // SalesInvoiceLine.SetFilter("Appl.-from Item Entry", '<>%1', 0);
+
+        SalesInvoiceLine.SetRange("Document No.", SalesInvoiceHeader."No.");
+        if SalesInvoiceLine.Findset then begin
+            // Message('AAAA');
+            // repeat begin
+            SalesShipmentLine.SetRange("Order No.", SalesInvoiceLine."Order No.");
+            if SalesShipmentLine.FindFirst() then begin
+                repeat begin
+
+
+                    SalesCrMemoLineTempory.Init();
+                    SalesCrMemoLineTempory."Appl.-from Item Entry" := SalesShipmentLine."Item Shpt. Entry No.";
+                    SalesCrMemoLineTempory."Nombre de carton" := SalesShipmentLine."Lot Qty";
+                    SalesCrMemoLineTempory."Item Shpt. Entry No." := SalesShipmentLine."Item Shpt. Entry No.";
+                    SalesCrMemoLineTempory.Insert();
+                    // Message('Yes Inserted');
+                end until SalesShipmentLine.Next() = 0;
+            end;
+            // end until SalesInvoiceLine.Next() = 0;
+
+        end;
+        //<<Annulation automatique des factures ventes enregistrées 12_09_24
+        
         SalesInvoiceHeader.CalcFields(Closed);
 
         if SalesInvoiceHeader.Closed then begin
