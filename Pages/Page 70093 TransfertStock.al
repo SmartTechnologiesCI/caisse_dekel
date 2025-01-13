@@ -53,7 +53,7 @@ page 70093 "Transfert de stock"
                             rec."curr Carton" := item."Cartons Solde";
                             item.CalcFields(Inventory);
                             rec."curr Quantity" := item.Inventory;
-                            rec."curr Carton Mag" := item.ItemCartonStokbyMagasin(rec."Location Code");
+                            rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
                             rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
                         end;
                     end;
@@ -110,7 +110,7 @@ page 70093 "Transfert de stock"
                                 rec."curr Carton" := item."Cartons Solde";
                                 item.CalcFields(Inventory);
                                 rec."curr Quantity" := item.Inventory;
-                                rec."curr Carton Mag" := item.ItemCartonStokbyMagasin(rec."Location Code");
+                                rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
                                 rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
                             end;
                         end;
@@ -162,7 +162,7 @@ page 70093 "Transfert de stock"
                                 rec."curr Carton" := item."Cartons Solde";
                                 item.CalcFields(Inventory);
                                 rec."curr Quantity" := item.Inventory;
-                                rec."curr Carton Mag dest" := item.ItemCartonStokbyMagasin(rec."Location CodeDest");
+                                rec."curr Carton Mag dest" := item.ItemCartonStokbyMagasin2(rec."Location CodeDest");
                                 rec."curr Quantity Mag dest" := item.ItemQuantityStockbyMagasin(rec."Location CodeDest");
                             end;
                         end;
@@ -209,7 +209,7 @@ page 70093 "Transfert de stock"
 
     actions
     {
-        
+
         area(Processing)
         {
             action("Valider Transfert")
@@ -406,9 +406,9 @@ page 70093 "Transfert de stock"
                 RunPageMode = View;
                 Enabled = NOT rec.Posted;
             }
-            
+
         }
-        
+
     }
 
     var

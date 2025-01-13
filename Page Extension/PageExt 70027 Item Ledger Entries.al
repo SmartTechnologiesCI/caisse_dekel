@@ -8,13 +8,20 @@ pageextension 70027 "Item Ledger EntriesX" extends "Item Ledger Entries"
             {
                 Caption = 'N° Commande';
             }
-        }
-        addafter("Lot Qty."){
-            field("Nombre de cartonc";rec."Nombre de cartonc"){
-                ApplicationArea=All;
+            field("Invoice N°"; rec."Invoice N°")
+            {
+                Caption = 'N° Facture';
             }
-            field("Diff Qty carton";"Diff Qty carton"){
-                
+        }
+        addafter("Lot Qty.")
+        {
+            field("Nombre de cartonc"; rec."Nombre de cartonc")
+            {
+                ApplicationArea = All;
+            }
+            field("Diff Qty carton"; "Diff Qty carton")
+            {
+
             }
         }
     }
@@ -59,12 +66,12 @@ pageextension 70027 "Item Ledger EntriesX" extends "Item Ledger Entries"
                 Message('a:%1 b:%2 c:%3', rec."Entry No.", rec."Document Type", rec."Lot Qty.");
             end until SalesShipmentLine.Next() = 0;
             // if rec."Document Type" = rec."Document Type"::"Sales Credit Memo" then begin
-            
+
             // end;
         end;
     end;
 
     var
         myInt: Integer;
-        pp:Page 5740;
+        pp: Page 5740;
 }

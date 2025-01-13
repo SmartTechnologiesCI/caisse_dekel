@@ -51,6 +51,7 @@ codeunit 70006 "Event Souscriber"
                 end;
             until SalesShipmentHeader1.Next() = 0;
         end;
+        ItemLedgerEntry."Invoice N°" := SalesInvLine."Document No.";
     end;
 
     //// <<Insertion de nombre de cartons dans avoir vente enrehistré lors de l'annulation d'une vente 14_08_24
@@ -259,7 +260,7 @@ codeunit 70006 "Event Souscriber"
 
         // //<<Transfert de stock 29_08_24
         // ItemLedger.SetRange("Document No.", ItemJournalLine."Document No.");
-        
+
         // if ItemLedger.FindFirst() then begin
         //     repeat begin
         //         // if ItemJournalLine."Nombre de cartonc" = 0 then begin
