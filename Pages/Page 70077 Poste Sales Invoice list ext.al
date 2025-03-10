@@ -708,14 +708,14 @@ page 70077 "Posted Sales Invoices ext"
 
         sivh.SetRange("Due Date", WorkDate());
         if sivh.FindFirst() then begin
-            repeat
-                parCompta.Get();
-                sivh.No_ordre := parCompta."N° order";
-                sivh.Modify();
-                parCompta."N° order" += 1;
-                parCompta.Modify();
+            // repeat
+            //     parCompta.Get();
+            //     sivh.No_ordre := parCompta."N° order";
+            //     sivh.Modify();
+            //     parCompta."N° order" += 1;
+            //     parCompta.Modify();
 
-            until sivh.next = 0;
+            // until sivh.next = 0;
         end;
         sivh2.Reset();
 

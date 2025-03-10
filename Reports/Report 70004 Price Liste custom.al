@@ -68,9 +68,9 @@ report 70004 "Price List custom"
             column(SalesDesc; SalesDesc)
             {
             }
-            column(UnitPriceFieldCaption; SalesPrice.FieldCaption("Unit Price") + CurrencyText)
-            {
-            }
+            // column(UnitPriceFieldCaption; SalesPrice.FieldCaption("Unit Price") + CurrencyText)
+            // {
+            // }
             column(LineDiscountFieldCaption; SalesLineDisc.FieldCaption("Line Discount %") + CurrencyText)
             {
             }
@@ -119,11 +119,11 @@ report 70004 "Price List custom"
                 column(VATText_SalesPrices; VATText)
                 {
                 }
-                column(SalesPriceUnitPrice; SalesPrice."Unit Price")
-                {
-                    AutoFormatExpression = Currency.Code;
-                    AutoFormatType = 2;
-                }
+                // column(SalesPriceUnitPrice; SalesPrice."Unit Price")
+                // {
+                //     AutoFormatExpression = Currency.Code;
+                //     AutoFormatType = 2;
+                // }
                 column(UOM_SalesPrices; UnitOfMeasure)
                 {
                 }
@@ -133,19 +133,19 @@ report 70004 "Price List custom"
                 column(ItemDesc_SalesPrices; ItemDesc)
                 {
                 }
-                column(MinimumQty_SalesPrices; SalesPrice."Minimum Quantity")
-                {
-                }
+                // column(MinimumQty_SalesPrices; SalesPrice."Minimum Quantity")
+                // {
+                // }
 
-                trigger OnAfterGetRecord()
-                begin
-                    PrintSalesPrice(false);
-                end;
+                // trigger OnAfterGetRecord()
+                // begin
+                //     PrintSalesPrice(false);
+                // end;
 
-                trigger OnPreDataItem()
-                begin
-                    PreparePrintSalesPrice(false);
-                end;
+                // trigger OnPreDataItem()
+                // begin
+                //     PreparePrintSalesPrice(false);
+                // end;
             }
             dataitem(SalesLineDiscs; "Integer")
             {
@@ -168,15 +168,15 @@ report 70004 "Price List custom"
                 {
                 }
 
-                trigger OnAfterGetRecord()
-                begin
-                    PrintSalesDisc();
-                end;
+                // trigger OnAfterGetRecord()
+                // begin
+                //     PrintSalesDisc();
+                // end;
 
-                trigger OnPreDataItem()
-                begin
-                    PreparePrintSalesDisc(false);
-                end;
+                // trigger OnPreDataItem()
+                // begin
+                //     PreparePrintSalesDisc(false);
+                // end;
             }
             dataitem("Item Variant"; "Item Variant")
             {
@@ -193,25 +193,25 @@ report 70004 "Price List custom"
                     column(UOM_Variant_SalesPrices; UnitOfMeasure)
                     {
                     }
-                    column(MinimumQty_Variant_SalesPrices; SalesPrice."Minimum Quantity")
-                    {
-                    }
-                    column(UnitPrince_Variant_SalesPrices; SalesPrice."Unit Price")
-                    {
-                    }
+                    // column(MinimumQty_Variant_SalesPrices; SalesPrice."Minimum Quantity")
+                    // {
+                    // }
+                    // column(UnitPrince_Variant_SalesPrices; SalesPrice."Unit Price")
+                    // {
+                    // }
                     column(VATText_Variant_SalesPrices; VATText)
                     {
                     }
 
-                    trigger OnAfterGetRecord()
-                    begin
-                        PrintSalesPrice(true);
-                    end;
+                    // trigger OnAfterGetRecord()
+                    // begin
+                    //     PrintSalesPrice(true);
+                    // end;
 
-                    trigger OnPreDataItem()
-                    begin
-                        PreparePrintSalesPrice(true);
-                    end;
+                    // trigger OnPreDataItem()
+                    // begin
+                    //     PreparePrintSalesPrice(true);
+                    // end;
                 }
                 dataitem(VariantSalesLineDiscs; "Integer")
                 {
@@ -233,15 +233,15 @@ report 70004 "Price List custom"
 
                     }
 
-                    trigger OnAfterGetRecord()
-                    begin
-                        PrintSalesDisc();
-                    end;
+                    // trigger OnAfterGetRecord()
+                    // begin
+                    //     PrintSalesDisc();
+                    // end;
 
-                    trigger OnPreDataItem()
-                    begin
-                        PreparePrintSalesDisc(true);
-                    end;
+                    // trigger OnPreDataItem()
+                    // begin
+                    //     PreparePrintSalesDisc(true);
+                    // end;
                 }
 
                 trigger OnAfterGetRecord()
@@ -262,13 +262,13 @@ report 70004 "Price List custom"
                     SalesLine."No." := Item."No.";
                     SalesLine."Variant Code" := Code;
                     SalesLine."Posting Date" := DateReq;
-                    SetCurrencyFactorInHeader(SalesHeader);
+                    // SetCurrencyFactorInHeader(SalesHeader);
                     SalesLine.GetLineWithPrice(LineWithPrice);
                     LineWithPrice.SetLine(PriceType::Sale, SalesHeader, SalesLine);
                     LineWithPrice.SetSources(PriceSourceList);
                     PriceCalculationMgt.GetHandler(LineWithPrice, PriceCalculation);
                     PriceCalculation.FindPrice(TempPriceListLine, false);
-                    CopyFromToPriceListLine.CopyTo(SalesPrice, TempPriceListLine);
+                    // CopyFromToPriceListLine.CopyTo(SalesPrice, TempPriceListLine);
                     PriceCalculation.FindDiscount(TempPriceListLine, false);
                     CopyFromToPriceListLine.CopyTo(SalesLineDisc, TempPriceListLine);
                 end;
@@ -291,7 +291,7 @@ report 70004 "Price List custom"
                 SalesLine.Type := SalesLine.Type::Item;
                 SalesLine."No." := Item."No.";
                 SalesLine."Posting Date" := DateReq;
-                SetCurrencyFactorInHeader(SalesHeader);
+                // SetCurrencyFactorInHeader(SalesHeader);
                 SalesLine.GetLineWithPrice(LineWithPrice);
                 LineWithPrice.SetLine(PriceType::Sale, SalesHeader, SalesLine);
                 LineWithPrice.SetSources(PriceSourceList);

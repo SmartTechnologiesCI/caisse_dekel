@@ -103,7 +103,7 @@ table 70011 "Caisse Cue"
         field(21; "DuplicataApprou"; integer)
         {
             FieldClass = FlowField;
-            CalcFormula = count("Sales Invoice Header" where(Approuve = const(true)));
+            // CalcFormula = count("Sales Invoice Header" where(Approuve = const(true)));
         }
     }
 

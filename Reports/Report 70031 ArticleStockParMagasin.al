@@ -24,11 +24,11 @@ report 70043 "Article stock par magasins"
             column(Inventory; Inventory)
             {
             }
-            column(Cartons_Solde; "Cartons Solde")
-            {
-            }
+            // column(Cartons_Solde; "Cartons Solde")
+            // {
+            // }
             column(Location_Filter; "locationFilter") { }
-            column(Marque; Marque) { }
+            // column(Marque; Marque) { }
 
             trigger OnPreDataItem()
             var
@@ -56,10 +56,7 @@ report 70043 "Article stock par magasins"
                 if Blocked = bool then begin
                     CurrReport.Skip;
                 end;
-                if "Cartons Solde" = 0 then begin
-                    CurrReport.Skip
-
-                end;
+                
 
 
             end;

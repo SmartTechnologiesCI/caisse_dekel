@@ -51,7 +51,7 @@ page 70094 "ResponsableDaf RC"
             action("&Etat liste des fournisseurs")
             {
                 Caption = 'fournisseurs à payer';
-                RunObject = report 70012;
+                //silue samuel RunObject = report 70012;
             }
             action("Etat douaniers")
             {
@@ -135,7 +135,7 @@ page 70094 "ResponsableDaf RC"
                     action("Etat liste des fournisseurs")
                     {
                         Caption = 'Fournisseurs à payer';
-                        RunObject = report 70012;
+                        // silue samuel RunObject = report 70012;
                     }
                     action("Etat Conteneur vendu")
                     {

@@ -600,9 +600,6 @@ End Function
         <Field Name="InventoryFormat">
           <DataField>InventoryFormat</DataField>
         </Field>
-        <Field Name="Cartons_Solde">
-          <DataField>Cartons_Solde</DataField>
-        </Field>
       </Fields>
       <Query>
         <DataSourceName>DataSource</DataSourceName>

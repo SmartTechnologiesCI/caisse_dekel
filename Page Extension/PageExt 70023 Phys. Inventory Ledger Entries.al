@@ -4,13 +4,13 @@ pageextension 70023 "Phys. Invent. Led. EntriesExt" extends "Phys. Inventory Led
     {
         addafter(Quantity)
         {
-            field("Nombre de carton";rec."Nombre de carton"){
-                ApplicationArea=All;
-            }
-            field("Nombre de cartonc"; rec."Nombre de cartonc")
-            {
-                ApplicationArea = All;
-            }
+            // field("Nombre de carton";rec."Nombre de carton"){
+            //     ApplicationArea=All;
+            // }
+            // field("Nombre de cartonc"; rec."Nombre de cartonc")
+            // {
+            //     ApplicationArea = All;
+            // }
             field("Diff Qty carton"; rec."Diff Qty carton")
             {
                 ApplicationArea = All;

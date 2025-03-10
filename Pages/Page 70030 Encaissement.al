@@ -1197,16 +1197,16 @@ page 70030 "Encaissement"
         Encaissement2.SetRange(Date, WorkDate()); //olivier 04/12/2022
         Encaissement2.SetRange("N° client", rec."Sell-to Customer No.");
         if (Encaissement2.FindLast()) then begin
-            if rec.NbImpression = 0 then begin
-                Encaissement3.Reset();
-                Encaissement3.SetRange("N° commande", rec."No.");
-                Encaissement3.SetRange(Date, WorkDate()); //olivier 04/12/2022
-                Encaissement3.SetRange("N° client", rec."Sell-to Customer No.");
-                Encaissement3.SetRange("N°", Encaissement2."N°");
-                if Encaissement3.FindLast() then begin
-                    Report.Run(70023, true, false, Encaissement2);
-                    rec.NbImpression := rec.NbImpression + 1;
-                end;
+            // if rec.NbImpression = 0 then begin
+            //     Encaissement3.Reset();
+            //     Encaissement3.SetRange("N° commande", rec."No.");
+            //     Encaissement3.SetRange(Date, WorkDate()); //olivier 04/12/2022
+            //     Encaissement3.SetRange("N° client", rec."Sell-to Customer No.");
+            //     Encaissement3.SetRange("N°", Encaissement2."N°");
+            //     if Encaissement3.FindLast() then begin
+            //         Report.Run(70023, true, false, Encaissement2);
+            //         rec.NbImpression := rec.NbImpression + 1;
+            //     end;
             end
             else begin
                 Encaissement3.Reset();
@@ -1224,7 +1224,7 @@ page 70030 "Encaissement"
 
 
         end;
-    end;
+    // end;
 
 
 

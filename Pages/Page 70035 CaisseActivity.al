@@ -253,8 +253,8 @@ page 70035 CaisseActivity
                         DepotJour: Record "Sales Invoice Header";
                     begin
 
-                        DepotJour.SetRange(Approuve, true);
-                        Page.RunModal(Page::"Liste des factures", DepotJour);
+                        // DepotJour.SetRange(Approuve, true);
+                        // Page.RunModal(Page::"Liste des factures", DepotJour);
                     end;
                 }
             }

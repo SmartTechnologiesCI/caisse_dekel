@@ -21,7 +21,7 @@ report 70014 "Etat des stocks"
 
             column(No_; "No.") { }
             column(Inventory; Inventory) { }
-            column(Carton_en_stock; Item."Cartons Solde") { }
+            // column(Carton_en_stock; Item."Cartons Solde") { }
             column(Description; Description) { }
 
 
@@ -59,7 +59,7 @@ report 70014 "Etat des stocks"
             begin
 
                 CalcFields(Inventory);
-                CalcFields("Cartons Solde");
+                // CalcFields("Cartons Solde");
 
 
             end;
@@ -70,7 +70,7 @@ report 70014 "Etat des stocks"
             begin
 
                 CalcFields(Inventory);
-                CalcFields("Cartons Solde");
+                // CalcFields("Cartons Solde");
             end;
 
             trigger OnAfterGetRecord()

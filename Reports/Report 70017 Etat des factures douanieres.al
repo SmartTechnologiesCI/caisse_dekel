@@ -12,14 +12,14 @@ report 70017 "Etat des factures douanires"
         dataitem("Sales Invoice Header"; "Sales Invoice Header")
         {
 
-            RequestFilterFields = "Document Date","Contrat origine";
+            // RequestFilterFields = "Document Date","Contrat origine";
 
             column(No_; "No.") { }
             column(Bill_to_Name; "Bill-to Name") { }
             column(Amount_Including_VAT; "Amount Including VAT") { }
             column(Due_Date; "Due Date") { }
             column(Document_Date; "Document Date") { }
-            column(Contrat_origine; "Contrat origine") { }
+            // column(Contrat_origine; "Contrat origine") { }
 
             dataitem ("Sales Invoice Line";"Sales Invoice Line"){
                 DataItemLink = "Document No." = field("No.");

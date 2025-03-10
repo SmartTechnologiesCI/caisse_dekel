@@ -67,47 +67,47 @@ page 70069 "Prix Categorie"
 
 
     begin
-        CategorieArticle.SetRange("Code", CategorieArticle."Code");
+        // CategorieArticle.SetRange("Code", CategorieArticle."Code");
 
     end;
 
     trigger OnQueryClosePage(CloseAction: Action): Boolean
     var
         item: Record Item;
-        salePrice: Record "Sales Price";
+        // salePrice: Record "Sales Price";
 
     begin
-        if (CloseAction = CloseAction::OK) then begin
-            if PrixCategorie <= 0 then begin
-                Error('Le prix ne peut etre vide');
-            end
+        // if (CloseAction = CloseAction::OK) then begin
+        //     if PrixCategorie <= 0 then begin
+        //         Error('Le prix ne peut etre vide');
+        //     end
 
-            else begin
-                salePrice.Reset();
-                item.SetRange("Item Category Code", CategorieArticle.Code);
-                salePrice.SetRange("Item No.", item."No.");
-                if item.FindFirst() then begin
-                    repeat
-                        // Changer le prix de l'article
-                        salePrice.Reset();
-                        salePrice.SetRange("Sales Type", salePrice."Sales Type"::"All Customers");
-                        salePrice.SetRange("Item No.", item."No.");
-                        salePrice.setRange("Minimum Quantity", 0);
-                        if (salePrice.FindFirst()) then begin
+        //     else begin
+        //         salePrice.Reset();
+        //         item.SetRange("Item Category Code", CategorieArticle.Code);
+        //         salePrice.SetRange("Item No.", item."No.");
+        //         if item.FindFirst() then begin
+        //             repeat
+        //                 // Changer le prix de l'article
+        //                 salePrice.Reset();
+        //                 salePrice.SetRange("Sales Type", salePrice."Sales Type"::"All Customers");
+        //                 salePrice.SetRange("Item No.", item."No.");
+        //                 salePrice.setRange("Minimum Quantity", 0);
+        //                 if (salePrice.FindFirst()) then begin
 
-                            salePrice."Price Includes VAT" := true;
-                            salePrice."Unit Price" := PrixCategorie;
-                            salePrice.Modify();
-                        end else begin
-                            salePrice.Reset();
+        //                     salePrice."Price Includes VAT" := true;
+        //                     salePrice."Unit Price" := PrixCategorie;
+        //                     salePrice.Modify();
+        //                 end else begin
+        //                     salePrice.Reset();
 
-                            salePrice."Sales Type" := salePrice."Sales Type"::"All Customers";
-                            salePrice."Item No." := item."No.";
-                            salePrice."Minimum Quantity" := 0;
-                            salePrice."Price Includes VAT" := true;
-                            salePrice."Unit Price" := PrixCategorie;
-                            salePrice.Insert();
-                        end;
+        //                     salePrice."Sales Type" := salePrice."Sales Type"::"All Customers";
+        //                     salePrice."Item No." := item."No.";
+        //                     salePrice."Minimum Quantity" := 0;
+        //                     salePrice."Price Includes VAT" := true;
+        //                     salePrice."Unit Price" := PrixCategorie;
+        //                     salePrice.Insert();
+        //                 end;
 
 
 
@@ -146,13 +146,13 @@ page 70069 "Prix Categorie"
 
                                       end; */
 
-                    until item.Next = 0;
-                end;
-                Message('Les prix on bien été fixé');
+    //                 until item.Next = 0;
+    //             end;
+    //             Message('Les prix on bien été fixé');
 
-            end;
-        end;
-    end;
+    //         end;
+    //     end;
+     end;
 
     var
         myInt: Integer;

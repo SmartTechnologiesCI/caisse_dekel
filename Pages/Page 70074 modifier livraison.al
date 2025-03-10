@@ -26,7 +26,7 @@ page 70074 "Modifier livraison"
                 //     Editable = false;
                 // }
 
-                field("Nombre de carton livre"; rec."Qté livrée") { Editable = false; }
+                // field("Nombre de carton livre"; rec."Qté livrée") { Editable = false; }
 
                 field(Quantity; rec.Quantity)
                 {

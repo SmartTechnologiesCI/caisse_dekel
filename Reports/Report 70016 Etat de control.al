@@ -21,7 +21,7 @@ report 70016 "Etat de control livraison"
 
             column(No_; "No.") { }
             column(Inventory; Inventory) { }
-            column(Carton_en_stock; Item."Cartons Solde") { }
+            // column(Carton_en_stock; Item."Cartons Solde") { }
             column(Description; Description) { }
             column(Unit_price; Unit_price) { }
 

@@ -21,7 +21,7 @@ report 70015 "Valorisation des stocks"
 
             column(No_; "No.") { }
             column(Inventory; Poids) { }
-            column(Carton_en_stock; Item."Cartons Solde") { }
+            // column(Carton_en_stock; Item."Cartons Solde") { }
             column(Description; Description) { }
             column(Unit_price; Unit_price) { }
             column(dateDebut; dateDebut) { }

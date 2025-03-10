@@ -69,13 +69,13 @@ tableextension 70000 "Sales Header Extension" extends "Sales Header"
     var
         purch: record "Purchase Header";
     begin
-        if Rec."Est Echantillone" then begin
-            purch.Reset();
-            purch.SetRange("No.", rec."Contrat origine");
-            if purch.FindFirst() then begin
-                purch."Echantillon Douanier" -= 1;
-                purch.Modify();
-            end;
-        end;
+        // if Rec."Est Echantillone" then begin
+        //     purch.Reset();
+        //     // purch.SetRange("No.", rec."Contrat origine");
+        //     if purch.FindFirst() then begin
+        //         purch."Echantillon Douanier" -= 1;
+        //         purch.Modify();
+        //     end;
+        // end;
     end;
 }

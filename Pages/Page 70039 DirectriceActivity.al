@@ -206,8 +206,8 @@ page 70039 "Directrice activity"
                     begin
 
                         // silue samuel 07/03/2025 DepotJour.SetRange("Demande approbation", true);
-                        DepotJour.SetRange(Approuve, false);
-                        Page.RunModal(Page::"Liste des factures", DepotJour);
+                        // DepotJour.SetRange(Approuve, false);
+                        // Page.RunModal(Page::"Liste des factures", DepotJour);
                     end;
                 }
 
@@ -499,10 +499,10 @@ page 70039 "Directrice activity"
                         "PurchOrder": Record "Purchase Header";
                     begin
                         // silue samuel 07/03/2025 PurchOrder.SetRange("Prix fixé", false);
-                        PurchOrder.SetRange("Fixation des prix", true);
-                        PurchOrder.SetFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
-                        PurchOrder.FindFirst();
-                        Page.RunModal(70040, PurchOrder);
+                        // PurchOrder.SetRange("Fixation des prix", true);
+                        // PurchOrder.SetFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
+                        // PurchOrder.FindFirst();
+                        // Page.RunModal(70040, PurchOrder);
                     end;
                 }
             }   /**/

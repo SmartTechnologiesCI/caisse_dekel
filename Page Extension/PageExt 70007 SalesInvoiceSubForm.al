@@ -15,10 +15,10 @@ pageextension 70007 "SalesInvSubF" extends 133
         {
             Editable = false;
         }
-        modify("Nombre de carton")
-        {
-            Editable = false;
-        }
+        // modify("Nombre de carton")
+        // {
+        //     Editable = false;
+        // }
         modify(Quantity)
         {
             Editable = false;
@@ -57,10 +57,10 @@ pageextension 70007 "SalesInvSubF" extends 133
             {
 
             }
-            field("Marge unitaire"; rec."Marge unitaire")
-            {
-                ApplicationArea = All;
-            }
+            // field("Marge unitaire"; rec."Marge unitaire")
+            // {
+            //     ApplicationArea = All;
+            // }
             field("Salesperson code"; rec."Salesperson code")
             {
                 Visible = false;

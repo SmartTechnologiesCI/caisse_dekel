@@ -4,12 +4,12 @@ pageextension 70022 "Phys. Inventory JournalEx" extends "Phys. Inventory Journal
     {
         addafter("Qty. (Phys. Inventory)")
         {
-            field("Nombre de carton"; rec."Nombre de carton")
-            {
-                ApplicationArea = All;
-                Caption = 'Nombre de carton (calculé)';
-                Editable=false;
-            }
+            // field("Nombre de carton"; rec."Nombre de carton")
+            // {
+            //     ApplicationArea = All;
+            //     Caption = 'Nombre de carton (calculé)';
+            //     Editable=false;
+            // }
             //silue samuel 07/03/2025 field("Nombre de cartonc"; rec."Nombre de cartonc")
             // {
             //     ApplicationArea = All;
@@ -39,11 +39,11 @@ pageextension 70022 "Phys. Inventory JournalEx" extends "Phys. Inventory Journal
             //         // PhysInvtEntered := false;
             //     end;
             //fin silue samuel 07/03/2025 }
-            field("Diff Qty carton"; rec."Diff Qty carton")
-            {
-                ApplicationArea = All;
+            // field("Diff Qty carton"; rec."Diff Qty carton")
+            // {
+            //     ApplicationArea = All;
 
-            }
+            // }
         }
     }
 

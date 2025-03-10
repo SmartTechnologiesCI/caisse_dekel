@@ -55,10 +55,10 @@ page 70004 "Fiche dépot"
                         usep: Record 91;
                     begin
                         usep.get(UserId);
-                        if usep.Director or usep.CorrectioDepot then
-                            exit
-                        else
-                            Error('Vous n''êtes pas autorisé à realiser cette action, veillez demander une autorisation');
+                        // if usep.Director or usep.CorrectioDepot then
+                        //     exit
+                        // else
+                        //     Error('Vous n''êtes pas autorisé à realiser cette action, veillez demander une autorisation');
 
 
                     end;
@@ -382,10 +382,10 @@ page 70004 "Fiche dépot"
 
 
     begin
-        usep.get(UserId);
-        if usep.Director or usep.CorrectioDepot then
-            CurrPage.Close();
-        exit;
+        // usep.get(UserId);
+        // if usep.Director or usep.CorrectioDepot then
+        //     CurrPage.Close();
+        // exit;
 
 
 

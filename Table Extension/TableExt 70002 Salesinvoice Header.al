@@ -71,7 +71,7 @@ tableextension 70002 "Sales invoice Header" extends 112
         {
             DataClassification = ToBeClassified;
         }
-        field(50001; "Code preparateur"; Code[50])
+        field(70020; "Code preparateur"; Code[50])
         {
             CaptionML = FRA = 'Code du préparateur';
             //  silue samuel 07/03/2025TableRelation = "User App".Nom;

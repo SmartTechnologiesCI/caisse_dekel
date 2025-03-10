@@ -36,10 +36,10 @@ tableextension 70026 "Transfer HeaderExt" extends "Transfer Header"
         {
             DataClassification = ToBeClassified;
         }
-        field(50007; "Qunatité Totale"; Decimal)
-        {
-            DataClassification = ToBeClassified;
-        }
+        // field(50007; "Qunatité Totale"; Decimal)
+        // {
+        //     DataClassification = ToBeClassified;
+        // }
     }
 
     keys

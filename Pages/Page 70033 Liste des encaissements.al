@@ -141,21 +141,21 @@ page 70056 "Liste des encaissements"
                 begin
                     direct := false;
                     if usersetup.Get(UserId) then
-                        direct := usersetup.Director;
+                        // direct := usersetup.Director;
 
                     Encaissement2.Reset();
                     Encaissement2.SetRange("N°", Rec."N°");
-                    if (Encaissement2.FindLast()) then begin
-                        SalinvHeader.SetRange("No.", Encaissement2."N° commande");
-                        if SalinvHeader.FindFirst() then
-                            if (SalinvHeader.NbImpression = 0) OR (SalinvHeader.Approuve = true) or (direct = true) then begin
-                                Report.Run(70023, true, false, Encaissement2);
-                                SalinvHeader.Approuve := false;
-                                SalinvHeader.Modify();
-                            end
-                            else
-                                Error('Vous n''avez pas le droit de tirer ce rapport, veuillez demander autorisation');
-                    end;
+                //     if (Encaissement2.FindLast()) then begin
+                //         SalinvHeader.SetRange("No.", Encaissement2."N° commande");
+                //         if SalinvHeader.FindFirst() then
+                //             // if (SalinvHeader.NbImpression = 0) OR (SalinvHeader.Approuve = true) or (direct = true) then begin
+                //             //     Report.Run(70023, true, false, Encaissement2);
+                //             //     SalinvHeader.Approuve := false;
+                //             //     SalinvHeader.Modify();
+                //             // end
+                //             // else
+                //             //     Error('Vous n''avez pas le droit de tirer ce rapport, veuillez demander autorisation');
+                //     end;
                 end;
             }
 
@@ -182,7 +182,7 @@ page 70056 "Liste des encaissements"
                         SalinvHeader.SetRange("No.", Encaissement2."N° commande");
                         if SalinvHeader.FindFirst() then begin
 
-                            SalinvHeader."Demande approbation" := true;
+                            // SalinvHeader."Demande approbation" := true;
                             SalinvHeader.Modify();
                             Message('Demande d''approbation envoyée avec succès');
                         end

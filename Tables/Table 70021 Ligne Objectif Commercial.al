@@ -48,7 +48,7 @@ table 70021 "Ligne Ojectif Commercial"
                 myInt: Integer;
                 // item: Record Item;
                 "Item Category": Record "Item Category";
-                salesPrice: Record "Sales Price";
+                // salesPrice: Record "Sales Price";
 
             begin
                 // if TypeLigne = TypeLigne::Article then begin

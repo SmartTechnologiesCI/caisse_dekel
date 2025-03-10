@@ -66,10 +66,10 @@ page 70065 "Conteneurs vendus"
                         end;
                     end;
                 }
-                field(ETA; ETA)
-                {
-                    Caption = 'Date ETA';
-                }
+                // field(ETA; ETA)
+                // {
+                //     Caption = 'Date ETA';
+                // }
                 field("Order Date"; "Order Date")
                 {
                     ApplicationArea = All;

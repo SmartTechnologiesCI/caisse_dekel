@@ -18,14 +18,14 @@ codeunit 70002 "Cancel Psted Sles Inv."
                 CorrectPostedSalesInvoice(SalesInvoiceHeader);
 
 
-                if SalesInvoiceHeader."Est Echantillone" then begin
-                    purch.Reset();
-                    purch.SetRange("No.", SalesInvoiceHeader."Contrat origine");
-                    if purch.FindFirst() then begin
-                        purch."Echantillon Douanier" -= 1;
-                        purch.Modify();
-                    end;
-                end;
+                // if SalesInvoiceHeader."Est Echantillone" then begin
+                //     purch.Reset();
+                //     purch.SetRange("No.", SalesInvoiceHeader."Contrat origine");
+                //     if purch.FindFirst() then begin
+                //         purch."Echantillon Douanier" -= 1;
+                //         purch.Modify();
+                //     end;
+                // end;
             until SalesInvoiceHeader.Next = 0;
             Clear(Ctest);
             //Ctest.ID := 1;

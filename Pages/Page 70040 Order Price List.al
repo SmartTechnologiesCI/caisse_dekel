@@ -64,10 +64,10 @@ page 70040 "Liste des prix à fixer"
                         end;
                     end;
                 }
-                field(ETA; ETA)
-                {
-                    Caption = 'Date ETA';
-                }
+                // field(ETA; ETA)
+                // {
+                //     Caption = 'Date ETA';
+                // }
                 field("Order Date"; "Order Date")
                 {
                     ApplicationArea = All;
@@ -84,10 +84,10 @@ page 70040 "Liste des prix à fixer"
                     ApplicationArea = All;
 
                 }
-                field("Date de mise en vente"; "Date de mise en vente")
-                {
-                    ApplicationArea = All;
-                }
+                // field("Date de mise en vente"; "Date de mise en vente")
+                // {
+                //     ApplicationArea = All;
+                // }
                 /*field("Prix fixé"; "Prix fixé")
                 {
                     ApplicationArea = All;
@@ -117,10 +117,10 @@ page 70040 "Liste des prix à fixer"
                     conteneur: Record "Purchase Header";
                 begin
                     // silue samuel 07/03/2025 conteneur.SetRange("Prix fixé", true);
-                    conteneur.SetFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
-                    conteneur.SetRange(Vendu, false);
-                    if conteneur.FindFirst() then
-                        Page.RunModal(70064, conteneur);
+                    // conteneur.SetFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
+                    // conteneur.SetRange(Vendu, false);
+                    // if conteneur.FindFirst() then
+                    //     Page.RunModal(70064, conteneur);
                 end;
             }
             action("Conteneurs Vendus")
@@ -133,10 +133,10 @@ page 70040 "Liste des prix à fixer"
                     conteneur: Record "Purchase Header";
                 begin
                     // silue samuel 07/03/2025 conteneur.SetRange("Prix fixé", true);
-                    conteneur.SetRange(Vendu, true);
-                    conteneur.SetFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
-                    if conteneur.FindFirst() then
-                        Page.RunModal(70065, conteneur);
+                    // conteneur.SetRange(Vendu, true);
+                    // conteneur.SetFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
+                    // if conteneur.FindFirst() then
+                    //     Page.RunModal(70065, conteneur);
                 end;
             }
             action("Actualiser")
@@ -157,17 +157,17 @@ page 70040 "Liste des prix à fixer"
     var
         PH: record "Purchase Header";
     begin
-        PH.Reset();
-        // silue samuel 07/03/2025 PH.SetRange("Prix fixé", false);
-        PH.setFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
-        PH.SetRange("Fixation des prix", true);
-        total := 0;
-        if PH.FindFirst() then begin
-            repeat
-                PH.CalcFields(Amount);
-                total += PH.Amount;
-            until PH.Next = 0;
-        end;
+        // PH.Reset();
+        // // silue samuel 07/03/2025 PH.SetRange("Prix fixé", false);
+        // PH.setFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
+        // PH.SetRange("Fixation des prix", true);
+        // total := 0;
+        // if PH.FindFirst() then begin
+        //     repeat
+        //         PH.CalcFields(Amount);
+        //         total += PH.Amount;
+        //     until PH.Next = 0;
+        // end;
 
     end;
 

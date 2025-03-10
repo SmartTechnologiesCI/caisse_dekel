@@ -2839,9 +2839,6 @@ End Function
         <Field Name="SalesDesc">
           <DataField>SalesDesc</DataField>
         </Field>
-        <Field Name="UnitPriceFieldCaption">
-          <DataField>UnitPriceFieldCaption</DataField>
-        </Field>
         <Field Name="LineDiscountFieldCaption">
           <DataField>LineDiscountFieldCaption</DataField>
         </Field>
@@ -2887,12 +2884,6 @@ End Function
         <Field Name="VATText_SalesPrices">
           <DataField>VATText_SalesPrices</DataField>
         </Field>
-        <Field Name="SalesPriceUnitPrice">
-          <DataField>SalesPriceUnitPrice</DataField>
-        </Field>
-        <Field Name="SalesPriceUnitPriceFormat">
-          <DataField>SalesPriceUnitPriceFormat</DataField>
-        </Field>
         <Field Name="UOM_SalesPrices">
           <DataField>UOM_SalesPrices</DataField>
         </Field>
@@ -2901,12 +2892,6 @@ End Function
         </Field>
         <Field Name="ItemDesc_SalesPrices">
           <DataField>ItemDesc_SalesPrices</DataField>
-        </Field>
-        <Field Name="MinimumQty_SalesPrices">
-          <DataField>MinimumQty_SalesPrices</DataField>
-        </Field>
-        <Field Name="MinimumQty_SalesPricesFormat">
-          <DataField>MinimumQty_SalesPricesFormat</DataField>
         </Field>
         <Field Name="LineDisc_SalesLineDisc">
           <DataField>LineDisc_SalesLineDisc</DataField>
@@ -2937,18 +2922,6 @@ End Function
         </Field>
         <Field Name="UOM_Variant_SalesPrices">
           <DataField>UOM_Variant_SalesPrices</DataField>
-        </Field>
-        <Field Name="MinimumQty_Variant_SalesPrices">
-          <DataField>MinimumQty_Variant_SalesPrices</DataField>
-        </Field>
-        <Field Name="MinimumQty_Variant_SalesPricesFormat">
-          <DataField>MinimumQty_Variant_SalesPricesFormat</DataField>
-        </Field>
-        <Field Name="UnitPrince_Variant_SalesPrices">
-          <DataField>UnitPrince_Variant_SalesPrices</DataField>
-        </Field>
-        <Field Name="UnitPrince_Variant_SalesPricesFormat">
-          <DataField>UnitPrince_Variant_SalesPricesFormat</DataField>
         </Field>
         <Field Name="VATText_Variant_SalesPrices">
           <DataField>VATText_Variant_SalesPrices</DataField>

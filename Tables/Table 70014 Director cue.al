@@ -79,7 +79,7 @@ table 70014 "Director Cue"
         {
             FieldClass = FlowField;
             // silue samuel 07/03/2025 CalcFormula = count("Purchase Header" where("Prix fixé" = const(false), ETA = field("date filter 3"), "Fixation des prix" = const(true)));
-                        CalcFormula = count("Purchase Header" where(ETA = field("date filter 3"), "Fixation des prix" = const(true)));
+                        // CalcFormula = count("Purchase Header" where(ETA = field("date filter 3"), "Fixation des prix" = const(true)));
 
         }
         field(17; "Depots Actifs"; integer)

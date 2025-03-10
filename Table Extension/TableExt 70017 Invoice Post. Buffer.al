@@ -2,10 +2,10 @@ tableextension 70017 "Invoice Post. BufferX" extends "Invoice Post. Buffer"
 {
     fields
     {
-        field(90003; "Lot Qty."; Integer)
-        {
-            CaptionML = ENU = 'Boxes Number', FRA = 'Nombre de cartons';
-        }
+        // field(90003; "Lot Qty."; Integer)
+        // {
+        //     CaptionML = ENU = 'Boxes Number', FRA = 'Nombre de cartons';
+        // }
     }
 
     keys

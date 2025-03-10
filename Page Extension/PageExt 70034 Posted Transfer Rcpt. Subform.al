@@ -3,9 +3,9 @@ pageextension 70034 "Posted TransferRcpt SubformExt" extends "Posted Transfer Rc
     layout
     {
         addbefore(Quantity){
-            field("Nombre de carton";rec."Nombre de carton"){
-                ApplicationArea=All;
-            }
+            // field("Nombre de carton";rec."Nombre de carton"){
+            //     ApplicationArea=All;
+            // }
         }
     }
     

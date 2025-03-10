@@ -166,11 +166,11 @@ pageextension 70004 "Psted Sles Invoice" extends 143
         sivh.SetRange("Due Date", WorkDate());
         if sivh.FindFirst() then begin
             repeat
-                parCompta.Get();
-                sivh.No_ordre := parCompta."N° order";
-                sivh.Modify();
-                parCompta."N° order" += 1;
-                parCompta.Modify();
+                // parCompta.Get();
+                // sivh.No_ordre := parCompta."N° order";
+                // sivh.Modify();
+                // parCompta."N° order" += 1;
+                // parCompta.Modify();
 
             until sivh.next = 0;
         end;

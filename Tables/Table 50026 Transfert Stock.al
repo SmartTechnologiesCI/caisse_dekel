@@ -12,7 +12,7 @@ table 70026 "Transfert Stock"
             begin
                 if rec."No." <> xRec."No." then begin
                     PStock.Get();
-                    NoSeriesMgt.TestManual(PStock."N° Transfert");
+                    // NoSeriesMgt.TestManual(PStock."N° Transfert");
                     rec."No. Series" := '';
                     /*if xRec."No Point" = '' then
                         "Costing Method" := InvtSetup."Default Costing Method";*/
@@ -139,9 +139,9 @@ table 70026 "Transfert Stock"
     trigger OnInsert()
     begin
         if "No." = '' then begin
-            PStock.get();
-            PStock.TestField("N° Transfert");
-            NoSeriesMgt.InitSeries(PStock."N° Transfert", xRec."No. Series", 0D, "No.", "No. Series");
+            // PStock.get();
+            // PStock.TestField("N° Transfert");
+            // NoSeriesMgt.InitSeries(PStock."N° Transfert", xRec."No. Series", 0D, "No.", "No. Series");
         end;
     end;
 

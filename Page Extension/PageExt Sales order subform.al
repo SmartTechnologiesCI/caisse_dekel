@@ -19,9 +19,9 @@ pageextension 70018 "Sales order subform" extends 46
         salesHeader.SetRange("No.", Rec."Document No.");
         if salesHeader.FindFirst() then begin
 
-            if salesHeader.Traitement <> salesHeader.Traitement::Ouvert then begin
-                Rec.IsModify := true;
-            end;
+            // if salesHeader.Traitement <> salesHeader.Traitement::Ouvert then begin
+            //     Rec.IsModify := true;
+            // end;
         end;
     end;
 

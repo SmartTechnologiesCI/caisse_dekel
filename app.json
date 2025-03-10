@@ -11,12 +11,7 @@
   "url": "",
   "logo": "",
   "dependencies": [
-    {
-    "id": "911df1d8-5422-4cd0-8a83-aa18a8386e16",
-    "name": "TULIPE_EXT",
-    "publisher": "SMART TECHNOLOGIES",
-    "version": "2.0.0.0"
-    }
+   
   ],
   "screenshots": [],
   "platform": "1.0.0.0",

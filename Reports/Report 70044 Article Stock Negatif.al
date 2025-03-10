@@ -48,10 +48,10 @@ report 70044 "Article Stock Negatif "
             {
 
             }
-            column(Cartons_Solde; "Cartons Solde")
-            {
+            // column(Cartons_Solde; "Cartons Solde")
+            // {
 
-            }
+            // }
             trigger OnPreDataItem()
             var
                 myInt: Integer;

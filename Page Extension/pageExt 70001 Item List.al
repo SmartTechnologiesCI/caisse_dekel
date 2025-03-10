@@ -60,10 +60,10 @@ pageextension 70001 "Item List" extends "Item List"
                 caption = 'Nombre cartons';
             }*/
 
-            field(cartonsSolde; rec."Cartons Solde")
-            {
-                caption = 'Nombre de carton';
-            }
+            // field(cartonsSolde; rec."Cartons Solde")
+            // {
+            //     caption = 'Nombre de carton';
+            // }
         }
 
     }
@@ -102,15 +102,15 @@ pageextension 70001 "Item List" extends "Item List"
                     StockPar.Reset();
                     StockPar.GET;
                     if xAjustement.FindLast() then
-                        NoSeriesMgt.InitSeries(StockPar."N° Ajustement", xAjustement."No. Series", 0D, Ajustement."No.", Ajustement."No. Series")
-                    else
-                        NoSeriesMgt.InitSeries(StockPar."N° Ajustement", Ajustement."No. Series", 0D, Ajustement."No.", Ajustement."No. Series");
+                        // NoSeriesMgt.InitSeries(StockPar."N° Ajustement", xAjustement."No. Series", 0D, Ajustement."No.", Ajustement."No. Series")
+                    // else
+                        // NoSeriesMgt.InitSeries(StockPar."N° Ajustement", Ajustement."No. Series", 0D, Ajustement."No.", Ajustement."No. Series");
                     Ajustement."Document Date" := WorkDate();
                     Ajustement."Item No." := rec."No.";
                     Ajustement.Description := rec.Description;
-                    rec.CalcFields("Cartons Solde");
+                    // rec.CalcFields("Cartons Solde");
                     // rec.CalcFields("Cartons vendus");
-                    Ajustement."curr Carton" := rec."Cartons Solde";
+                    // Ajustement."curr Carton" := rec."Cartons Solde";
                     Ajustement."curr Quantity" := rec.Inventory;
                     //Ajustement."Location Code" := '';
                     Ajustement.Insert();

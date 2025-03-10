@@ -2,28 +2,28 @@ pageextension 70027 "Item Ledger EntriesX" extends "Item Ledger Entries"
 {
     layout
     {
-        addafter("Document No.")
-        {
-            field("Document N°"; "Document N°")
-            {
-                Caption = 'N° Commande';
-            }
-            field("Invoice N°"; rec."Invoice N°")
-            {
-                Caption = 'N° Facture';
-            }
-        }
-        addafter("Lot Qty.")
-        {
-            field("Nombre de cartonc"; rec."Nombre de cartonc")
-            {
-                ApplicationArea = All;
-            }
-            field("Diff Qty carton"; "Diff Qty carton")
-            {
+        // addafter("Document No.")
+        // {
+        //     // field("Document N°"; "Document N°")
+        //     // {
+        //     //     Caption = 'N° Commande';
+        //     // }
+        //     field("Invoice N°"; rec."Invoice N°")
+        //     {
+        //         Caption = 'N° Facture';
+        //     }
+        // }
+        // addafter("Lot Qty.")
+        // {
+        //     // field("Nombre de cartonc"; rec."Nombre de cartonc")
+        //     // {
+        //     //     ApplicationArea = All;
+        //     // }
+        //     // field("Diff Qty carton"; "Diff Qty carton")
+        //     // {
 
-            }
-        }
+        //     // }
+        // }
     }
 
     actions
@@ -44,7 +44,7 @@ pageextension 70027 "Item Ledger EntriesX" extends "Item Ledger Entries"
     local procedure FillCreditMemo()
     var
         SalesShipmentLine: Record "Sales Shipment Line";//Lignes expéditiopn vente enregistré
-        rec: Record "Item Ledger Entry";
+        // rec: Record "Item Ledger Entry";
     begin
         // rec.SetRange("Entry No.", SalesShipmentLine."Item Shpt. Entry No.");
         // rec.SetRange("Document Type", rec."Document Type"::"Sales Credit Memo");
@@ -61,14 +61,14 @@ pageextension 70027 "Item Ledger EntriesX" extends "Item Ledger Entries"
         //     end;
         // end;
         SalesShipmentLine.SetRange("Item Shpt. Entry No.", rec."Entry No.");
-        if SalesShipmentLine.FindFirst() then begin
-            repeat begin
-                Message('a:%1 b:%2 c:%3', rec."Entry No.", rec."Document Type", rec."Lot Qty.");
-            end until SalesShipmentLine.Next() = 0;
-            // if rec."Document Type" = rec."Document Type"::"Sales Credit Memo" then begin
+        // if SalesShipmentLine.FindFirst() then begin
+        //     repeat begin
+        //         Message('a:%1 b:%2 c:%3', rec."Entry No.", rec."Document Type", rec."Lot Qty.");
+        //     end until SalesShipmentLine.Next() = 0;
+        //     // if rec."Document Type" = rec."Document Type"::"Sales Credit Memo" then begin
 
-            // end;
-        end;
+        //     // end;
+        // end;
     end;
 
     var

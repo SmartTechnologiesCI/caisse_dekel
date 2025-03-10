@@ -29,7 +29,7 @@ pageextension 70021 "Purchase List" extends "Purchase order List"
         //  silue samuel 07/03/2025paid: Record "Sales Invoice Line";
     begin
         pol.Reset();
-        pol.SetFilter(ETA, '<%1', DMY2Date(01, 07, 2022));
+        // pol.SetFilter(ETA, '<%1', DMY2Date(01, 07, 2022));
         if pol.FindFirst() then begin
             repeat
                 //silue samuel 07/03/2025 pol.Situaion := pol.Situaion::Vendu;
@@ -49,7 +49,7 @@ pageextension 70021 "Purchase List" extends "Purchase order List"
         clear(pol);
         pol.reset();
         // silue samuel 07/03/2025 pol.SetRange("Prix fixé", true);
-        pol.SetFilter(ETA, '>=%1', DMY2Date(01, 07, 2022));
+        // pol.SetFilter(ETA, '>=%1', DMY2Date(01, 07, 2022));
         if pol.FindFirst() then begin
             repeat
                 //silue samuel 07/03/2025 pol.Situaion := pol.Situaion::"for sale";

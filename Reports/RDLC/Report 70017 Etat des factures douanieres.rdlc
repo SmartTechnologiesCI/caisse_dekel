@@ -887,9 +887,6 @@ YI2NxdI+XACnhAlILvd9PzJ/8lLAGhuLpU2kPe/3aiWlcoSOSDnbKjq+vKzFshRIJ5Pnks6dJGvlKz5t
         <Field Name="Document_Date">
           <DataField>Document_Date</DataField>
         </Field>
-        <Field Name="Contrat_origine">
-          <DataField>Contrat_origine</DataField>
-        </Field>
         <Field Name="itemNo">
           <DataField>itemNo</DataField>
         </Field>

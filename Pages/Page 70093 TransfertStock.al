@@ -192,11 +192,11 @@ page 70093 "Transfert de stock"
                     Visible = false;
                 }
 
-                field("Nombre Cartons"; rec."Nombre Cartons")// carton ajustement
-                {
-                    Caption = 'Nombre de cartons'; //Style =
-                    BlankZero = true;
-                }
+                // field("Nombre Cartons"; rec."Nombre Cartons")// carton ajustement
+                // {
+                //     Caption = 'Nombre de cartons'; //Style =
+                //     BlankZero = true;
+                // }
                 field("Quantité"; rec."Quantité") // Qutantité ajustement
                 {
                     DecimalPlaces = 0 : 3;
@@ -233,8 +233,8 @@ page 70093 "Transfert de stock"
                     // silue samuel 07/03/2025 articl: Record Item;
                 begin
                     usersep.get(UserId);
-                    if not usersep.ValiderTransfert then
-                        Error('Vous n''est pas autorisé à realiser cette action');
+                    // if not usersep.ValiderTransfert then
+                    //     Error('Vous n''est pas autorisé à realiser cette action');
                     rec.TestField("Location Code");
                     rec.TestField("Location CodeDest");
                     yitemJournal.Reset();
@@ -248,12 +248,12 @@ page 70093 "Transfert de stock"
                         if rec."curr Carton Mag" < 0 then begin
                             Error('Le stock disponible n''est pas suffisant');
                         end;
-                        if rec."curr Carton" < 0 then begin
-                            Error('Le nombre de cartons disponibles est insuffisants');
-                        end;
-                        if (rec."Nombre Cartons" < 0) OR (rec."Nombre Cartons" > rec."curr Carton") then begin
-                            Error('le nombre de cartons saisi n''est pas correct');
-                        end;
+                        // if rec."curr Carton" < 0 then begin
+                        //     Error('Le nombre de cartons disponibles est insuffisants');
+                        // end;
+                        // if (rec."Nombre Cartons" < 0) OR (rec."Nombre Cartons" > rec."curr Carton") then begin
+                        //     Error('le nombre de cartons saisi n''est pas correct');
+                        // end;
                         if (rec."Quantité" > rec."curr Quantity Mag") then begin
                             Error('le poids saisi est incorrect');
                         end;
@@ -271,7 +271,7 @@ page 70093 "Transfert de stock"
                         itemJournal.Validate("Posting Date");
                         itemJournal."Entry Type" := itemJournal."Entry Type"::"Negative Adjmt.";
                         itemJournal.Quantity := rec."Quantité";
-                        itemJournal."Nombre de carton" := rec."Nombre Cartons";
+                        // itemJournal."Nombre de carton" := rec."Nombre Cartons";
                         itemJournal.Validate("Entry Type");
                         itemJournal."Line No." := 10000;
                         itemJournal.Validate("Line No.");
@@ -330,7 +330,7 @@ page 70093 "Transfert de stock"
                         itemJournal.Validate("Line No.");
                         itemJournal."Entry Type" := itemJournal."Entry Type"::"Positive Adjmt.";
                         itemJournal.Quantity := rec."Quantité";
-                        itemJournal."Nombre de carton" := rec."Nombre Cartons";
+                        // itemJournal."Nombre de carton" := rec."Nombre Cartons";
                         itemJournal.Validate("Entry Type");
                         itemJournal."Document No." := rec."No.";
                         itemJournal.Validate("Document No.");

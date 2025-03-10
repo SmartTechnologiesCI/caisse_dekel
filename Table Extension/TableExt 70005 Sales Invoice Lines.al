@@ -65,10 +65,10 @@ tableextension 70005 "Sles Inv. Line" extends "Sales Invoice Line"
             FieldClass = FlowFilter;
 
         }
-        field(50008; "Preparateur"; Code[50])
-        {
+        // field(50008; "Preparateur"; Code[50])
+        // {
 
-        }
+        // }
         field(50009; "Verificateur"; Code[50])
         {
 

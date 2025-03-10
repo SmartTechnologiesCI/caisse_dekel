@@ -4,10 +4,10 @@ pageextension 70033 "Posted Transfer ShptSubformExt" extends "Posted Transfer Sh
     {
         addbefore(Quantity)
         {
-            field("Nombre de carton"; rec."Nombre de carton")
-            {
-                ApplicationArea = All;
-            }
+            // field("Nombre de carton"; rec."Nombre de carton")
+            // {
+            //     ApplicationArea = All;
+            // }
         }
     }
 

@@ -46,11 +46,11 @@ pageextension 70035 "Transfer OrderExt" extends "Transfer Order"
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("Qunatité Totale"; rec."Qunatité Totale")
-                {
-                    ApplicationArea = All;
-                    Editable = false;
-                }
+                // field("Qunatité Totale"; rec."Qunatité Totale")
+                // {
+                //     ApplicationArea = All;
+                //     Editable = false;
+                // }
             }
         }
         addafter("Transfer-from Code")
@@ -158,7 +158,7 @@ pageextension 70035 "Transfer OrderExt" extends "Transfer Order"
             trigger OnBeforeAction()
             var
                 myInt: Integer;
-                itemLedgerEntry: Record "Item Ledger Entry";
+                // itemLedgerEntry: Record "Item Ledger Entry";
                 TransferReceiptLine: Record "Transfer Receipt Line";
                 TransferLine: Record "Transfer Line";
                 rec: Record "Transfer Header";
@@ -170,7 +170,7 @@ pageextension 70035 "Transfer OrderExt" extends "Transfer Order"
             trigger OnAfterAction()
             var
                 myInt: Integer;
-                itemLedgerEntry1: Record "Item Ledger Entry";
+                // itemLedgerEntry1: Record "Item Ledger Entry";
                 TransferReceiptLine: Record "Transfer Receipt Line";
                 TransferLine: Record "Transfer Line";
                 rec: Record "Transfer Header";

@@ -606,14 +606,8 @@ YI2NxdI+XACnhAlILvd9PzJ/8lLAGhuLpU2kPe/3aiWlcoSOSDnbKjq+vKzFshRIJ5Pnks6dJGvlKz5t
         <Field Name="InventoryFormat">
           <DataField>InventoryFormat</DataField>
         </Field>
-        <Field Name="Cartons_Solde">
-          <DataField>Cartons_Solde</DataField>
-        </Field>
         <Field Name="Location_Filter">
           <DataField>Location_Filter</DataField>
-        </Field>
-        <Field Name="Marque">
-          <DataField>Marque</DataField>
         </Field>
       </Fields>
       <Query>

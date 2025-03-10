@@ -74,10 +74,10 @@ report 70007 "Etat des ventes"
                 {
 
                 }
-                column(Marge_unitaire; "Marge unitaire")
-                {
+                // column(Marge_unitaire; "Marge unitaire")
+                // {
 
-                }
+                // }
 
                 trigger OnPostDataItem()
                 var

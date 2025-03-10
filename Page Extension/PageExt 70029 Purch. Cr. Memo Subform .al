@@ -4,10 +4,10 @@ pageextension 70029 "Purch. Cr. Memo SubformEXT" extends "Purch. Cr. Memo Subfor
     {
         addbefore(Quantity)
         {
-            field("Lot Qty"; rec."Lot Qty")
-            {
-                ApplicationArea = All;
-            }
+            // field("Lot Qty"; rec."Lot Qty")
+            // {
+            //     ApplicationArea = All;
+            // }
         }
     }
 
@@ -24,8 +24,8 @@ pageextension 70029 "Purch. Cr. Memo SubformEXT" extends "Purch. Cr. Memo Subfor
     var
         myInt: Integer;
         PurchInvLine: Record "Purch. Inv. Line";//<<Ligne facture achat enregistré
-        PurchaseLine: Record "Purchase Line";//<<Ligne avoir acaht
-        rec: Record "Purchase Line";
+        // PurchaseLine: Record "Purchase Line";//<<Ligne avoir acaht
+        // rec: Record "Purchase Line";
         pp:Page 52;
     begin
         // PurchInvLine.SetRange("Order No.", rec."Order No.");

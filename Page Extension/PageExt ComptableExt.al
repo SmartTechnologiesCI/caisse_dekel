@@ -14,7 +14,7 @@ pageextension 70100 "Acountant Role center" extends 9027
             action("&Etat liste des fournisseurs")
             {
                 Caption = 'fournisseurs à payer';
-                RunObject = report 70012;
+                // RunObject = report 70012;
             }
         }
     }

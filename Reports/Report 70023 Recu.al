@@ -262,10 +262,10 @@ report 70023 "Recu caisse"
                 //         totalC += salesInvLines."Carton effectif";
                 //     until salesInvLines.Next = 0;
                 // fin silue samuel 07/03/2025 end;
-                SalInvHeader.SetRange("No.", "N° commande");
-                if SalInvHeader.FindFirst() then begin
-                    NbImpression1:=SalInvHeader.NbImpression;
-                end;
+                // SalInvHeader.SetRange("No.", "N° commande");
+                // if SalInvHeader.FindFirst() then begin
+                //     NbImpression1:=SalInvHeader.NbImpression;
+                // end;
 
             end;
 

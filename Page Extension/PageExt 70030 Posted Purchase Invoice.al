@@ -12,7 +12,7 @@ pageextension 70030 "Posted Purchase Invoice" extends "Posted Purchase Invoice"
             trigger OnBeforeAction()
             var
                 PurchInvLine: Record "Purch. Inv. Line";//<<Ligne facture achat enregistré
-                PurchaseLine: Record "Purchase Line";//<<Ligne avoir acaht
+                // PurchaseLine: Record "Purchase Line";//<<Ligne avoir acaht
                 PurchaseHeader: Record "Purchase Header";//<<Entete Avoir achat
                 PurchRcptLine: Record "Purch. Rcpt. Line";//<<Ligne réception achat enregistrée
 

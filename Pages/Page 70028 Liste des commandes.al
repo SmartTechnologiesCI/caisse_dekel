@@ -81,16 +81,16 @@ page 70028 "Liste des factures"
                 var
                     usera: Record "User Setup";
                 begin
-                    if usera.Get(UserId) then
-                        if usera.Director then begin
-                            // silue samuel 07/03/2025 rec."Demande approbation" := false;
-                            rec.Approuve := true;
-                            rec.Modify();
-                            CurrPage.Update();
+                    // if usera.Get(UserId) then
+                        // if usera.Director then begin
+                        //     // silue samuel 07/03/2025 rec."Demande approbation" := false;
+                        //     // rec.Approuve := true;
+                        //     rec.Modify();
+                        //     CurrPage.Update();
 
-                        end
-                        else
-                            Error('Vous n''avez pas le droit d''utiliser cette fonctionnalité');
+                        // end
+                        // else
+                        //     Error('Vous n''avez pas le droit d''utiliser cette fonctionnalité');
 
                 end;
             }

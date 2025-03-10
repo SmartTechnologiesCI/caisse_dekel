@@ -27,45 +27,45 @@ report 70042 "Vente par categorie article"
 
             trigger OnPreDataItem()
             var
-                EcritComptaArticle2: Record "Item Ledger Entry";
+                // EcritComptaArticle2: Record "Item Ledger Entry";
             begin
                 // SetFilter("Code", '<>%1', '');
                 //
-                EcritComptaArticle2.Reset();
-                EcritComptaArticle2.setrange("Posting Date", "Date de debut", "Date de fin");
-                if EcritComptaArticle2.FindFirst() then begin
-                    repeat
-                        EcritComptaArticle2.CalcFields(EcritComptaArticle2."Sales Amount (Actual)");
-                        SommeTotale += EcritComptaArticle2."Sales Amount (Actual)";
-                    until EcritComptaArticle2.Next() = 0;
-                end;
-                //
+                // EcritComptaArticle2.Reset();
+                // EcritComptaArticle2.setrange("Posting Date", "Date de debut", "Date de fin");
+                // if EcritComptaArticle2.FindFirst() then begin
+                //     repeat
+                //         EcritComptaArticle2.CalcFields(EcritComptaArticle2."Sales Amount (Actual)");
+                //         SommeTotale += EcritComptaArticle2."Sales Amount (Actual)";
+                //     until EcritComptaArticle2.Next() = 0;
+                // end;
+                // //
 
             end;
 
             trigger OnAfterGetRecord()
             var
 
-                EcritComptaArticle: Record "Item Ledger Entry";
+                // EcritComptaArticle: Record "Item Ledger Entry";
 
 
             begin
                 ChartTypeNo := ChartType;
                 Clear(somme);
 
-                EcritComptaArticle.Reset();
-                EcritComptaArticle.SetRange("Item Category Code", "Item Category".Code);
-                EcritComptaArticle.setrange("Posting Date", "Date de debut", "Date de fin");
+                // EcritComptaArticle.Reset();
+                // EcritComptaArticle.SetRange("Item Category Code", "Item Category".Code);
+                // EcritComptaArticle.setrange("Posting Date", "Date de debut", "Date de fin");
 
-                if EcritComptaArticle.FindFirst() then begin
-                    repeat
+                // if EcritComptaArticle.FindFirst() then begin
+                //     repeat
 
-                        EcritComptaArticle.CalcFields(EcritComptaArticle."Sales Amount (Actual)");
-                        somme += EcritComptaArticle."Sales Amount (Actual)";
+                //         EcritComptaArticle.CalcFields(EcritComptaArticle."Sales Amount (Actual)");
+                //         somme += EcritComptaArticle."Sales Amount (Actual)";
 
-                    until EcritComptaArticle.Next() = 0;
+                //     until EcritComptaArticle.Next() = 0;
 
-                end;
+                // end;
 
 
 

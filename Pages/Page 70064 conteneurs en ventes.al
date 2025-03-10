@@ -65,10 +65,10 @@ page 70064 "Liste des Contrats en vente"
                         end;
                     end;
                 }
-                field(ETA; ETA)
-                {
-                    Caption = 'Date ETA';
-                }
+                // field(ETA; ETA)
+                // {
+                //     Caption = 'Date ETA';
+                // }
                 field("Order Date"; "Order Date")
                 {
                     ApplicationArea = All;
@@ -108,8 +108,8 @@ page 70064 "Liste des Contrats en vente"
                     conteneur: Record "Purchase Header";
                 begin
                     //  silue samuel 07/03/2025 conteneur.SetRange("Prix fixé", true);
-                    conteneur.SetRange(Vendu, true);
-                    conteneur.SetFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
+                    // conteneur.SetRange(Vendu, true);
+                    // conteneur.SetFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
                     if conteneur.FindFirst() then
                         Page.RunModal(70065, conteneur);
                 end;
