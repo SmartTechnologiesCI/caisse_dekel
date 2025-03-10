@@ -27,7 +27,7 @@ page 70089 "Resp. Commer. Role Centers"
             action("&&Génerer echantillon douanier")
             {
                 Caption = 'Générer echantillon douanier';
-                RunObject = page 50055;
+                //silue samuel 07/03/2025 RunObject = page 50055;
             }
 
             action("&Transfert de stock")
@@ -81,7 +81,7 @@ page 70089 "Resp. Commer. Role Centers"
                 action("ArticlesV")
                 {
                     CaptionML = FRA = 'Vridi : Articles en stock et prix';
-                    RunObject = page 50063;
+                    //silue samuel 07/03/2025 RunObject = page 50063;
                     RunPageMode = View;
                 }
             }
@@ -105,7 +105,7 @@ page 70089 "Resp. Commer. Role Centers"
                 action("&Génerer echantillon douanier")
                 {
                     Caption = 'Echantillon douanier';
-                    RunObject = page 50055;
+                    //silue samuel 07/03/2025 RunObject = page 50055;
                     RunPageMode = Create;
                 }
             }
@@ -149,21 +149,21 @@ page 70089 "Resp. Commer. Role Centers"
             action("ArticlesPP")
             {
                 CaptionML = FRA = 'PAA : Articles en stock et prix';
-                RunObject = page 50064;
+                //silue samuel 07/03/2025 RunObject = page 50064;
                 RunPageMode = View;
             }
 
             action("ArticlesBB")
             {
                 CaptionML = FRA = 'Bietry : Articles en stock et prix';
-                RunObject = page 50062;
+                //silue samuel 07/03/2025 RunObject = page 50062;
                 RunPageMode = View;
             }
 
             action("ArticlesVV")
             {
                 CaptionML = FRA = 'Vridi : Articles en stock et prix';
-                RunObject = page 50063;
+                // silue samuel 07/03/2025 RunObject = page 50063;
                 RunPageMode = View;
             }
 

@@ -49,9 +49,9 @@ report 70025 "New Perf Comm"
             trigger OnAfterGetRecord()
             var
                 myInt: Integer;
-                salesInvLine: Record "Sales Invoice Line";
+                //  silue samuel 07/03/2025 salesInvLine: Record "Sales Invoice Line";
                 salesInvHeader: Record "Sales Invoice Header";
-                sil: Record "Sales Invoice Line";
+                // silue samuel 07/03/2025 sil: Record "Sales Invoice Line";
                 sih: Record "Sales Invoice Header";
             begin
 
@@ -194,7 +194,7 @@ report 70025 "New Perf Comm"
         userSetup: Record "User Setup";
 
         salesIvoiceHeader: Record "Sales Invoice Header";
-        articleVendu: Record item;
+        // articleVendu: Record item;
         taille_Groupe: Decimal;
         EmailReceveur: Text;
         primeBonus: Decimal;

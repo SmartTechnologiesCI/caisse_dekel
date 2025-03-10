@@ -1040,9 +1040,6 @@ YI2NxdI+XACnhAlILvd9PzJ/8lLAGhuLpU2kPe/3aiWlcoSOSDnbKjq+vKzFshRIJ5Pnks6dJGvlKz5t
         <Field Name="No_">
           <DataField>No_</DataField>
         </Field>
-        <Field Name="Carton_effectif">
-          <DataField>Carton_effectif</DataField>
-        </Field>
         <Field Name="Quantity">
           <DataField>Quantity</DataField>
         </Field>

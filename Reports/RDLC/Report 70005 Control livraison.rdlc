@@ -1476,14 +1476,8 @@ jI+4dSllFgAw40MA+GD79ib/3wxN02YPV35KadmmuH+pPcV5tVJWDQDYbbbAOTHs0PXdkcqIBAx/KUqv
         <Field Name="Description">
           <DataField>Description</DataField>
         </Field>
-        <Field Name="Nombre_de_carton">
-          <DataField>Nombre_de_carton</DataField>
-        </Field>
         <Field Name="Cartons_livrée">
           <DataField>Cartons_livrée</DataField>
-        </Field>
-        <Field Name="reste">
-          <DataField>reste</DataField>
         </Field>
         <Field Name="Statut_Livraison_Line">
           <DataField>Statut_Livraison_Line</DataField>

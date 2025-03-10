@@ -21,35 +21,35 @@ page 70065 "Conteneurs vendus"
                     trigger OnDrillDown()
                     var
                         PHeader: Record "Purchase Header";
-                        prixA: Record "Prix Articles";
-                        prixB: Record "Ligne Artcile prix";
+                        // prixA: Record "Prix Articles";
+                        // silue samuel 07/03/2025 prixB: Record "Ligne Artcile prix";
                         PCompta: Record 98;
                     begin
                         PCompta.Reset();
                         PCompta.FindFirst();
                         PHeader.SetRange("No.", "No.");
-                        prixA.SetRange("N° commande", "No.");
-                        if (NOT prixA.FindFirst()) then begin
-                            prixA.Reset();
-                            prixA."N° commande" := "No.";
-                            prixA."Charges de fonctionnement unit" := PCompta."Charges de fonctionnement";
-                            prixA."% Marge" := PCompta."% Marge";
-                            prixA.Validate("Charges de fonctionnement unit");
-                            prixA.Validate("% Marge");
-                            prixA.Insert();
-                            prixA.Validate("N° commande");
-                            prixA.reset();
-                            prixA.SetRange("N° commande", "No.");
-                            prixA.FindFirst();
-                            prixA.setOrder();
-                            prixA.Modify();
-                            prixB.Reset();
-                            prixA.LoadLines(prixB);
-                            CurrPage.Update();
-                            Page.Run(Page::"Definition Prix Article", prixA);
-                        end
-                        else
-                            Page.Run(Page::"Definition Prix Article", prixA);
+                        //silue samuel 07/03/2025 prixA.SetRange("N° commande", "No.");
+                        // if (NOT prixA.FindFirst()) then begin
+                        //     prixA.Reset();
+                        //     prixA."N° commande" := "No.";
+                        //     prixA."Charges de fonctionnement unit" := PCompta."Charges de fonctionnement";
+                        //     prixA."% Marge" := PCompta."% Marge";
+                        //     prixA.Validate("Charges de fonctionnement unit");
+                        //     prixA.Validate("% Marge");
+                        //     prixA.Insert();
+                        //     prixA.Validate("N° commande");
+                        //     prixA.reset();
+                        //     prixA.SetRange("N° commande", "No.");
+                        //     prixA.FindFirst();
+                        //     prixA.setOrder();
+                        //     prixA.Modify();
+                        //     // silue samuel 07/03/2025 prixB.Reset();
+                        //     // prixA.LoadLines(prixB);
+                        //     CurrPage.Update();
+                        //     Page.Run(Page::"Definition Prix Article", prixA);
+                        // end
+                        // else
+                        //    silue samuel 07/03/2025 Page.Run(Page::"Definition Prix Article", prixA);
                     end;
                 }
                 field("Buy-from Vendor Name"; "Buy-from Vendor Name")

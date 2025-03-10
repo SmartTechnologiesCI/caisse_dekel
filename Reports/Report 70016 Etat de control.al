@@ -29,7 +29,7 @@ report 70016 "Etat de control livraison"
             trigger OnPreDataItem()
             var
                 myInt: Integer;
-                item: Record Item;
+                // item: Record Item;
 
 
             begin
@@ -48,17 +48,17 @@ report 70016 "Etat de control livraison"
 
                 /* item.SetRange("No.", SalesInvoiceLine."No.");
                 Unit_price := SalesInvoiceLine."Unit Price"; */
-                SalesInvoiceLine.SetRange("No.", "No.");
+                // SalesInvoiceLine.SetRange("No.", "No.");
 
 
-                if SalesInvoiceLine.FindFirst() then begin
-                    Unit_price := SalesInvoiceLine."Unit Price";
-                end;
-                //Skip tout  les produits sans stock
-                if Item.Inventory <= 0 then begin
-                    CurrReport.Skip();
-                end;
-                if Item."Cartons Solde" <= 0 then
+                //  silue samuel 07/03/2025if SalesInvoiceLine.FindFirst() then begin
+                //     Unit_price := SalesInvoiceLine."Unit Price";
+                // end;
+                // //Skip tout  les produits sans stock
+                // if Item.Inventory <= 0 then begin
+                //     CurrReport.Skip();
+                // end;
+                //fin silue samuel 07/03/2025 if Item."Cartons Solde" <= 0 then
                     CurrReport.Skip();
 
 
@@ -102,5 +102,5 @@ report 70016 "Etat de control livraison"
     var
         myInt: Integer;
         Unit_price: Integer;
-        SalesInvoiceLine: Record "Sales Invoice Line";
+        // silue samuel 07/03/2025 SalesInvoiceLine: Record "Sales Invoice Line";
 }

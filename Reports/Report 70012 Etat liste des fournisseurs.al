@@ -27,10 +27,10 @@ report 70012 "Fournisseur a payer"
             {
 
             }
-            column(Statut_paiement; "Statut paiement")
-            {
+            //  silue samuel 07/03/2025 column(Statut_paiement; "Statut paiement")
+            // {
 
-            }
+            // }
             column(Amount; Amount)
             {
 
@@ -184,16 +184,16 @@ report 70012 "Fournisseur a payer"
 
                 if paramettreComptable.Get() then;
 
-                if "Currency Code" = '' then
-                    montantCFA := "Purchase Header".Amount - "Purchase Header".Avance
-                else
-                    if "Currency Code" = 'EUR' then
-                        montantCFA := "Purchase Header".Amount * paramettreComptable."Taux de change Eur - CFA" - "Purchase Header".Avance
+                //  silue samuel 07/03/2025 if "Currency Code" = '' then
+                //     montantCFA := "Purchase Header".Amount - "Purchase Header".Avance
+                // else
+                //     if "Currency Code" = 'EUR' then
+                //         montantCFA := "Purchase Header".Amount * paramettreComptable."Taux de change Eur - CFA" - "Purchase Header".Avance
 
 
-                    else
-                        if "Currency Code" = 'USD' then
-                            montantCFA := "Purchase Header".Amount * paramettreComptable."Taux de change USD - CFA" - "Purchase Header".Avance;
+                //     else
+                //         if "Currency Code" = 'USD' then
+                //  fin silue samuel 07/03/2025           montantCFA := "Purchase Header".Amount * paramettreComptable."Taux de change USD - CFA" - "Purchase Header".Avance;
 
 
 
@@ -205,9 +205,9 @@ report 70012 "Fournisseur a payer"
                 //delaiExpiration := CalcDate('-4J', "Due Date");
                 delaiExpiration := (dueDate - WorkDate());
                 // TODO: Paiement a effectuer les unpaid
-                if "Purchase Header"."Statut paiement" = "Statut paiement"::Paid then
-                    CurrReport.Skip();
-
+                //  silue samuel 07/03/2025if "Purchase Header"."Statut paiement" = "Statut paiement"::Paid then
+                //     CurrReport.Skip();
+//fin silue samuel
 
 
                 //paymentTerm.SetRange(Code, "Payment Terms Code");

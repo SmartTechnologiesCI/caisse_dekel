@@ -60,7 +60,7 @@ page 70072 "Livraison card"
                 var
                     myInt: Integer;
 
-                    SInvLines: record "Sales Invoice Line";
+                    //fin silue samuel 07/03/2025 SInvLines: record "Sales Invoice Line";
 
                     cardLivraison: Page 70072;
                     controleLivraison: Record "Controle Livraison";
@@ -70,27 +70,27 @@ page 70072 "Livraison card"
                         Message('Cette operation est possible que pour les factures non partiellement livré');
                     end else
                         if Confirm('Vous allez effectuer une livraison complete de cette commande ?. Cette operation est irreversible !') then begin
-                            SInvLines.SetRange("Document No.", rec."No.");
+                            // silue samuel 07/03/2025SInvLines.SetRange("Document No.", rec."No.");
 
-                            if SInvLines.FindFirst then begin
-                                repeat begin
+                            // if SInvLines.FindFirst then begin
+                            //     repeat begin
 
-                                    controleLivraison.Reset();
-                                    Clear(controleLivraison);
-                                    //controleLivraison.Init();
-                                    controleLivraison."No article" := SInvLines."No.";
-                                    controleLivraison."No facture" := SInvLines."Document No.";
-                                    controleLivraison."Qté livrée" := SInvLines."Carton effectif";
-                                    controleLivraison."Date Livraison" := WorkDate();
-                                    SInvLines."Date Livraison" := WorkDate();
-                                    SInvLines."Qté livrée" := SInvLines."Carton effectif";
-                                    SInvLines."Statut Livraison" := SInvLines."Statut Livraison"::"Payée totalement livré";
-                                    //MEttre a jour le statut livraison a ameliorer
-                                    controleLivraison.Insert();
+                            //         controleLivraison.Reset();
+                            //         Clear(controleLivraison);
+                            //         //controleLivraison.Init();
+                            //         controleLivraison."No article" := SInvLines."No.";
+                            //         controleLivraison."No facture" := SInvLines."Document No.";
+                            //         controleLivraison."Qté livrée" := SInvLines."Carton effectif";
+                            //         controleLivraison."Date Livraison" := WorkDate();
+                            //         SInvLines."Date Livraison" := WorkDate();
+                            //         SInvLines."Qté livrée" := SInvLines."Carton effectif";
+                            //         SInvLines."Statut Livraison" := SInvLines."Statut Livraison"::"Payée totalement livré";
+                            //         //MEttre a jour le statut livraison a ameliorer
+                            //         controleLivraison.Insert();
 
 
-                                    SInvLines.Modify();
-                                end until SInvLines.Next = 0;
+                            //         SInvLines.Modify();
+                            //   fin silue samuel 07/03/2025  end until SInvLines.Next = 0;
                             end;
 
                             Rec."Statut Livraison" := Rec."Statut Livraison"::"Payée totalement livré";
@@ -99,7 +99,7 @@ page 70072 "Livraison card"
                             Message('Livraison effectuée avec succes');
                             cardLivraison.Update();
 
-                        end;
+                        //  silue samuel 07/03/2025 end;
                 end;
 
             }

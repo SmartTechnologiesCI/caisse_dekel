@@ -61,14 +61,14 @@ report 70027 "Recu caisse paiement"
             {
 
             }
-            column(TVA; parcaisse."% TVA")
-            {
+            //  silue samuel 07/03/2025 column(TVA; parcaisse."% TVA")
+            // {
 
-            }
-            column(AIRSI; parcaisse."% AIRSI")
-            {
+            // }
+            // silue samuel 07/03/2025 column(AIRSI; parcaisse."% AIRSI")
+            // {
 
-            }
+            // }
 
             column(Epargne; Epargne)
             {
@@ -122,10 +122,10 @@ report 70027 "Recu caisse paiement"
                     {
 
                     }
-                    column(Carton_effectif; "Carton effectif")
-                    {
+                    // silue samuel 07/03/2025column(Carton_effectif; "Carton effectif")
+                    // {
 
-                    }
+                    // }
                     column(Description; Description)
                     {
 
@@ -166,36 +166,36 @@ report 70027 "Recu caisse paiement"
                     }
 
 
-                    dataitem(pesee; Pesse)
-                    {
-                        DataItemLink = "Document No." = field("Order No."), "Line No." = field("Line No."), "No." = field("No.");
-                        DataItemTableView = where(Valid = Const(true));
-                        column(Poids; Poids)
-                        {
+                    // silue samuel 07/03/2025 dataitem(pesee; Pesse)
+                    // {
+                    //     DataItemLink = "Document No." = field("Order No."), "Line No." = field("Line No."), "No." = field("No.");
+                    //     DataItemTableView = where(Valid = Const(true));
+                    //     column(Poids; Poids)
+                    //     {
 
-                        }
-                        column(nombre; nombre)
-                        {
+                    //     }
+                    //     column(nombre; nombre)
+                    //     {
 
-                        }
-                        column(Total; Total)
-                        {
+                    //     }
+                    //     column(Total; Total)
+                    //     {
 
-                        }
-                        column(Line_No_P; "Line No.")
-                        {
+                    //     }
+                    //     column(Line_No_P; "Line No.")
+                    //     {
 
-                        }
+                    //     }
 
-                        column(tour; tour)
-                        {
+                    //     column(tour; tour)
+                    //     {
 
-                        }
+                    //     }
 
-                        column(UnitHtround; UnitHtround) { }
+                    //     column(UnitHtround; UnitHtround) { }
 
-                        column(MontantHtround; MontantHtround) { }
-                    }
+                    //     column(MontantHtround; MontantHtround) { }
+                    // fin silue samuel 07/03/2025 }
 
 
                     trigger OnAfterGetRecord()
@@ -206,10 +206,10 @@ report 70027 "Recu caisse paiement"
                     begin
                         compta.Reset();
                         if compta.FindFirst() then begin
-                            AIRSI := 1 + compta."% AIRSI" / 100;
+                            //fin silue samuel 07/03/2025 AIRSI := 1 + compta."% AIRSI" / 100;
                         end;
 
-                        UnitHt := "Sales Line"."Unit price" / AIRSI;
+                        //fin silue samuel 07/03/2025 UnitHt := "Sales Line"."Unit price" / AIRSI;
                         UnitHtround := Round(UnitHt, 0.01, '=');
                         MontantHtround := UnitHtround * "Sales Line"."Quantity";
                         // MontantHtround:=Round(MontantHt,0.01,'=');
@@ -231,7 +231,7 @@ report 70027 "Recu caisse paiement"
                 Cust: Record Customer;
                 epargne: Record "Depôt";
                 parcaisse: Record 98;
-                salesInvLines: record "Sales Invoice Line";
+                // silue samuel 07/03/2025 salesInvLines: record "Sales Invoice Line";
                 salesheader: Record "Sales Invoice Header";
             begin
                 printdate := Today;
@@ -247,13 +247,13 @@ report 70027 "Recu caisse paiement"
                     "Solde epargne" := Cust."Montant prime bonus";
                 end;
 
-                salesInvLines.Reset();
-                salesInvLines.SetRange("Document No.", "N° commande");
-                if salesInvLines.FindFirst() then begin
-                    repeat
-                        totalC += salesInvLines."Carton effectif";
-                    until salesInvLines.Next = 0;
-                end;
+                //  silue samuel 07/03/2025 salesInvLines.Reset();
+                // salesInvLines.SetRange("Document No.", "N° commande");
+                // if salesInvLines.FindFirst() then begin
+                //     repeat
+                //         totalC += salesInvLines."Carton effectif";
+                //     until salesInvLines.Next = 0;
+                // end;
 
                 salesheader.Reset();
                 salesheader.SetRange("No.", "N° commande");

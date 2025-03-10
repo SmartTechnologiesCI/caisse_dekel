@@ -32,8 +32,8 @@ pageextension 70009 "Achat Activity Page Ext" extends 50017
                 var
                     pHeader: record "Purchase Header";
                 begin
-                    pHeader.SetRange("Statut paiement", pHeader."Statut paiement"::Unpaid);
-                    pHeader.SetFilter(Avance, '<=0');
+                    // silue samuel 07/03/2025 pHeader.SetRange("Statut paiement", pHeader."Statut paiement"::Unpaid);
+                    // silue samuel 07/03/2025 pHeader.SetFilter(Avance, '<=0');
                     Page.run(Page::"Purchase Order List", pHeader);
                 end;
             }
@@ -45,8 +45,8 @@ pageextension 70009 "Achat Activity Page Ext" extends 50017
                 var
                     pHeader: record "Purchase Header";
                 begin
-                    pHeader.SetRange("Statut paiement", pHeader."Statut paiement"::Unpaid);
-                    pHeader.SetFilter(Avance, '>0');
+                    // pHeader.SetRange("Statut paiement", pHeader."Statut paiement"::Unpaid);
+                    //  silue samuel 07/03/2025 pHeader.SetFilter(Avance, '>0');
                     Page.run(Page::"Purchase Order List", pHeader);
                 end;
             }
@@ -58,7 +58,7 @@ pageextension 70009 "Achat Activity Page Ext" extends 50017
                 var
                     pHeader: record "Purchase Header";
                 begin
-                    pHeader.SetRange("Statut paiement", pHeader."Statut paiement"::Paid);
+                    // silue samuel 07/03/2025 pHeader.SetRange("Statut paiement", pHeader."Statut paiement"::Paid);
                     Page.run(Page::"Purchase Order List", pHeader);
                 end;
             }

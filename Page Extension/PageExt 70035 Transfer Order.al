@@ -12,28 +12,28 @@ pageextension 70035 "Transfer OrderExt" extends "Transfer Order"
                     Caption = 'N° Article';
                     trigger OnValidate()
                     var
-                        item: record Item;
+                        // item: record Item;
                         achetes: Integer;
                         vendu: Integer;
                         stock: Integer;
                     begin
                         // item.SetRange(loc, '%1', rec."Location Code");
-                        item.SetRange("No.", rec."Item No.");
-                        if item.FindFirst() then begin
-                            // item.CalcFields("Cartons achetés");
-                            // item.CalcFields("Cartons vendus");
-                            // achetes := -item."Cartons achetés";
-                            // vendu := item."Cartons vendus";
-                            // stock := -(item."Cartons achetés" + item."Cartons vendus");
-                            // item."Nombre cartons" := stock;
-                            rec.Description := item.Description;
-                            item.CalcFields("Cartons Solde");
-                            rec."Cartons total" := item."Cartons Solde";
-                            item.CalcFields(Inventory);
-                            rec."Qunatité Totale" := item.Inventory;
+                        // item.SetRange("No.", rec."Item No.");
+                        // if item.FindFirst() then begin
+                        //     // item.CalcFields("Cartons achetés");
+                        //     // item.CalcFields("Cartons vendus");
+                        //     // achetes := -item."Cartons achetés";
+                        //     // vendu := item."Cartons vendus";
+                        //     // stock := -(item."Cartons achetés" + item."Cartons vendus");
+                        //     // item."Nombre cartons" := stock;
+                        //     rec.Description := item.Description;
+                        //     item.CalcFields("Cartons Solde");
+                        //     rec."Cartons total" := item."Cartons Solde";
+                        //     item.CalcFields(Inventory);
+                        //     rec."Qunatité Totale" := item.Inventory;
                             // rec."curr Carton Mag" := item.ItemCartonStokbyMagasin(rec."Location Code");
                             // rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
-                        end;
+                        // silue samuel 07/03/2025 end;
                     end;
                 }
                 field(Description; REC.Description)
@@ -89,14 +89,14 @@ pageextension 70035 "Transfer OrderExt" extends "Transfer Order"
 
             trigger OnBeforeValidate()
             var
-                item: record Item;
+                // silue samuel 07/03/2025item: record Item;
                 achetes: Integer;
                 vendu: Integer;
                 stock: Integer;
             begin
                 // item.SetRange(loc, '%1', rec."Location Code");
-                item.SetRange("No.", rec."Item No.");
-                if item.FindFirst() then begin
+                // item.SetRange("No.", rec."Item No.");
+                // if item.FindFirst() then begin
                     // item.CalcFields("Cartons achetés");
                     // item.CalcFields("Cartons vendus");
                     // achetes := -item."Cartons achetés";
@@ -108,10 +108,10 @@ pageextension 70035 "Transfer OrderExt" extends "Transfer Order"
                     // rec."curr Carton" := item."Cartons Solde";
                     // item.CalcFields(Inventory);
                     // rec."curr Quantity" := item.Inventory;
-                    rec.CartonsActuelmagasinOrigine := item.ItemCartonStokbyMagasin2(rec."Transfer-from Code");
-                    rec.PoidsActuelmagasinOrigine := item.ItemQuantityStockbyMagasin(rec."Transfer-from Code");
+                    // rec.CartonsActuelmagasinOrigine := item.ItemCartonStokbyMagasin2(rec."Transfer-from Code");
+                    // rec.PoidsActuelmagasinOrigine := item.ItemQuantityStockbyMagasin(rec."Transfer-from Code");
                     // Message('a:%1 b:%2', rec.CartonsActuelmagasinOrigine, rec.PoidsActuelmagasinOrigine);
-                end;
+                // end;
             end;
 
         }
@@ -122,29 +122,29 @@ pageextension 70035 "Transfer OrderExt" extends "Transfer Order"
             trigger OnBeforeValidate()
             var
                 myInt: Integer;
-                item: record Item;
+                // item: record Item;
                 achetes: Integer;
                 vendu: Integer;
                 stock: Integer;
             begin
                 // item.SetRange(loc, '%1', rec."Location Code");
-                item.SetRange("No.", rec."Item No.");
-                if item.FindFirst() then begin
-                    // item.CalcFields("Cartons achetés");
-                    // item.CalcFields("Cartons vendus");
-                    // achetes := -item."Cartons achetés";
-                    // vendu := item."Cartons vendus";
-                    // stock := -(item."Cartons achetés" + item."Cartons vendus");
-                    // item."Nombre cartons" := stock;
-                    // rec.Description := item.Description;
-                    // item.CalcFields("Cartons Solde");
-                    // rec."curr Carton" := item."Cartons Solde";
-                    // item.CalcFields(Inventory);
-                    // rec."curr Quantity" := item.Inventory;
-                    rec."CartonsActuelMagasinDestinat." := item.ItemCartonStokbyMagasin2(rec."Transfer-to Code");
-                    rec.PoisActuelMagasinDestination := item.ItemQuantityStockbyMagasin(rec."Transfer-to Code");
-                    // Message('a:%1 b:%2', rec.CartonsActuelmagasinOrigine, rec.PoidsActuelmagasinOrigine);
-                end;
+                // item.SetRange("No.", rec."Item No.");
+                // if item.FindFirst() then begin
+                //     // item.CalcFields("Cartons achetés");
+                //     // item.CalcFields("Cartons vendus");
+                //     // achetes := -item."Cartons achetés";
+                //     // vendu := item."Cartons vendus";
+                //     // stock := -(item."Cartons achetés" + item."Cartons vendus");
+                //     // item."Nombre cartons" := stock;
+                //     // rec.Description := item.Description;
+                //     // item.CalcFields("Cartons Solde");
+                //     // rec."curr Carton" := item."Cartons Solde";
+                //     // item.CalcFields(Inventory);
+                //     // rec."curr Quantity" := item.Inventory;
+                //     rec."CartonsActuelMagasinDestinat." := item.ItemCartonStokbyMagasin2(rec."Transfer-to Code");
+                //     rec.PoisActuelMagasinDestination := item.ItemQuantityStockbyMagasin(rec."Transfer-to Code");
+                //     // Message('a:%1 b:%2', rec.CartonsActuelmagasinOrigine, rec.PoidsActuelmagasinOrigine);
+                // end;
 
             end;
         }

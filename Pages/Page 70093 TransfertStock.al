@@ -34,28 +34,28 @@ page 70093 "Transfert de stock"
                     Caption = 'N° Article';
                     trigger OnValidate()
                     var
-                        item: record Item;
+                        // item: record Item;
                         achetes: Integer;
                         vendu: Integer;
                         stock: Integer;
                     begin
                         // item.SetRange(loc, '%1', rec."Location Code");
-                        item.SetRange("No.", rec."Item No.");
-                        if item.FindFirst() then begin
-                            item.CalcFields("Cartons achetés");
-                            item.CalcFields("Cartons vendus");
-                            achetes := -item."Cartons achetés";
-                            vendu := item."Cartons vendus";
-                            stock := -(item."Cartons achetés" + item."Cartons vendus");
-                            item."Nombre cartons" := stock;
-                            rec.Description := item.Description;
-                            item.CalcFields("Cartons Solde");
-                            rec."curr Carton" := item."Cartons Solde";
-                            item.CalcFields(Inventory);
-                            rec."curr Quantity" := item.Inventory;
-                            rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
-                            rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
-                        end;
+                        // item.SetRange("No.", rec."Item No.");
+                        // if item.FindFirst() then begin
+                        //     item.CalcFields("Cartons achetés");
+                        //     item.CalcFields("Cartons vendus");
+                        //     achetes := -item."Cartons achetés";
+                        //     vendu := item."Cartons vendus";
+                        //     stock := -(item."Cartons achetés" + item."Cartons vendus");
+                        //     item."Nombre cartons" := stock;
+                        //     rec.Description := item.Description;
+                        //     item.CalcFields("Cartons Solde");
+                        //     rec."curr Carton" := item."Cartons Solde";
+                        //     item.CalcFields(Inventory);
+                        //     rec."curr Quantity" := item.Inventory;
+                        //     rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
+                        //     rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
+                        // end;
                     end;
 
 
@@ -91,28 +91,28 @@ page 70093 "Transfert de stock"
 
                         trigger OnValidate()
                         var
-                            item: record Item;
+                            // item: record Item;
                             achetes: Integer;
                             vendu: Integer;
                             stock: Integer;
                         begin
                             // item.SetRange(loc, '%1', rec."Location Code");
-                            item.SetRange("No.", rec."Item No.");
-                            if item.FindFirst() then begin
-                                item.CalcFields("Cartons achetés");
-                                item.CalcFields("Cartons vendus");
-                                achetes := -item."Cartons achetés";
-                                vendu := item."Cartons vendus";
-                                stock := -(item."Cartons achetés" + item."Cartons vendus");
-                                item."Nombre cartons" := stock;
-                                rec.Description := item.Description;
-                                item.CalcFields("Cartons Solde");
-                                rec."curr Carton" := item."Cartons Solde";
-                                item.CalcFields(Inventory);
-                                rec."curr Quantity" := item.Inventory;
-                                rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
-                                rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
-                            end;
+                            // item.SetRange("No.", rec."Item No.");
+                            // if item.FindFirst() then begin
+                            //     item.CalcFields("Cartons achetés");
+                            //     item.CalcFields("Cartons vendus");
+                            //     achetes := -item."Cartons achetés";
+                            //     vendu := item."Cartons vendus";
+                            //     stock := -(item."Cartons achetés" + item."Cartons vendus");
+                            //     item."Nombre cartons" := stock;
+                            //     rec.Description := item.Description;
+                            //     item.CalcFields("Cartons Solde");
+                            //     rec."curr Carton" := item."Cartons Solde";
+                            //     item.CalcFields(Inventory);
+                            //     rec."curr Quantity" := item.Inventory;
+                            //     rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
+                            //     rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
+                            // end;
                         end;
 
                     }
@@ -143,28 +143,28 @@ page 70093 "Transfert de stock"
 
                         trigger OnValidate()
                         var
-                            item: record Item;
+                            // item: record Item;
                             achetes: Integer;
                             vendu: Integer;
                             stock: Integer;
                         begin
                             // item.SetRange(loc, '%1', rec."Location Code");
-                            item.SetRange("No.", rec."Item No.");
-                            if item.FindFirst() then begin
-                                item.CalcFields("Cartons achetés");
-                                item.CalcFields("Cartons vendus");
-                                achetes := -item."Cartons achetés";
-                                vendu := item."Cartons vendus";
-                                stock := -(item."Cartons achetés" + item."Cartons vendus");
-                                item."Nombre cartons" := stock;
-                                rec.Description := item.Description;
-                                item.CalcFields("Cartons Solde");
-                                rec."curr Carton" := item."Cartons Solde";
-                                item.CalcFields(Inventory);
-                                rec."curr Quantity" := item.Inventory;
-                                rec."curr Carton Mag dest" := item.ItemCartonStokbyMagasin2(rec."Location CodeDest");
-                                rec."curr Quantity Mag dest" := item.ItemQuantityStockbyMagasin(rec."Location CodeDest");
-                            end;
+                            // item.SetRange("No.", rec."Item No.");
+                            // if item.FindFirst() then begin
+                            //     item.CalcFields("Cartons achetés");
+                            //     item.CalcFields("Cartons vendus");
+                            //     achetes := -item."Cartons achetés";
+                            //     vendu := item."Cartons vendus";
+                            //     stock := -(item."Cartons achetés" + item."Cartons vendus");
+                            //     item."Nombre cartons" := stock;
+                            //     rec.Description := item.Description;
+                            //     item.CalcFields("Cartons Solde");
+                            //     rec."curr Carton" := item."Cartons Solde";
+                            //     item.CalcFields(Inventory);
+                            //     rec."curr Quantity" := item.Inventory;
+                            //     rec."curr Carton Mag dest" := item.ItemCartonStokbyMagasin2(rec."Location CodeDest");
+                            //     rec."curr Quantity Mag dest" := item.ItemQuantityStockbyMagasin(rec."Location CodeDest");
+                            // end;
                         end;
 
                     }
@@ -225,12 +225,12 @@ page 70093 "Transfert de stock"
                     itemJournal: record 83;
                     xitemJournal: record 83;
                     yitemJournal: record 83;
-                    pesée: Record Pesse;
-                    pesée2: Record Pesse;
-                    ecritureCarton: record "Ecriture cartons articles";
-                    ecritureCarton2: record "Ecriture cartons articles";
+                    //  silue samuel 07/03/2025pesée: Record Pesse;
+                    // fin silue samuel 07/03/2025pesée2: Record Pesse;
+                    // ecritureCarton: record "Ecriture cartons articles";
+                    // ecritureCarton2: record "Ecriture cartons articles";
                     usersep: Record "User Setup";
-                    articl: Record Item;
+                    // silue samuel 07/03/2025 articl: Record Item;
                 begin
                     usersep.get(UserId);
                     if not usersep.ValiderTransfert then
@@ -278,10 +278,10 @@ page 70093 "Transfert de stock"
                         itemJournal."Document No." := rec."No.";
                         itemJournal.Validate("Document No.");
                         itemJournal."Item No." := rec."Item No.";
-                        articl.Reset();
-                        articl.SetRange("No.", rec."Item No.");
-                        if articl.FindFirst() then begin
-                            itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
+                        // silue samuel 07/03/2025 articl.Reset();
+                        // articl.SetRange("No.", rec."Item No.");
+                        // if articl.FindFirst() then begin
+                        //     itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
 
 
                         end;
@@ -292,28 +292,28 @@ page 70093 "Transfert de stock"
                         itemJournal.Validate(Quantity);
                         itemJournal.Insert();
 
-                        "pesée".Reset();
-                        "pesée"."Document No." := rec."No." + '-TRS';
-                        "pesée"."Document Type" := "pesée"."Document Type"::Order;
-                        "pesée".nombre := 0/* - (rec."curr Carton")*/;
-                        "pesée"."No." := rec."Item No.";
-                        "pesée".Valid := true;
-                        "pesée".verif := false;
-                        "pesée"."Line No." := 10000;
-                        "pesée".Num += 1;
-                        "pesée".facture := true;
-                        "pesée"."Location Code" := rec."Location Code";
-                        "pesée".Insert();
+                        //  silue samuel 07/03/2025"pesée".Reset();
+                        // "pesée"."Document No." := rec."No." + '-TRS';
+                        // "pesée"."Document Type" := "pesée"."Document Type"::Order;
+                        // "pesée".nombre := 0/* - (rec."curr Carton")*/;
+                        // "pesée"."No." := rec."Item No.";
+                        // "pesée".Valid := true;
+                        // "pesée".verif := false;
+                        // "pesée"."Line No." := 10000;
+                        // "pesée".Num += 1;
+                        // "pesée".facture := true;
+                        // "pesée"."Location Code" := rec."Location Code";
+                        // fin silue samuel 07/03/2025 "pesée".Insert();
                         //---- Separator ----//
-                        clear("ecritureCarton");
-                        ecritureCarton."Posting date" := WorkDate();
-                        "ecritureCarton"."Document No" := rec."No." + '-TRS';
-                        "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Negatif";
-                        "ecritureCarton"."Item No" := rec."Item No.";
-                        "ecritureCarton"."Nombre de carton" := 0;
-                        ecritureCarton.Poids := 0;
-                        ecritureCarton."Location Code" := rec."Location Code";
-                        "ecritureCarton".Insert(true);
+                        // clear("ecritureCarton");
+                        // ecritureCarton."Posting date" := WorkDate();
+                        // "ecritureCarton"."Document No" := rec."No." + '-TRS';
+                        // "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Negatif";
+                        // "ecritureCarton"."Item No" := rec."Item No.";
+                        // "ecritureCarton"."Nombre de carton" := 0;
+                        // ecritureCarton.Poids := 0;
+                        // ecritureCarton."Location Code" := rec."Location Code";
+                        //silue samuel 07/03/2025 "ecritureCarton".Insert(true);
 
 
 
@@ -340,55 +340,55 @@ page 70093 "Transfert de stock"
                         itemJournal.Validate("Item No.");
 
 
-                        articl.Reset();
-                        articl.SetRange("No.", rec."Item No.");
-                        if articl.FindFirst() then begin
-                            itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
+                        // silue samuel 07/03/2025 articl.Reset();
+                        // articl.SetRange("No.", rec."Item No.");
+                        // if articl.FindFirst() then begin
+                        //     itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
 
 
                         end;
-                        itemJournal.Validate("Gen. Prod. Posting Group");
-                        itemJournal."Location Code" := rec."Location CodeDest";
-                        itemJournal.Validate(Quantity);
-                        itemJournal.Insert();
+                        //   silue samuel 07/03/2025itemJournal.Validate("Gen. Prod. Posting Group");
+                        // itemJournal."Location Code" := rec."Location CodeDest";
+                        // itemJournal.Validate(Quantity);
+                        // itemJournal.Insert();
 
 
 
-                        "pesée".Reset();
-                        "pesée"."Document No." := rec."No." + '-TRS';
-                        "pesée"."Document Type" := "pesée"."Document Type"::Receipt;
-                        "pesée".nombre := 0/* - (rec."curr Carton")*/;
-                        "pesée"."No." := rec."Item No.";
-                        "pesée".Valid := true;
-                        "pesée".verif := false;
-                        "pesée"."Line No." := 20000;
-                        "pesée".Num += 1;
-                        "pesée".facture := true;
-                        "pesée"."Location Code" := rec."Location CodeDest";
-                        "pesée".Insert();
+                        //  silue samuel 07/03/2025 "pesée".Reset();
+                        // "pesée"."Document No." := rec."No." + '-TRS';
+                        // "pesée"."Document Type" := "pesée"."Document Type"::Receipt;
+                        // "pesée".nombre := 0/* - (rec."curr Carton")*/;
+                        // "pesée"."No." := rec."Item No.";
+                        // "pesée".Valid := true;
+                        // "pesée".verif := false;
+                        // "pesée"."Line No." := 20000;
+                        // "pesée".Num += 1;
+                        // "pesée".facture := true;
+                        // "pesée"."Location Code" := rec."Location CodeDest";
+                        // fin silue samuel 07/03/2025 "pesée".Insert();
                         //---- Separator ----//
-                        clear("ecritureCarton");
-                        ecritureCarton."Posting date" := WorkDate();
-                        "ecritureCarton"."Document No" := rec."No." + '-TRS';
-                        "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
-                        "ecritureCarton"."Item No" := rec."Item No.";
-                        "ecritureCarton"."Nombre de carton" := 0;
-                        ecritureCarton.Poids := 0;
-                        ecritureCarton."Location Code" := rec."Location CodeDest";
-                        "ecritureCarton".Insert(true);
+                        // clear("ecritureCarton");
+                        // ecritureCarton."Posting date" := WorkDate();
+                        // "ecritureCarton"."Document No" := rec."No." + '-TRS';
+                        // "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
+                        // "ecritureCarton"."Item No" := rec."Item No.";
+                        // "ecritureCarton"."Nombre de carton" := 0;
+                        // ecritureCarton.Poids := 0;
+                        // ecritureCarton."Location Code" := rec."Location CodeDest";
+                        // silue samuel 07/03/2025"ecritureCarton".Insert(true);
 
-                    end;
-
-
+                    // end;
 
 
 
-                    CODEUNIT.Run(CODEUNIT::"Item Jnl.-Post", itemJournal);
-                    rec."Posting Date" := WorkDate();
-                    rec.Posted := true;
-                    CurrPage.Editable := false;
-                    CurrPage.Close();
-                end;
+
+
+                    // CODEUNIT.Run(CODEUNIT::"Item Jnl.-Post", itemJournal);
+                    // rec."Posting Date" := WorkDate();
+                    // rec.Posted := true;
+                    // CurrPage.Editable := false;
+                    // CurrPage.Close();
+                // end;
 
 
 
@@ -435,17 +435,17 @@ page 70093 "Transfert de stock"
 
     trigger OnOpenPage()
     var
-        item: record Item;
+        // item: record Item;
     begin
-        rec.Type := rec.Type::Inventaire;
-        item.SetRange("No.", rec."Item No.");
-        if item.FindFirst() then begin
-            rec.Description := item.Description;
-            rec."curr Carton" := item."Cartons Solde";
-            item.CalcFields(Inventory);
-            rec."curr Quantity" := item.Inventory;
-            if rec.Posted then
-                CurrPage.Editable := false;
-        end;
+        // rec.Type := rec.Type::Inventaire;
+        // item.SetRange("No.", rec."Item No.");
+        // if item.FindFirst() then begin
+        //     rec.Description := item.Description;
+        //     rec."curr Carton" := item."Cartons Solde";
+        //     item.CalcFields(Inventory);
+        //     rec."curr Quantity" := item.Inventory;
+        //     if rec.Posted then
+        //         CurrPage.Editable := false;
+        // end;
     end;
 }

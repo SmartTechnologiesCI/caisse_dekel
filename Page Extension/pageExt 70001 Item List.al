@@ -133,76 +133,76 @@ pageextension 70001 "Item List" extends "Item List"
                 Visible = true; //Smart olivier
                 trigger OnAction()
                 var
-                    article: Record Item;
+                    // silue samuel 07/03/2025article: Record Item;
                     "ItemJournal": record 83;
                     i: integer;
                     J: integer;
-                    articl: Record Item;
+                    //silue samuel 07/03/2025 articl: Record Item;
                 begin
-                    article.Reset();
-                    article.CalcFields(Inventory);
-                    article.SetFilter(Inventory, '<0');
-                    article.SetRange(Blocked, false);
-                    if article.FindFirst() then begin
-                        repeat
+                    // article.Reset();
+                    // article.CalcFields(Inventory);
+                    // article.SetFilter(Inventory, '<0');
+                    // article.SetRange(Blocked, false);
+                    // if article.FindFirst() then begin
+                    //     repeat
 
-                            article.CalcFields(Inventory);
-                            IF article.Inventory > 0 then begin
-                                clear(ItemJournal);
-                                ItemJournal.Reset();
-                                ItemJournal."Posting Date" := WorkDate();
-                                ItemJournal."Document No." := 'T00' + Format(J);
-                                ItemJournal."Line No." := i;
-                                ItemJournal."Journal Template Name" := 'ARTICLE';
-                                ItemJournal."Journal Batch Name" := 'DEFAUT';
-                                ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Negative Adjmt.";
-                                ItemJournal."Item No." := article."No.";
-                                ItemJournal.Validate("Item No.");
-                                articl.Reset();
-                                articl.SetRange("No.", article."No.");
-                                if articl.FindFirst() then begin
-                                    itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
+                    //         article.CalcFields(Inventory);
+                    //         IF article.Inventory > 0 then begin
+                    //             clear(ItemJournal);
+                    //             ItemJournal.Reset();
+                    //             ItemJournal."Posting Date" := WorkDate();
+                    //             ItemJournal."Document No." := 'T00' + Format(J);
+                    //             ItemJournal."Line No." := i;
+                    //             ItemJournal."Journal Template Name" := 'ARTICLE';
+                    //             ItemJournal."Journal Batch Name" := 'DEFAUT';
+                    //             ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Negative Adjmt.";
+                    //             ItemJournal."Item No." := article."No.";
+                    //             ItemJournal.Validate("Item No.");
+                    //             articl.Reset();
+                    //             articl.SetRange("No.", article."No.");
+                    //             if articl.FindFirst() then begin
+                    //                 itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
 
 
-                                end;
-                                itemJournal.Validate("Gen. Prod. Posting Group");
-                                //  ItemJournal."Location Code" := 'SIEGE';
-                                ItemJournal.Quantity := article.Inventory;
-                                ItemJournal.Validate(Quantity);
-                                ItemJournal.Insert();
-                                i += 10000;
-                                J += 1;
-                            end else
-                                IF article.Inventory < 0 then begin
-                                    ItemJournal.Reset();
-                                    ItemJournal.Init();
-                                    ItemJournal."Posting Date" := WorkDate();
-                                    ItemJournal."Document No." := 'T00' + Format(J);
-                                    ItemJournal."Line No." := i;
-                                    ItemJournal."Journal Template Name" := 'ARTICLE';
-                                    ItemJournal."Journal Batch Name" := 'DEFAUT';
-                                    ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Positive Adjmt.";
-                                    ItemJournal."Item No." := article."No.";
-                                    ItemJournal.Validate("Item No.");
+                    //             end;
+                    //             itemJournal.Validate("Gen. Prod. Posting Group");
+                    //             //  ItemJournal."Location Code" := 'SIEGE';
+                    //             ItemJournal.Quantity := article.Inventory;
+                    //             ItemJournal.Validate(Quantity);
+                    //             ItemJournal.Insert();
+                    //             i += 10000;
+                    //             J += 1;
+                    //         end else
+                    //             IF article.Inventory < 0 then begin
+                    //                 ItemJournal.Reset();
+                    //                 ItemJournal.Init();
+                    //                 ItemJournal."Posting Date" := WorkDate();
+                    //                 ItemJournal."Document No." := 'T00' + Format(J);
+                    //                 ItemJournal."Line No." := i;
+                    //                 ItemJournal."Journal Template Name" := 'ARTICLE';
+                    //                 ItemJournal."Journal Batch Name" := 'DEFAUT';
+                    //                 ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Positive Adjmt.";
+                    //                 ItemJournal."Item No." := article."No.";
+                    //                 ItemJournal.Validate("Item No.");
 
-                                    articl.Reset();
-                                    articl.SetRange("No.", article."No.");
-                                    if articl.FindFirst() then begin
-                                        itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
+                    //                 articl.Reset();
+                    //                 articl.SetRange("No.", article."No.");
+                    //                 if articl.FindFirst() then begin
+                    //                     itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
 
-                                    end;
-                                    itemJournal.Validate("Gen. Prod. Posting Group");
-                                    //  ItemJournal."Location Code" := 'SIEGE';
-                                    ItemJournal.Quantity := -article.Inventory;
-                                    ItemJournal.Validate(Quantity);
-                                    ItemJournal.Insert();
-                                    i += 10000;
-                                    J += 1;
-                                end;
-                        until article.Next = 0;
-                        Message('Terminé');
-                    end else
-                        Message('Aucun article');
+                    //                 end;
+                    //                 itemJournal.Validate("Gen. Prod. Posting Group");
+                    //                 //  ItemJournal."Location Code" := 'SIEGE';
+                    //                 ItemJournal.Quantity := -article.Inventory;
+                    //                 ItemJournal.Validate(Quantity);
+                    //                 ItemJournal.Insert();
+                    //                 i += 10000;
+                    //                 J += 1;
+                    //             end;
+                    //     until article.Next = 0;
+                    //     Message('Terminé');
+                    // end else
+                    //   silue samuel 07/03/2025  Message('Aucun article');
                 end;
             }
             //<---Smart Fabrice
@@ -275,9 +275,9 @@ pageextension 70001 "Item List" extends "Item List"
 
     trigger OnOpenPage()
     var
-        article: record Item;
+        //silue samuel 07/03/2025 article: record Item;
         userPerso: record "User Personalization";
-        articl: record Item;
+        //silue samuel 07/03/2025 articl: record Item;
     begin
         rec.SetRange(Blocked, false);
         rec.SetCurrentKey(Description);
@@ -302,136 +302,136 @@ pageextension 70001 "Item List" extends "Item List"
             tlp := false;
     end;
 
-    local procedure remiseZERO(article: record Item)
-    var
-        "ItemJournal": record 83;
-        i: integer;
-        J: integer;
-        articl: record Item;
-    begin
-        repeat
-            article.CalcFields(Inventory);
-            IF article.Inventory > 0 then begin
-                clear(ItemJournal);
-                ItemJournal.Reset();
-                ItemJournal."Posting Date" := WorkDate();
-                ItemJournal."Document No." := 'T00' + Format(J);
-                ItemJournal."Line No." := i;
-                ItemJournal."Journal Template Name" := 'ARTICLE';
-                ItemJournal."Journal Batch Name" := 'DEFAUT';
-                ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Negative Adjmt.";
-                ItemJournal."Item No." := article."No.";
-                ItemJournal.Validate("Item No.");
-                articl.Reset();
-                articl.SetRange("No.", article."No.");
-                if articl.FindFirst() then begin
-                    itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
+    // local procedure remiseZERO(article: record Item)
+    // var
+    //     "ItemJournal": record 83;
+    //     i: integer;
+    //     J: integer;
+    //     //silue samuel 07/03/2025 articl: record Item;
+    // begin
+    //     repeat
+    //         article.CalcFields(Inventory);
+    //         IF article.Inventory > 0 then begin
+    //             clear(ItemJournal);
+    //             ItemJournal.Reset();
+    //             ItemJournal."Posting Date" := WorkDate();
+    //             ItemJournal."Document No." := 'T00' + Format(J);
+    //             ItemJournal."Line No." := i;
+    //             ItemJournal."Journal Template Name" := 'ARTICLE';
+    //             ItemJournal."Journal Batch Name" := 'DEFAUT';
+    //             ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Negative Adjmt.";
+    //             ItemJournal."Item No." := article."No.";
+    //             ItemJournal.Validate("Item No.");
+    //             // articl.Reset();
+    //             // articl.SetRange("No.", article."No.");
+    //             // if articl.FindFirst() then begin
+    //             //     itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
 
-                end;
-                itemJournal.Validate("Gen. Prod. Posting Group");
-                //   ItemJournal."Location Code" := 'SIEGE';
-                ItemJournal.Quantity := article.Inventory;
-                ItemJournal.Validate(Quantity);
-                ItemJournal.Insert();
-                i += 10000;
-                J += 1;
-            end else
-                IF article.Inventory < 0 then begin
-                    ItemJournal.Reset();
-                    ItemJournal.Init();
-                    ItemJournal."Posting Date" := WorkDate();
-                    ItemJournal."Document No." := 'T00' + Format(J);
-                    ItemJournal."Line No." := i;
-                    ItemJournal."Journal Template Name" := 'ARTICLE';
-                    ItemJournal."Journal Batch Name" := 'DEFAUT';
-                    ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Positive Adjmt.";
-                    ItemJournal."Item No." := article."No.";
-                    ItemJournal.Validate("Item No.");
-                    articl.Reset();
-                    articl.SetRange("No.", article."No.");
-                    if articl.FindFirst() then begin
-                        itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
+    //             end;
+    //             itemJournal.Validate("Gen. Prod. Posting Group");
+    //             //   ItemJournal."Location Code" := 'SIEGE';
+    //             ItemJournal.Quantity := article.Inventory;
+    //             ItemJournal.Validate(Quantity);
+    //             ItemJournal.Insert();
+    //             i += 10000;
+    //             J += 1;
+    //         // end else
+    //             IF article.Inventory < 0 then begin
+    //                 ItemJournal.Reset();
+    //                 ItemJournal.Init();
+    //                 ItemJournal."Posting Date" := WorkDate();
+    //                 ItemJournal."Document No." := 'T00' + Format(J);
+    //                 ItemJournal."Line No." := i;
+    //                 ItemJournal."Journal Template Name" := 'ARTICLE';
+    //                 ItemJournal."Journal Batch Name" := 'DEFAUT';
+    //                 ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Positive Adjmt.";
+    //                 ItemJournal."Item No." := article."No.";
+    //                 ItemJournal.Validate("Item No.");
+    //                 // articl.Reset();
+    //                 // articl.SetRange("No.", article."No.");
+    //                 // if articl.FindFirst() then begin
+    //                 //     itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
 
-                    end;
-                    itemJournal.Validate("Gen. Prod. Posting Group");
-                    //  ItemJournal."Location Code" := 'SIEGE';
-                    ItemJournal.Quantity := -article.Inventory;
-                    ItemJournal.Validate(Quantity);
-                    ItemJournal.Insert();
-                    i += 10000;
-                    J += 1;
-                end;
-        until article.Next = 0;
-    end;
+    //                 // end;
+    //                 itemJournal.Validate("Gen. Prod. Posting Group");
+    //                 //  ItemJournal."Location Code" := 'SIEGE';
+    //                 ItemJournal.Quantity := -article.Inventory;
+    //                 ItemJournal.Validate(Quantity);
+    //                 ItemJournal.Insert();
+    //                 i += 10000;
+    //                 J += 1;
+    //             end;
+    //     until article.Next = 0;
+    // end;
 
     local procedure RemiseAZero()
     var
-        article: record Item;
+        // article: record Item;
         "ItemJournal": record 83;
         i: integer;
         J: integer;
-        articl: record Item;
+        // articl: record Item;
     begin
         //rec.SetCurrentKey(Description);
         i := 10000;
         J := 386;
-        article.Reset();
-        CurrPage.SetSelectionFilter(article);
-        if article.FindFirst() then begin
-            repeat
-                article.CalcFields(Inventory);
-                IF article.Inventory > 0 then begin
-                    clear(ItemJournal);
-                    ItemJournal.Reset();
-                    ItemJournal."Posting Date" := WorkDate();
-                    ItemJournal."Document No." := 'T00' + Format(J);
-                    ItemJournal."Line No." := i;
-                    ItemJournal."Journal Template Name" := 'ARTICLE';
-                    ItemJournal."Journal Batch Name" := 'DEFAUT';
-                    ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Negative Adjmt.";
-                    ItemJournal."Item No." := article."No.";
-                    ItemJournal.Validate("Item No.");
-                    articl.Reset();
-                    articl.SetRange("No.", article."No.");
-                    if articl.FindFirst() then begin
-                        itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
+        // article.Reset();
+        // CurrPage.SetSelectionFilter(article);
+        // if article.FindFirst() then begin
+        //     repeat
+        //         article.CalcFields(Inventory);
+        //         IF article.Inventory > 0 then begin
+        //             clear(ItemJournal);
+        //             ItemJournal.Reset();
+        //             ItemJournal."Posting Date" := WorkDate();
+        //             ItemJournal."Document No." := 'T00' + Format(J);
+        //             ItemJournal."Line No." := i;
+        //             ItemJournal."Journal Template Name" := 'ARTICLE';
+        //             ItemJournal."Journal Batch Name" := 'DEFAUT';
+        //             ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Negative Adjmt.";
+        //             ItemJournal."Item No." := article."No.";
+        //             ItemJournal.Validate("Item No.");
+        //             articl.Reset();
+        //             articl.SetRange("No.", article."No.");
+        //             if articl.FindFirst() then begin
+        //                 itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
 
-                    end;
-                    itemJournal.Validate("Gen. Prod. Posting Group");
-                    //   ItemJournal."Location Code" := 'SIEGE';
-                    ItemJournal.Quantity := article.Inventory;
-                    ItemJournal.Validate(Quantity);
-                    ItemJournal.Insert();
-                    i += 10000;
-                    J += 1;
-                end else
-                    IF article.Inventory < 0 then begin
-                        ItemJournal.Reset();
-                        ItemJournal.Init();
-                        ItemJournal."Posting Date" := WorkDate();
-                        ItemJournal."Document No." := 'T00' + Format(J);
-                        ItemJournal."Line No." := i;
-                        ItemJournal."Journal Template Name" := 'ARTICLE';
-                        ItemJournal."Journal Batch Name" := 'DEFAUT';
-                        ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Positive Adjmt.";
-                        ItemJournal."Item No." := article."No.";
-                        ItemJournal.Validate("Item No.");
-                        articl.Reset();
-                        articl.SetRange("No.", article."No.");
-                        if articl.FindFirst() then begin
-                            itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
+        //             end;
+        //             itemJournal.Validate("Gen. Prod. Posting Group");
+        //             //   ItemJournal."Location Code" := 'SIEGE';
+        //             ItemJournal.Quantity := article.Inventory;
+        //             ItemJournal.Validate(Quantity);
+        //             ItemJournal.Insert();
+        //             i += 10000;
+        //             J += 1;
+        //         end else
+        //             IF article.Inventory < 0 then begin
+        //                 ItemJournal.Reset();
+        //                 ItemJournal.Init();
+        //                 ItemJournal."Posting Date" := WorkDate();
+        //                 ItemJournal."Document No." := 'T00' + Format(J);
+        //                 ItemJournal."Line No." := i;
+        //                 ItemJournal."Journal Template Name" := 'ARTICLE';
+        //                 ItemJournal."Journal Batch Name" := 'DEFAUT';
+        //                 ItemJournal."Entry Type" := ItemJournal."Entry Type"::"Positive Adjmt.";
+        //                 ItemJournal."Item No." := article."No.";
+        //                 ItemJournal.Validate("Item No.");
+        //                 articl.Reset();
+        //                 articl.SetRange("No.", article."No.");
+        //                 if articl.FindFirst() then begin
+        //                     itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
 
-                        end;
-                        itemJournal.Validate("Gen. Prod. Posting Group");
-                        //       ItemJournal."Location Code" := 'SIEGE';
-                        ItemJournal.Quantity := -article.Inventory;
-                        ItemJournal.Validate(Quantity);
-                        ItemJournal.Insert();
-                        i += 10000;
-                        J += 1;
-                    end;
-            until article.Next = 0;
-        End;
+        //                 end;
+        //                 itemJournal.Validate("Gen. Prod. Posting Group");
+        //                 //       ItemJournal."Location Code" := 'SIEGE';
+        //                 ItemJournal.Quantity := -article.Inventory;
+        //                 ItemJournal.Validate(Quantity);
+        //                 ItemJournal.Insert();
+        //                 i += 10000;
+        //                 J += 1;
+        //             end;
+        //     until article.Next = 0;
+        // silue samuel 07/03/2025 End;
     End;
 
     var

@@ -169,7 +169,7 @@ pageextension 70006 "Sales Order" extends "Sales Order"
             repeat
                 //slines."Statut Livraison" := rec."Statut Livraison";
                 //GET nombre de carton pour la prime bonus
-                totalCarton += slines."Carton effectif";
+                // silue samuel 07/03/2025 totalCarton += slines."Carton effectif";
                 totalQuantite += slines.Quantity;
             //if (rec."Statut Livraison" = rec."Statut Livraison"::) then
             //slines."Qté livrée" := slines."Carton effectif";
@@ -203,7 +203,7 @@ pageextension 70006 "Sales Order" extends "Sales Order"
 
     local procedure unsetEpargne()
     var
-        slines: Record "Sales Invoice Line";
+        //silue samuel 07/03/2025 slines: Record "Sales Invoice Line";
         saleSetup: Record "Sales & Receivables Setup";
         customer: Record Customer;
         NoSeriesMgt: Codeunit NoSeriesManagement;
@@ -211,22 +211,22 @@ pageextension 70006 "Sales Order" extends "Sales Order"
         xdepot: Record "Depôt";
         GA: page 9022;
     begin
-        totalCarton := 0;
-        totalQuantite := 0;
-        slines.Reset();
-        slines.SetRange("Document No.", rec."No.");
-        if slines.FindFirst() then begin
-            repeat
-                //slines."Statut Livraison" := rec."Statut Livraison";
-                //GET nombre de carton pour la prime bonus
-                totalCarton += slines."Carton effectif";
-                totalQuantite += slines.Quantity;
-            //if (rec."Statut Livraison" = rec."Statut Livraison"::"Payée totalement livré") then
-            // slines."Qté livrée" := slines."Carton effectif";
+        // silue samuel 07/03/2025totalCarton := 0;
+        // totalQuantite := 0;
+        // slines.Reset();
+        // slines.SetRange("Document No.", rec."No.");
+        // if slines.FindFirst() then begin
+        //     repeat
+        //         //slines."Statut Livraison" := rec."Statut Livraison";
+        //         //GET nombre de carton pour la prime bonus
+        //         totalCarton += slines."Carton effectif";
+        //         totalQuantite += slines.Quantity;
+        //     //if (rec."Statut Livraison" = rec."Statut Livraison"::"Payée totalement livré") then
+        //     // slines."Qté livrée" := slines."Carton effectif";
 
-            //slines.Modify();
-            until slines.Next = 0;
-        end;
+        //     //slines.Modify();
+        //     until slines.Next = 0;
+        //fin silue samuel 07/03/2025 end;
 
 
         saleSetup.Reset();

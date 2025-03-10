@@ -20,7 +20,7 @@ report 70022 "Performance Preparateur"
                 column(Document_No_; "Document No.") { }
                 column(Line_No_; "Line No.") { }
                 column(No_; "No.") { }
-                column(Carton_effectif; "Carton effectif") { }
+                // silue samuel 07/03/2025 column(Carton_effectif; "Carton effectif") { }
                 column(Quantity; Quantity) { }
                 column(HideLines; HideLines) { }
                 column(Line_Filters; "Sales Invoice Line".GetFilters()) { }

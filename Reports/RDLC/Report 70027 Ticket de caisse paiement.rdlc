@@ -1925,18 +1925,6 @@ jI+4dSllFgAw40MA+GD79ib/3wxN02YPV35KadmmuH+pPcV5tVJWDQDYbbbAOTHs0PXdkcqIBAx/KUqv
         <Field Name="BL">
           <DataField>BL</DataField>
         </Field>
-        <Field Name="TVA">
-          <DataField>TVA</DataField>
-        </Field>
-        <Field Name="TVAFormat">
-          <DataField>TVAFormat</DataField>
-        </Field>
-        <Field Name="AIRSI">
-          <DataField>AIRSI</DataField>
-        </Field>
-        <Field Name="AIRSIFormat">
-          <DataField>AIRSIFormat</DataField>
-        </Field>
         <Field Name="Epargne">
           <DataField>Epargne</DataField>
         </Field>
@@ -1991,9 +1979,6 @@ jI+4dSllFgAw40MA+GD79ib/3wxN02YPV35KadmmuH+pPcV5tVJWDQDYbbbAOTHs0PXdkcqIBAx/KUqv
         <Field Name="No_">
           <DataField>No_</DataField>
         </Field>
-        <Field Name="Carton_effectif">
-          <DataField>Carton_effectif</DataField>
-        </Field>
         <Field Name="Description">
           <DataField>Description</DataField>
         </Field>
@@ -2041,39 +2026,6 @@ jI+4dSllFgAw40MA+GD79ib/3wxN02YPV35KadmmuH+pPcV5tVJWDQDYbbbAOTHs0PXdkcqIBAx/KUqv
         </Field>
         <Field Name="MontantHtFormat">
           <DataField>MontantHtFormat</DataField>
-        </Field>
-        <Field Name="Poids">
-          <DataField>Poids</DataField>
-        </Field>
-        <Field Name="PoidsFormat">
-          <DataField>PoidsFormat</DataField>
-        </Field>
-        <Field Name="nombre">
-          <DataField>nombre</DataField>
-        </Field>
-        <Field Name="Total">
-          <DataField>Total</DataField>
-        </Field>
-        <Field Name="TotalFormat">
-          <DataField>TotalFormat</DataField>
-        </Field>
-        <Field Name="Line_No_P">
-          <DataField>Line_No_P</DataField>
-        </Field>
-        <Field Name="tour">
-          <DataField>tour</DataField>
-        </Field>
-        <Field Name="UnitHtround">
-          <DataField>UnitHtround</DataField>
-        </Field>
-        <Field Name="UnitHtroundFormat">
-          <DataField>UnitHtroundFormat</DataField>
-        </Field>
-        <Field Name="MontantHtround">
-          <DataField>MontantHtround</DataField>
-        </Field>
-        <Field Name="MontantHtroundFormat">
-          <DataField>MontantHtroundFormat</DataField>
         </Field>
       </Fields>
       <Query>

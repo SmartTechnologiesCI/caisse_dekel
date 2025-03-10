@@ -22,13 +22,13 @@ page 70031 "Ligne commande paiement"
                     ApplicationArea = All;
 
                 }
-                field("Carton effectif"; rec."Carton effectif")
-                {
+                // silue samuel 07/03/2025 field("Carton effectif"; rec."Carton effectif")
+                // {
 
-                    Style = Strong;
-                    ApplicationArea = All;
+                //     Style = Strong;
+                //     ApplicationArea = All;
 
-                }
+                // fin silue samuel 07/03/2025}
                 field(Quantity; rec.Quantity)
                 {
                     ApplicationArea = All;

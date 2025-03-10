@@ -1300,12 +1300,6 @@ YI2NxdI+XACnhAlILvd9PzJ/8lLAGhuLpU2kPe/3aiWlcoSOSDnbKjq+vKzFshRIJ5Pnks6dJGvlKz5t
         <Field Name="Utilisateur">
           <DataField>Utilisateur</DataField>
         </Field>
-        <Field Name="date_Debut">
-          <DataField>date_Debut</DataField>
-        </Field>
-        <Field Name="date_Fin">
-          <DataField>date_Fin</DataField>
-        </Field>
         <Field Name="No">
           <DataField>No</DataField>
         </Field>
@@ -1332,24 +1326,6 @@ YI2NxdI+XACnhAlILvd9PzJ/8lLAGhuLpU2kPe/3aiWlcoSOSDnbKjq+vKzFshRIJ5Pnks6dJGvlKz5t
         </Field>
         <Field Name="Qte_PoidsFormat">
           <DataField>Qte_PoidsFormat</DataField>
-        </Field>
-        <Field Name="qteVendue">
-          <DataField>qteVendue</DataField>
-        </Field>
-        <Field Name="qteVendueFormat">
-          <DataField>qteVendueFormat</DataField>
-        </Field>
-        <Field Name="performance">
-          <DataField>performance</DataField>
-        </Field>
-        <Field Name="performanceFormat">
-          <DataField>performanceFormat</DataField>
-        </Field>
-        <Field Name="bonus">
-          <DataField>bonus</DataField>
-        </Field>
-        <Field Name="bonusFormat">
-          <DataField>bonusFormat</DataField>
         </Field>
         <Field Name="Prime">
           <DataField>Prime</DataField>

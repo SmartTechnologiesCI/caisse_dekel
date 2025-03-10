@@ -19,7 +19,7 @@ page 70073 "Detail livraison"
 
                 }
                 //field("Nombre de carton"; rec."Nombre de carton") { Editable = false; }
-                field("Carton effectif"; "Carton effectif") { Caption = 'Nombre de cartons'; Editable = false; }
+                //  silue samuel 07/03/2025field("Carton effectif"; "Carton effectif") { Caption = 'Nombre de cartons'; Editable = false; }
                 field(Description; Description) { }
                 field(Quantity; Quantity)
                 {

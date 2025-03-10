@@ -27,14 +27,14 @@ report 70006 "Control par article"
             {
 
             }
-            column(Description; SalesIvoiceLine.Description)
-            {
+            // silue samuel 07/03/2025 column(Description; SalesIvoiceLine.Description)
+            // {
 
-            }
-            column(Nombre_de_carton; SalesIvoiceLine."Carton effectif")
-            {
+            // }
+            // silue samuel 07/03/2025 column(Nombre_de_carton; SalesIvoiceLine."Carton effectif")
+            // {
 
-            }
+            // }
             column("Cartons_livrée"; "Qté livrée")
             {
 
@@ -43,10 +43,10 @@ report 70006 "Control par article"
               {
 
               }  */
-            column(reste; SalesIvoiceLine."Carton effectif" - "Qté livrée")
-            {
+            // silue samuel 07/03/2025 column(reste; SalesIvoiceLine."Carton effectif" - "Qté livrée")
+            // {
 
-            }
+            // }
             column(Statut_Livraison_Line; "Statut Livraison")
             {
 
@@ -55,7 +55,7 @@ report 70006 "Control par article"
             column(Date_Livraison; "Date Livraison") { }
 
             column(livraisonRecente; livraisonRecente) { }
-            column("Qté_livrée_Auj"; SalesIvoiceLine."Qté livrée auj") { }
+            //  silue samuel 07/03/2025 column("Qté_livrée_Auj"; SalesIvoiceLine."Qté livrée auj") { }
 
 
             trigger OnPreDataItem()
@@ -80,16 +80,16 @@ report 70006 "Control par article"
             begin
                 //"Sales Invoice Line".Reset();
                 //"Sales Invoice Line".SetRange();
-                SalesIvoiceLine.Reset();
-                SalesIvoiceLine.SetFilter("No.", "No article");
-                SalesIvoiceLine.SetFilter("Document No.", "No facture");
-                //"Controle Livraison".SETFILTER(dateFilter, '=%1', WorkDate());
-                //SalesIvoiceLine.SETFILTER(dateFilter, '=%1', WorkDate());
-                SalesIvoiceLine.FindSet();
+                // silue samuel 07/03/2025 SalesIvoiceLine.Reset();
+                // SalesIvoiceLine.SetFilter("No.", "No article");
+                // SalesIvoiceLine.SetFilter("Document No.", "No facture");
+                // //"Controle Livraison".SETFILTER(dateFilter, '=%1', WorkDate());
+                // //SalesIvoiceLine.SETFILTER(dateFilter, '=%1', WorkDate());
+                // SalesIvoiceLine.FindSet();
 
-                if "Controle Livraison"."Date Livraison" = WorkDate() then begin
-                    livraisonRecente := "Qté livrée";
-                end;
+                // if "Controle Livraison"."Date Livraison" = WorkDate() then begin
+                //     livraisonRecente := "Qté livrée";
+                //fin silue samuel 07/03/2025  end;
 
 
 
@@ -146,7 +146,7 @@ report 70006 "Control par article"
         Date_Debut: Date;
         Date_fin: Date;
         livraisonRecente: Decimal;
-        SalesIvoiceLine: Record "Sales Invoice Line";
+        // SalesIvoiceLine: Record "Sales Invoice Line";
         controleLivraison: Record "Controle Livraison";
 
 

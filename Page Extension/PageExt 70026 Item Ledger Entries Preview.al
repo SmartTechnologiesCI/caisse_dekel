@@ -18,15 +18,15 @@ pageextension 70026 "Item Ledger Entries PreviewX" extends "Item Ledger Entries 
         }
         addafter("Lot Qty.")
         {
-            field("Nombre de cartonc"; rec."Nombre de cartonc")
-            {
-                ApplicationArea = All;
-            }
-            field("Diff Qty carton"; "Diff Qty carton")
-            {
-                ApplicationArea=All;
+            //silue samuel 07/03/2025 field("Nombre de cartonc"; rec."Nombre de cartonc")
+            // {
+            //     ApplicationArea = All;
+            // }
+            // field("Diff Qty carton"; "Diff Qty carton")
+            // {
+            //     ApplicationArea=All;
 
-            }
+            //silue samuel 07/03/2025 }
 
         }
     }

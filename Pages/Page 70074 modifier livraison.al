@@ -20,11 +20,11 @@ page 70074 "Modifier livraison"
                     TableRelation = "Sales Invoice Line"."No.";
                     Editable = false;
                 }
-                field("Carton effectif"; rec."Carton effectif")
-                {
-                    Caption = 'Nombre de carton';
-                    Editable = false;
-                }
+                // silue samuel 07/03/2025 field("Carton effectif"; rec."Carton effectif")
+                // {
+                //     Caption = 'Nombre de carton';
+                //     Editable = false;
+                // }
 
                 field("Nombre de carton livre"; rec."Qté livrée") { Editable = false; }
 
@@ -76,52 +76,52 @@ page 70074 "Modifier livraison"
                 controleLivraison."No facture" := rec."Document No.";
                 controleLivraison."Qté livrée" := "Qté_livrée";
 
-                if rec."Carton effectif" < "Qté livrée" + "Qté_livrée" then begin
-                    Error('Vous allez livrer plus de carton que necessaire');
-                end
-                else begin
+                // silue samuel 07/03/2025 if rec."Carton effectif" < "Qté livrée" + "Qté_livrée" then begin
+                //     Error('Vous allez livrer plus de carton que necessaire');
+                // end
+                //             else begin
 
-                    if Format(Date_Livraison) = '' then begin
-                        controleLivraison."Date Livraison" := WorkDate();
-                    end else
-                        controleLivraison."Date Livraison" := Date_Livraison;
-
-
-                    if (rec."Qté livrée" + "Qté_livrée" >= "Carton effectif") then
-                        "Statut Livraison" := "Statut Livraison"::"Payée totalement livré"
-                    else
-                        if (rec."Qté livrée" + "Qté_livrée" < "Carton effectif") then
-                            "Statut Livraison" := "Statut Livraison"::"Payée partiellement livré";
+                //                 if Format(Date_Livraison) = '' then begin
+                //                     controleLivraison."Date Livraison" := WorkDate();
+                //                 end else
+                //                     controleLivraison."Date Livraison" := Date_Livraison;
 
 
+                //                 if (rec."Qté livrée" + "Qté_livrée" >= "Carton effectif") then
+                //                     "Statut Livraison" := "Statut Livraison"::"Payée totalement livré"
+                //                 else
+                //                     if (rec."Qté livrée" + "Qté_livrée" < "Carton effectif") then
+                //                         "Statut Livraison" := "Statut Livraison"::"Payée partiellement livré";
 
 
-                    controleLivraison.Insert();
-                    Rec.Modify();
-                    Message('Livraison ajouté');
-                    SInvLines.Reset();
-                    SHeader.Reset();
-                    SInvLines.SetRange("Document No.", rec."Document No.");
-                    SHeader.SetRange("No.", rec."Document No.");
-                    if SInvLines.FindFirst() then begin
-                        total := true;
-                        repeat
-                            if SInvLines."Statut Livraison" <> SInvLines."Statut Livraison"::"Payée totalement livré" then
-                                total := false;
-                        until SInvLines.Next = 0;
-                        if SHeader.FindFirst() then begin
-                            if total then begin
-                                SHeader."Statut Livraison" := SHeader."Statut Livraison"::"Payée totalement livré";
-                                SHeader.Modify();
-                            end else begin
-                                SHeader."Statut Livraison" := SHeader."Statut Livraison"::"Payée partiellement livré";
-                                SHeader.Modify();
-                            end;
-                        end;
-                    end;
-                    cardLivraison.Update();
 
-                end;
+
+                //                 controleLivraison.Insert();
+                //                 Rec.Modify();
+                //                 Message('Livraison ajouté');
+                //                 SInvLines.Reset();
+                //                 SHeader.Reset();
+                //                 SInvLines.SetRange("Document No.", rec."Document No.");
+                //                 SHeader.SetRange("No.", rec."Document No.");
+                //                 if SInvLines.FindFirst() then begin
+                //                     total := true;
+                //                     repeat
+                //                         if SInvLines."Statut Livraison" <> SInvLines."Statut Livraison"::"Payée totalement livré" then
+                //                             total := false;
+                //                     until SInvLines.Next = 0;
+                //                     if SHeader.FindFirst() then begin
+                //                         if total then begin
+                //                             SHeader."Statut Livraison" := SHeader."Statut Livraison"::"Payée totalement livré";
+                //                             SHeader.Modify();
+                //                         end else begin
+                //                             SHeader."Statut Livraison" := SHeader."Statut Livraison"::"Payée partiellement livré";
+                //                             SHeader.Modify();
+                //                         end;
+                //                     end;
+                //                 end;
+                //                 cardLivraison.Update();
+
+                //        fin silue samuel 07/03/2025     end;
             end;
         end;
     end;
@@ -143,7 +143,7 @@ page 70074 "Modifier livraison"
 
     var
         myInt: Integer;
-        SalesivoiceLine: Record "Sales Invoice Line";
+        //  silue samuel 07/03/2025 SalesivoiceLine: Record "Sales Invoice Line";
         "Date_Livraison": Date;
         "Qté_livrée": Integer;
         controleLivraison: Record "Controle Livraison";

@@ -43,7 +43,7 @@ page 70052 "MsgPage"
         dirCue: Record "Director Cue";
         totalMois: Decimal;
         fve: Record "Sales Invoice Header";
-        fveLine: Record "Sales Invoice Line";
+        // fin silue samuel 07/03/2025 fveLine: Record "Sales Invoice Line";
 
         situation: Record "situation caisse";
     begin

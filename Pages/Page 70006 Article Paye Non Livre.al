@@ -20,13 +20,13 @@ page 70006 "Article PayeNonLivre List"
                     ApplicationArea = All;
                     trigger OnDrillDown()
                     var
-                        sil: Record "Sales Invoice Line";
+                        //silue samuel 07/03/2025 sil: Record "Sales Invoice Line";
 
                     begin
-                        sil.SetRange("No.", Rec."No.");
-                        sil.SetFilter("Posting Date", '>%1', DMY2Date(01, 07, 2021));
-                        sil.FindSet();
-                        Page.Run(70007, sil);
+                        // silue samuel 07/03/2025sil.SetRange("No.", Rec."No.");
+                        //silue samuel 07/03/2025 sil.SetFilter("Posting Date", '>%1', DMY2Date(01, 07, 2021));
+                        //silue samuel 07/03/2025 sil.FindSet();
+                        //silue samuel 07/03/2025 Page.Run(70007, sil);
                     end;
 
                 }
@@ -35,14 +35,14 @@ page 70006 "Article PayeNonLivre List"
                     ApplicationArea = All;
                     trigger OnDrillDown()
                     var
-                        sil: Record "Sales Invoice Line";
+                        //fin silue samuel 07/03/2025 sil: Record "Sales Invoice Line";
 
                     begin
-                        sil.SetRange("No.", Rec."No.");
-                        sil.SetFilter("Posting Date", '>%1', DMY2Date(01, 07, 2021));
-                        sil.Findset();
+                        // fin silue samuel 07/03/2025 sil.SetRange("No.", Rec."No.");
+                        // fin silue samuel 07/03/2025 sil.SetFilter("Posting Date", '>%1', DMY2Date(01, 07, 2021));
+                        //  fin silue samuel 07/03/2025 sil.Findset();
 
-                        Page.Run(70007, sil);
+                        // Page.Run(70007, sil);
                     end;
 
                 }
@@ -86,15 +86,15 @@ page 70006 "Article PayeNonLivre List"
         }
     }
     var
-        salesInvoiceLine: Record "Sales Invoice Line";
+        // fin silue samuel 07/03/2025 salesInvoiceLine: Record "Sales Invoice Line";
 
     trigger OnOpenPage()
     var
         myInt: Integer;
 
     begin
-        salesInvoiceLine.SetRange("No.", Rec."No.");
+        // fin silue samuel 07/03/2025 salesInvoiceLine.SetRange("No.", Rec."No.");
 
-        salesInvoiceLine.FindSet();
+        // fin silue samuel 07/03/2025 salesInvoiceLine.FindSet();
     end;
 }

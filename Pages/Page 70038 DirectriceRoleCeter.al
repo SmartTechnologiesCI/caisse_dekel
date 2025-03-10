@@ -44,7 +44,7 @@ page 70038 "Director RC"
             action("&Génerer echantillon douanier")
             {
                 Caption = 'Générer echantillon douanier';
-                RunObject = page 50055;
+                //silue samuel 07/03/2025 RunObject = page 50055;
             }
 
             action("&Transfert de stock")
@@ -135,7 +135,7 @@ page 70038 "Director RC"
                 }
                 action("Génerer echantillon douanier")
                 {
-                    RunObject = page 50055;
+                    //silue samuel 07/03/2025 RunObject = page 50055;
                 }
             }
             group("Ventes")
@@ -356,14 +356,14 @@ page 70038 "Director RC"
             action("ArticlesP")
             {
                 CaptionML = FRA = 'PAA : Articles en stock et prix';
-                RunObject = page 50064;
+                //silue samuel 07/03/2025 RunObject = page 50064;
                 RunPageMode = View;
             }
 
             action("ArticlesB")
             {
                 CaptionML = FRA = 'Bietry : Articles en stock et prix';
-                RunObject = page 50062;
+                //silue samuel 07/03/2025 RunObject = page 50062;
                 RunPageMode = View;
             }
 
@@ -371,7 +371,7 @@ page 70038 "Director RC"
             action("ArticlesV")
             {
                 CaptionML = FRA = 'Vridi : Articles en stock et prix';
-                RunObject = page 50063;
+                // silue samuel 07/03/2025 RunObject = page 50063;
                 RunPageMode = View;
             }
         }

@@ -25,24 +25,24 @@ page 70007 "Detail Article Paye Non Livre"
 
                 }
 
-                field("Carton commande"; rec."Carton effectif")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Cartons commandés';
+                // silue samuel 07/03/2025 field("Carton commande"; rec."Carton effectif")
+                // {
+                //     ApplicationArea = All;
+                //     Caption = 'Cartons commandés';
 
-                }
+                //fin silue samuel 07/03/2025 }
                 field("Carton livre"; rec."Qté livrée")
                 {
                     Caption = 'Cartons livrés';
                     ApplicationArea = All;
 
                 }
-                field("Carton non livre"; rec."Carton effectif" - Rec."Qté livrée")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Cartons non livrés';
+                //  silue samuel 07/03/2025field("Carton non livre"; rec."Carton effectif" - Rec."Qté livrée")
+                // {
+                //     ApplicationArea = All;
+                //     Caption = 'Cartons non livrés';
 
-                }
+                //fin silue samuel 07/03/2025 }
 
             }
         }

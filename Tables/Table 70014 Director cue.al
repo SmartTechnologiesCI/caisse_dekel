@@ -78,7 +78,9 @@ table 70014 "Director Cue"
         field(16; "Commandes prix à fixer"; integer)
         {
             FieldClass = FlowField;
-            CalcFormula = count("Purchase Header" where("Prix fixé" = const(false), ETA = field("date filter 3"), "Fixation des prix" = const(true)));
+            // silue samuel 07/03/2025 CalcFormula = count("Purchase Header" where("Prix fixé" = const(false), ETA = field("date filter 3"), "Fixation des prix" = const(true)));
+                        CalcFormula = count("Purchase Header" where(ETA = field("date filter 3"), "Fixation des prix" = const(true)));
+
         }
         field(17; "Depots Actifs"; integer)
         {
@@ -187,26 +189,26 @@ table 70014 "Director Cue"
             FieldClass = FlowField;
             CalcFormula = count("Sales Header" where(Status = const(Released), "Document Type" = const(Order)));
         }
-        field(31; "Conteneurs en chargement"; Integer)
-        {
-            FieldClass = FlowField;
-            CalcFormula = count("Purchase Header" where(Situaion = const("Loaded"), "Document Type" = const(Order)));
-        }
-        field(36; "Conteneurs Embarqués"; Integer)
-        {
-            FieldClass = FlowField;
-            CalcFormula = count("Purchase Header" where(Situaion = const("Embedded"), "Document Type" = const(Order)));
-        }
-        field(37; "Conteneurs en Approche"; Integer)
-        {
-            FieldClass = FlowField;
-            CalcFormula = count("Purchase Header" where(Situaion = const("Dumped"), "Document Type" = const(Order)));
-        }
-        field(38; "Conteneurs à depoter"; Integer)
-        {
-            FieldClass = FlowField;
-            CalcFormula = count("purchase Header" where("Depotage" = const(true), "Document Type" = const(Order)));
-        }
+        // silue samuel 07/03/2025 field(31; "Conteneurs en chargement"; Integer)
+        // {
+        //     FieldClass = FlowField;
+        //     CalcFormula = count("Purchase Header" where(Situaion = const("Loaded"), "Document Type" = const(Order)));
+        // }
+        //  silue samuel 07/03/2025field(36; "Conteneurs Embarqués"; Integer)
+        // {
+        //     FieldClass = FlowField;
+        //     CalcFormula = count("Purchase Header" where(Situaion = const("Embedded"), "Document Type" = const(Order)));
+        // }
+        // silue samuel 07/03/2025 field(37; "Conteneurs en Approche"; Integer)
+        // {
+        //     FieldClass = FlowField;
+        //     CalcFormula = count("Purchase Header" where(Situaion = const("Dumped"), "Document Type" = const(Order)));
+        // }
+        // field(38; "Conteneurs à depoter"; Integer)
+        // {
+        //     FieldClass = FlowField;
+        //     CalcFormula = count("purchase Header" where("Depotage" = const(true), "Document Type" = const(Order)));
+        // }
 
         field(39; "Depots Bonus"; integer)
         {
@@ -230,13 +232,13 @@ table 70014 "Director Cue"
         field(43; "DepotsCorrectionAttente"; integer)
         {
             FieldClass = FlowField;
-            CalcFormula = count("Depôt" where(DemandeApprobation = const(true), Correction = const(false), validated = const(false)));
+            //  silue samuel 07/03/2025 CalcFormula = count("Depôt" where(DemandeApprobation = const(true), Correction = const(false), validated = const(false)));
         }
 
         field(44; "DuplicataAttente"; integer)
         {
             FieldClass = FlowField;
-            CalcFormula = count("Sales Invoice Header" where("Demande approbation" = const(true), Approuve = const(false)));
+            // silué samuel 07/03/2025 CalcFormula = count("Sales Invoice Header" where("Demande approbation" = const(true), Approuve = const(false)));
         }
 
 

@@ -69,22 +69,22 @@ pageextension 70002 "PostedSaesInvoice Header" extends 132
             {
                 trigger OnAction()
                 var
-                    article: record item;
-                    ligne: record "Sales Invoice Line";
+                    // article: record item;
+                    //silue samuel 07/03/2025 ligne: record "Sales Invoice Line";
                 begin
-                    ligne.Reset();
-                    if ligne.FindFirst() then begin
-                        repeat
-                            article.Reset();
-                            article.SetRange("No.", ligne."No.");
-                            if article.FindFirst() then begin
-                                ligne."Item Category Code" := article."Item Category Code";
-                                ligne.Modify();
-                            end;
-                        until ligne.Next = 0;
-                        Message('Terminé !');
-                    end else
-                        Message('Aucune ligne');
+                    // silue samuel 07/03/2025 ligne.Reset();
+                    // if ligne.FindFirst() then begin
+                    //     repeat
+                    //         article.Reset();
+                    //         article.SetRange("No.", ligne."No.");
+                    //         if article.FindFirst() then begin
+                    //             ligne."Item Category Code" := article."Item Category Code";
+                    //             ligne.Modify();
+                    //         end;
+                    //     until ligne.Next = 0;
+                    //     Message('Terminé !');
+                    // end else
+                    //     Message('Aucune ligne');
                 end;
             }
         }

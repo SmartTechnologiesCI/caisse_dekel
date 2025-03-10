@@ -23,7 +23,7 @@ pageextension 70025 "Posted Purch. Invoice SubformX" extends "Posted Purch. Invo
                 PromotedCategory = Category10;
                 trigger OnAction()
                 var
-                    SalesInvoiceLine: Record "Sales Invoice Line";
+                    // silue samuel 07/03/2025 SalesInvoiceLine: Record "Sales Invoice Line";
                 begin
                     UndoReceiptLine();
                     // Codeunit.Run(Codeunit::"Undo Purchase Receipt Line", SalesInvoiceLine)

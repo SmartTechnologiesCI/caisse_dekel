@@ -12,7 +12,7 @@ tableextension 70011 "Team SalesPerson" extends "Team Salesperson"
         field(70003; "Code peseur"; Code[10])
         {
             DataClassification = ToBeClassified;
-            TableRelation = "User App";
+            //silué samuel 07/03/2024 TableRelation = "User App";
         }
         // Add changes to table fields here
         field(70000; Utilisateur; Code[50])

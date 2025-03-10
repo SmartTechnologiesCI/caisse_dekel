@@ -33,7 +33,7 @@ report 70014 "Etat des stocks"
                 column(Shipment_Date; "Shipment Date") { }
                 column(Quantity; Quantity) { }
                 column(Document_No_; "Document No.") { }
-                column(Nombre_de_carton; "Sales Invoice Line"."Carton effectif") { }
+                // column(Nombre_de_carton; "Sales Invoice Line"."Carton effectif") { }
                 trigger OnAfterGetRecord()
                 var
                     salesInvHeader: Record "Sales Invoice Header";
@@ -54,7 +54,7 @@ report 70014 "Etat des stocks"
             trigger OnPreDataItem()
             var
                 myInt: Integer;
-                item: Record Item;
+                // item: Record Item;
 
             begin
 
@@ -77,7 +77,7 @@ report 70014 "Etat des stocks"
             var
                 myInt: Integer;
                 salesIvoiceHeader: Record "Sales Invoice Header";
-                saleIvoiceLine: Record "Sales Invoice Line";
+                //silue samuel 07/03/2025 saleIvoiceLine: Record "Sales Invoice Line";
 
             begin
 

@@ -50,10 +50,10 @@ report 70007 "Etat des ventes"
                 {
 
                 }
-                column(Nombre_de_carton; "Carton effectif")
-                {
+                //fin silue samuel 07/03/2025 column(Nombre_de_carton; "Carton effectif")
+                // {
 
-                }
+                // }
                 column(Quantity; Quantity)
                 {
 
@@ -95,26 +95,26 @@ report 70007 "Etat des ventes"
                     moyenCout: Decimal;
 
                 begin
-                    LigneArticle.Reset();
-                    LigneArticle.SetRange("N° article", "No.");
-                    LigneArticle.SetRange("Date mise en vente", CurrDateStart, CurrDateEnd);
-                    Clear(tempCout);
-                    Clear(myInt);
-                    Clear(moyenCout);
-                    //Clear();
+                    // silue samuel 07/03/2025 LigneArticle.Reset();
+                    // LigneArticle.SetRange("N° article", "No.");
+                    // LigneArticle.SetRange("Date mise en vente", CurrDateStart, CurrDateEnd);
+                    // Clear(tempCout);
+                    // Clear(myInt);
+                    // Clear(moyenCout);
+                    // //Clear();
 
-                    if LigneArticle.FindFirst() then begin
+                    // if LigneArticle.FindFirst() then begin
 
-                        repeat
-                            Cout_moyen := LigneArticle."Coût de revient";
-                            tempCout += tempCout + Cout_moyen;
-                            myInt := myInt + 1;
-                        until LigneArticle.Next = 0;
+                    //     repeat
+                    //         Cout_moyen := LigneArticle."Coût de revient";
+                    //         tempCout += tempCout + Cout_moyen;
+                    //         myInt := myInt + 1;
+                    //     until LigneArticle.Next = 0;
 
-                        moyenCout := tempCout / myInt;
-                        Cout_moyen := moyenCout;
-                        // Message('a %1  b %2', moyenCout, myInt); desactivé par olivier smart 27/08/22
-                    end;
+                    //     moyenCout := tempCout / myInt;
+                    //     Cout_moyen := moyenCout;
+                    //     // Message('a %1  b %2', moyenCout, myInt); desactivé par olivier smart 27/08/22
+                    // end;
                 end;
 
 
@@ -158,7 +158,7 @@ report 70007 "Etat des ventes"
         var
             myInt: Integer;
 
-            salesLine: Record "Sales Invoice Line";
+            // silue samuel 07/03/2025 salesLine: Record "Sales Invoice Line";
         begin
 
             CurrDateStart := DMY2Date(01, Date2DMY(WorkDate(), 2), Date2DMY(WorkDate(), 3));
@@ -179,6 +179,6 @@ report 70007 "Etat des ventes"
         CurrDateEnd: Date;
         Date_Debut_Cout_moyen: Date;
         Cout_moyen: Decimal;
-        LigneArticle: Record 50012;
+        // silue samuel 07/03/2025LigneArticle: Record 50012;
 
 }

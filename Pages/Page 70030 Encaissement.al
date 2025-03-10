@@ -437,7 +437,7 @@ page 70030 "Encaissement"
                     xdepot: Record "Depôt";
 
                     expedition: Record 110;
-                    slines: Record "Sales Invoice Line";
+                    //fin silue samuel 07/03/2025 slines: Record "Sales Invoice Line";
                     saleSetup: Record "Sales & Receivables Setup";
                     client: Record Customer;
                     NoSeriesMgt: Codeunit NoSeriesManagement;
@@ -923,9 +923,9 @@ page 70030 "Encaissement"
         parCompta.get();
         rnd := 5;
         "validé" := false;
-        "Montant AIRSI" := rec."Amount Including VAT" * (1 - (1 / (1 + parCompta."% AIRSI" / 100)));
-        "Montant TVA" := (rec."Amount Including VAT" / (1 + parCompta."% AIRSI" / 100)) * (1 - (1 / (1 + parCompta."% TVA" / 100)));
-        //        
+        // silue samuel 07/03/2025 "Montant AIRSI" := rec."Amount Including VAT" * (1 - (1 / (1 + parCompta."% AIRSI" / 100)));
+        // fin silue samuel 07/03/2025 "Montant TVA" := (rec."Amount Including VAT" / (1 + parCompta."% AIRSI" / 100)) * (1 - (1 / (1 + parCompta."% TVA" / 100)));
+        //         
         //
         if (TimbreOui) then setTimbre();
         "Solde commande" := "Remaining Amount" + rec.timbre;

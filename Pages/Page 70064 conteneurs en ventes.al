@@ -21,35 +21,34 @@ page 70064 "Liste des Contrats en vente"
                     trigger OnDrillDown()
                     var
                         PHeader: Record "Purchase Header";
-                        prixA: Record "Prix Articles";
-                        prixB: Record "Ligne Artcile prix";
+                        //silue samuel 07/03/2025 prixA: Record "Prix Articles";
+                        // silue samuel 07/03/2025 prixB: Record "Ligne Artcile prix";
                         PCompta: Record 98;
                     begin
                         PCompta.Reset();
                         PCompta.FindFirst();
                         PHeader.SetRange("No.", "No.");
-                        prixA.SetRange("N° commande", "No.");
-                        if (NOT prixA.FindFirst()) then begin
-                            prixA.Reset();
-                            prixA."N° commande" := "No.";
-                            prixA."Charges de fonctionnement unit" := PCompta."Charges de fonctionnement";
-                            prixA."% Marge" := PCompta."% Marge";
-                            prixA.Validate("Charges de fonctionnement unit");
-                            prixA.Validate("% Marge");
-                            prixA.Insert();
-                            prixA.Validate("N° commande");
-                            prixA.reset();
-                            prixA.SetRange("N° commande", "No.");
-                            prixA.FindFirst();
-                            prixA.setOrder();
-                            prixA.Modify();
-                            prixB.Reset();
-                            prixA.LoadLines(prixB);
-                            CurrPage.Update();
-                            Page.Run(Page::"Definition Prix Article", prixA);
-                        end
-                        else
-                            Page.Run(Page::"Definition Prix Article", prixA);
+                        // silue samuel 07/03/2025 prixA.SetRange("N° commande", "No.");
+                        // if (NOT prixA.FindFirst()) then begin
+                        //     prixA.Reset();
+                        //     prixA."N° commande" := "No.";
+                        //     prixA."Charges de fonctionnement unit" := PCompta."Charges de fonctionnement";
+                        //     prixA."% Marge" := PCompta."% Marge";
+                        //     prixA.Validate("Charges de fonctionnement unit");
+                        //     prixA.Validate("% Marge");
+                        //     prixA.Insert();
+                        //     prixA.Validate("N° commande");
+                        //     prixA.reset();
+                        //     prixA.SetRange("N° commande", "No.");
+                        //     prixA.FindFirst();
+                        //     prixA.setOrder();
+                        //     prixA.Modify();
+                        //     // silue samuel 07/03/2025 prixB.Reset();// prixA.LoadLines(prixB);
+                        //     CurrPage.Update();
+                        //     Page.Run(Page::"Definition Prix Article", prixA);
+                        // end
+                        // else
+                        //    silue samuel 07/03/2025 Page.Run(Page::"Definition Prix Article", prixA);
                     end;
                 }
                 field("Buy-from Vendor Name"; "Buy-from Vendor Name")
@@ -108,7 +107,7 @@ page 70064 "Liste des Contrats en vente"
                 var
                     conteneur: Record "Purchase Header";
                 begin
-                    conteneur.SetRange("Prix fixé", true);
+                    //  silue samuel 07/03/2025 conteneur.SetRange("Prix fixé", true);
                     conteneur.SetRange(Vendu, true);
                     conteneur.SetFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
                     if conteneur.FindFirst() then

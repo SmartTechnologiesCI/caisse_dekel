@@ -10,8 +10,8 @@ tableextension 70005 "Sles Inv. Line" extends "Sales Invoice Line"
             var
                 myInt: Integer;
             begin
-                if "Statut Livraison" = "Statut Livraison"::"Payée totalement livré" then
-                    "Qté livrée" := "Carton effectif";
+                // if "Statut Livraison" = "Statut Livraison"::"Payée totalement livré" then
+                    // "Qté livrée" := "Carton effectif";
             end;
         }
         field(70010; "Qté livrée"; Integer)
@@ -76,7 +76,7 @@ tableextension 70005 "Sles Inv. Line" extends "Sales Invoice Line"
         field(50001; "Code preparateur"; Code[50])
         {
             CaptionML = FRA = 'Code du préparateur';
-            TableRelation = "User App".Nom;
+            //silue samuel 07/03/2025 TableRelation = "User App".Nom;
         }
         field(50002; "Salesperson code"; Code[50])
         {

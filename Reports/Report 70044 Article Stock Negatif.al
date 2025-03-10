@@ -110,6 +110,6 @@ report 70044 "Article Stock Negatif "
         DateFinFlter: Date;
         NbrCarton__calculé: Decimal;
         companyInfo: Record "Company Information";
-        ItemVipa: Record Item;
+        // ItemVipa: Record Item;
 
 }

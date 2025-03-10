@@ -148,7 +148,7 @@ page 70035 CaisseActivity
                         DepotJour: Record "Depôt";
                     begin
                         DepotJour.SetRange("Code Caisse", caisse."Code caisse");
-                        DepotJour.SetRange(DemandeApprobation, true);
+                        // 07/03/2025 DepotJour.SetRange(DemandeApprobation, true);
                         DepotJour.SetRange(Correction, false);
                         DepotJour.SetRange(validated, false);
                         Page.RunModal(Page::"Dépôts", DepotJour);
@@ -165,7 +165,7 @@ page 70035 CaisseActivity
                         DepotJour: Record "Depôt";
                     begin
                         DepotJour.SetRange("Code Caisse", caisse."Code caisse");
-                        DepotJour.SetRange(DemandeApprobation, true);
+                        // silue samuel 07/03/2025 DepotJour.SetRange(DemandeApprobation, true);
                         DepotJour.SetRange(Correction, true);
                         DepotJour.SetRange(validated, false);
                         Page.RunModal(Page::"Dépôts", DepotJour);
@@ -227,21 +227,21 @@ page 70035 CaisseActivity
 
 
 
-                field(DuplicataAttente; rec.DuplicataAttente)
-                {
-                    Caption = 'Duplicata en attente';
-                    ApplicationArea = All;
-                    DrillDown = true;
-                    trigger OnDrillDown()
-                    var
-                        DepotJour: Record "Sales Invoice Header";
-                    begin
+                // silue samuel 07/03/2025  field(DuplicataAttente; rec.DuplicataAttente)
+                // {
+                //     Caption = 'Duplicata en attente';
+                //     ApplicationArea = All;
+                //     DrillDown = true;
+                //     trigger OnDrillDown()
+                //     var
+                //         DepotJour: Record "Sales Invoice Header";
+                //     begin
 
-                        DepotJour.SetRange("Demande approbation", true);
-                        DepotJour.SetRange(Approuve, false);
-                        Page.RunModal(Page::"Liste des factures", DepotJour);
-                    end;
-                }
+                //         // DepotJour.SetRange("Demande approbation", true);
+                //         DepotJour.SetRange(Approuve, false);
+                //         Page.RunModal(Page::"Liste des factures", DepotJour);
+                //     end;
+                // }
 
                 field(DuplicataApprou; rec.DuplicataApprou)
                 {

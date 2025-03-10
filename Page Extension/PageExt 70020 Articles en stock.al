@@ -7,7 +7,6 @@ pageextension 70020 ArticlesStock extends 50018
 
     actions
     {
-        // Add changes to page actions here
 
 
         addfirst(Processing)

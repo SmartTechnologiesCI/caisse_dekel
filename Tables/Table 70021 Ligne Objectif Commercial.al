@@ -46,30 +46,30 @@ table 70021 "Ligne Ojectif Commercial"
             trigger OnValidate()
             var
                 myInt: Integer;
-                item: Record Item;
+                // item: Record Item;
                 "Item Category": Record "Item Category";
                 salesPrice: Record "Sales Price";
 
             begin
-                if TypeLigne = TypeLigne::Article then begin
-                    item.SetRange("No.", "No Article");
-                    if item.FindFirst() then begin
-                        Rec."Description" := item.Description;
-                        salesPrice.SetRange("Item No.", item."No.");
-                        salesPrice.SetRange("Sales Type", salesPrice."Sales Type"::"All Customers");
-                        salesPrice.SetRange("Minimum Quantity", 0);
+                // if TypeLigne = TypeLigne::Article then begin
+                //     item.SetRange("No.", "No Article");
+                //     if item.FindFirst() then begin
+                //         Rec."Description" := item.Description;
+                //         salesPrice.SetRange("Item No.", item."No.");
+                //         salesPrice.SetRange("Sales Type", salesPrice."Sales Type"::"All Customers");
+                //         salesPrice.SetRange("Minimum Quantity", 0);
 
-                        if salesPrice.FindFirst() then begin
-                            "Prix article" := salesPrice."Unit Price";
-                        end;
+                //         if salesPrice.FindFirst() then begin
+                //             "Prix article" := salesPrice."Unit Price";
+                //         end;
 
-                    end;
-                end else begin
-                    "Item Category".SetRange(Code, "No Article");
-                    if "Item Category".FindFirst() then begin
-                        Rec."Description" := "Item Category".Description;
-                    end;
-                end;
+                //     end;
+                // end else begin
+                //     "Item Category".SetRange(Code, "No Article");
+                //     if "Item Category".FindFirst() then begin
+                //         Rec."Description" := "Item Category".Description;
+                //     end;
+                // end;
 
             end;
         }

@@ -63,7 +63,7 @@ report 70021 PerformanceCommercialNew
                     trigger OnAfterGetRecord()
                     var
                         myInt: Integer;
-                        sil: Record "Sales Invoice Line";
+                        // silue samuel 07/03/2025 sil: Record "Sales Invoice Line";
                         sih: Record "Sales Invoice Header";
                         groupe: Record "Team Salesperson";
                         objectifComm: Record "Objectif Commercial";
@@ -84,22 +84,22 @@ report 70021 PerformanceCommercialNew
                         sih.SetFilter("Posting Date", '%1..%2', date_Debut, date_Fin);
                         sih.SetRange(Cancelled, false);
                         if sih.FindFirst() then begin
-                            repeat
-                                sil.Reset();
-                                sil.SetRange("Document No.", sih."No.");
-                                sil.SetRange("Posting Date", "Ligne Ojectif Commercial"."Date debut");
-                                if TypeLigne = TypeLigne::Article then begin
-                                    sil.SetRange("No.", "Ligne Ojectif Commercial"."No Article");
-                                end else
-                                    sil.SetRange("Item Category Code", "Ligne Ojectif Commercial"."No Article");
+                            // silue samuel 07/03/2025 repeat
+                            //     sil.Reset();
+                            //     sil.SetRange("Document No.", sih."No.");
+                            //     sil.SetRange("Posting Date", "Ligne Ojectif Commercial"."Date debut");
+                            //     if TypeLigne = TypeLigne::Article then begin
+                            //         sil.SetRange("No.", "Ligne Ojectif Commercial"."No Article");
+                            //     end else
+                            //         sil.SetRange("Item Category Code", "Ligne Ojectif Commercial"."No Article");
 
-                                if sil.FindFirst() then begin
-                                    repeat
-                                        if sil.Quantity = 0 then CurrReport.Skip();
-                                        qteVendue := qteVendue + sil.Quantity;
-                                    until sil.Next() = 0;
-                                end;
-                            until sih.Next = 0;
+                            //     if sil.FindFirst() then begin
+                            //         repeat
+                            //             if sil.Quantity = 0 then CurrReport.Skip();
+                            //             qteVendue := qteVendue + sil.Quantity;
+                            //         until sil.Next() = 0;
+                            //     end;
+                            //fin silue samuel 07/03/2025 until sih.Next = 0;
                         end;
 
 
@@ -199,7 +199,7 @@ report 70021 PerformanceCommercialNew
             trigger OnAfterGetRecord()
             var
                 myInt: Integer;
-                sil: Record "Sales Invoice Line";
+                // silue samuel 07/03/2025 sil: Record "Sales Invoice Line";
                 sih: Record "Sales Invoice Header";
                 groupe: Record "Team Salesperson";
                 objectifComm: Record "Objectif Commercial";
@@ -324,7 +324,7 @@ report 70021 PerformanceCommercialNew
         userSetup: Record "User Setup";
 
         salesIvoiceHeader: Record "Sales Invoice Header";
-        articleVendu: Record item;
+        // articleVendu: Record item;
         taille_Groupe: Decimal;
         EmailReceveur: Text;
         primeBonus: Decimal;

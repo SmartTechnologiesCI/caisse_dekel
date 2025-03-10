@@ -8,21 +8,23 @@ codeunit 70006 "Event Souscriber"
     [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnValidateQuantityOnBeforeCheckAssocPurchOrder', '', true, true)]
     local procedure OnValidateQuantityOnBeforeCheckAssocPurchOrder(var SalesLine: Record "Sales Line"; CurrentFieldNo: Integer)
     var
-        Item: Record Item;
+        // Item: Record Item;
     begin
-        Item.Reset();
-        Item.SetRange("No.", SalesLine."No.");
-        if Item.FindFirst() then begin
-            Item.CalcFields(Inventory);
-            if (Item.Inventory - SalesLine.Quantity) < -10 then begin
-                Error('Le stock est biaisé, cherchez à augmenter votre stock');
-            end;
-        end;
+        // silue samuel 07/03/2025 Item.Reset();
+        // Item.SetRange("No.", SalesLine."No.");
+        // if Item.FindFirst() then begin
+        //     Item.CalcFields(Inventory);
+        //     if (Item.Inventory - SalesLine.Quantity) < -10 then begin
+        //         Error('Le stock est biaisé, cherchez à augmenter votre stock');
+        //     end;
+        // end;
     end;
     //<<24_08_2024 
     // <<Cette fonction permet d'insérer le nombre de cartons dans les écritures comptables article lors de la validation d'une commande vente 14_08_24
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnAfterPostSalesLine', '', false, false)]
-    local procedure OnAfterPostSalesLine(var SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line"; CommitIsSuppressed: Boolean; var SalesInvLine: Record "Sales Invoice Line"; var SalesCrMemoLine: Record "Sales Cr.Memo Line"; var xSalesLine: Record "Sales Line")
+    //silue samuel 07/03/2025 local procedure OnAfterPostSalesLine(var SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line"; CommitIsSuppressed: Boolean; var SalesInvLine: Record "Sales Invoice Line"; var SalesCrMemoLine: Record "Sales Cr.Memo Line"; var xSalesLine: Record "Sales Line")
+        local procedure OnAfterPostSalesLine(var SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line"; CommitIsSuppressed: Boolean; var SalesCrMemoLine: Record "Sales Cr.Memo Line"; var xSalesLine: Record "Sales Line")
+
     var
         SalesShipmentLine: Record "Sales Shipment Line";//Lignes expéditiopn vente enregistré
         // SalesLine: Record "Sales Line";
@@ -46,12 +48,12 @@ codeunit 70006 "Event Souscriber"
                 if ItemLedgerEntry1.get(SalesShipmentHeader1."Item Shpt. Entry No.") then begin
                     ItemLedgerEntry1."Document N°" := SalesShipmentHeader1."Order No.";
                     //<<11_09_24 ItemLedgerEntry1."Lot Qty." := -SalesLine."Nombre de carton";
-                    ItemLedgerEntry1."Lot Qty." := -SalesLine."Carton effectif";
+                    //  silue samuel 07/03/2025ItemLedgerEntry1."Lot Qty." := -SalesLine."Carton effectif";
                     ItemLedgerEntry1.Modify();
                 end;
             until SalesShipmentHeader1.Next() = 0;
         end;
-        ItemLedgerEntry."Invoice N°" := SalesInvLine."Document No.";
+        //silue samuel 07/03/2025 ItemLedgerEntry."Invoice N°" := SalesInvLine."Document No.";
     end;
 
     //// <<Insertion de nombre de cartons dans avoir vente enrehistré lors de l'annulation d'une vente 14_08_24
@@ -208,7 +210,7 @@ codeunit 70006 "Event Souscriber"
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Batch", 'OnPostLinesOnAfterPostLine', '', true, true)]
     procedure OnPostLinesOnAfterPostLine(var ItemJournalLine: Record "Item Journal Line")
     var
-        pesée: Record Pesse;
+        // silue samuel 07/03/2025pesée: Record Pesse;
         ecritureCarton: record 50014;
         valentry: Integer;
         ItemLedgerEntry: Record "Item Ledger Entry";
@@ -281,7 +283,7 @@ codeunit 70006 "Event Souscriber"
     [EventSubscriber(ObjectType::Report, Report::"Calculate Inventory", 'OnAfterFunctionInsertItemJnlLine', '', true, true)]
     local procedure OnAfterFunctionInsertItemJnlLine(ItemNo: Code[20]; VariantCode2: Code[10]; DimEntryNo2: Integer; BinCode2: Code[20]; Quantity2: Decimal; PhysInvQuantity: Decimal; var ItemJournalLine: Record "Item Journal Line")
     var
-        Itm: Record Item;
+        //silue samuel 07/03/2025  Itm: Record Item;
         ItemLedgerEntry: Record "Item Ledger Entry";
         Totalval: Integer;
         p: Page 138;

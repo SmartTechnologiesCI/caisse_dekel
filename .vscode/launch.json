@@ -1,14 +1,15 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
         {
-            "name": "Your own server",
+            "name": "Smart Tech",
             "request": "launch",
             "type": "al",
             "environmentType": "OnPrem",
-            "server": "http://localhost:8080/BC220",
-            "serverInstance": "BC220",
-            "authentication": "UserPassword",
+            "server": "http://localhost:8080/BC230",
+            "serverInstance": "BC230",
+            "authentication": "Windows",
             "startupObjectId": 22,
             "startupObjectType": "Page",
             "breakOnError": "All",
@@ -17,8 +18,11 @@
             "enableSqlInformationDebugger": true,
             "tenant": "default",
             "usePublicURLFromServer": true,
-            "port": 7049,
-            "schemaUpdateMode": "Synchronize"
+            "schemaUpdateMode": "Synchronize",
+            "port": 2349,
+            
+            //vrai
+ 
         }
     ]
-}
+}   

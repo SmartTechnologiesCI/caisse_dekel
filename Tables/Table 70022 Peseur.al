@@ -14,7 +14,7 @@ table 70022 "Peseur"
         {
             Caption = 'Code Peseur';
             NotBlank = true;
-            TableRelation = "User App";
+            // silue samuel 03/07/2025 TableRelation = "User App";
         }
         field(3; "Team Name"; Text[50])
         {

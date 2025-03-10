@@ -58,18 +58,18 @@ report 70005 "Control Livraison"
                 {
 
                 }
-                column(Nombre_de_carton; "Carton effectif")
-                {
+                // silue samuel 07/03/2025 column(Nombre_de_carton; "Carton effectif")
+                // {
 
-                }
+                // }
                 column("Cartons_livrée"; "Qté livrée")
                 {
 
                 }
-                column(reste; "Carton effectif" - "Qté livrée")
-                {
+                // silue samuel 07/03/2025 column(reste; "Carton effectif" - "Qté livrée")
+                // {
 
-                }
+                // }
                 column(Statut_Livraison_Line; "Statut Livraison")
                 {
 

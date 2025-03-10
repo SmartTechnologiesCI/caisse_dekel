@@ -115,6 +115,6 @@ report 70047 "Facture Valide"
         DateFinFlter: Date;
         NbrCarton__calculé: Decimal;
         companyInfo: Record "Company Information";
-        ItemVipa: Record Item;
+        // ItemVipa: Record Item;
     
 }

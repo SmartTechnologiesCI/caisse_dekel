@@ -167,7 +167,7 @@ report 70029 "item - Top 10 List ext"
 
             trigger OnPreDataItem()
             var
-                Records: Record Item;
+                // Records: Record Item;
             begin
                 VendPurchLCY := Item."Purchases (LCY)";
                 Window.Close;

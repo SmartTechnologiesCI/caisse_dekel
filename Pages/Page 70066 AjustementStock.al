@@ -33,28 +33,28 @@ page 70066 "Ajustement de stock"
                     Caption = 'N° Article';
                     trigger OnValidate()
                     var
-                        item: record Item;
+                        // item: record Item;
                         achetes: Integer;
                         vendu: Integer;
                         stock: Integer;
                     begin
-                        // item.SetRange(loc, '%1', rec."Location Code");
-                        item.SetRange("No.", rec."Item No.");
-                        if item.FindFirst() then begin
-                            item.CalcFields("Cartons achetés");
-                            item.CalcFields("Cartons vendus");
-                            achetes := -item."Cartons achetés";
-                            vendu := item."Cartons vendus";
-                            stock := -(item."Cartons achetés" + item."Cartons vendus");
-                            item."Nombre cartons" := stock;
-                            rec.Description := item.Description;
-                            item.CalcFields("Cartons Solde");
-                            rec."curr Carton" := item."Cartons Solde";
-                            item.CalcFields(Inventory);
-                            rec."curr Quantity" := item.Inventory;
-                            rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
-                            rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
-                        end;
+                        //silue samuel 07/03/2025 item.SetRange(loc, '%1', rec."Location Code");
+                        // item.SetRange("No.", rec."Item No.");
+                        // if item.FindFirst() then begin
+                        //     item.CalcFields("Cartons achetés");
+                        //     item.CalcFields("Cartons vendus");
+                        //     achetes := -item."Cartons achetés";
+                        //     vendu := item."Cartons vendus";
+                        //     stock := -(item."Cartons achetés" + item."Cartons vendus");
+                        //     item."Nombre cartons" := stock;
+                        //     rec.Description := item.Description;
+                        //     item.CalcFields("Cartons Solde");
+                        //     rec."curr Carton" := item."Cartons Solde";
+                        //     item.CalcFields(Inventory);
+                        //     rec."curr Quantity" := item.Inventory;
+                        //     rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
+                        //     rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
+                        // end;
                     end;
 
 
@@ -84,28 +84,28 @@ page 70066 "Ajustement de stock"
 
                     trigger OnValidate()
                     var
-                        item: record Item;
+                        // item: record Item;
                         achetes: Integer;
                         vendu: Integer;
                         stock: Integer;
                     begin
                         // item.SetRange(loc, '%1', rec."Location Code");
-                        item.SetRange("No.", rec."Item No.");
-                        if item.FindFirst() then begin
-                            item.CalcFields("Cartons achetés");
-                            item.CalcFields("Cartons vendus");
-                            achetes := -item."Cartons achetés";
-                            vendu := item."Cartons vendus";
-                            stock := -(item."Cartons achetés" + item."Cartons vendus");
-                            item."Nombre cartons" := stock;
-                            rec.Description := item.Description;
-                            item.CalcFields("Cartons Solde");
-                            rec."curr Carton" := item."Cartons Solde";
-                            item.CalcFields(Inventory);
-                            rec."curr Quantity" := item.Inventory;
-                            rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
-                            rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
-                        end;
+                        //silue samuel 07/03/2025 item.SetRange("No.", rec."Item No.");
+                        // if item.FindFirst() then begin
+                        //     item.CalcFields("Cartons achetés");
+                        //     item.CalcFields("Cartons vendus");
+                        //     achetes := -item."Cartons achetés";
+                        //     vendu := item."Cartons vendus";
+                        //     stock := -(item."Cartons achetés" + item."Cartons vendus");
+                        //     item."Nombre cartons" := stock;
+                        //     rec.Description := item.Description;
+                        //     item.CalcFields("Cartons Solde");
+                        //     rec."curr Carton" := item."Cartons Solde";
+                        //     item.CalcFields(Inventory);
+                        //     rec."curr Quantity" := item.Inventory;
+                        //     rec."curr Carton Mag" := item.ItemCartonStokbyMagasin2(rec."Location Code");
+                        //     rec."curr Quantity Mag" := item.ItemQuantityStockbyMagasin(rec."Location Code");
+                        // end;
                     end;
 
                 }
@@ -161,11 +161,11 @@ page 70066 "Ajustement de stock"
                     itemJournal: record 83;
                     xitemJournal: record 83;
                     yitemJournal: record 83;
-                    pesée: Record Pesse;
-                    pesée2: Record Pesse;
-                    ecritureCarton: record "Ecriture cartons articles";
-                    ecritureCarton2: record "Ecriture cartons articles";
-                    articl: Record Item;
+                    //  silue samuel 07/03/2025pesée: Record Pesse;
+                    //   silue samuel 07/03/2025
+                    // ecritureCarton: record "Ecriture cartons articles";
+                    // ecritureCarton2: record "Ecriture cartons articles";
+                    // silue samuel 07/03/2025articl: Record Item;
                     ItemLedger: Record "Item Ledger Entry";
                 begin
                     if not yitemJournal.IsEmpty() then begin
@@ -208,77 +208,77 @@ page 70066 "Ajustement de stock"
                                 if rec.Type = rec.Type::Inventaire then begin
                                     if rec."Nombre Cartons" > 0 then begin
                                         if rec."curr Carton" < 0 then begin
-                                            "pesée".Reset();
-                                            "pesée"."Document No." := rec."No." + 'inv';
-                                            "pesée"."Document Type" := "pesée"."Document Type"::Receipt;
-                                            "pesée".nombre := rec."curr Carton";
-                                            "pesée"."No." := rec."Item No.";
-                                            "pesée".Valid := true;
-                                            "pesée".verif := false;
-                                            "pesée"."Line No." := 10000;
-                                            "pesée".Num += 1;
-                                            "pesée".facture := true;
-                                            "pesée"."Location Code" := rec."Location Code";
-                                            "pesée".Insert();
-                                            //---- Separator ----//
+                                            // silue samuel 07/03/2025 "pesée".Reset();
+                                            // "pesée"."Document No." := rec."No." + 'inv';
+                                            // "pesée"."Document Type" := "pesée"."Document Type"::Receipt;
+                                            // "pesée".nombre := rec."curr Carton";
+                                            // "pesée"."No." := rec."Item No.";
+                                            // "pesée".Valid := true;
+                                            // "pesée".verif := false;
+                                            // "pesée"."Line No." := 10000;
+                                            // "pesée".Num += 1;
+                                            // "pesée".facture := true;
+                                            // "pesée"."Location Code" := rec."Location Code";
+                                            // "pesée".Insert();
+                                            //fin silue samuel 07/03/2025---- Separator ----//
 
-                                            clear("ecritureCarton");
-                                            ecritureCarton."Posting date" := WorkDate();
-                                            "ecritureCarton"."Document No" := rec."No." + 'inv';
-                                            "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
-                                            "ecritureCarton"."Item No" := rec."Item No.";
-                                            "ecritureCarton"."Nombre de carton" := rec."curr Carton";
-                                            ecritureCarton.Poids := rec."curr Quantity";
-                                            ecritureCarton."Location Code" := rec."Location Code";
-                                            "ecritureCarton".Insert(true);
+                                            // silue samuel 07/03/2025clear("ecritureCarton");
+                                            // ecritureCarton."Posting date" := WorkDate();
+                                            // "ecritureCarton"."Document No" := rec."No." + 'inv';
+                                            // "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
+                                            // "ecritureCarton"."Item No" := rec."Item No.";
+                                            // "ecritureCarton"."Nombre de carton" := rec."curr Carton";
+                                            // ecritureCarton.Poids := rec."curr Quantity";
+                                            // ecritureCarton."Location Code" := rec."Location Code";
+                                            //silue samuel 07/03/2025 "ecritureCarton".Insert(true);
                                         end else begin
                                             if rec."curr Carton" > 0 then begin
-                                                "pesée".Reset();
-                                                "pesée"."Document No." := rec."No." + 'inv';
-                                                "pesée"."Document Type" := "pesée"."Document Type"::Order;
-                                                "pesée".nombre := rec."curr Carton";
-                                                "pesée"."No." := rec."Item No.";
-                                                "pesée".Valid := true;
-                                                "pesée".verif := false;
-                                                "pesée"."Line No." := 10000;
-                                                "pesée".Num += 1;
-                                                "pesée".facture := true;
-                                                "pesée"."Location Code" := rec."Location Code";
-                                                "pesée".Insert();
-                                                //---- Separator ----//
-                                                clear("ecritureCarton");
-                                                ecritureCarton."Posting date" := WorkDate();
-                                                "ecritureCarton"."Document No" := rec."No." + 'inv';
-                                                "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Negatif";
-                                                "ecritureCarton"."Item No" := rec."Item No.";
-                                                "ecritureCarton"."Nombre de carton" := -rec."curr Carton";
-                                                ecritureCarton.Poids := -rec."curr Quantity";
-                                                ecritureCarton."Location Code" := rec."Location Code";
-                                                "ecritureCarton".Insert(true);
+                                                // silue samuel 07/03/2025 "pesée".Reset();
+                                                // "pesée"."Document No." := rec."No." + 'inv';
+                                                // "pesée"."Document Type" := "pesée"."Document Type"::Order;
+                                                // "pesée".nombre := rec."curr Carton";
+                                                // "pesée"."No." := rec."Item No.";
+                                                // "pesée".Valid := true;
+                                                // "pesée".verif := false;
+                                                // "pesée"."Line No." := 10000;
+                                                // "pesée".Num += 1;
+                                                // "pesée".facture := true;
+                                                // "pesée"."Location Code" := rec."Location Code";
+                                                // "pesée".Insert();
+                                                //fin silue samuel 07/03/2025---- Separator ----//
+                                                // clear("ecritureCarton");
+                                                // ecritureCarton."Posting date" := WorkDate();
+                                                // "ecritureCarton"."Document No" := rec."No." + 'inv';
+                                                // "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Negatif";
+                                                // "ecritureCarton"."Item No" := rec."Item No.";
+                                                // "ecritureCarton"."Nombre de carton" := -rec."curr Carton";
+                                                // ecritureCarton.Poids := -rec."curr Quantity";
+                                                // ecritureCarton."Location Code" := rec."Location Code";
+                                                //silue samuel 07/03/2025 "ecritureCarton".Insert(true);
                                             end;
                                         end;
-                                        "pesée".Reset();
-                                        "pesée"."Document No." := rec."No." + 'inv';
-                                        "pesée"."Document Type" := "pesée"."Document Type"::Receipt;
-                                        "pesée".nombre := -rec."Nombre Cartons"/* - (rec."curr Carton")*/;
-                                        "pesée"."No." := rec."Item No.";
-                                        "pesée".Valid := true;
-                                        "pesée".verif := false;
-                                        "pesée"."Line No." := 20000;
-                                        "pesée".Num += 1;
-                                        "pesée".facture := true;
-                                        "pesée"."Location Code" := rec."Location Code";
-                                        "pesée".Insert();
+                                        // silue samuel 07/03/2025 "pesée".Reset();
+                                        // "pesée"."Document No." := rec."No." + 'inv';
+                                        // "pesée"."Document Type" := "pesée"."Document Type"::Receipt;
+                                        // "pesée".nombre := -rec."Nombre Cartons"/* - (rec."curr Carton")*/;
+                                        // "pesée"."No." := rec."Item No.";
+                                        // "pesée".Valid := true;
+                                        // "pesée".verif := false;
+                                        // "pesée"."Line No." := 20000;
+                                        // "pesée".Num += 1;
+                                        // "pesée".facture := true;
+                                        // "pesée"."Location Code" := rec."Location Code";
+                                        // fin silue samuel 07/03/2025"pesée".Insert();
                                         //---- Separator ----//
-                                        clear("ecritureCarton");
-                                        ecritureCarton."Posting date" := WorkDate();
-                                        "ecritureCarton"."Document No" := rec."No." + 'inv';
-                                        "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
-                                        "ecritureCarton"."Item No" := rec."Item No.";
-                                        "ecritureCarton"."Nombre de carton" := rec."Nombre Cartons";
-                                        ecritureCarton.Poids := rec."Quantité";
-                                        ecritureCarton."Location Code" := rec."Location Code";
-                                        "ecritureCarton".Insert(true);
+                                        // clear("ecritureCarton");
+                                        // ecritureCarton."Posting date" := WorkDate();
+                                        // "ecritureCarton"."Document No" := rec."No." + 'inv';
+                                        // "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
+                                        // "ecritureCarton"."Item No" := rec."Item No.";
+                                        // "ecritureCarton"."Nombre de carton" := rec."Nombre Cartons";
+                                        // ecritureCarton.Poids := rec."Quantité";
+                                        // ecritureCarton."Location Code" := rec."Location Code";
+                                        //silue samuel 07/03/2025 "ecritureCarton".Insert(true);
 
                                     end;
                                     if rec."Quantité" > 0 then begin
@@ -303,10 +303,10 @@ page 70066 "Ajustement de stock"
                         itemJournal.Validate("Document No.");
                         itemJournal."Item No." := rec."Item No.";
                         itemJournal.Validate("Item No.");
-                        articl.Reset();
-                        articl.SetRange("No.", rec."Item No.");
-                        if articl.FindFirst() then begin
-                            itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
+                        // silue samuel 07/03/2025 articl.Reset();
+                        // articl.SetRange("No.", rec."Item No.");
+                        // if articl.FindFirst() then begin
+                        //     itemJournal."Gen. Prod. Posting Group" := articl."Gen. Prod. Posting Group";
 
 
                         end;
@@ -343,111 +343,111 @@ page 70066 "Ajustement de stock"
                         rec.Posted := true;
                         CurrPage.Editable := false;
                         CurrPage.Close();
-                    end else begin
+                    // end else begin
                         //Error('tst');
 
                         //ligneArticle.SetRange("Journal Batch Name", ItemJournalLine."Journal Batch Name");
                         //ligneArticle.SetRange("Journal Template Name", ItemJournalLine."Journal Template Name");
-                        "pesée".Reset();
-                        "pesée"."Document No." := rec."No.";
+                        // silue samuel 07/03/2025 "pesée".Reset();
+                        // fin silue samuel 07/03/2025 "pesée"."Document No." := rec."No.";
                         //---- Separator ----//
-                        clear("ecritureCarton");
-                        ecritureCarton."Posting date" := WorkDate();
-                        "ecritureCarton"."Document No" := rec."No." + 'inv';
+                        // clear("ecritureCarton");
+                        // ecritureCarton."Posting date" := WorkDate();
+                        //silue samuel 07/03/2025 "ecritureCarton"."Document No" := rec."No." + 'inv';
 
 
                         if rec."Type" = rec."Type"::Positif then begin //Ajustement positif
-                            "pesée"."Document Type" := "pesée"."Document Type"::Receipt;
-                            "pesée".nombre := -rec."Nombre Cartons";
+                            //  silue samuel 07/03/2025 "pesée"."Document Type" := "pesée"."Document Type"::Receipt;
+                            //fin silue samuel 07/03/2025 "pesée".nombre := -rec."Nombre Cartons";
                             //---- Separator ----//
-                            "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
-                            "ecritureCarton"."Nombre de carton" := rec."Nombre Cartons";
-                            ecritureCarton.Poids := rec."Quantité";
+                            // "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
+                            // "ecritureCarton"."Nombre de carton" := rec."Nombre Cartons";
+                            // silue samuel 07/03/2025ecritureCarton.Poids := rec."Quantité";
                         end
                         else
                             if rec."Type" = rec."Type"::Negatif then begin // Ajustement negatif
-                                "pesée"."Document Type" := "pesée"."Document Type"::Order;
-                                "pesée".nombre := rec."Nombre cartons";
-                                "pesée".facture := true;
-                                //---- Separator ----//
-                                "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Negatif";
-                                "ecritureCarton"."Nombre de carton" := -rec."Nombre Cartons";
-                                ecritureCarton.Poids := -rec."Quantité";
+                                //  silue samuel 07/03/2025"pesée"."Document Type" := "pesée"."Document Type"::Order;
+                                // "pesée".nombre := rec."Nombre cartons";
+                                // fin silue samuel 07/03/2025 "pesée".facture := true;
+                                // //---- Separator ----//
+                                // "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Negatif";
+                                // "ecritureCarton"."Nombre de carton" := -rec."Nombre Cartons";
+                                // silue samuel 07/03/2025 ecritureCarton.Poids := -rec."Quantité";
                             end else
                                 if rec.Type = rec.Type::Inventaire then begin
                                     if rec."Nombre Cartons" > 0 then begin
                                         if rec."curr Carton" < 0 then begin
-                                            "pesée2".Reset();
-                                            "pesée2"."Document No." := rec."No." + 'inv';
-                                            "pesée2"."Document Type" := "pesée"."Document Type"::Receipt;
-                                            "pesée2".nombre := rec."curr Carton";
-                                            "pesée2"."No." := rec."Item No.";
-                                            "pesée2".Valid := true;
-                                            "pesée2".verif := false;
-                                            "pesée2"."Line No." := 10000;
-                                            "pesée2".Num += 1;
-                                            "pesée2".facture := true;
-                                            "pesée2"."Location Code" := rec."Location Code";
-                                            "pesée2".Insert();
+                                            // silue samuel 07/03/2025 "pesée2".Reset();
+                                            // "pesée2"."Document No." := rec."No." + 'inv';
+                                            // "pesée2"."Document Type" := "pesée"."Document Type"::Receipt;
+                                            // "pesée2".nombre := rec."curr Carton";
+                                            // "pesée2"."No." := rec."Item No.";
+                                            // "pesée2".Valid := true;
+                                            // "pesée2".verif := false;
+                                            // "pesée2"."Line No." := 10000;
+                                            // "pesée2".Num += 1;
+                                            // "pesée2".facture := true;
+                                            // "pesée2"."Location Code" := rec."Location Code";
+                                            //fin silue samuel 07/03/2025  "pesée2".Insert();
                                             //---- Separator ----//
 
-                                            clear("ecritureCarton2");
-                                            "ecritureCarton2"."Posting date" := WorkDate();
-                                            "ecritureCarton2"."Document No" := rec."No." + 'inv';
-                                            "ecritureCarton2"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
-                                            "ecritureCarton2"."Item No" := rec."Item No.";
-                                            "ecritureCarton2"."Nombre de carton" := rec."curr Carton";
-                                            ecritureCarton2.Poids := rec."curr Quantity";
-                                            ecritureCarton2."Location Code" := rec."Location Code";
-                                            "ecritureCarton2".Insert();
+                                            // clear("ecritureCarton2");
+                                            // "ecritureCarton2"."Posting date" := WorkDate();
+                                            // "ecritureCarton2"."Document No" := rec."No." + 'inv';
+                                            // "ecritureCarton2"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
+                                            // "ecritureCarton2"."Item No" := rec."Item No.";
+                                            // "ecritureCarton2"."Nombre de carton" := rec."curr Carton";
+                                            // ecritureCarton2.Poids := rec."curr Quantity";
+                                            // ecritureCarton2."Location Code" := rec."Location Code";
+                                            // silue samuel 07/03/2025 "ecritureCarton2".Insert();
                                         end else begin
                                             if rec."curr Carton" > 0 then begin
-                                                "pesée2".Reset();
-                                                "pesée2"."Document No." := rec."No." + 'inv';
-                                                "pesée2"."Document Type" := "pesée"."Document Type"::Order;
-                                                "pesée2".nombre := rec."curr Carton";
-                                                "pesée2"."No." := rec."Item No.";
-                                                "pesée2".Valid := true;
-                                                "pesée2".verif := false;
-                                                "pesée2"."Line No." := 10000;
-                                                "pesée2".Num += 1;
-                                                "pesée2".facture := true;
-                                                "pesée2"."Location Code" := rec."Location Code";
-                                                "pesée2".Insert();
+                                                // silue samuel 07/03/2025 "pesée2".Reset();
+                                                // "pesée2"."Document No." := rec."No." + 'inv';
+                                                // "pesée2"."Document Type" := "pesée"."Document Type"::Order;
+                                                // "pesée2".nombre := rec."curr Carton";
+                                                // "pesée2"."No." := rec."Item No.";
+                                                // "pesée2".Valid := true;
+                                                // "pesée2".verif := false;
+                                                // "pesée2"."Line No." := 10000;
+                                                // "pesée2".Num += 1;
+                                                // "pesée2".facture := true;
+                                                // "pesée2"."Location Code" := rec."Location Code";
+                                                // fin silue samuel 07/03/2025 "pesée2".Insert();
                                                 //---- Separator ----//
 
-                                                clear("ecritureCarton2");
-                                                "ecritureCarton2"."Posting date" := WorkDate();
-                                                "ecritureCarton2"."Document No" := rec."No." + 'inv';
-                                                "ecritureCarton2"."Item No" := rec."Item No.";
-                                                "ecritureCarton2"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Negatif";
-                                                "ecritureCarton2"."Nombre de carton" := -rec."curr Carton";
-                                                ecritureCarton2.Poids := -rec."curr Quantity";
-                                                ecritureCarton2."Location Code" := rec."Location Code";
-                                                "ecritureCarton2".Insert();
+                                                // clear("ecritureCarton2");
+                                                // "ecritureCarton2"."Posting date" := WorkDate();
+                                                // "ecritureCarton2"."Document No" := rec."No." + 'inv';
+                                                // "ecritureCarton2"."Item No" := rec."Item No.";
+                                                // "ecritureCarton2"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Negatif";
+                                                // "ecritureCarton2"."Nombre de carton" := -rec."curr Carton";
+                                                // ecritureCarton2.Poids := -rec."curr Quantity";
+                                                // ecritureCarton2."Location Code" := rec."Location Code";
+                                                //silue samuel 07/03/2025 "ecritureCarton2".Insert();
                                             end;
                                         end;
-                                        "pesée"."Document Type" := "pesée"."Document Type"::Receipt;
-                                        "pesée".nombre := -rec."Nombre Cartons"/* - (rec."curr Carton")*/;
+                                        // silue samuel 07/03/2025 "pesée"."Document Type" := "pesée"."Document Type"::Receipt;
+                                        // fin silue samuel 07/03/2025 "pesée".nombre := -rec."Nombre Cartons"/* - (rec."curr Carton")*/;
                                         //--- Separator ---//
-                                        "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
-                                        "ecritureCarton"."Nombre de carton" := rec."Nombre Cartons";
-                                        ecritureCarton.Poids := rec."Quantité";
+                                        // "ecritureCarton"."Document Type" := "ecritureCarton"."Document Type"::"Ajustement Positif";
+                                        // "ecritureCarton"."Nombre de carton" := rec."Nombre Cartons";
+                                        //silue samuel 07/03/2025 ecritureCarton.Poids := rec."Quantité";
                                     end;
                                 end;
-                        "pesée"."No." := rec."Item No.";
-                        "pesée".Valid := true;
-                        "pesée".verif := false;
-                        "pesée"."Line No." := 10000;
-                        "pesée".Num += 1;
-                        "pesée".facture := true;
-                        "pesée"."Location Code" := rec."Location Code";
-                        "pesée".Insert();
+                        // silue samuel 07/03/2025 "pesée"."No." := rec."Item No.";
+                        // "pesée".Valid := true;
+                        // "pesée".verif := false;
+                        // "pesée"."Line No." := 10000;
+                        // "pesée".Num += 1;
+                        // "pesée".facture := true;
+                        // "pesée"."Location Code" := rec."Location Code";
+                        // fin silue samuel 07/03/2025 "pesée".Insert();
                         //---- Separator ----//
-                        ecritureCarton."Posting date" := WorkDate();
-                        "ecritureCarton"."Item No" := rec."Item No.";
-                        ecritureCarton."Location Code" := rec."Location Code";
-                        "ecritureCarton".Insert(true);
+                        // ecritureCarton."Posting date" := WorkDate();
+                        // "ecritureCarton"."Item No" := rec."Item No.";
+                        // ecritureCarton."Location Code" := rec."Location Code";
+                        //silue samuel 07/03/2025 "ecritureCarton".Insert(true);
 
 
                         rec."Posting Date" := WorkDate();
@@ -456,7 +456,7 @@ page 70066 "Ajustement de stock"
                         Message('Ajustement validée');
                         CurrPage.Close();
                     end;
-                end;
+                // end;
             }
             action("Feuilles Article")
             {
@@ -496,17 +496,17 @@ page 70066 "Ajustement de stock"
 
     trigger OnOpenPage()
     var
-        item: record Item;
+        //silue samuel 07/03/2025 item: record Item;
     begin
-        rec.Type := rec.Type::Inventaire;
-        item.SetRange("No.", rec."Item No.");
-        if item.FindFirst() then begin
-            rec.Description := item.Description;
-            rec."curr Carton" := item."Cartons Solde";
-            item.CalcFields(Inventory);
-            rec."curr Quantity" := item.Inventory;
-            if rec.Posted then
-                CurrPage.Editable := false;
-        end;
+        // rec.Type := rec.Type::Inventaire;
+        // item.SetRange("No.", rec."Item No.");
+        // if item.FindFirst() then begin
+        //     rec.Description := item.Description;
+        //     rec."curr Carton" := item."Cartons Solde";
+        //     item.CalcFields(Inventory);
+        //     rec."curr Quantity" := item.Inventory;
+        //     if rec.Posted then
+        //         CurrPage.Editable := false;
+        // end;
     end;
 }

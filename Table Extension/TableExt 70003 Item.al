@@ -12,7 +12,7 @@ tableextension 70003 "Item" extends Item
         {
             FieldClass = FlowField;
             //CalcFormula = sum(Pesse.nombre where("No." = field("No."), Valid = const(true)));
-            CalcFormula = sum(Pesse.nombre where("No." = field("No."), Valid = const(true), verif = const(false), facture = const(true), SystemCreatedAt = field(DateFilter2)));
+            //  silue samuel 07/03/2025CalcFormula = sum(Pesse.nombre where("No." = field("No."), Valid = const(true), verif = const(false), facture = const(true), SystemCreatedAt = field(DateFilter2)));
         }
 
         field(70005; "Poids"; Decimal)
@@ -46,7 +46,9 @@ tableextension 70003 "Item" extends Item
         field(70001; "Carton commande"; Integer)
         {
             FieldClass = FlowField;
-            CalcFormula = sum("Sales Invoice Line"."Carton effectif" where("No." = field("No."), "Posting Date" = filter('>01/07/2021')));
+            // silue samuel 07/03/2025 CalcFormula = sum("Sales Invoice Line"."Carton effectif" where("No." = field("No."), "Posting Date" = filter('>01/07/2021')));
+                        // CalcFormula = sum("Sales Invoice Line"."Carton effectif" where("No." = field("No."), "Posting Date" = filter('>01/07/2021')));
+
         }
         field(70002; "Carton livre"; Integer)
         {

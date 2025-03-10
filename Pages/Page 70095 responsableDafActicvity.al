@@ -126,7 +126,7 @@ page 70095 "ResponsableDaf activity"
                         DepotJour: Record "Depôt";
                     begin
                         // DepotJour.SetRange("Code Caisse", caisse."Code caisse");
-                        DepotJour.SetRange(DemandeApprobation, true);
+                        // silue samuel 07/03/2025 DepotJour.SetRange(DemandeApprobation, true);
                         DepotJour.SetRange(Correction, false);
                         DepotJour.SetRange(validated, false);
                         Page.RunModal(Page::"Dépôts", DepotJour);
@@ -197,6 +197,6 @@ page 70095 "ResponsableDaf activity"
     var
         saleInvoice: Record "Sales Invoice Header";
         invoiceTotal: Decimal;
-        Item:Record Item;
+        // silue samuel 07/03/2025 Item:Record Item;
 
 }

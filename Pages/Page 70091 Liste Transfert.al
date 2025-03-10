@@ -32,12 +32,12 @@ page 70091 "Liste Transfert"
                 {
                     trigger OnValidate()
                     var
-                        item: record Item;
+                        // item: record Item;
                     begin
-                        item.SetRange("No.", rec."Item No.");
-                        if item.FindFirst() then begin
-                            rec.Description := item.Description;
-                        end;
+                        // item.SetRange("No.", rec."Item No.");
+                        // if item.FindFirst() then begin
+                        //     rec.Description := item.Description;
+                        // end;
                     end;
                 }
                 field(Description; rec.Description)

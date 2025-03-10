@@ -275,7 +275,7 @@ report 70024 "Prime par commercial"
         userSetup: Record "User Setup";
 
         salesIvoiceHeader: Record "Sales Invoice Header";
-        articleVendu: Record item;
+        // articleVendu: Record item;
         taille_Groupe: Decimal;
         EmailReceveur: Text;
         primeBonus: Decimal;

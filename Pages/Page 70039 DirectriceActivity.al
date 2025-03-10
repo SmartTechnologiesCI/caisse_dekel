@@ -188,7 +188,7 @@ page 70039 "Directrice activity"
                         DepotJour: Record "Depôt";
                     begin
                         // DepotJour.SetRange("Code Caisse", caisse."Code caisse");
-                        DepotJour.SetRange(DemandeApprobation, true);
+                        // 07/03/2025 DepotJour.SetRange(DemandeApprobation, true);
                         DepotJour.SetRange(Correction, false);
                         DepotJour.SetRange(validated, false);
                         Page.RunModal(Page::"Dépôts", DepotJour);
@@ -205,7 +205,7 @@ page 70039 "Directrice activity"
                         DepotJour: Record "Sales Invoice Header";
                     begin
 
-                        DepotJour.SetRange("Demande approbation", true);
+                        // silue samuel 07/03/2025 DepotJour.SetRange("Demande approbation", true);
                         DepotJour.SetRange(Approuve, false);
                         Page.RunModal(Page::"Liste des factures", DepotJour);
                     end;
@@ -481,11 +481,13 @@ page 70039 "Directrice activity"
                     //Visible = false;
                     trigger OnDrillDown()
                     var
-                        items: Record Item;
+                        // items: Record Item;
                     begin
-                        items.SetFilter(Inventory, '>0');
-                        if items.FindFirst() then
-                            Page.Run(50018, items);
+                        //silue samuel 07/03/2025 items.SetFilter(Inventory, '>0');
+                        // if items.FindFirst() then
+                        // //     Page.Run(50018, items); items.SetFilter(Inventory, '>0');
+                        // if items.FindFirst() then
+                        //     Page.Run(50018, items);
                     end;
                 }
                 field("Commandes prix à fixer"; rec."Commandes prix à fixer")
@@ -496,7 +498,7 @@ page 70039 "Directrice activity"
                     var
                         "PurchOrder": Record "Purchase Header";
                     begin
-                        PurchOrder.SetRange("Prix fixé", false);
+                        // silue samuel 07/03/2025 PurchOrder.SetRange("Prix fixé", false);
                         PurchOrder.SetRange("Fixation des prix", true);
                         PurchOrder.SetFilter(ETA, '>%1', DMY2Date(23, 03, 2021));
                         PurchOrder.FindFirst();

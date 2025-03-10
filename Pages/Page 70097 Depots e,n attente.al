@@ -6,7 +6,9 @@ page 70097 "Depots en attente"
     SourceTable = "Depôt";
     CardPageId = 70004;
     //Editable  = false;;
-    SourceTableView = where(isBonus = const(false), validated = const(false), DemandeApprobation = const(true), Correction = const(false));
+    // silue samuel 07/03/2025 SourceTableView = where(isBonus = const(false), validated = const(false), DemandeApprobation = const(true), Correction = const(false));
+        SourceTableView = where(isBonus = const(false), validated = const(false), Correction = const(false));
+
     layout
     {
         area(Content)

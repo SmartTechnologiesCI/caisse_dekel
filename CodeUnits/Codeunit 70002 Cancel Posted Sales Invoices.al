@@ -120,80 +120,80 @@ codeunit 70002 "Cancel Psted Sles Inv."
         //<<12_09_24
         // CU: Codeunit 70002;
         SalesInvoiceHeader2: Record "Sales Invoice Header";
-        SalesInvoiceLine: Record "Sales Invoice Line";
-        SalesCrMemoLineTempory: Record "Sales Cr.Memo Line Tempory";
-        SalesCrMemoLineTempory2: Record "Sales Cr.Memo Line Tempory";
+        //silue samuel07/03/2025 SalesInvoiceLine: Record "Sales Invoice Line";
+        // silue samuel 07/03/2025SalesCrMemoLineTempory: Record "Sales Cr.Memo Line Tempory";
+        //silue samuel 07/03/2025 SalesCrMemoLineTempory2: Record "Sales Cr.Memo Line Tempory";
         SaleLine: Record "Sales Line";
         SaleLine2: Record "Sales Line";
         SalesShipmentHeader: Record "Sales Shipment Header";//<<Entete expéditions vente enregistrée
         SalesShipmentLine: Record "Sales Shipment Line";//<<Ligne expédition vente enregistrée
     begin
         //<<Annulation automatique des factures ventes enregistrées 12_09_24
-        if not SalesCrMemoLineTempory.IsEmpty() then begin
-            SalesCrMemoLineTempory.DeleteAll();
-            SalesCrMemoLineTempory.Reset();
-        end;
+        // silue samuel 07/03/2025 if not SalesCrMemoLineTempory.IsEmpty() then begin
+        //     SalesCrMemoLineTempory.DeleteAll();
+        //     SalesCrMemoLineTempory.Reset();
+        // silue samuel 07/03/2025end;
         // SalesInvoiceLine.SetFilter("Document No.", '=%1', rec."No.");
         // SalesInvoiceLine.SetFilter("Appl.-from Item Entry", '<>%1', 0);
 
-        SalesInvoiceLine.SetRange("Document No.", SalesInvoiceHeader."No.");
-        if SalesInvoiceLine.Findset then begin
-            // Message('AAAA');
-            // repeat begin
-            SalesShipmentLine.SetRange("Order No.", SalesInvoiceLine."Order No.");
-            if SalesShipmentLine.FindFirst() then begin
-                repeat begin
+        // silue samuel 07/07/2025 SalesInvoiceLine.SetRange("Document No.", SalesInvoiceHeader."No.");
+        // if SalesInvoiceLine.Findset then begin
+        //     // Message('AAAA');
+        //     // repeat begin
+        //     SalesShipmentLine.SetRange("Order No.", SalesInvoiceLine."Order No.");
+        //     if SalesShipmentLine.FindFirst() then begin
+        //         repeat begin
 
 
-                    SalesCrMemoLineTempory.Init();
-                    SalesCrMemoLineTempory."Appl.-from Item Entry" := SalesShipmentLine."Item Shpt. Entry No.";
-                    SalesCrMemoLineTempory."Nombre de carton" := SalesShipmentLine."Lot Qty";
-                    SalesCrMemoLineTempory."Item Shpt. Entry No." := SalesShipmentLine."Item Shpt. Entry No.";
-                    SalesCrMemoLineTempory.Insert();
-                    // Message('Yes Inserted');
-                end until SalesShipmentLine.Next() = 0;
-            end;
-            // end until SalesInvoiceLine.Next() = 0;
+        //             SalesCrMemoLineTempory.Init();
+        //             SalesCrMemoLineTempory."Appl.-from Item Entry" := SalesShipmentLine."Item Shpt. Entry No.";
+        //             SalesCrMemoLineTempory."Nombre de carton" := SalesShipmentLine."Lot Qty";
+        //             SalesCrMemoLineTempory."Item Shpt. Entry No." := SalesShipmentLine."Item Shpt. Entry No.";
+        //             SalesCrMemoLineTempory.Insert();
+        //             // Message('Yes Inserted');
+        //         end until SalesShipmentLine.Next() = 0;
+        //     end;
+            // fin end until SalesInvoiceLine.Next() = 0;
 
         end;
         //<<Annulation automatique des factures ventes enregistrées 12_09_24
         
-        SalesInvoiceHeader.CalcFields(Closed);
+        // SalesInvoiceHeader.CalcFields(Closed);
 
-        if SalesInvoiceHeader.Closed then begin
-            //TODO: annuler l'ecriture
-            CustomerLedgerEntry.SetRange("Document No.", SalesInvoiceHeader."No.");
-            if CustomerLedgerEntry.FindFirst() then begin
-                DetailCustomerLedgerEntry.SetRange("Cust. Ledger Entry No.", CustomerLedgerEntry."Entry No.");
-                DetailCustomerLedgerEntry.SetRange("Entry Type", DetailCustomerLedgerEntry."Entry Type"::Application);
-                DetailCustomerLedgerEntry.SetRange("Document Type", DetailCustomerLedgerEntry."Document Type"::Payment);
-                if DetailCustomerLedgerEntry.FindFirst() then begin
-                    CustEntryApplyPostedEntries.PostUnApplyCustomer(DetailCustomerLedgerEntry, DetailCustomerLedgerEntry."Document No.", DetailCustomerLedgerEntry."Posting Date");
-                end;
-            end;
+        // if SalesInvoiceHeader.Closed then begin
+        //     //TODO: annuler l'ecriture
+        //     CustomerLedgerEntry.SetRange("Document No.", SalesInvoiceHeader."No.");
+        //     if CustomerLedgerEntry.FindFirst() then begin
+        //         DetailCustomerLedgerEntry.SetRange("Cust. Ledger Entry No.", CustomerLedgerEntry."Entry No.");
+        //         DetailCustomerLedgerEntry.SetRange("Entry Type", DetailCustomerLedgerEntry."Entry Type"::Application);
+        //         DetailCustomerLedgerEntry.SetRange("Document Type", DetailCustomerLedgerEntry."Document Type"::Payment);
+        //         if DetailCustomerLedgerEntry.FindFirst() then begin
+        //             CustEntryApplyPostedEntries.PostUnApplyCustomer(DetailCustomerLedgerEntry, DetailCustomerLedgerEntry."Document No.", DetailCustomerLedgerEntry."Posting Date");
+        //         end;
+        //     end;
 
-        end;
+        // end;
         ///SalesInvoiceHeader.Reset();
         //SalesInvoiceHeader.SetRange(CreditP, false);
         ///SalesInvoiceHeader.SetRange(Closed, false);
         //if not SalesInvoiceHeader.Closed and not SalesInvoiceHeader.CreditP then begin
-        if CorrectPostedSalesInvoice.CreateCreditMemoCopyDocument(SalesInvoiceHeader, SalesHeader) then begin
-            //PAGE.Run(PAGE::"Sales Credit Memo", SalesHeader);
+    //  silue samuel 07/03/2025   if CorrectPostedSalesInvoice.CreateCreditMemoCopyDocument(SalesInvoiceHeader, SalesHeader) then begin
+    //         //PAGE.Run(PAGE::"Sales Credit Memo", SalesHeader);
 
-            cancelCashFlowEntries(SalesInvoiceHeader);
-            cancelledDoc.Reset();
-            cancelledDoc."Source ID" := 112;
-            cancelledDoc."Cancelled Doc. No." := SalesInvoiceHeader."No.";
-            cancelledDoc."Cancelled By Doc. No." := SalesHeader."No.";
-            cancelledDoc.Insert();
-            SalesInvoiceHeader.Cancelled := true;
-            CODEUNIT.Run(CODEUNIT::"Sales-Post (Yes/No)", SalesHeader);
-            //CurrPage.Close;
-            Message('Facture annulée');
-            //SalesInvoiceHeader.
-        end;
-        //end;
-    end;
+    //         cancelCashFlowEntries(SalesInvoiceHeader);
+    //         cancelledDoc.Reset();
+    //         cancelledDoc."Source ID" := 112;
+    //         cancelledDoc."Cancelled Doc. No." := SalesInvoiceHeader."No.";
+    //         cancelledDoc."Cancelled By Doc. No." := SalesHeader."No.";
+    //         cancelledDoc.Insert();
+    //         SalesInvoiceHeader.Cancelled := true;
+    //         CODEUNIT.Run(CODEUNIT::"Sales-Post (Yes/No)", SalesHeader);
+    //         //CurrPage.Close;
+    //         Message('Facture annulée');
+    //         //SalesInvoiceHeader.
+    //     end;
+    //     //end;
+    //fin end;
 
     var
         vv: page 623;

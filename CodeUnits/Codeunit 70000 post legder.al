@@ -17,7 +17,7 @@ codeunit 70000 "Post Ledger"
         Encaissement: Record Encaissement;
         customer: Record Customer;
         salesHeader: Record "Sales Header";
-        pesee: Record Pesse;
+        // silue samuel 07/03/2025 pesee: Record Pesse;
 
     begin
 

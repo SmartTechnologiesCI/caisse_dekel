@@ -148,7 +148,7 @@ page 70037 "Liste des encais. valides"
                         SalinvHeader.SetRange("No.", Encaissement2."N° commande");
                         if SalinvHeader.FindFirst() then begin
 
-                            SalinvHeader."Demande approbation" := true;
+                            // silue 07/03/2025 SalinvHeader."Demande approbation" := true;
                             SalinvHeader.Modify();
                             Message('Demande d''approbation envoyée avec succès');
                         end

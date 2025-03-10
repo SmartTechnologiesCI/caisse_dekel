@@ -643,9 +643,6 @@ jI+4dSllFgAw40MA+GD79ib/3wxN02YPV35KadmmuH+pPcV5tVJWDQDYbbbAOTHs0PXdkcqIBAx/KUqv
         <Field Name="Cout_moyenFormat">
           <DataField>Cout_moyenFormat</DataField>
         </Field>
-        <Field Name="Carton_effectif">
-          <DataField>Carton_effectif</DataField>
-        </Field>
       </Fields>
       <Query>
         <DataSourceName>DataSource</DataSourceName>

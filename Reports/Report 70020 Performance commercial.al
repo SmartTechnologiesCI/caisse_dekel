@@ -12,8 +12,8 @@ report 70020 PerformanceCommercial
         {
             column(Salesperson_Code; "Salesperson Code") { }
             column(Utilisateur; Utilisateur) { }
-            column(date_Debut; date_Debut) { }
-            column(date_Fin; date_Fin) { }
+            // column(date_Debut; date_Debut) { }
+            // column(date_Fin; date_Fin) { }
 
 
 
@@ -45,9 +45,9 @@ report 70020 PerformanceCommercial
                     {
 
                     }
-                    column(qteVendue; qteVendue) { }
-                    column(performance; performance) { }
-                    column(bonus; bonus) { }
+                    // column(qteVendue; qteVendue) { }
+                    // column(performance; performance) { }
+                    // column(bonus; bonus) { }
                     column(Prime; Prime) { }
 
 
@@ -64,36 +64,36 @@ report 70020 PerformanceCommercial
                     trigger OnAfterGetRecord()
                     var
                         myInt: Integer;
-                        sil: Record "Sales Invoice Line";
+                        //  silue samuel 07/03/2025sil: Record "Sales Invoice Line";
                         sih: Record "Sales Invoice Header";
                         groupe: Record "Team Salesperson";
                         objectifComm: Record "Objectif Commercial";
                         ligneObjectif: Record "Ligne Ojectif Commercial";
                         itemCat: Record "Item Category";
                     begin
-                        montantPrime := Prime;
+                        //  silue samuel 07/03/2025 montantPrime := Prime;
 
-                        sih.Reset();
-                        qteVendue := 0;
-                        sih.SetRange("Salesperson Code", "Team Salesperson".Utilisateur);
-                        sih.SetFilter("Posting Date", '%1..%2', date_Debut, date_Fin);
-                        sih.SetRange(Cancelled, false);
+                        // sih.Reset();
+                        // qteVendue := 0;
+                        // sih.SetRange("Salesperson Code", "Team Salesperson".Utilisateur);
+                        // sih.SetFilter("Posting Date", '%1..%2', date_Debut, date_Fin);
+                        // sih.SetRange(Cancelled, false);
 
-                        if sih.FindFirst() then begin
-                            repeat
-                                sil.Reset();
-                                sil.SetRange("Document No.", sih."No.");
-                                if TypeLigne = TypeLigne::Article then begin
-                                    sil.SetRange("No.", "Ligne Ojectif Commercial"."No Article");
-                                end else
-                                    sil.SetRange("Item Category Code", "Ligne Ojectif Commercial"."No Article");
+                        // if sih.FindFirst() then begin
+                        //     repeat
+                        //         sil.Reset();
+                        //         sil.SetRange("Document No.", sih."No.");
+                        //         if TypeLigne = TypeLigne::Article then begin
+                        //             sil.SetRange("No.", "Ligne Ojectif Commercial"."No Article");
+                        //         end else
+                        //             sil.SetRange("Item Category Code", "Ligne Ojectif Commercial"."No Article");
 
-                                if sil.FindFirst() then begin
-                                    repeat
-                                        qteVendue := qteVendue + sil.Quantity;
-                                    until sil.Next() = 0;
-                                end;
-                            until sih.Next = 0;
+                        //         if sil.FindFirst() then begin
+                        //             repeat
+                        //                 qteVendue := qteVendue + sil.Quantity;
+                        //             until sil.Next() = 0;
+                        //         end;
+                        //     fin silue samuel 07/03/2025 until sih.Next = 0;
                         end;
 
 
@@ -132,10 +132,10 @@ report 70020 PerformanceCommercial
                            end; */
 
                         //performance := qteVendue * 100 / (qteVendue / taille_Groupe);
-                        if qteVendue >= "Qte Poids" then begin
-                            bonus := (qteVendue * montantPrime) / "Qte Poids";
-                        end else
-                            bonus := 0;
+                        // silue samuel 07/03/2025 if qteVendue >= "Qte Poids" then begin
+                        //     bonus := (qteVendue * montantPrime) / "Qte Poids";
+                        // end else
+                        //fin silue samuel 07/03/2025     bonus := 0;
 
 
 
@@ -143,7 +143,7 @@ report 70020 PerformanceCommercial
 
 
 
-                    end;
+                    // silue samuel 07/03/2025 end;
 
 
 
@@ -179,7 +179,7 @@ report 70020 PerformanceCommercial
             trigger OnAfterGetRecord()
             var
                 myInt: Integer;
-                sil: Record "Sales Invoice Line";
+                // silue samuel 07/03/2025 sil: Record "Sales Invoice Line";
                 sih: Record "Sales Invoice Header";
                 groupe: Record "Team Salesperson";
                 objectifComm: Record "Objectif Commercial";
@@ -302,7 +302,7 @@ report 70020 PerformanceCommercial
         userSetup: Record "User Setup";
 
         salesIvoiceHeader: Record "Sales Invoice Header";
-        articleVendu: Record item;
+        // articleVendu: Record item;
         taille_Groupe: Decimal;
         EmailReceveur: Text;
 

@@ -96,9 +96,9 @@ pageextension 70004 "Psted Sles Invoice" extends 143
                 var
                     CU: Codeunit 70002;
                     SalesInvoiceHeader: Record "Sales Invoice Header";
-                    SalesInvoiceLine: Record "Sales Invoice Line";
-                    SalesCrMemoLineTempory: Record "Sales Cr.Memo Line Tempory";
-                    SalesCrMemoLineTempory2: Record "Sales Cr.Memo Line Tempory";
+                    //silue samuel 07/03/2025 SalesInvoiceLine: Record "Sales Invoice Line";
+                    // silue samuel 07/03/2025 SalesCrMemoLineTempory: Record "Sales Cr.Memo Line Tempory";
+                    //silue samuel 07/03/2025 SalesCrMemoLineTempory2: Record "Sales Cr.Memo Line Tempory";
                     SaleLine: Record "Sales Line";
                     SaleLine2: Record "Sales Line";
                     // SalesInvoiceHeader: Record "Sales Invoice Header";//<<Entete Facture vente enregistré
@@ -121,12 +121,12 @@ pageextension 70004 "Psted Sles Invoice" extends 143
                 trigger OnAction()
                 var
                     Sih: Record "Sales Invoice Header";
-                    SalCrMemoLineTempory: Record "Sales Cr.Memo Line Tempory";
+                    // silue samuel 07/03/2025 SalCrMemoLineTempory: Record "Sales Cr.Memo Line Tempory";
                 begin
-                    if not SalCrMemoLineTempory.IsEmpty then begin
-                        SalCrMemoLineTempory.DeleteAll();
-                        SalCrMemoLineTempory.Reset();
-                    end;
+                    //  silue samuel 07/03/2025if not SalCrMemoLineTempory.IsEmpty then begin
+                    //     SalCrMemoLineTempory.DeleteAll();
+                    //     SalCrMemoLineTempory.Reset();
+                    // silue samuel 07/03/2025 end;
 
                     sih.Reset();
                     sih.setRange("Statut Livraison", Sih."Statut Livraison"::"Payée partiellement livré");

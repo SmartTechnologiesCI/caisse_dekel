@@ -87,19 +87,19 @@ table 70011 "Caisse Cue"
         field(18; "DepotsCorrectionAttente"; integer)
         {
             FieldClass = FlowField;
-            CalcFormula = count("Depôt" where("Code Caisse" = field("caisse filter"), DemandeApprobation = const(true), Correction = const(false), validated = const(false)));
+            // silue samuel 07/03/2025 CalcFormula = count("Depôt" where("Code Caisse" = field("caisse filter"), DemandeApprobation = const(true), Correction = const(false), validated = const(false)));
         }
         field(19; "DepotsCorrectionApprou"; integer)
         {
             FieldClass = FlowField;
-            CalcFormula = count("Depôt" where("Code Caisse" = field("caisse filter"), DemandeApprobation = const(true), Correction = const(True), validated = const(false)));
+            // silue samuel 07/03/2025 CalcFormula = count("Depôt" where("Code Caisse" = field("caisse filter"), DemandeApprobation = const(true), Correction = const(True), validated = const(false)));
         }
 
-        field(20; "DuplicataAttente"; integer)
-        {
-            FieldClass = FlowField;
-            CalcFormula = count("Sales Invoice Header" where("Demande approbation" = const(true), Approuve = const(false)));
-        }
+        // silue samuel 07/03/2025 field(20; "DuplicataAttente"; integer)
+        // {
+        //     FieldClass = FlowField;
+        //     // silue samuel 07/03/2025 CalcFormula = count("Sales Invoice Header" where("Demande approbation" = const(true), Approuve = const(false)));
+        // }
         field(21; "DuplicataApprou"; integer)
         {
             FieldClass = FlowField;

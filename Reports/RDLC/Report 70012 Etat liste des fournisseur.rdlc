@@ -1258,9 +1258,6 @@ YI2NxdI+XACnhAlILvd9PzJ/8lLAGhuLpU2kPe/3aiWlcoSOSDnbKjq+vKzFshRIJ5Pnks6dJGvlKz5t
         <Field Name="Buy_from_Vendor_No_">
           <DataField>Buy_from_Vendor_No_</DataField>
         </Field>
-        <Field Name="Statut_paiement">
-          <DataField>Statut_paiement</DataField>
-        </Field>
         <Field Name="Amount">
           <DataField>Amount</DataField>
         </Field>

@@ -1025,9 +1025,6 @@ YI2NxdI+XACnhAlILvd9PzJ/8lLAGhuLpU2kPe/3aiWlcoSOSDnbKjq+vKzFshRIJ5Pnks6dJGvlKz5t
         <Field Name="Document_No_">
           <DataField>Document_No_</DataField>
         </Field>
-        <Field Name="Nombre_de_carton">
-          <DataField>Nombre_de_carton</DataField>
-        </Field>
       </Fields>
       <Query>
         <DataSourceName>DataSource</DataSourceName>

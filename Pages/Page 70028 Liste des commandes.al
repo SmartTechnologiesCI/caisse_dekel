@@ -83,7 +83,7 @@ page 70028 "Liste des factures"
                 begin
                     if usera.Get(UserId) then
                         if usera.Director then begin
-                            rec."Demande approbation" := false;
+                            // silue samuel 07/03/2025 rec."Demande approbation" := false;
                             rec.Approuve := true;
                             rec.Modify();
                             CurrPage.Update();
@@ -111,7 +111,7 @@ page 70028 "Liste des factures"
                     SaleInvoiceHeader.Reset();
                     SaleInvoiceHeader.SetRange("No.",rec."No.");
                     if SaleInvoiceHeader.FindFirst() then begin
-                        SaleInvoiceHeader."Demande approbation":=false;
+                        //silue samuel 07/03/2025 SaleInvoiceHeader."Demande approbation":=false;
                         SaleInvoiceHeader.Modify();
                         Message('La demande d''approbaon a été rejeté');
                     end;

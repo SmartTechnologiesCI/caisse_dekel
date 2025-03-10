@@ -243,7 +243,7 @@ page 70004 "Fiche dépot"
                 trigger OnAction()
                 begin
                     if Confirm('Voulez-vous soumettre le dépôt à approbation ?') then begin
-                        rec.DemandeApprobation := true;
+                        //  silue samuel 07/03/2025 rec.DemandeApprobation := true;
                         Message('Demande de validation envoyé avec succès');
                         CurrPage.Close();
                     end;
@@ -398,17 +398,17 @@ page 70004 "Fiche dépot"
                     Error('Veuillez valider le dépôt');
             end;
         end
-        else begin
+        //  silue samuel 07/03/2025 else begin
 
-            if (rec.validated = false) then
-                if (rec.DemandeApprobation = false) then begin
+        //     if (rec.validated = false) then
+        //         if (rec.DemandeApprobation = false) then begin
 
-                    Error('Veuillez le soumettre a approbation');
-                end
-                else
-                    Error('Veuillez valider le dépôt');
+        //             Error('Veuillez le soumettre a approbation');
+        //         end
+        //         else
+        //             Error('Veuillez valider le dépôt');
 
-        end;
+        // end;
     end;
 
     trigger OnDeleteRecord(): Boolean

@@ -76,7 +76,7 @@ $
         field(50001; "Code preparateur"; Code[50])
         {
             CaptionML = FRA = 'Code du préparateur';
-            TableRelation = "User App".Nom;
+            // silue samuel 07/03/2025 TableRelation = "User App".Nom;
         }
         field(50002; "Salesperson code"; Code[50])
         {

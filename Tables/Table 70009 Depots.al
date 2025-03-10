@@ -90,12 +90,12 @@ table 70009 "Depôt"
             //Editable = false;
         }
 
-        field(17; "DemandeApprobation"; Boolean)
-        {
-            CaptionML = ENU = 'Demande approbation',
-                        FRA = 'Demande approbation';
-            //Editable = false;
-        }
+        // 07/03/2025 field(17; "DemandeApprobation"; Boolean)
+        // {
+        //     CaptionML = ENU = 'Demande approbation',
+        //                 FRA = 'Demande approbation';
+        //     //Editable = false;
+        // }
 
 
     }
