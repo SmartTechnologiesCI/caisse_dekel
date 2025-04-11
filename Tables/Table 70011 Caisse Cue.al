@@ -1,6 +1,6 @@
 table 70011 "Caisse Cue"
 {
-    DataClassification = ToBeClassified;
+   
 
     fields
     {
@@ -11,12 +11,16 @@ table 70011 "Caisse Cue"
         field(2; "Factures du jour"; integer)
         {
             FieldClass = FlowField;
-            CalcFormula = count("Sales Invoice Header" where(Closed = const(false), "Order Date" = field("Date Filter"), CreditP = const(false)));
+            CalcFormula = count("Purch. Inv. Header" where(Closed = const(false), "Order Date" = field("Date Filter")));
         }
         field(3; "Factures anterieures"; integer)
         {
+            
+            CalcFormula = count("Purch. Inv. Header" where(closed = const(false)));
             FieldClass = FlowField;
-            CalcFormula = count("Sales Invoice Header" where(Closed = const(false), "Order Date" = field("date filter 2"), CreditP = const(false)));
+            Editable=false;
+            
+            
         }
         field(4; "Factures à crédit"; integer)
         {

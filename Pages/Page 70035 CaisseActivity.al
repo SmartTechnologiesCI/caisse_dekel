@@ -47,12 +47,12 @@ page 70035 CaisseActivity
                     DrillDown = true;
                     trigger OnDrillDown()
                     var
-                        factureJour: Record "Sales Invoice Header";
+                        factureJour: Record "Purch. Inv. Header";
                     begin
                         factureJour.SetFilter("Order Date", '<%1', WorkDate);
                         factureJour.SetRange(Closed, false);
                         factureJour.FindFirst();
-                        Page.RunModal(Page::"Liste des factures", factureJour);
+                        Page.RunModal(Page::"Posted Purchase Invoices", factureJour);
                     end;
                 }
             }
