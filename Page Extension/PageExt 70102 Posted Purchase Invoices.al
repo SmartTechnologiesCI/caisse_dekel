@@ -27,23 +27,21 @@ pageextension 70102 "Posted Purchase Invoices" extends "Posted Purchase Invoices
                     CreatePayment: Page "Create Payment";
                     PurchInvHeader: Record "Purch. Inv. Header";
                     GenJournalLine: Record "Gen. Journal Line";
+                    
                 begin
-                    // CurrPage.SetSelectionFilter(VendorLedgerEntry);
                     VendorLedgerEntry.SetRange("Document No.", rec."No.");
                     if VendorLedgerEntry.FindFirst() then begin
                         if CreatePayment.RunModal() = ACTION::OK then begin
                             CreatePayment.MakeGenJnlLines(VendorLedgerEntry);
                             GetBatchRecord(GenJournalBatch, CreatePayment);
                             GenJnlManagement.TemplateSelectionFromBatch(GenJournalBatch);
-                            //<<Fab
-                            // Message('a: %1 b: %2', GenJournalBatch."Journal Template Name", GenJournalBatch.Name);
                             GenJournalLine.SetRange("Journal Template Name", GenJournalBatch."Journal Template Name");
                             GenJournalLine.SetRange("Journal Batch Name", GenJournalBatch.Name);
                             if GenJournalLine.FindFirst() then begin
                                 GenJournalLine.SendToPosting(Codeunit::"Gen. Jnl.-Post");
+                                // Message('Paiement effectué avec succès');
+                                page.Run(page::"Posted Purchase Invoices");
                             end;
-                            // 
-                            //<<Fab
                             Clear(CreatePayment);
                         end else
                             Clear(CreatePayment);
