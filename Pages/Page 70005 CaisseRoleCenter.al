@@ -14,16 +14,16 @@ page 70005 "Caisse RoleCenter"
         area(RoleCenter)
         {
 
-            part("Activités de caisse"; 70035)
-            {
-                Caption = 'Activités de caisse';
-                ApplicationArea = All;
-            }
+            // part("Activités de caisse"; 70035)
+            // {
+            //     Caption = 'Activités de caisse';
+            //     ApplicationArea = All;
+            // }
             //<<Ticket diu jour 15_04_25
             part("Caisse cue"; "Caisse cue")
             {
                 ApplicationArea = All;
-                Caption = 'Tickets non traités';
+                Caption = 'Tickets';
 
             }
             /*part("Commandes antérieures"; 70029)

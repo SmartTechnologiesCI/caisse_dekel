@@ -1,5 +1,8 @@
 pageextension 70102 "Posted Purchase Invoices" extends "Posted Purchase Invoices"
 {
+    Caption = 'Tickets';
+
+
     layout
     {
         // Add changes to page layout here
@@ -27,7 +30,7 @@ pageextension 70102 "Posted Purchase Invoices" extends "Posted Purchase Invoices
                     CreatePayment: Page "Create Payment";
                     PurchInvHeader: Record "Purch. Inv. Header";
                     GenJournalLine: Record "Gen. Journal Line";
-                    
+
                 begin
                     VendorLedgerEntry.SetRange("Document No.", rec."No.");
                     if VendorLedgerEntry.FindFirst() then begin
