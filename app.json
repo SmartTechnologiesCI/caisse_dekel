@@ -1,7 +1,7 @@
 {
   "id": "a6fcc3ad-ccff-4429-9aad-43297bed6495",
   "name": "CAISSE POS",
-  "publisher": "Default publisher",
+  "publisher": "Smart SBT",
   "version": "2.0.0.0",
   "brief": "",
   "description": "",
@@ -15,7 +15,7 @@
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
-  "application": "22.0.0.0",
+  "application": "23.0.0.0",
   "idRanges": [
     {
       "from": 70000,
@@ -27,6 +27,7 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "11.0"
+  "runtime": "11.0",
+  "target": "OnPrem"
   
 }

@@ -3,8 +3,8 @@ page 70028 "Liste des factures"
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
-    SourceTable = 112;
-    //SourceTableView = where(Closed = const(false));
+    SourceTable = 122;
+    SourceTableView = where(Closed = const(false));
     Editable = false;
     CardPageId = 70030;
     layout
@@ -13,7 +13,7 @@ page 70028 "Liste des factures"
         {
             repeater(" ")
             {
-                field("No."; "No.")
+                field("No."; REC."No.")
                 {
                     Caption = 'N° de la Facture';
                     ApplicationArea = All;
@@ -21,41 +21,46 @@ page 70028 "Liste des factures"
                     var
                         facture: Record 112;
                     begin
-                        facture.SetRange("No.", "No.");
+                        facture.SetRange("No.", REC."No.");
                         facture.FindFirst();
                         Page.RunModal(70030, facture);
                     end;
                 }
-                field("Order No."; "Order No.")
+                field("Order No."; REC."Order No.")
                 {
                     Caption = 'N° de la commande';
                     ApplicationArea = All;
                 }
-                field(SystemCreatedAt; SystemCreatedAt)
+                field(SystemCreatedAt; REC.SystemCreatedAt)
                 {
                     Caption = 'Date et heure de la commande';
                     ApplicationArea = All;
 
                 }
-                field("Bill-to Name"; "Bill-to Name")
+                field("Buy-from Vendor No."; REC."Buy-from Vendor No.")
                 {
-                    Caption = 'Client';
+                    Caption = 'Fournisseur';
                     ApplicationArea = All;
 
                 }
-                field(Amount; Amount)
+                field("Pay-to Name"; REC."Pay-to Name")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Nom FOurnisseur';
+                }
+                field(Amount; REC.Amount)
                 {
                     Caption = 'Montant hors taxe';
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Amount Including VAT"; "Amount Including VAT")
+                field("Amount Including VAT"; REC."Amount Including VAT")
                 {
                     Caption = 'Montant TTC';
                     ApplicationArea = All;
 
                 }
-                field("Remaining Amount"; "Remaining Amount")
+                field("Remaining Amount"; REC."Remaining Amount")
                 {
                     Caption = 'Reste à payer';
                     ApplicationArea = All;
@@ -82,15 +87,15 @@ page 70028 "Liste des factures"
                     usera: Record "User Setup";
                 begin
                     // if usera.Get(UserId) then
-                        // if usera.Director then begin
-                        //     // silue samuel 07/03/2025 rec."Demande approbation" := false;
-                        //     // rec.Approuve := true;
-                        //     rec.Modify();
-                        //     CurrPage.Update();
+                    // if usera.Director then begin
+                    //     // silue samuel 07/03/2025 rec."Demande approbation" := false;
+                    //     // rec.Approuve := true;
+                    //     rec.Modify();
+                    //     CurrPage.Update();
 
-                        // end
-                        // else
-                        //     Error('Vous n''avez pas le droit d''utiliser cette fonctionnalité');
+                    // end
+                    // else
+                    //     Error('Vous n''avez pas le droit d''utiliser cette fonctionnalité');
 
                 end;
             }
@@ -109,7 +114,7 @@ page 70028 "Liste des factures"
                     SaleInvoiceHeader: Record "Sales Invoice Header";
                 begin
                     SaleInvoiceHeader.Reset();
-                    SaleInvoiceHeader.SetRange("No.",rec."No.");
+                    SaleInvoiceHeader.SetRange("No.", rec."No.");
                     if SaleInvoiceHeader.FindFirst() then begin
                         //silue samuel 07/03/2025 SaleInvoiceHeader."Demande approbation":=false;
                         SaleInvoiceHeader.Modify();
