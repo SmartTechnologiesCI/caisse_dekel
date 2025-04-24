@@ -11,7 +11,7 @@ page 70109 "Caisse cue"
         {
             cuegroup(General)
             {
-                Caption = 'Tickets non facturés';
+                Caption = 'Tickets non payés';
                 field("Ticket du jour"; rec."Ticket du jour")
                 {
                     ApplicationArea = All;
@@ -22,8 +22,9 @@ page 70109 "Caisse cue"
                     var
                         ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
-                        ItemWeighBridge.setFilter( "Date validation", '=%1', WorkDate());
+                        ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
                         ItemWeighBridge.SetRange(valide, true);
+                        ItemWeighBridge.SetRange("Statut paiement", false);
                         ItemWeighBridge.FindFirst();
                         Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
                     end;
@@ -34,31 +35,34 @@ page 70109 "Caisse cue"
                     DrillDown = true;
                     trigger OnDrillDown()
                     var
-                        factureJour: Record "Purch. Inv. Header";
+                        ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
-                        factureJour.SetFilter("Order Date", '<%1', WorkDate);
-                        factureJour.SetRange(Closed, false);
-                        factureJour.FindFirst();
-                        Page.RunModal(Page::"Posted Purchase Invoices", factureJour);
+                        ItemWeighBridge.SetFilter("Date validation", '<%1', WorkDate);
+                        ItemWeighBridge.SetRange(valide, true);
+                        ItemWeighBridge.SetRange("Statut paiement", false);
+                        ItemWeighBridge.FindFirst();
+                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
                     end;
                 }
             }
             cuegroup("Ticket(s) facturé(s)")
             {
+                Caption = 'Tickets payés';
                 field("Ticket(s) Facturé(s) du jour"; "Ticket(s) Facturé(s) du jour")
                 {
                     ApplicationArea = All;
                     DrillDown = true;
                     Visible = true;
-                    Caption = 'Ticket(s) Facturé(s) du jour"';
+
+                    Caption = 'Ticket(s) du jour payés"';
                     trigger OnDrillDown()
                     var
-                        factureJour: Record "Purch. Inv. Header";
+                        ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
-                        factureJour.setFilter("Order Date", '=%1', WorkDate());
-                        factureJour.SetRange(Closed, true);
-                        factureJour.FindFirst();
-                        Page.RunModal(Page::"Posted Purchase Invoices", factureJour);
+                        ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
+                        ItemWeighBridge.SetRange("Statut paiement", true);
+                        ItemWeighBridge.FindFirst();
+                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
                     end;
                 }
             }
@@ -88,6 +92,6 @@ page 70109 "Caisse cue"
         myInt: Integer;
     begin
         SetFilter("date filter 3", '=%', WorkDate());
-        SetFilter("date filter 2", '<=%', WorkDate());
+        SetFilter("date filter 2", '<%', WorkDate());
     end;
 }
