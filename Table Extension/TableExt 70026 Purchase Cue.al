@@ -5,7 +5,7 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         field(60000; "Ticket du jour"; Integer)
         {
             FieldClass = FlowField;
-            CalcFormula = count("Purch. Inv. Header" where("Document Date" = field("date filter 3")));
+            CalcFormula = count("Item Weigh Bridge" where("Date validation" = field("date filter 3"), Valide = const(true)));
         }
         field(60001; "date filter 3"; Date)
         {

@@ -20,12 +20,12 @@ page 70109 "Caisse cue"
                     Caption = 'Ticket(s) du jour';
                     trigger OnDrillDown()
                     var
-                        factureJour: Record "Purch. Inv. Header";
+                        ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
-                        factureJour.setFilter("Order Date", '=%1', WorkDate());
-                        factureJour.SetRange(Closed, false);
-                        factureJour.FindFirst();
-                        Page.RunModal(Page::"Posted Purchase Invoices", factureJour);
+                        ItemWeighBridge.setFilter( "Date validation", '=%1', WorkDate());
+                        ItemWeighBridge.SetRange(valide, true);
+                        ItemWeighBridge.FindFirst();
+                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
                     end;
                 }
                 field("Ticke Anterieur non paye"; REC."Ticke Anterieur non paye")
@@ -45,7 +45,7 @@ page 70109 "Caisse cue"
             }
             cuegroup("Ticket(s) facturé(s)")
             {
-                field("Ticket(s) Facturé(s) du jour";"Ticket(s) Facturé(s) du jour")
+                field("Ticket(s) Facturé(s) du jour"; "Ticket(s) Facturé(s) du jour")
                 {
                     ApplicationArea = All;
                     DrillDown = true;

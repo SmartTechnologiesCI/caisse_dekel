@@ -11,7 +11,10 @@
   "url": "",
   "logo": "",
   "dependencies": [
-   
+    {"id": "96dd4b51-bce0-4b5d-8332-24d803dd03ea",
+    "name": "SmartTech",
+    "publisher": "B2B Software Technologies",
+    "version": "1.0.0.0"}
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
