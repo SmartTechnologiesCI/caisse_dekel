@@ -117,6 +117,27 @@ page 70109 "Caisse cue"
                         Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
                     end;
                 }
+
+            }
+            cuegroup("Tickets payés")
+            {
+                field("Ticket(s) Facturé(s) Planteur";"Ticket(s) Facturé(s) Planteur")
+                {
+                    ApplicationArea = All;
+                    DrillDown = true;
+                    Visible = true;
+
+                    Caption = 'Ticket(s) Planteurs payés"';
+                    trigger OnDrillDown()
+                    var
+                        ItemWeighBridge: Record "Item Weigh Bridge";
+                    begin
+                        // ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
+                        ItemWeighBridge.SetRange("Statut paiement Planteur", true);
+                        ItemWeighBridge.FindFirst();
+                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
+                    end;
+                }
             }
         }
     }

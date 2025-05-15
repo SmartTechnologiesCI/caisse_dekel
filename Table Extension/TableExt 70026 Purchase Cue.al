@@ -44,6 +44,13 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
             FieldClass = FlowField;
             CalcFormula = count("Item Weigh Bridge" where("Date validation" = field("date filter 2"), Valide = const(true), "Statut paiement Planteur" = const(false)));
         }
+         field(60008; "Ticket(s) Facturé(s) Planteur"; Integer)
+        {
+            FieldClass = FlowField;
+            CalcFormula = count("Item Weigh Bridge" where("Statut paiement Planteur" = const(true)));
+            Caption='Ticket(s) planteur(s) payé(s)';
+
+        }
 
     }
 
