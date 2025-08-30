@@ -1,0 +1,17 @@
+{
+    "json.schemas": [
+    
+    ],
+    "al.assemblyProbingPaths": [
+        "./.netpackages",
+        "C:/Windows/assembly",
+        "C:/Program Files/Microsoft Dynamics 365 Business Central/230/Service/Add-ins",
+        "C:/Windows/Microsoft.NET/Assembly",
+        "C:/Windows/Microsoft.NET/assembly/GAC_32/System.Data/v4.0_4.0.0.0__b77a5c561934e089",
+        "D:/Logiciel BC230/Dynamics.365.BC.20231.FR.DVD/ServiceTier/program files/Microsoft Dynamics NAV/230/Service",
+        "/Logiciel BC230/Dynamics.365.BC.20231.FR.DVD/ServiceTier/program files/Microsoft Dynamics NAV/230/Service"
+    ],
+    "al.browser": "Chrome",
+    "al.enableCodeAnalysis": true,
+    "al-test-runner.sendDebugTelemetry": false
+}

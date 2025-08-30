@@ -10,7 +10,7 @@
             "server": "http://localhost:8080/BC230",
             "serverInstance": "BC230",
             "authentication": "Windows",
-            "startupObjectId": 70005,
+            "startupObjectId": 22,
             "startupObjectType": "Page",
             "breakOnError": "All",
             "launchBrowser": true,
@@ -19,10 +19,9 @@
             "tenant": "default",
             "usePublicURLFromServer": true,
             "schemaUpdateMode": "Synchronize",
-            "port": 2349,
+            "port": 7049,
             
-            //vrai
- 
+
         }
     ]
 }   
