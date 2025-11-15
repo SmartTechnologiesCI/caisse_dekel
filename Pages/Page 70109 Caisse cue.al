@@ -26,7 +26,7 @@ page 70109 "Caisse cue"
                         ItemWeighBridge.SetRange(valide, true);
                         ItemWeighBridge.SetRange("Statut paiement", false);
                         ItemWeighBridge.FindFirst();
-                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
+                        Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
                 }
                 field("Ticket du jour Planteur"; rec."Ticket du jour Planteur")
@@ -43,7 +43,7 @@ page 70109 "Caisse cue"
                         ItemWeighBridge.SetRange(valide, true);
                         ItemWeighBridge.SetRange("Statut paiement Planteur", false);
                         ItemWeighBridge.FindFirst();
-                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
+                        Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
                 }
                 field("Ticke Anterieur non paye"; REC."Ticke Anterieur non paye")
@@ -60,7 +60,7 @@ page 70109 "Caisse cue"
                         ItemWeighBridge.SetRange(valide, true);
                         ItemWeighBridge.SetRange("Statut paiement", false);
                         ItemWeighBridge.FindFirst();
-                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
+                        Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
                 }
                 field("Ticke Anterieur non paye Planteur"; "Ticke Anterieur non paye Planteur")
@@ -76,7 +76,7 @@ page 70109 "Caisse cue"
                         ItemWeighBridge.SetRange(valide, true);
                         ItemWeighBridge.SetRange("Statut paiement Planteur", false);
                         ItemWeighBridge.FindFirst();
-                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
+                        Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
                 }
                 //FnGeek*********15_11_25
@@ -94,7 +94,7 @@ page 70109 "Caisse cue"
                         ItemWeighBridge.SetRange(valide, true);
                         ItemWeighBridge.SetRange(Statut_Total_Paiement, false);
                         ItemWeighBridge.FindFirst();
-                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
+                        Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
                 }
                 //FnGeek*********
@@ -116,7 +116,7 @@ page 70109 "Caisse cue"
                         ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
                         ItemWeighBridge.SetRange("Statut paiement", true);
                         ItemWeighBridge.FindFirst();
-                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
+                        Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
                 }
                 field("Ticket(s) Facturé(s) du jour Planteur"; "Ticket(s) Facturé(s) du jour Planteur")
@@ -133,7 +133,7 @@ page 70109 "Caisse cue"
                         ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
                         ItemWeighBridge.SetRange("Statut paiement Planteur", true);
                         ItemWeighBridge.FindFirst();
-                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
+                        Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
                 }
 
@@ -154,7 +154,7 @@ page 70109 "Caisse cue"
                         // ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
                         ItemWeighBridge.SetRange("Statut paiement Planteur", true);
                         ItemWeighBridge.FindFirst();
-                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
+                        Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
                 }
             }
