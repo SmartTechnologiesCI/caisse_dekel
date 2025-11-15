@@ -1298,7 +1298,7 @@ page 70110 "Ticket Caisse"
         ItemWeighBridgecaisse."Item Origin" := rec."Item Origin";
         ItemWeighBridgecaisse.BonEnlevement := rec.BonEnlevement;
         ItemWeighBridgecaisse."POIDS ENTREE" := rec."POIDS ENTREE";
-        ItemWeighBridgecaisse."POIDS ENTREE" := rec."POIDS SORTIE";
+        ItemWeighBridgecaisse."POIDS SORTIE" := rec."POIDS SORTIE";
         ItemWeighBridgecaisse."POIDS NET" := rec."POIDS NET";
         ItemWeighBridgecaisse."Row No." := rec."Row No.";
         ItemWeighBridgecaisse."Type opération" := rec."Type opération";
@@ -1315,7 +1315,7 @@ page 70110 "Ticket Caisse"
         ItemWeighBridgecaisse."Ticket Planteur" := rec."Ticket Planteur";
         ItemWeighBridgecaisse."Code article" := rec."Code article";
         ItemWeighBridgecaisse."Désignation article" := rec."Désignation article";
-        ItemWeighBridgecaisse."Code planteur" := rec."Code planteur";
+        ItemWeighBridgecaisse."Code Transporteur" := rec."Code Transporteur";
         ItemWeighBridgecaisse."Nom Transporteur" := rec."Nom Transporteur";
         ItemWeighBridgecaisse."Purchase invoice Created" := rec."Purchase invoice Created";
         ItemWeighBridgecaisse."Purchase Invoice No." := rec."Purchase Invoice No.";
