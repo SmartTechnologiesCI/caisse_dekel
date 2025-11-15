@@ -1376,6 +1376,7 @@ page 70110 "Ticket Caisse"
         ItemWeighBridgecaisse.MultiPese := rec.MultiPese;
         ItemWeighBridgecaisse."No. Series" := rec."No. Series";
         ItemWeighBridgecaisse."Posting Date" := rec."Posting Date";
+        ItemWeighBridgecaisse.Statut_Total_Paiement:=rec.Statut_Total_Paiement;
         ItemWeighBridgecaisse.Insert()
     end;
 }
