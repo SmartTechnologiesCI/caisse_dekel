@@ -17,7 +17,7 @@ page 70109 "Caisse cue"
                     ApplicationArea = All;
                     DrillDown = true;
                     Visible = true;
-                    Caption = 'Ticket(s) Transporteur du jour';
+                    Caption = 'Ticket(s) Transporteur du jour non payés';
                     trigger OnDrillDown()
                     var
                         ItemWeighBridge: Record "Item Weigh Bridge";
@@ -34,7 +34,7 @@ page 70109 "Caisse cue"
                     ApplicationArea = All;
                     DrillDown = true;
                     Visible = true;
-                    Caption = 'Ticket(s) Planteur du jour';
+                    Caption = 'Ticket(s) Planteur du jour non payés';
                     trigger OnDrillDown()
                     var
                         ItemWeighBridge: Record "Item Weigh Bridge";
