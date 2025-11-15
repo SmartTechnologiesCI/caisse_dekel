@@ -79,6 +79,25 @@ page 70109 "Caisse cue"
                         Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
                     end;
                 }
+                //FnGeek*********15_11_25
+                field("Ticket du jour non payés"; "Ticket du jour non payés")
+                {
+                    ApplicationArea = All;
+                    DrillDown = true;
+                    Visible = true;
+                    Caption = 'Ticket(s) du jour non payés';
+                    trigger OnDrillDown()
+                    var
+                        ItemWeighBridge: Record "Item Weigh Bridge";
+                    begin
+                        ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
+                        ItemWeighBridge.SetRange(valide, true);
+                        ItemWeighBridge.SetRange(Statut_Total_Paiement, false);
+                        ItemWeighBridge.FindFirst();
+                        Page.RunModal(Page::"Item Weight Bridge", ItemWeighBridge);
+                    end;
+                }
+                //FnGeek*********
             }
             cuegroup("Ticket(s) facturé(s)")
             {
@@ -121,7 +140,7 @@ page 70109 "Caisse cue"
             }
             cuegroup("Tickets payés")
             {
-                field("Ticket(s) Facturé(s) Planteur";"Ticket(s) Facturé(s) Planteur")
+                field("Ticket(s) Facturé(s) Planteur"; "Ticket(s) Facturé(s) Planteur")
                 {
                     ApplicationArea = All;
                     DrillDown = true;

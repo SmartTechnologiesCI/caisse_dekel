@@ -17,7 +17,7 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         }
         field(60003; "Ticke Anterieur non paye"; Integer)
         {
-            
+
             FieldClass = FlowField;
             CalcFormula = count("Item Weigh Bridge" where("Date validation" = field("date filter 2"), Valide = const(true), "Statut paiement" = const(false)));
         }
@@ -40,17 +40,24 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         }
         field(60007; "Ticke Anterieur non paye Planteur"; Integer)
         {
-            
+
             FieldClass = FlowField;
             CalcFormula = count("Item Weigh Bridge" where("Date validation" = field("date filter 2"), Valide = const(true), "Statut paiement Planteur" = const(false)));
         }
-         field(60008; "Ticket(s) Facturé(s) Planteur"; Integer)
+        field(60008; "Ticket(s) Facturé(s) Planteur"; Integer)
         {
             FieldClass = FlowField;
             CalcFormula = count("Item Weigh Bridge" where("Statut paiement Planteur" = const(true)));
-            Caption='Ticket(s) planteur(s) payé(s)';
+            Caption = 'Ticket(s) planteur(s) payé(s)';
 
         }
+        field(60009; "Ticket du jour non payés"; Integer)
+        {
+            FieldClass = FlowField;
+            CalcFormula = count("Item Weigh Bridge" where("Date validation" = field("date filter 3"), Valide = const(true), Statut_Total_Paiement = const(false)));
+
+        }
+
 
     }
 
