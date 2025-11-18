@@ -1429,7 +1429,7 @@ page 70110 "Ticket Caisse"
             rec.Modify();
             TransFertTicketFromItemWeigntToBridgeCaisse();
             TicketPlanteur();
-            if rec."Statut paiement" = true then begin
+            if (rec."Statut paiement" = true) OR (rec."Type opération" = 'ACHAT COMPTANT') then begin
                 Rec.Statut_Total_Paiement := true;
                 rec.Modify();
             end;

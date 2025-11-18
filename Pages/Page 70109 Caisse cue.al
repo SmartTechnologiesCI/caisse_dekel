@@ -25,6 +25,7 @@ page 70109 "Caisse cue"
                         ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
                         ItemWeighBridge.SetRange(valide, true);
                         ItemWeighBridge.SetRange("Statut paiement", false);
+                        ItemWeighBridge.SetRange("Type opération",'ACHAT DIRECT');
                         ItemWeighBridge.FindFirst();
                         Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
@@ -59,6 +60,7 @@ page 70109 "Caisse cue"
                         ItemWeighBridge.SetFilter("Date validation", '<%1', WorkDate);
                         ItemWeighBridge.SetRange(valide, true);
                         ItemWeighBridge.SetRange("Statut paiement", false);
+                        ItemWeighBridge.SetRange("Type opération",'ACHAT DIRECT');
                         ItemWeighBridge.FindFirst();
                         Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
@@ -115,6 +117,7 @@ page 70109 "Caisse cue"
                     begin
                         ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
                         ItemWeighBridge.SetRange("Statut paiement", true);
+                        ItemWeighBridge.SetRange("Type opération",'ACHAT DIRECT');
                         ItemWeighBridge.FindFirst();
                         Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
