@@ -187,15 +187,7 @@ page 70110 "Ticket Caisse"
 
                     trigger OnAction()
                     begin
-                        rec."Statut paiement Planteur" := true;
-                        rec.Modify();
-                        if rec."Statut paiement" = true then begin
-                            Rec.Statut_Total_Paiement := true;
-                            rec.Modify();
-                        end;
-                        if rec.Statut_Total_Paiement = true then begin
-                            TransFertTicketFromItemWeigntToBridgeCaisse()
-                        end;
+                        PayerPlanteur();
                     end;
 
                 }
@@ -208,15 +200,7 @@ page 70110 "Ticket Caisse"
 
                     trigger OnAction()
                     begin
-                        rec."Statut paiement" := true;
-                        rec.Modify();
-                        if rec."Statut paiement Planteur" = true then begin
-                            rec.Statut_Total_Paiement := true;
-                            REC.Modify()
-                        end;
-                        if rec.Statut_Total_Paiement = true then begin
-                            TransFertTicketFromItemWeigntToBridgeCaisse()
-                        end;
+                        PayerTransporteur();
                     end;
 
                 }
@@ -226,6 +210,7 @@ page 70110 "Ticket Caisse"
                     Promoted = true;
                     PromotedCategory = Process;
                     ApplicationArea = All;
+                    Visible = false;
 
                     trigger OnAction()
                     begin
@@ -233,7 +218,7 @@ page 70110 "Ticket Caisse"
                         rec."Statut paiement" := true;
                         REC.Statut_Total_Paiement := true;
                         rec.Modify();
-                         if rec.Statut_Total_Paiement = true then begin
+                        if rec.Statut_Total_Paiement = true then begin
                             TransFertTicketFromItemWeigntToBridgeCaisse()
                         end;
 
@@ -1300,7 +1285,7 @@ page 70110 "Ticket Caisse"
         ItemWeighBridgecaisse."POIDS ENTREE" := rec."POIDS ENTREE";
         ItemWeighBridgecaisse."POIDS SORTIE" := rec."POIDS SORTIE";
         ItemWeighBridgecaisse."POIDS NET" := rec."POIDS NET";
-        ItemWeighBridgecaisse."Row No." := rec."Row No.";
+        // ItemWeighBridgecaisse."Row No." := rec."Row No.";//FnGeek 18_11_25
         ItemWeighBridgecaisse."Type opération" := rec."Type opération";
         ItemWeighBridgecaisse.Transporteur := rec.Transporteur;
         ItemWeighBridgecaisse.Uploaded := rec.Uploaded;
@@ -1328,8 +1313,6 @@ page 70110 "Ticket Caisse"
         ItemWeighBridgecaisse."Sales Invoice No." := rec."Sales Invoice No.";
         ItemWeighBridgecaisse."Code magasin" := rec."Code magasin";
         ItemWeighBridgecaisse."N° Commande PIC" := rec."N° Commande PIC";
-        ItemWeighBridgecaisse.EtatTransport := rec.EtatTransport;
-        ItemWeighBridgecaisse.EtatRegime := rec.EtatRegime;
         ItemWeighBridgecaisse.ValeurAIPH := rec.ValeurAIPH;
         ItemWeighBridgecaisse.TotalRegime := rec.TotalRegime;
         ItemWeighBridgecaisse.TauxOPAR := rec.TauxOPAR;
@@ -1348,12 +1331,12 @@ page 70110 "Ticket Caisse"
         ItemWeighBridgecaisse.DateTransport := rec.DateTransport;
         ItemWeighBridgecaisse.NumeroRegime := rec.NumeroRegime;
         ItemWeighBridgecaisse.NumeroTransp := rec.NumeroTransp;
-        ItemWeighBridgecaisse."Ligne paiement" := rec."Ligne paiement";
+
         ItemWeighBridgecaisse."Traitement effectué" := rec."Traitement effectué";
         ItemWeighBridgecaisse.Commentaire := rec.Commentaire;
         ItemWeighBridgecaisse.ValautoDateTime := rec.ValautoDateTime;
         ItemWeighBridgecaisse.CommentaireT := rec.CommentaireT;
-        ItemWeighBridgecaisse."Ligne paiement trans" := rec."Ligne paiement trans";
+
         ItemWeighBridgecaisse.ETATID := rec.ETATID;
         ItemWeighBridgecaisse.ORIGINE := rec.ORIGINE;
         ItemWeighBridgecaisse.Doublon := REC.Doublon;
@@ -1376,8 +1359,81 @@ page 70110 "Ticket Caisse"
         ItemWeighBridgecaisse.MultiPese := rec.MultiPese;
         ItemWeighBridgecaisse."No. Series" := rec."No. Series";
         ItemWeighBridgecaisse."Posting Date" := rec."Posting Date";
-        ItemWeighBridgecaisse.Statut_Total_Paiement:=rec.Statut_Total_Paiement;
+        ItemWeighBridgecaisse.Statut_Total_Paiement := rec.Statut_Total_Paiement;
+        ItemWeighBridgecaisse.Date_Paiement := WorkDate();
         ItemWeighBridgecaisse.Insert()
+    end;
+
+    procedure TicketPlanteur()
+    var
+        ItemWeighBridgecaisse: Record "Item Weigh Bridge caisse";
+    begin
+        ItemWeighBridgecaisse.SetRange(TICKET, rec.TICKET);
+        ItemWeighBridgecaisse.SetRange(RowID, rec.RowID);
+        ItemWeighBridgecaisse.SetRange("Ticket Planteur");
+        if ItemWeighBridgecaisse.FindLast() then begin
+            ItemWeighBridgecaisse.EtatRegime := 'PA';
+            ItemWeighBridgecaisse.EtatTransport := rec.EtatTransport;
+            ItemWeighBridgecaisse."Ligne paiement" := true;
+            ItemWeighBridgecaisse."Ligne paiement trans" := rec."Ligne paiement trans";
+            ItemWeighBridgecaisse.Modify()
+        end;
+    end;
+
+    procedure TicketTransporteur()
+    var
+        ItemWeighBridgecaisse: Record "Item Weigh Bridge caisse";
+    begin
+        ItemWeighBridgecaisse.SetRange(TICKET, rec.TICKET);
+        ItemWeighBridgecaisse.SetRange(RowID, rec.RowID);
+        ItemWeighBridgecaisse.SetRange("Ticket Planteur");
+        if ItemWeighBridgecaisse.FindLast() then begin
+            ItemWeighBridgecaisse.EtatRegime := rec.EtatRegime;
+            ItemWeighBridgecaisse.EtatTransport := 'PA';
+            ItemWeighBridgecaisse."Ligne paiement trans" := TRUE;
+            ItemWeighBridgecaisse."Ligne paiement" := rec."Ligne paiement";
+            ItemWeighBridgecaisse.Modify()
+        end;
+
+    end;
+
+    procedure PayerTransporteur()
+    var
+        myInt: Integer;
+    begin
+        if rec."Type opération" = 'ACHAT COMPTANT' then begin
+            Error('On ne peut pas payer le transporteur car ce ticket est: ACHAT COMPTANT');
+        end;
+        if (rec."Statut paiement" = true) then begin
+            Error('Ce ticket a été déja payé pour le transporteur');
+        end else begin
+            rec."Statut paiement" := true;
+            rec.Modify();
+            TransFertTicketFromItemWeigntToBridgeCaisse();
+            TicketTransporteur();
+            if rec."Statut paiement Planteur" = true then begin
+                rec.Statut_Total_Paiement := true;
+                REC.Modify()
+            end;
+        end;
+    end;
+
+    procedure PayerPlanteur()
+    var
+        myInt: Integer;
+    begin
+        if rec."Statut paiement Planteur" = true then begin
+            Error('Ce ticket a été déja payé pour le planteur');
+        end else begin
+            rec."Statut paiement Planteur" := true;
+            rec.Modify();
+            TransFertTicketFromItemWeigntToBridgeCaisse();
+            TicketPlanteur();
+            if rec."Statut paiement" = true then begin
+                Rec.Statut_Total_Paiement := true;
+                rec.Modify();
+            end;
+        end;
     end;
 }
 
