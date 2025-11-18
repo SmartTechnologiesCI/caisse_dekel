@@ -14,6 +14,7 @@ page 70111 Creation_Ticket
     DeleteAllowed = true;
     Editable = true;
     InsertAllowed = false;
+    UsageCategory = Lists;
     ModifyAllowed = false;
     PageType = List;
     CardPageId = "New Ticket";
@@ -400,69 +401,69 @@ page 70111 Creation_Ticket
                         Page.Run(Page::"Ticket Header");
                     end;
                 }
-                    action("CreateNew")
-                    {
-                        CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket';
-                        Image = New;
-                        Promoted = true;
-                        PromotedCategory = Process;
-                        PromotedIsBig = true;
+                action("CreateNew")
+                {
+                    CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket';
+                    Image = New;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
 
-                        trigger OnAction()
-                        var
-                            allRec: Record "Item Weigh Bridge";
-                            NewRec: Record "Item Weigh Bridge" temporary;
+                    trigger OnAction()
+                    var
+                        allRec: Record "Item Weigh Bridge";
+                        NewRec: Record "Item Weigh Bridge" temporary;
 
-                            balance: Record Balance;
-                            jObj: JsonObject;
-                            jTok: JsonToken;
-                            TicketBuffer: Integer;
-                            NombrePlanteursBuffer: Integer;
-                            ItemWeighBridgeMultiPese: Record "Item Weigh Bridge";
-                            ControlVariable: Integer;
-                            ItemWeighBridgeMultiPese2: Record "Item Weigh Bridge";
-                            ItemWeighBridgeMultiPese3: Record "Item Weigh Bridge";
-                        begin
-                            // for ControlVariable := StartNumber to EndNumber do begin
+                        balance: Record Balance;
+                        jObj: JsonObject;
+                        jTok: JsonToken;
+                        TicketBuffer: Integer;
+                        NombrePlanteursBuffer: Integer;
+                        ItemWeighBridgeMultiPese: Record "Item Weigh Bridge";
+                        ControlVariable: Integer;
+                        ItemWeighBridgeMultiPese2: Record "Item Weigh Bridge";
+                        ItemWeighBridgeMultiPese3: Record "Item Weigh Bridge";
+                    begin
+                        // for ControlVariable := StartNumber to EndNumber do begin
 
-                            // end;
-                            Clear(TicketBuffer);
-                            Clear(NombrePlanteursBuffer);
-                            NewRec.Init();
-                            if allRec.FindLast() then
-                                NewRec.TICKET := allRec.TICKET + 1
-                            else
-                                NewRec.TICKET := 1;
-                            NewRec."Type of Transportation" := 'RECEPTION';
-                            NewRec."Process Ticket" := newRec."Process Ticket"::Create;
-                            NewRec.Insert(true);
+                        // end;
+                        Clear(TicketBuffer);
+                        Clear(NombrePlanteursBuffer);
+                        NewRec.Init();
+                        if allRec.FindLast() then
+                            NewRec.TICKET := allRec.TICKET + 1
+                        else
+                            NewRec.TICKET := 1;
+                        NewRec."Type of Transportation" := 'RECEPTION';
+                        NewRec."Process Ticket" := newRec."Process Ticket"::Create;
+                        NewRec.Insert(true);
 
-                            if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
-                                Rec := NewRec;
-                                Rec.Insert();
-                                TicketBuffer := REC.TICKET;
-                                NombrePlanteursBuffer := rec."Nombre de planteurs";
-                                CurrPage.Update(false);
-                            end;
-                            //<<FnGeek 05_09_25
-                            ItemWeighBridgeMultiPese.SetRange(TICKET, TicketBuffer);
-                            if ItemWeighBridgeMultiPese.FindFirst() then begin
-                                if ItemWeighBridgeMultiPese.MultiPese = true then begin
-                                    for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
-                                        ItemWeighBridgeMultiPese2 := ItemWeighBridgeMultiPese;
-                                        ItemWeighBridgeMultiPese2.TICKET += (ControlVariable - 1);
-                                        ItemWeighBridgeMultiPese2."POIDS ENTREE" := 0;
-                                        ItemWeighBridgeMultiPese2.Insert();
-                                    end;
-                                    ItemWeighBridgeMultiPese3.SetFilter("Ticket Planteur", ItemWeighBridgeMultiPese."Ticket Planteur");
-                                    if ItemWeighBridgeMultiPese3.FindSet() then begin
-                                        Page.Run(page::MultiPeseSubForm, ItemWeighBridgeMultiPese3);
-                                    end;
+                        if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
+                            Rec := NewRec;
+                            Rec.Insert();
+                            TicketBuffer := REC.TICKET;
+                            NombrePlanteursBuffer := rec."Nombre de planteurs";
+                            CurrPage.Update(false);
+                        end;
+                        //<<FnGeek 05_09_25
+                        ItemWeighBridgeMultiPese.SetRange(TICKET, TicketBuffer);
+                        if ItemWeighBridgeMultiPese.FindFirst() then begin
+                            if ItemWeighBridgeMultiPese.MultiPese = true then begin
+                                for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
+                                    ItemWeighBridgeMultiPese2 := ItemWeighBridgeMultiPese;
+                                    ItemWeighBridgeMultiPese2.TICKET += (ControlVariable - 1);
+                                    ItemWeighBridgeMultiPese2."POIDS ENTREE" := 0;
+                                    ItemWeighBridgeMultiPese2.Insert();
+                                end;
+                                ItemWeighBridgeMultiPese3.SetFilter("Ticket Planteur", ItemWeighBridgeMultiPese."Ticket Planteur");
+                                if ItemWeighBridgeMultiPese3.FindSet() then begin
+                                    Page.Run(page::MultiPeseSubForm, ItemWeighBridgeMultiPese3);
                                 end;
                             end;
-                            //<<FnGeek 05_09_25
                         end;
-                  }
+                        //<<FnGeek 05_09_25
+                    end;
+                }
                 action("updateWeight")
                 {
                     CaptionML = ENU = 'Update Out Weight', FRA = 'Enregistrer Sortie';
