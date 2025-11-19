@@ -231,6 +231,7 @@ page 70110 "Ticket Caisse"
                     Promoted = true;
                     PromotedCategory = Process;
                     ApplicationArea = All;
+
                     RunObject = report Recu_Paiement;
 
                     // trigger OnAction()

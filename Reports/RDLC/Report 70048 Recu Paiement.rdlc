@@ -34,7 +34,7 @@
                   <Width>1.21667in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.34167in</Width>
+                  <Width>1.40833in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -377,7 +377,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Ticket_Planteur</rd:DefaultName>
@@ -423,10 +425,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Date_validation.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>dd/MM/yyyy</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Date_validation</rd:DefaultName>
@@ -475,7 +481,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Vehicle_Registration_No_</rd:DefaultName>
@@ -524,7 +532,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>POIDS_NET</rd:DefaultName>
@@ -573,7 +583,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Prix</rd:DefaultName>
@@ -622,7 +634,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox8</rd:DefaultName>
@@ -686,7 +700,7 @@
             <Top>0.805in</Top>
             <Left>0.55in</Left>
             <Height>0.5in</Height>
-            <Width>7.35in</Width>
+            <Width>7.41667in</Width>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -719,6 +733,26 @@
       </Body>
       <Width>8.24667in</Width>
       <Page>
+        <PageHeader>
+          <Height>1in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageFooter>
+          <Height>1in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
         <Style />
       </Page>
     </ReportSection>
