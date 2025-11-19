@@ -1431,6 +1431,7 @@ page 70110 "Ticket Caisse"
             Error('Ce ticket a été déja payé pour le transporteur');
         end else begin
             rec."Statut paiement" := true;
+            REC.Date_Paiement := WorkDate();
             rec.Modify();
             TransFertTicketFromItemWeigntToBridgeCaisse();
             TicketTransporteur();
@@ -1449,6 +1450,7 @@ page 70110 "Ticket Caisse"
             Error('Ce ticket a été déja payé pour le planteur');
         end else begin
             rec."Statut paiement Planteur" := true;
+            Rec.Date_Paiement := WorkDate();
             rec.Modify();
             TransFertTicketFromItemWeigntToBridgeCaisse();
             TicketPlanteur();

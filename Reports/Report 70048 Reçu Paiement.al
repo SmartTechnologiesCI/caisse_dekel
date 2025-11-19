@@ -29,7 +29,25 @@ report 70048 Recu_Paiement
             {
 
             }
+            column(Picture; CompanyInfo.Picture)
+            {
 
+            }
+            column(Item_Origin; "Item Origin")
+            {
+
+            }
+            column()
+            {
+                
+            }
+            trigger OnPreDataItem()
+            var
+            begin
+                CompanyInfo.get();
+                CompanyInfo.CalcFields(Picture);
+
+            end;
 
         }
     }
@@ -69,4 +87,5 @@ report 70048 Recu_Paiement
     var
         myInt: Integer;
         Prix: Decimal;
+        CompanyInfo: Record "Company Information";
 }
