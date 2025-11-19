@@ -225,6 +225,28 @@ page 70110 "Ticket Caisse"
                     end;
 
                 }
+                action(Recu_Paiement)
+                {
+                    Caption = 'Reçu Paiement';
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ApplicationArea = All;
+                    RunObject = report Recu_Paiement;
+
+                    // trigger OnAction()
+                    // begin
+                    //     rec."Statut paiement Planteur" := true;
+                    //     rec."Statut paiement" := true;
+                    //     REC.Statut_Total_Paiement := true;
+                    //     rec.Modify();
+                    //     if rec.Statut_Total_Paiement = true then begin
+                    //         TransFertTicketFromItemWeigntToBridgeCaisse()
+                    //     end;
+
+                    // end;
+
+                }
+
                 //     action(Paiement) 
                 //     {
                 //         Caption = 'Payer le Transporteur';
