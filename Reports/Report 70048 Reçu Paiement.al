@@ -45,23 +45,52 @@ report 70048 Recu_Paiement
             {
 
             }
+            column(Nom_Concerne; Nom_Concerne)
+            {
+
+            }
+            column("Type_opération"; "Type opération")
+            {
+
+            }
+            column(TICKET; TICKET)
+            {
+
+            }
 
             trigger OnPreDataItem()
             var
             begin
+
                 CompanyInfo.get();
                 CompanyInfo.CalcFields(Picture);
-                if TicketPlanteur = false and TicketTransporteur = false then begin
+                if ((TicketPlanteur = false) and (TicketTransporteur = false)) then begin
                     Error('Choisissez le type de ticket (Soit Planteur soit Transporteur)');
                 end else begin
-                    if TicketPlanteur = true and TicketTransporteur = true then begin
+                    if ((TicketPlanteur = true) and (TicketTransporteur = true)) then begin
                         Error('Choisissez un seul ticket');
                     end;
                     if TicketPlanteur = true then begin
                         Concerne := Planteur;
+                        Nom_Concerne := "Nom planteur";
+                    end else begin
+                        if TicketTransporteur = true then begin
+                            Concerne := Transporteurname;
+                            Nom_Concerne := "Nom Transporteur";
+                        end;
                     end;
+                end;
+            end;
+
+            trigger OnAfterGetRecord()
+            var
+                myInt: Integer;
+            begin
+                if TicketPlanteur = true then begin
+                    Nom_Concerne := "Nom planteur";
+                end else begin
                     if TicketTransporteur = true then begin
-                        Concerne := Transporteurname;
+                        Nom_Concerne := "Driver Name";
                     end;
                 end;
             end;
@@ -73,6 +102,7 @@ report 70048 Recu_Paiement
     {
         AboutTitle = 'Teaching tip title';
         AboutText = 'Teaching tip content';
+
         layout
         {
             area(Content)
@@ -80,11 +110,11 @@ report 70048 Recu_Paiement
                 group(Planteur_Trasnporteur)
                 {
                     Caption = 'Planteur/Ttansporteur';
-                    field(Planteur; Planteur)
+                    field(TicketPlanteur; TicketPlanteur)
                     {
                         ApplicationArea = All;
                     }
-                    field(Transporteurname; Transporteurname)
+                    field(TicketTransporteur; TicketTransporteur)
                     {
                         ApplicationArea = All;
                     }
@@ -116,4 +146,5 @@ report 70048 Recu_Paiement
         Concerne: Text[100];
         TicketPlanteur: Boolean;
         TicketTransporteur: Boolean;
+        Nom_Concerne: Code[250];
 }
