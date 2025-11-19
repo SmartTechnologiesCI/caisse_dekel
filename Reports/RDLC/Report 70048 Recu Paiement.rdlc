@@ -917,19 +917,89 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value />
-                      <Style />
+                      <Value>=Fields!Item_Origin.Value</Value>
+                      <Style>
+                        <FontFamily>Times New Roman</FontFamily>
+                        <FontSize>14pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox12</rd:DefaultName>
+              <Top>0.65833in</Top>
+              <Left>3.05in</Left>
+              <Height>0.31666in</Height>
+              <Width>3.32444in</Width>
+              <ZIndex>5</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox13">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Fields!Date_Paiement.Value</Value>
+                      <Style>
+                        <Format>dd/MM/yyyy</Format>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox12</rd:DefaultName>
-              <Top>0.73in</Top>
-              <Left>3.455in</Left>
+              <rd:DefaultName>Textbox13</rd:DefaultName>
+              <Top>0.72499in</Top>
+              <Left>6.96667in</Left>
               <Height>0.25in</Height>
               <Width>1in</Width>
-              <ZIndex>5</ZIndex>
+              <ZIndex>6</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox14">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Payé le</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox14</rd:DefaultName>
+              <Top>0.72499in</Top>
+              <Left>6.37444in</Left>
+              <Height>0.25in</Height>
+              <Width>0.59223in</Width>
+              <ZIndex>7</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1112,6 +1182,12 @@ a9ag60gDb8qQ8NieLD9jda6pDQtVEv1UqXVWVFaW3xxaFXbEsoP0ID2TK50u8kAfKfzHnOI/ylmdqnKt
         </Field>
         <Field Name="Item_Origin">
           <DataField>Item_Origin</DataField>
+        </Field>
+        <Field Name="Date_Paiement">
+          <DataField>Date_Paiement</DataField>
+        </Field>
+        <Field Name="Concerne">
+          <DataField>Concerne</DataField>
         </Field>
       </Fields>
       <Query>

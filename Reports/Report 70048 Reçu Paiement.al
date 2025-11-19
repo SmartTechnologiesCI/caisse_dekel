@@ -37,16 +37,33 @@ report 70048 Recu_Paiement
             {
 
             }
-            column()
+            column(Date_Paiement; Date_Paiement)
             {
-                
+
             }
+            column(Concerne; Concerne)
+            {
+
+            }
+
             trigger OnPreDataItem()
             var
             begin
                 CompanyInfo.get();
                 CompanyInfo.CalcFields(Picture);
-
+                if TicketPlanteur = false and TicketTransporteur = false then begin
+                    Error('Choisissez le type de ticket (Soit Planteur soit Transporteur)');
+                end else begin
+                    if TicketPlanteur = true and TicketTransporteur = true then begin
+                        Error('Choisissez un seul ticket');
+                    end;
+                    if TicketPlanteur = true then begin
+                        Concerne := Planteur;
+                    end;
+                    if TicketTransporteur = true then begin
+                        Concerne := Transporteurname;
+                    end;
+                end;
             end;
 
         }
@@ -60,12 +77,18 @@ report 70048 Recu_Paiement
         {
             area(Content)
             {
-                group(GroupName)
+                group(Planteur_Trasnporteur)
                 {
-                    // field(Name; SourceExpression)
-                    // {
+                    Caption = 'Planteur/Ttansporteur';
+                    field(Planteur; Planteur)
+                    {
+                        ApplicationArea = All;
+                    }
+                    field(Transporteurname; Transporteurname)
+                    {
+                        ApplicationArea = All;
+                    }
 
-                    // }
                 }
             }
         }
@@ -88,4 +111,9 @@ report 70048 Recu_Paiement
         myInt: Integer;
         Prix: Decimal;
         CompanyInfo: Record "Company Information";
+        Planteur: TextConst FRA = 'Planteur';
+        Transporteurname: TextConst FRA = 'Transporteur';
+        Concerne: Text[100];
+        TicketPlanteur: Boolean;
+        TicketTransporteur: Boolean;
 }
