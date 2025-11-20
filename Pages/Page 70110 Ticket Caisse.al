@@ -16,7 +16,7 @@ page 70110 "Ticket Caisse"
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = List;
-    CardPageId = "New Ticket";
+    CardPageId = "Paiement Ticket";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
                       ORDER(Descending)

@@ -57,9 +57,26 @@ report 70048 Recu_Paiement
             {
 
             }
+            column(Beneficiaire; Beneficiaire)
+            {
+
+            }
+            column(NCNI; NCNI)
+            {
+
+            }
+            column(Mode_Paiement; Mode_Paiement)
+            {
+
+            }
+            column(Observation; Observation)
+            {
+
+            }
 
             trigger OnPreDataItem()
             var
+                TypeOperation: Option;
             begin
 
                 CompanyInfo.get();
@@ -73,6 +90,10 @@ report 70048 Recu_Paiement
                     if TicketPlanteur = true then begin
                         Concerne := Planteur;
                         Nom_Concerne := "Nom planteur";
+                        if PrixAchat.FindSet() then begin
+
+                        end;
+                        // PrixAchat.SetRange("Type operation", "Type opération");
                     end else begin
                         if TicketTransporteur = true then begin
                             Concerne := Transporteurname;
@@ -88,9 +109,27 @@ report 70048 Recu_Paiement
             begin
                 if TicketPlanteur = true then begin
                     Nom_Concerne := "Nom planteur";
+                    PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
+                    PrixAchat.SetFilter("Item No.", '=%1', 'RPH-9003');
+                    PrixAchat.SetFilter("Starting Date", '<=%1', "Date validation");
+                    PrixAchat.SetFilter("Ending Date", '>=%1', "Date validation");
+                    PrixAchat.SetRange(Type_Operation_Options, "Type opération");
+                    if PrixAchat.FindFirst() then begin
+                        Prix := PrixAchat."Direct Unit Cost";
+                        Message('Prix: %1', Prix);
+                    end;
                 end else begin
                     if TicketTransporteur = true then begin
                         Nom_Concerne := "Driver Name";
+                        PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
+                        PrixAchat.SetFilter("Item No.", '=%1', 'RPH-9003');
+                        PrixAchat.SetFilter("Starting Date", '<=%1', "Date validation");
+                        PrixAchat.SetFilter("Ending Date", '>=%1', "Date validation");
+                        PrixAchat.SetRange(Type_Operation_Options, "Type opération");
+                        if PrixAchat.FindFirst() then begin
+                            Prix := PrixAchat."Direct Unit Cost";
+                            Message('Prix: %1', Prix);
+                        end;
                     end;
                 end;
             end;
@@ -147,4 +186,5 @@ report 70048 Recu_Paiement
         TicketPlanteur: Boolean;
         TicketTransporteur: Boolean;
         Nom_Concerne: Code[250];
+        PrixAchat: Record "Prix Achat";
 }
