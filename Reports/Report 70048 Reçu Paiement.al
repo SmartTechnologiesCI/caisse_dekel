@@ -116,7 +116,6 @@ report 70048 Recu_Paiement
                     PrixAchat.SetRange(Type_Operation_Options, "Type opération");
                     if PrixAchat.FindFirst() then begin
                         Prix := PrixAchat."Direct Unit Cost";
-                        Message('Prix: %1', Prix);
                     end;
                 end else begin
                     if TicketTransporteur = true then begin
@@ -128,7 +127,6 @@ report 70048 Recu_Paiement
                         PrixAchat.SetRange(Type_Operation_Options, "Type opération");
                         if PrixAchat.FindFirst() then begin
                             Prix := PrixAchat."Direct Unit Cost";
-                            Message('Prix: %1', Prix);
                         end;
                     end;
                 end;
