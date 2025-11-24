@@ -47,6 +47,10 @@ page 70111 Creation_Ticket
                 field(TICKET; TICKET)
                 {
                 }
+                field("Balance Code"; rec."Balance Code")
+                {
+                    ApplicationArea = All;
+                }
                 field("Code Transporteur"; "Code Transporteur")
                 {
                 }
