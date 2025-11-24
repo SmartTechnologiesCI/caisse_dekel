@@ -19,7 +19,7 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         {
 
             FieldClass = FlowField;
-            CalcFormula = count("Item Weigh Bridge" where("Date validation" = field("date filter 2"), Valide = const(true), "Statut paiement" = const(false),"Type opération"=const('ACHAT DIRECT')));
+            CalcFormula = count("Item Weigh Bridge" where("Date validation" = field("date filter 2"), Valide = const(true), "Statut paiement" = const(false),"Type opération"=const('ACHAT DIRECT   ')));
         }
         field(60004; "Ticket(s) Facturé(s) du jour"; Integer)
         {
