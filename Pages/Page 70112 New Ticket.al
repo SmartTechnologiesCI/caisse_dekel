@@ -217,18 +217,18 @@ page 70112 "Paiement Ticket"
                 field("POIDS ENTREE"; Rec."POIDS ENTREE")
                 {
                     ToolTip = 'Specifies the value of the POIDS ENTREE field.', Comment = '%';
-                    // Editable = false;
+                    Editable = false;
                 }
                 field("POIDS SORTIE"; Rec."POIDS SORTIE")
                 {
                     ToolTip = 'Specifies the value of the POIDS SORTIE field.', Comment = '%';
-                    // Editable = false;
+                    Editable = false;
                 }
                 //<<Fabrice Smart 05_03_25
                 field("POIDS NET"; rec."POIDS NET")
                 {
                     ApplicationArea = All;
-                    // Editable = false;
+                    Editable = false;
                 }
                 //<<Fabrice Smart 05_03_25
             }
@@ -446,7 +446,7 @@ page 70112 "Paiement Ticket"
         end else begin
             rec."Statut paiement" := true;
             REC.Date_Paiement := WorkDate();
-            
+
             rec.Modify();
             TransFertTicketFromItemWeigntToBridgeCaisse();
             TicketTransporteur();
