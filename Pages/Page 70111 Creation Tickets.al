@@ -85,14 +85,16 @@ page 70111 Creation_Ticket
                 //<<Fab Smartech 24_04_25
                 field("POIDS ENTREE"; "POIDS ENTREE")
                 {
-                    Editable = true;
+                    Editable = false;
                     Visible = true;
                 }
                 field("POIDS SORTIE"; "POIDS SORTIE")
                 {
+                    Editable = false;
                 }
                 field("POIDS NET"; "POIDS NET")
                 {
+                    Editable = false;
                 }
                 field("Item Origin"; "Item Origin")
                 {
