@@ -21,7 +21,7 @@ page 70111 Creation_Ticket
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
                       ORDER(Descending)
-                      WHERE("Type of Transportation" = CONST('=RECEPTION'));
+                      WHERE("Type of Transportation" = CONST('=RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
     {
@@ -46,6 +46,14 @@ page 70111 Creation_Ticket
                 // }
                 field(TICKET; TICKET)
                 {
+                }
+                field("Nom Client"; "Nom Client")
+                {
+                    ApplicationArea = All;
+                }
+                field("Type opération"; "Type opération")
+                {
+
                 }
                 field("Balance Code"; rec."Balance Code")
                 {
@@ -126,9 +134,10 @@ page 70111 Creation_Ticket
                 {
 
                 }
-                field("Type opération"; "Type opération")
-                {
-                }
+                // field("Type opération"; "Type opération")
+                // {
+
+                // }
                 field("Code planteur"; "Code planteur")
                 {
                 }
@@ -333,6 +342,18 @@ page 70111 Creation_Ticket
                         Report.Run(50500);
                     end;
                 }
+                action(Rapport_Quotidien)
+                {
+                    Caption = 'Rapport Quotidien Client Fournisseur';
+                    ApplicationArea = All;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    trigger OnAction()
+                    begin
+                        Report.Run(70049);
+                    end;
+                }
+
                 //     action("TicketPontBASCULE")
                 //     {
                 //         Caption = 'Ticket pont bascule';
