@@ -309,18 +309,28 @@ page 70111 Creation_Ticket
                         ItemWeight2: Record "Item Weigh Bridge";
                         ticket: Record "Item Weigh Bridge";
                     begin
-                        REC.valide := true;
-                        rec."Date validation" := WorkDate();
-                        Rec.Modify();
-                        // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
-                        Ticket.SetRange(TICKET, rec.TICKET);
-                        ticket.SetRange("Row No.", rec."Row No.");
-                        ticket.SetRange(RowID, rec.RowID);
-                        if ticket.FindFirst() then begin
-                            // RunModal(Report::"Ticket de caisse", ticket)
-                            Report.Run(Report::"Ticket de caisse", false, true, ticket);
+                        if ((rec."POIDS SORTIE" <= 0) or (rec."POIDS ENTREE" <= 0) or ((rec."POIDS SORTIE" <= 0) and (rec."POIDS ENTREE" <= 0))) then begin
+                            Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
+                        end else begin
+                            rec.TestField(valide, false);
+                            REC.valide := true;
+                            rec."Date validation" := WorkDate();
+                            Rec.Modify();
+                            CurrPage.Update();
+                            // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
+                            Print()
                         end;
 
+                    end;
+                }
+                action(Ticket_Pont_Bascule)
+                {
+                    Caption = 'Ticket Pont Bascule';
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    trigger OnAction()
+                    begin
+                        Report.Run(50500);
                     end;
                 }
                 //     action("TicketPontBASCULE")
@@ -1385,6 +1395,24 @@ page 70111 Creation_Ticket
         ItemWeighBridgecaisse."Posting Date" := rec."Posting Date";
         ItemWeighBridgecaisse.Statut_Total_Paiement := rec.Statut_Total_Paiement;
         ItemWeighBridgecaisse.Insert()
+    end;
+
+    procedure Print()
+    var
+        myInt: Integer;
+        ticket: Record "Item Weigh Bridge";
+    begin
+        ticket.Reset();
+        Ticket.SetRange(TICKET, rec.TICKET);
+        ticket.SetRange("Row No.", rec."Row No.");
+        ticket.SetRange("Ticket Planteur", rec."Ticket Planteur");
+        ticket.SetRange(RowID, rec.RowID);
+        if ticket.FindFirst() then begin
+            // RunModal(Report::"Ticket de caisse", ticket)
+            Report.Run(50500, false, false, ticket);
+        end;
+
+
     end;
 }
 

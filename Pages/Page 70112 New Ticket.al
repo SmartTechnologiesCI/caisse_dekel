@@ -256,8 +256,34 @@ page 70112 "Paiement Ticket"
                     ApplicationArea = All;
 
                     trigger OnAction()
+                    var
+                        Ticket: Record "Item Weigh Bridge";
+                        ticket1: Integer;
+                        row: Integer;
+                        ticketplanteur: code[50];
+                        rowid1: Integer;
                     begin
+                        // Clear(ticket1);
+                        // Clear(row);
+                        // Clear(ticketplanteur);
+                        // Clear(rowid1);
+                        // ticket1 := rec.TICKET;
+                        // row := rec."Row No.";
+                        // ticketplanteur := rec."Ticket Planteur";
+                        // rowid1 := rec.RowID;
+                        // Message('a: %1 b: %2', ticket1,row);
                         PayerPlanteur();
+
+                        // Ticket.SetRange(TICKET, ticket1);
+                        // ticket.SetRange("Row No.", row);
+                        // Ticket.SetRange("Ticket Planteur", ticketplanteur);
+                        // ticket.SetRange(RowID, rowid1);
+                        // if ticket.FindFirst() then begin
+                        //     Message('ti:%1', ticket."Ticket Planteur");
+                        //     // RunModal(Report::"Ticket de caisse", ticket)
+                        //     Report.Run(70048, false, false, ticket);
+                        // end;
+
                     end;
 
                 }
@@ -269,8 +295,31 @@ page 70112 "Paiement Ticket"
                     ApplicationArea = All;
 
                     trigger OnAction()
+                    var
+                        Ticket: Record "Item Weigh Bridge";
+                        ticket1: Integer;
+                        row: Integer;
+                        ticketplanteur: code[50];
+                        rowid1: Integer;
                     begin
+                        // Clear(ticket1);
+                        // Clear(row);
+                        // Clear(ticketplanteur);
+                        // Clear(rowid1);
+                        // ticket1 := rec.TICKET;
+                        // row := rec."Row No.";
+                        // ticketplanteur := rec."Ticket Planteur";
+                        // rowid1 := rec.RowID;
                         PayerTransporteur();
+                        // Ticket.SetRange(TICKET, ticket1);
+                        // ticket.SetRange("Row No.", row);
+                        // Ticket.SetRange("Ticket Planteur", ticketplanteur);
+                        // ticket.SetRange(RowID, rowid1);
+                        // if ticket.FindFirst() then begin
+                        //     Message('ti:%1', ticket."Ticket Planteur");
+                        //     // RunModal(Report::"Ticket de caisse", ticket)
+                        //     Report.Run(70048, false, false, ticket);
+                        // end;
                     end;
 
                 }

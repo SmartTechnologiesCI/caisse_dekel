@@ -184,6 +184,7 @@ page 70110 "Ticket Caisse"
                     Promoted = true;
                     PromotedCategory = Process;
                     ApplicationArea = All;
+                    Visible = false;
 
                     trigger OnAction()
                     begin
@@ -197,6 +198,7 @@ page 70110 "Ticket Caisse"
                     Promoted = true;
                     PromotedCategory = Process;
                     ApplicationArea = All;
+                    Visible = false;
 
                     trigger OnAction()
                     begin
