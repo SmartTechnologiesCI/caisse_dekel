@@ -9,7 +9,7 @@ report 70049 Client_Fournisseur
     {
         dataitem("Item Weigh Bridge"; "Item Weigh Bridge")
         {
-            RequestFilterFields = "Nom Client", "Type opération", "Date validation";
+            RequestFilterFields ="Date validation";
             column(Vehicle_Registration_No_; "Vehicle Registration No.")
             {
 
