@@ -467,7 +467,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Nom_Client.Value</Value>
+                                  <Value>=Fields!Description_Client_Fournisseur.Value</Value>
                                   <Style>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1098,6 +1098,7 @@
                           </Style>
                         </Textbox>
                         <ColSpan>7</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -1171,7 +1172,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!Nom_Client.Value</Value>
+                                  <Value>=Fields!Description_Client_Fournisseur.Value</Value>
                                   <Style>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1477,7 +1478,7 @@
                 <TablixMember>
                   <Group Name="Nom_Client">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!Nom_Client.Value</GroupExpression>
+                      <GroupExpression>=Fields!Description_Client_Fournisseur.Value</GroupExpression>
                       <GroupExpression>=Fields!Filter.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
@@ -1566,7 +1567,7 @@
                 <TablixMember>
                   <Group Name="Nom_Client1">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!Nom_Client.Value</GroupExpression>
+                      <GroupExpression>=Fields!Description_Client_Fournisseur.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
@@ -2034,6 +2035,12 @@ End Function
         </Field>
         <Field Name="PeriodeImpression">
           <DataField>PeriodeImpression</DataField>
+        </Field>
+        <Field Name="Description_Client_Fournisseur">
+          <DataField>Description_Client_Fournisseur</DataField>
+        </Field>
+        <Field Name="Client_Fournisseur">
+          <DataField>Client_Fournisseur</DataField>
         </Field>
       </Fields>
       <Query>
