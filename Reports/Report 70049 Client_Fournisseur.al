@@ -62,6 +62,10 @@ report 70049 Client_Fournisseur
             {
 
             }
+            column(PeriodeImpression; PeriodeImpression)
+            {
+
+            }
             trigger OnPreDataItem()
             var
                 myInt: Integer;
@@ -78,6 +82,7 @@ report 70049 Client_Fournisseur
                 //         Filter := "Désignation article";
                 //         Message('Filter: %1', Filter);
                 //     end;
+                PeriodeImpression := CopyStr(GetFilters, StrPos(GetFilters, ':') + 2);
 
 
             end;
@@ -145,4 +150,5 @@ report 70049 Client_Fournisseur
         TypeOperation: Boolean;
         Produit: Boolean;
         ValeurTypeOperation: code[100];
+        PeriodeImpression: Text[250];
 }
