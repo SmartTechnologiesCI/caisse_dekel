@@ -38,9 +38,9 @@ tableextension 70030 "Item Weigh Bridge caisse" extends "Item Weigh Bridge caiss
         }
         //<<Saber translate by Fab Smart 05_04_25
         //<<Fabrice Smart 05_03_25
-        field(2552; "Client/Fournisseur"; Option)
+        field(2552; "Client/Fournisseur"; CODE[50])
         {
-            OptionMembers = Client,Fournisseur;
+
         }
 
         field(20555; "Type Vehicule"; Code[50])
@@ -98,7 +98,7 @@ tableextension 70030 "Item Weigh Bridge caisse" extends "Item Weigh Bridge caiss
         {
             DataClassification = ToBeClassified;
         }
-         field(50010; Statut_Total_Paiement; Boolean)
+        field(50010; Statut_Total_Paiement; Boolean)
         {
             DataClassification = ToBeClassified;
             Caption = 'Entièrement payé';
