@@ -1,4 +1,4 @@
-page 70111 Creation_Ticket
+page 70113 "Historique Tickets valide"
 {
     // PROJECT :
     // ****************************************************************************************************************************************************************
@@ -10,7 +10,7 @@ page 70111 Creation_Ticket
     // ****************************************************************************************************************************************************************
     // 1.47     B2B    20-Apr-15    SatishKNV           New Page is created for Item Weight Bridge Functionality related.
 
-    CaptionML = ENU = 'Item Weight Bridge', FRA = 'Création tickets';
+    CaptionML = ENU = 'Item Weight Bridge', FRA = 'Historique tickets Validés';
     DeleteAllowed = true;
     Editable = true;
     InsertAllowed = false;
@@ -20,7 +20,7 @@ page 70111 Creation_Ticket
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(Descending) where("Balance Code" = filter('AY*'),valide = CONST(false));
+                      ORDER(Descending) where("Balance Code" = filter('AY*'),valide = CONST(true));
     //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
