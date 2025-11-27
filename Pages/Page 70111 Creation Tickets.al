@@ -20,7 +20,7 @@ page 70111 Creation_Ticket
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(Descending);
+                      ORDER(Descending) where("Balance Code" = filter('AY*'));
     //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
