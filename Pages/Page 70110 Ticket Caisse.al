@@ -11,8 +11,8 @@ page 70110 "Ticket Caisse"
     // 1.47     B2B    20-Apr-15    SatishKNV           New Page is created for Item Weight Bridge Functionality related.
 
     CaptionML = ENU = 'Item Weight Bridge', FRA = 'Tickets Caisse';
-    DeleteAllowed = true;
-    Editable = true;
+    DeleteAllowed = false;
+    Editable = false;
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = List;
@@ -233,7 +233,7 @@ page 70110 "Ticket Caisse"
                     Promoted = true;
                     PromotedCategory = Process;
                     ApplicationArea = All;
-
+                    Visible = false;
                     RunObject = report Recu_Paiement;
 
                     // trigger OnAction()

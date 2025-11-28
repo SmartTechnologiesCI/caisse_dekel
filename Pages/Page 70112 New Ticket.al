@@ -251,28 +251,41 @@ page 70112 "Paiement Ticket"
                 action(Paiement_Planteur)
                 {
                     Caption = 'Payer le planteur';
-                    Promoted = true;
-                    PromotedCategory = Process;
                     ApplicationArea = All;
 
                     trigger OnAction()
                     var
                         Ticket: Record "Item Weigh Bridge";
-                        ticket1: Integer;
-                        row: Integer;
-                        ticketplanteur: code[50];
-                        rowid1: Integer;
+                    // ticket1: Integer;
+                    // row: Integer;
+                    // ticketplanteur: code[50];
+                    // rowid1: Integer;
+                    // ItemWeighBridge: Record "Item Weigh Bridge";
+
                     begin
-                        // Clear(ticket1);
-                        // Clear(row);
-                        // Clear(ticketplanteur);
-                        // Clear(rowid1);
+
+                        Clear(Ticket1);
+                        Clear(rowno1);
+                        Clear(ROWID1);
+                        Clear(TicketPlanteur1);
+                        Ticket1 := rec.TICKET;
+                        ROWID1 := rec.RowID;
+                        rowno1 := rec."Row No.";
+                        TicketPlanteur1 := rec."Ticket Planteur";
                         // ticket1 := rec.TICKET;
                         // row := rec."Row No.";
                         // ticketplanteur := rec."Ticket Planteur";
                         // rowid1 := rec.RowID;
                         // Message('a: %1 b: %2', ticket1,row);
                         PayerPlanteur();
+                        // ItemWeighBridge.SetRange(TICKET, rec.TICKET);
+                        // ItemWeighBridge.SetRange("Ticket Planteur", rec."Ticket Planteur");
+                        // ItemWeighBridge.SetRange("Row No.", rec."Row No.");
+                        // ItemWeighBridge.SetRange(RowID, rec.RowID);
+                        // if ItemWeighBridge.FindFirst() then begin
+                        //     // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
+                        //     Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
+                        // end;
 
                         // Ticket.SetRange(TICKET, ticket1);
                         // ticket.SetRange("Row No.", row);
@@ -290,8 +303,6 @@ page 70112 "Paiement Ticket"
                 action(Paiement_Transpoteur)
                 {
                     Caption = 'Payer le transporteur';
-                    Promoted = true;
-                    PromotedCategory = Process;
                     ApplicationArea = All;
 
                     trigger OnAction()
@@ -302,11 +313,15 @@ page 70112 "Paiement Ticket"
                         ticketplanteur: code[50];
                         rowid1: Integer;
                     begin
-                        // Clear(ticket1);
-                        // Clear(row);
-                        // Clear(ticketplanteur);
-                        // Clear(rowid1);
-                        // ticket1 := rec.TICKET;
+                        Clear(Ticket1);
+                        Clear(rowno1);
+                        Clear(ROWID1);
+                        Clear(TicketPlanteur1);
+                        Ticket1 := rec.TICKET;
+                        ROWID1 := rec.RowID;
+                        rowno1 := rec."Row No.";
+                        TicketPlanteur1 := rec."Ticket Planteur";
+
                         // row := rec."Row No.";
                         // ticketplanteur := rec."Ticket Planteur";
                         // rowid1 := rec.RowID;
@@ -326,8 +341,6 @@ page 70112 "Paiement Ticket"
                 action(Paiement_Planteur_Fournissuer)
                 {
                     Caption = 'Payer le planteur & le transporteur';
-                    Promoted = true;
-                    PromotedCategory = Process;
                     ApplicationArea = All;
                     Visible = false;
 
@@ -347,14 +360,43 @@ page 70112 "Paiement Ticket"
                 action(Recu_Paiement)
                 {
                     Caption = 'Reçu Paiement';
-                    Promoted = true;
-                    PromotedCategory = Process;
                     ApplicationArea = All;
 
-                    RunObject = report Recu_Paiement;
+                    // RunObject = report Recu_Paiement;
+                    trigger OnAction()
+                    var
+                        ItemWeighBridge: Record "Item Weigh Bridge";
+                    begin
+                        ItemWeighBridge.SetRange(TICKET, Ticket1);
+                        ItemWeighBridge.SetRange("Ticket Planteur", TicketPlanteur1);
+                        ItemWeighBridge.SetRange("Row No.", rowno1);
+                        ItemWeighBridge.SetRange(RowID, ROWID1);
+                        if ItemWeighBridge.FindFirst() then begin
+                            // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
+                            Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
+                        end;
+                    end;
                 }
             }
 
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                actionref(Paiement_Planteur_Promoted; Paiement_Planteur)
+                {
+                }
+                actionref(Paiement_Transpoteur_Promoted; Paiement_Transpoteur)
+                {
+                }
+                actionref(Paiement_Planteur_Fournissuer_Promoted; Paiement_Planteur_Fournissuer)
+                {
+                }
+                actionref(Recu_Paiement_Promoted; Recu_Paiement)
+                {
+                }
+            }
         }
     }
     procedure TransFertTicketFromItemWeigntToBridgeCaisse()
@@ -527,4 +569,8 @@ page 70112 "Paiement Ticket"
 
     var
         PlanterCodeunit: Codeunit "Planter's Post";
+        Ticket1: Integer;
+        TicketPlanteur1: Code[50];
+        ROWID1: Integer;
+        rowno1: Integer;
 }
