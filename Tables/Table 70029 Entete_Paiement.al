@@ -48,6 +48,21 @@ table 70029 Entete_Paiement
             DataClassification = ToBeClassified;
             Caption = 'N° Doc Externe';
         }
+        field(50029; CNI; Code[250])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'CARTE NATIONANLE';
+        }
+        field(50030; Mode_Paiement; Option)
+        {
+            Caption = 'Mode Paiement';
+            DataClassification = ToBeClassified;
+            OptionMembers = ESPECE,WAVE,OM,"MTN Money","MOOV Money",CHEQUE;
+        }
+        field(50031; Observation; Text[250])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

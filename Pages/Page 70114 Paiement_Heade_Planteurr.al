@@ -230,6 +230,7 @@ page 70114 Paiement_Header
         ItemWeighBridgecaisse."Posting Date" := ItemWeigthBridge."Posting Date";
         ItemWeighBridgecaisse.Statut_Total_Paiement := ItemWeigthBridge.Statut_Total_Paiement;
         ItemWeighBridgecaisse.Date_Paiement := WorkDate();
+        ItemWeighBridgecaisse.NuDocExtern := ItemWeigthBridge.NumDocExten;
         ItemWeighBridgecaisse.Insert()
     end;
 
