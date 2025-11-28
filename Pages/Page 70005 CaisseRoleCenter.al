@@ -69,6 +69,7 @@ page 70005 "Caisse RoleCenter"
                     ApplicationArea = All;
                     PromotedCategory = Category12;
                     Caption = 'Archives paiement planteur';
+                    RunObject = page ListePantPlanteurArchive;
 
                 }
                 action(HistoriquesTransporteur)
@@ -77,6 +78,7 @@ page 70005 "Caisse RoleCenter"
                     ApplicationArea = All;
                     PromotedCategory = Category12;
                     Caption = 'Archives paiement Transporteur';
+                    RunObject = page ListePantTransporteurArchive;
 
                 }
 

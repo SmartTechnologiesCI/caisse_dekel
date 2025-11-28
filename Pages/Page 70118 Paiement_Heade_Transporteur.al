@@ -173,6 +173,7 @@ page 70118 Paiement_Header_Transporteur
             ItemWeigBridge2.Modify();
             //***
             rec.Archive := true;
+            rec.Modify();
             //***
             TransFertTicketFromItemWeigntToBridgeCaisse(ItemWeigBridge2);
             TicketTransporteur(ItemWeigBridge2);
