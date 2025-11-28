@@ -108,12 +108,30 @@ page 70122 ArchiEntetePlanteur
     {
         area(Processing)
         {
+            action(Imprimer)
+            {
+                Caption = 'Imprimer Ticket';
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                trigger OnAction()
+
+                var
+                    Entete_Paiements: Record Entete_Paiement;
+                begin
+                    Entete_Paiements.SetRange(code_Paiement, rec.code_Paiement);
+                    if Entete_Paiements.FindFirst() then begin
+                        Report.Run(70048, true, false, Entete_Paiements);
+                    end;
+                end;
+            }
             action(Valider)
             {
                 Caption = 'Valider paiement';
                 Promoted = true;
                 PromotedCategory = Process;
                 ApplicationArea = All;
+                Visible = false;
 
                 trigger OnAction()
                 var
