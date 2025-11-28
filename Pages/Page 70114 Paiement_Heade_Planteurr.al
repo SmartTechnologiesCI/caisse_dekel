@@ -50,7 +50,7 @@ page 70114 Paiement_Header
                         ItemWeighBridge.SetRange("Code planteur", rec.Palanteur);
                         if ItemWeighBridge.FindFirst() then begin
                             rec.Nom_Planteur := ItemWeighBridge."Nom planteur";
-                            rec.Modify();
+                            // rec.Modify();
                         end;
 
 
@@ -86,9 +86,12 @@ page 70114 Paiement_Header
     {
         area(Processing)
         {
-            action(ActionName)
+            action(Valider)
             {
-
+                Caption = 'Valider paiement';
+                Promoted = true;
+                PromotedCategory = Process;
+                ApplicationArea = All;
                 trigger OnAction()
                 begin
 

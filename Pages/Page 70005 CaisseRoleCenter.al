@@ -79,7 +79,7 @@ page 70005 "Caisse RoleCenter"
                 PromotedCategory = Process;
                 RunPageMode = Create;
                 ApplicationArea = All;
-                RunObject = Page 70114;
+                RunObject = Page 70116;
             }
 
 

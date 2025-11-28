@@ -14,10 +14,12 @@ page 70116 ListePaiementPlanteur
                 field(Code_Transporteur; Code_Transporteur)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field(Nom_Transporteur; Nom_Transporteur)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field(Palanteur; Palanteur)
                 {
