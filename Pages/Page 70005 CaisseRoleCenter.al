@@ -64,6 +64,7 @@ page 70005 "Caisse RoleCenter"
                 PromotedCategory = Process;
                 ApplicationArea = All;
                 RunObject = Page 70022;
+
             }
             action("Clôture de caisse")
             {
@@ -74,7 +75,7 @@ page 70005 "Caisse RoleCenter"
             }
             action(Paiement_Multiple)
             {
-                Caption = 'Paiement Multiple pLANTEUR';
+                Caption = 'Paiement Multiple Planteur';
                 Promoted = true;
                 PromotedCategory = Process;
                 RunPageMode = Create;
@@ -100,6 +101,7 @@ page 70005 "Caisse RoleCenter"
                 PromotedCategory = Process;
                 ApplicationArea = All;
                 RunObject = Page 70033;
+                Visible = false;
             }
             action("Liste des dépots")
             {
@@ -107,6 +109,7 @@ page 70005 "Caisse RoleCenter"
                 PromotedCategory = Process;
                 ApplicationArea = All;
                 RunObject = Page 70003;
+                Visible = false;
             }
             action("Liste des mouvements de caisse")
             {
@@ -114,6 +117,7 @@ page 70005 "Caisse RoleCenter"
                 PromotedCategory = Process;
                 ApplicationArea = All;
                 RunObject = Page 70021;
+                Visible = false;
             }
             action("Liste des transactions")
             {
@@ -121,6 +125,7 @@ page 70005 "Caisse RoleCenter"
                 PromotedCategory = Process;
                 ApplicationArea = All;
                 RunObject = Page 70002;
+                Visible = false;
             }
 
             action("Compte tiers d")
@@ -128,6 +133,7 @@ page 70005 "Caisse RoleCenter"
                 Caption = 'INFOS CLIENTS ';
                 Image = Customer;
                 RunObject = page "Compte tiers activity Caisse";
+                Visible = false;
             }
 
         }
