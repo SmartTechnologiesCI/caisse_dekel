@@ -1974,7 +1974,7 @@
               <rd:DefaultName>Textbox15</rd:DefaultName>
               <Top>1.30556in</Top>
               <Left>1.95833in</Left>
-              <Height>0.25in</Height>
+              <Height>0.26388in</Height>
               <Width>6.00834in</Width>
               <ZIndex>11</ZIndex>
               <Style>
@@ -1988,8 +1988,8 @@
               </Style>
             </Textbox>
             <Line Name="Line1">
-              <Top>1.68in</Top>
-              <Left>1.96333in</Left>
+              <Top>1.99111in</Top>
+              <Left>1.94444in</Left>
               <Height>0in</Height>
               <Width>5.28333in</Width>
               <ZIndex>12</ZIndex>
@@ -2035,7 +2035,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox29</rd:DefaultName>
-              <Top>1.74944in</Top>
+              <Top>2.06055in</Top>
               <Left>1.14667in</Left>
               <Height>0.325in</Height>
               <Width>1.58333in</Width>
@@ -2065,7 +2065,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox30</rd:DefaultName>
-              <Top>2.10222in</Top>
+              <Top>2.42722in</Top>
               <Left>0.55in</Left>
               <Height>0.25in</Height>
               <Width>3.18in</Width>
@@ -2100,7 +2100,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox29</rd:DefaultName>
-              <Top>1.74945in</Top>
+              <Top>2.06055in</Top>
               <Left>6.37444in</Left>
               <Height>0.325in</Height>
               <Width>1.58333in</Width>
@@ -2132,8 +2132,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox30</rd:DefaultName>
-              <Top>2.10222in</Top>
-              <Left>4.78667in</Left>
+              <Top>2.42722in</Top>
+              <Left>4.79557in</Left>
               <Height>0.25in</Height>
               <Width>3.1711in</Width>
               <ZIndex>16</ZIndex>
@@ -2199,6 +2199,79 @@
               <Height>0.25in</Height>
               <Width>2.18in</Width>
               <ZIndex>18</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox37">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Téléphone</Value>
+                      <Style>
+                        <FontFamily>Times New Roman</FontFamily>
+                        <FontSize>15pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox29</rd:DefaultName>
+              <Top>1.59666in</Top>
+              <Left>0.55in</Left>
+              <Height>0.25833in</Height>
+              <Width>1.39444in</Width>
+              <ZIndex>19</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox38">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>: </Value>
+                      <Style>
+                        <FontFamily>Times New Roman</FontFamily>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=First(Fields!Telephone.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontFamily>Times New Roman</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox15</rd:DefaultName>
+              <Top>1.59666in</Top>
+              <Left>1.95833in</Left>
+              <Height>0.25833in</Height>
+              <Width>2.00555in</Width>
+              <ZIndex>20</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2398,6 +2471,9 @@ a9ag60gDb8qQ8NieLD9jda6pDQtVEv1UqXVWVFaW3xxaFXbEsoP0ID2TK50u8kAfKfzHnOI/ylmdqnKt
         </Field>
         <Field Name="Observation">
           <DataField>Observation</DataField>
+        </Field>
+        <Field Name="Telephone">
+          <DataField>Telephone</DataField>
         </Field>
       </Fields>
       <Query>

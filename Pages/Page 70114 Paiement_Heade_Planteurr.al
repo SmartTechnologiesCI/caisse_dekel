@@ -118,6 +118,7 @@ page 70114 Paiement_Header
 
                     ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
                     ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                    ItemWeightBridge.SetFilter("Statut paiement Planteur", '=%1', false);
                     if ItemWeightBridge.FindSet() then begin
                         repeat begin
                             PayerPlanteur(ItemWeightBridge)
