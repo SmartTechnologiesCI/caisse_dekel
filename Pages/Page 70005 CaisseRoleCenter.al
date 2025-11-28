@@ -72,6 +72,16 @@ page 70005 "Caisse RoleCenter"
                 ApplicationArea = All;
                 RunObject = Page 70027;
             }
+            action(Paiement_Multiple)
+            {
+                Caption = 'Paiement Multiple';
+                Promoted = true;
+                PromotedCategory = Process;
+                ApplicationArea = All;
+                RunObject = Page 70114;
+            }
+
+
             action("Liste des encaissements")
             {
 

@@ -28,6 +28,11 @@ page 70114 Paiement_Header
                     ApplicationArea = All;
                 }
             }
+            part(Ligne_Paiement; Ligne_Paiement)
+            {
+                SubPageLink = "Code Transporteur" = field(Palanteur_Transporteur), "Code planteur" = field(Palanteur_Transporteur);
+
+            }
         }
     }
 

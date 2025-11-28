@@ -1,6 +1,6 @@
 page 70115 Ligne_Paiement
 {
-    PageType = Card;
+    PageType = ListPart;
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = "Item Weigh Bridge";
@@ -9,8 +9,9 @@ page 70115 Ligne_Paiement
     {
         area(Content)
         {
-            group(GroupName)
+            repeater(General)
             {
+
                 field("Ticket Planteur"; "Ticket Planteur")
                 {
 
@@ -48,6 +49,7 @@ page 70115 Ligne_Paiement
                 {
                     ApplicationArea = All;
                 }
+
             }
         }
     }
