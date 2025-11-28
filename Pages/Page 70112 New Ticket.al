@@ -210,6 +210,10 @@ page 70112 "Paiement Ticket"
                 {
                     ApplicationArea = All;
                 }
+                field(Telephone; Telephone)
+                {
+                    ApplicationArea = All;
+                }
 
             }
             group(Poids)

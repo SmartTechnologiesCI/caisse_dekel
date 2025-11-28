@@ -73,6 +73,10 @@ page 70114 Paiement_Header
                 {
                     ApplicationArea = All;
                 }
+                field(Telephone; Telephone)
+                {
+                }
+
                 field(Observation; Observation)
                 {
                     ApplicationArea = All;
