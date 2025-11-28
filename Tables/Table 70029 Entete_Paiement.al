@@ -63,6 +63,10 @@ table 70029 Entete_Paiement
         {
             DataClassification = ToBeClassified;
         }
+        field(50032; Telephone; Code[25])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

@@ -17,6 +17,10 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             DataClassification = ToBeClassified;
             Caption = 'N° Doc Externe';
         }
+        field(55008; Telephone; Code[25])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

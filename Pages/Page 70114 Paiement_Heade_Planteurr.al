@@ -65,6 +65,18 @@ page 70114 Paiement_Header
                 {
                     ApplicationArea = All;
                 }
+                field(CNI; CNI)
+                {
+                    ApplicationArea = All;
+                }
+                field(Mode_Paiement; Mode_Paiement)
+                {
+                    ApplicationArea = All;
+                }
+                field(Observation; Observation)
+                {
+                    ApplicationArea = All;
+                }
                 field(Date_Paiement; Date_Paiement)
                 {
                     ApplicationArea = All;

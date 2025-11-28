@@ -28,6 +28,10 @@ page 70115 Ligne_Paiement
                         HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
                         if HeaderPaiement.FindFirst() then begin
                             Rec.Beneficiaire := HeaderPaiement.Beneficiare;
+                            REC.NCNI := HeaderPaiement.CNI;
+                            REC.Mode_Paiement := HeaderPaiement.Mode_Paiement;
+                            REC.Observation := HeaderPaiement.Observation;
+                            REC.Telephone := HeaderPaiement.Telephone;
                         end;
                     end;
                 }
@@ -61,6 +65,23 @@ page 70115 Ligne_Paiement
                 {
 
                 }
+                field(NCNI; NCNI)
+                {
+                    ApplicationArea = All;
+                }
+                field(Mode_Paiement; Mode_Paiement)
+                {
+                    ApplicationArea = All;
+                }
+                field(Telephone; Telephone)
+                {
+                    ApplicationArea = All;
+                }
+                field(Observation; Observation)
+                {
+
+                }
+
                 field("Statut paiement Planteur"; "Statut paiement Planteur")
                 {
                     ApplicationArea = All;
