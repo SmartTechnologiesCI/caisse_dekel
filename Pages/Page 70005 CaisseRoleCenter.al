@@ -44,6 +44,7 @@ page 70005 "Caisse RoleCenter"
                 ApplicationArea = All;
                 RunObject = Page 70004;
                 RunPageMode = Create;
+                Visible = false;
             }
             action("Mouvements Entrées et sorties")
             {
@@ -52,12 +53,38 @@ page 70005 "Caisse RoleCenter"
                 ApplicationArea = All;
                 RunObject = Page 70020;
                 RunPageMode = Create;
+                Visible = false;
 
             }
 
         }
+        area(Sections)
+        {
+
+            group(Historiques)
+            {
+                action(HistoriquesPlanteur)
+                {
+                    Promoted = True;
+                    ApplicationArea = All;
+                    PromotedCategory = Category12;
+                    Caption = 'Archives paiement planteur';
+
+                }
+                action(HistoriquesTransporteur)
+                {
+                    Promoted = True;
+                    ApplicationArea = All;
+                    PromotedCategory = Category12;
+                    Caption = 'Archives paiement Transporteur';
+
+                }
+
+            }
+        }
         area(Embedding)
         {
+
             action("Ouverture de caisse")
             {
                 Promoted = true;

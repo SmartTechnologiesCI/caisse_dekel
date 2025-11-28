@@ -67,6 +67,11 @@ table 70030 Entete_Paiement_Transporteur
         {
             DataClassification = ToBeClassified;
         }
+        field(50033; Archive; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Archivé';
+        }
     }
 
     keys

@@ -67,6 +67,11 @@ table 70029 Entete_Paiement
         {
             DataClassification = ToBeClassified;
         }
+        field(50033; Archive; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Archivé';
+        }
     }
 
     keys
