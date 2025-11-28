@@ -6,6 +6,9 @@ page 70120 ListePantTransporteurArchive
     SourceTable = Entete_Paiement_Transporteur;
     CardPageId = Paiement_Header_Transporteur;
     Caption = 'Archive Paiement Transporteur';
+    Editable = false;
+    InsertAllowed = false;
+    ModifyAllowed = false;
     layout
     {
         area(Content)

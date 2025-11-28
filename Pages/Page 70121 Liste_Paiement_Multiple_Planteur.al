@@ -3,9 +3,14 @@ page 70121 ListePantPlanteurArchive
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
+    
     SourceTable = Entete_Paiement;
-    CardPageId = Paiement_Header_Transporteur;
+    SourceTableView = where(Archive = const(true));
+    CardPageId = ArchiEntetePlanteur;
     Caption = 'Archive Paiement Planteur';
+    Editable = false;
+    InsertAllowed = false;
+    ModifyAllowed = false;
     layout
     {
         area(Content)
