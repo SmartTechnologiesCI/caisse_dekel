@@ -16,6 +16,10 @@ page 70115 Ligne_Paiement
                 {
 
                 }
+                field(Ticket_Concerne; Ticket_Concerne)
+                {
+                    ApplicationArea = All;
+                }
                 field("Code planteur"; "Code planteur")
                 {
                     ApplicationArea = All;
@@ -27,10 +31,12 @@ page 70115 Ligne_Paiement
                 field("Code Transporteur"; "Code Transporteur")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Nom Transporteur"; "Nom Transporteur")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field(Beneficiaire; Beneficiaire)
                 {

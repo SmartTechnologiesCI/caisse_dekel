@@ -103,6 +103,11 @@ tableextension 70030 "Item Weigh Bridge caisse" extends "Item Weigh Bridge caiss
             DataClassification = ToBeClassified;
             Caption = 'Entièrement payé';
         }
+        field(50011; Ticket_Concerne; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Ticket(s) Concerné(s)';
+        }
     }
 
     keys
