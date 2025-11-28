@@ -7,6 +7,7 @@ page 70122 ArchiEntetePlanteur
     SourceTableView = where(Archive = const(true));
     InsertAllowed = false;
     ModifyAllowed = false;
+    DeleteAllowed = false;
     Caption = 'Multiple paiement Planteur Archive';
 
     layout
