@@ -74,9 +74,10 @@ page 70005 "Caisse RoleCenter"
             }
             action(Paiement_Multiple)
             {
-                Caption = 'Paiement Multiple';
+                Caption = 'Paiement Multiple pLANTEUR';
                 Promoted = true;
                 PromotedCategory = Process;
+                RunPageMode = Create;
                 ApplicationArea = All;
                 RunObject = Page 70114;
             }

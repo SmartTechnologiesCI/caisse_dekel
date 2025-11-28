@@ -1,21 +1,29 @@
-page 70114 Paiement_Header
+page 70116 ListePaiementPlanteur
 {
-    PageType = Card;
+    PageType = List;
     ApplicationArea = All;
-    UsageCategory = Administration;
+    UsageCategory = Lists;
     SourceTable = Entete_Paiement;
-
+    CardPageId = Paiement_Header;
     layout
     {
         area(Content)
         {
-            group(GroupName)
+            repeater(General)
             {
-                field(Palanteur_Transporteur; Palanteur_Transporteur)
+                field(Code_Transporteur; Code_Transporteur)
                 {
                     ApplicationArea = All;
                 }
-                field(Beneficiare; Beneficiare)
+                field(Nom_Transporteur; Nom_Transporteur)
+                {
+                    ApplicationArea = All;
+                }
+                field(Palanteur; Palanteur)
+                {
+                    ApplicationArea = All;
+                }
+                field(Nom_Planteur; Nom_Planteur)
                 {
                     ApplicationArea = All;
                 }
@@ -23,16 +31,16 @@ page 70114 Paiement_Header
                 {
                     ApplicationArea = All;
                 }
-                field(Caissier; Caissier)
+                field(Beneficiare; Beneficiare)
                 {
-                    ApplicationArea = All;
+                    ApplicationArea = ALL;
                 }
-            }
-            part(Ligne_Paiement; Ligne_Paiement)
-            {
-                SubPageLink = "Code Transporteur" = field(Palanteur_Transporteur), "Code planteur" = field(Palanteur_Transporteur);
 
             }
+        }
+        area(Factboxes)
+        {
+
         }
     }
 
@@ -50,7 +58,4 @@ page 70114 Paiement_Header
             }
         }
     }
-
-    var
-        myInt: Integer;
 }

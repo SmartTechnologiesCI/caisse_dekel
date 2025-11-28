@@ -36,6 +36,10 @@ page 70115 Ligne_Paiement
                 {
 
                 }
+                field("Statut paiement Planteur"; "Statut paiement Planteur")
+                {
+                    ApplicationArea = All;
+                }
                 field("POIDS ENTREE"; "POIDS ENTREE")
                 {
                     ApplicationArea = all;

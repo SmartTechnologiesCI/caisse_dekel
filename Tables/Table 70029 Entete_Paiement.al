@@ -10,10 +10,10 @@ table 70029 Entete_Paiement
             AutoIncrement = true;
 
         }
-        field(50001; Palanteur_Transporteur; code[50])
+        field(50001; Palanteur; code[50])
         {
             DataClassification = ToBeClassified;
-            Caption = 'Planteur/Transporteur';
+            Caption = 'Planteur';
         }
         field(50002; Date_Paiement; Date)
         {
@@ -27,6 +27,21 @@ table 70029 Entete_Paiement
         {
             DataClassification = ToBeClassified;
             Caption = 'Caissier/Caissière';
+        }
+        field(50005; Code_Transporteur; Code[250])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Code transporteur';
+        }
+        field(5006; Nom_Transporteur; Text[250])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Nom Transporteur';
+        }
+        field(5007; Nom_Planteur; Text[250])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Nom planteur';
         }
     }
 
