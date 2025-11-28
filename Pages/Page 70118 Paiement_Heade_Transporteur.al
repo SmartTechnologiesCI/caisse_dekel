@@ -3,7 +3,7 @@ page 70118 Paiement_Header_Transporteur
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = Entete_Paiement;
+    SourceTable = Entete_Paiement_Transporteur;
     InsertAllowed = true;
     ModifyAllowed = true;
     Caption = 'Multiple paiement Planteur';
@@ -94,9 +94,9 @@ page 70118 Paiement_Header_Transporteur
                     ApplicationArea = All;
                 }
             }
-            part(Ligne_Paiement; Ligne_Paiement)
+            part(Ligne_Paiement_Transporteur; Ligne_Paiement_Transporteur)
             {
-                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement Planteur" = const(false);
+                SubPageLink = "Code Transporteur" = field(Palanteur), "Statut paiement" = const(false);
 
             }
         }
@@ -117,15 +117,15 @@ page 70118 Paiement_Header_Transporteur
                 var
                     ItemWeightBridge: Record "Item Weigh Bridge";
                     ItemWeightBridge2: Record "Item Weigh Bridge";
-                    EnteteHeader: Record Entete_Paiement;
+                    EnteteHeader: Record Entete_Paiement_Transporteur;
                 begin
 
                     ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
                     ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
-                    ItemWeightBridge.SetFilter("Statut paiement Planteur", '=%1', false);
+                    ItemWeightBridge.SetFilter("Statut paiement", '=%1', false);
                     if ItemWeightBridge.FindSet() then begin
                         repeat begin
-                            PayerPlanteur(ItemWeightBridge)
+                            PayerTransporteur(ItemWeightBridge)
                         end until ItemWeightBridge.Next() = 0;
                     end else begin
                         Error('Vous n''avez rien sélectionné');
@@ -155,6 +155,46 @@ page 70118 Paiement_Header_Transporteur
                 ItemWeigBridge.Modify();
             end;
         end;
+    end;
+
+    procedure PayerTransporteur(ItemWeigBridge2: Record "Item Weigh Bridge")
+    var
+        myInt: Integer;
+    begin
+        if ItemWeigBridge2."Type opération" = 'ACHAT COMPTANT' then begin
+            Error('On ne peut pas payer le transporteur car ce ticket est: ACHAT COMPTANT');
+        end;
+        if (ItemWeigBridge2."Statut paiement" = true) then begin
+            Error('Ce ticket a été déja payé pour le transporteur');
+        end else begin
+            ItemWeigBridge2."Statut paiement" := true;
+            ItemWeigBridge2.Date_Paiement := WorkDate();
+
+            ItemWeigBridge2.Modify();
+            TransFertTicketFromItemWeigntToBridgeCaisse(ItemWeigBridge2);
+            TicketTransporteur(ItemWeigBridge2);
+            if ItemWeigBridge2."Statut paiement Planteur" = true then begin
+                ItemWeigBridge2.Statut_Total_Paiement := true;
+                ItemWeigBridge2.Modify()
+            end;
+        end;
+    end;
+
+    procedure TicketTransporteur(ItemWeignt2: Record "Item Weigh Bridge")
+    var
+        ItemWeighBridgecaisse: Record "Item Weigh Bridge caisse";
+    begin
+        ItemWeighBridgecaisse.SetRange(TICKET, ItemWeignt2.TICKET);
+        ItemWeighBridgecaisse.SetRange(RowID, ItemWeignt2.RowID);
+        ItemWeighBridgecaisse.SetRange("Ticket Planteur");
+        if ItemWeighBridgecaisse.FindLast() then begin
+            ItemWeighBridgecaisse.EtatRegime := ItemWeignt2.EtatRegime;
+            ItemWeighBridgecaisse.EtatTransport := 'PA';
+            ItemWeighBridgecaisse."Ligne paiement trans" := TRUE;
+            ItemWeighBridgecaisse."Ligne paiement" := ItemWeignt2."Ligne paiement";
+            ItemWeighBridgecaisse.Modify()
+        end;
+
     end;
 
     procedure TransFertTicketFromItemWeigntToBridgeCaisse(ItemWeigthBridge: Record "Item Weigh Bridge")

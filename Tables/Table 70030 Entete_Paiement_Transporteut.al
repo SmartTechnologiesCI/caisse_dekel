@@ -13,7 +13,7 @@ table 70030 Entete_Paiement_Transporteur
         field(50001; Palanteur; code[50])
         {
             DataClassification = ToBeClassified;
-            Caption = 'Planteur';
+            Caption = 'Transporteur';
         }
         field(50002; Date_Paiement; Date)
         {

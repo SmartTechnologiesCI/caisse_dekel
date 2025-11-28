@@ -100,6 +100,15 @@ page 70005 "Caisse RoleCenter"
                 ApplicationArea = All;
                 RunObject = report 70048;
             }
+            action(ImpressionTansporrteur)
+            {
+                Caption = 'Impression en masse Transporteur';
+                Promoted = true;
+                PromotedCategory = Process;
+                RunPageMode = Create;
+                ApplicationArea = All;
+                RunObject = report 70048;
+            }
 
 
 

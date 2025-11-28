@@ -43,23 +43,25 @@ page 70119 Ligne_Paiement_Transporteur
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Visible = false;
                 }
                 field("Nom planteur"; "Nom planteur")
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Visible = false;
                 }
                 field("Code Transporteur"; "Code Transporteur")
                 {
                     ApplicationArea = All;
                     Visible = false;
-                    Editable = false;
+
                 }
                 field("Nom Transporteur"; "Nom Transporteur")
                 {
                     ApplicationArea = All;
                     Visible = false;
-                    Editable = false;
+
                 }
                 field(Beneficiaire; Beneficiaire)
                 {
