@@ -147,6 +147,10 @@ page 70114 Paiement_Header
             ItemWeigBridge.NumDocExten := rec.NumDocExt;
             ItemWeigBridge.Date_Paiement := WorkDate();
             ItemWeigBridge.Modify();
+            //**
+            rec.Archive := true;
+            REC.Modify();
+            //**
             // Message('yes1:%1', ItemWeigBridge."Statut paiement Planteur");
             TransFertTicketFromItemWeigntToBridgeCaisse(ItemWeigBridge);
             TicketPlanteur(ItemWeigBridge);
