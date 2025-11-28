@@ -84,7 +84,7 @@ page 70119 Ligne_Paiement_Transporteur
 
                 }
 
-                field("Statut paiement Planteur"; "Statut paiement Planteur")
+                field("Statut paiement"; "Statut paiement")
                 {
                     ApplicationArea = All;
                     Editable = false;

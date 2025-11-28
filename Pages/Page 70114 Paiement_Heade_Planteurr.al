@@ -144,7 +144,7 @@ page 70114 Paiement_Header
             Error('Ce ticket a été déja payé pour le planteur');
         end else begin
             ItemWeigBridge."Statut paiement Planteur" := true;
-            ItemWeigBridge.NumDocExten := (ItemWeigBridge."Code planteur" + Format(rec.code_Paiement));
+            ItemWeigBridge.NumDocExten := rec.NumDocExt;
             ItemWeigBridge.Date_Paiement := WorkDate();
             ItemWeigBridge.Modify();
             // Message('yes1:%1', ItemWeigBridge."Statut paiement Planteur");
