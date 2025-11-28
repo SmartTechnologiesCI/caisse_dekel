@@ -118,10 +118,11 @@ page 70122 ArchiEntetePlanteur
 
                 var
                     Entete_Paiements: Record Entete_Paiement;
+                    itemWigIfbhhf: Record "Item Weigh Bridge";
                 begin
-                    Entete_Paiements.SetRange(code_Paiement, rec.code_Paiement);
-                    if Entete_Paiements.FindFirst() then begin
-                        Report.Run(70048, true, false, Entete_Paiements);
+                    itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
+                    if itemWigIfbhhf.FindFirst() then begin
+                        Report.Run(70048, true, false, itemWigIfbhhf);
                     end;
                 end;
             }
