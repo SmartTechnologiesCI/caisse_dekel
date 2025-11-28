@@ -43,6 +43,11 @@ table 70029 Entete_Paiement
             DataClassification = ToBeClassified;
             Caption = 'Nom planteur';
         }
+        field(50008; NumDocExt; Code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'N° Doc Externe';
+        }
     }
 
     keys

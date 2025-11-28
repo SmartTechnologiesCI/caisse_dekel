@@ -81,6 +81,16 @@ page 70005 "Caisse RoleCenter"
                 ApplicationArea = All;
                 RunObject = Page 70116;
             }
+            action(ImpressionPaimentPlanter)
+            {
+                Caption = 'Impression en masse planteur';
+                Promoted = true;
+                PromotedCategory = Process;
+                RunPageMode = Create;
+                ApplicationArea = All;
+                RunObject = report 70048;
+            }
+
 
 
             action("Liste des encaissements")

@@ -11,6 +11,7 @@ page 70116 ListePaiementPlanteur
         {
             repeater(General)
             {
+                
                 field(Code_Transporteur; Code_Transporteur)
                 {
                     ApplicationArea = All;

@@ -73,6 +73,10 @@ page 70114 Paiement_Header
                 {
                     ApplicationArea = All;
                 }
+                field(NumDocExt; NumDocExt)
+                {
+                    ApplicationArea = All;
+                }
             }
             part(Ligne_Paiement; Ligne_Paiement)
             {
@@ -96,6 +100,7 @@ page 70114 Paiement_Header
                 trigger OnAction()
                 var
                     ItemWeightBridge: Record "Item Weigh Bridge";
+                    EnteteHeader: Record Entete_Paiement;
                 begin
                     ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
                     if ItemWeightBridge.FindSet() then begin
@@ -115,12 +120,14 @@ page 70114 Paiement_Header
         myInt: Integer;
     begin
         if ItemWeigBridge."Statut paiement Planteur" = true then begin
+            Message('a: %1 b: %2', ItemWeigBridge."Ticket Planteur", ItemWeigBridge."Statut paiement Planteur");
             Error('Ce ticket a été déja payé pour le planteur');
         end else begin
             ItemWeigBridge."Statut paiement Planteur" := true;
+            ItemWeigBridge.NumDocExten := (ItemWeigBridge."Code planteur" + Format(rec.code_Paiement));
             ItemWeigBridge.Date_Paiement := WorkDate();
             ItemWeigBridge.Modify();
-            Message('yes1:%1',ItemWeigBridge."Statut paiement Planteur");
+            // Message('yes1:%1', ItemWeigBridge."Statut paiement Planteur");
             TransFertTicketFromItemWeigntToBridgeCaisse(ItemWeigBridge);
             TicketPlanteur(ItemWeigBridge);
             if (ItemWeigBridge."Statut paiement" = true) OR (ItemWeigBridge."Type opération" = 'ACHAT COMPTANT') then begin
@@ -241,4 +248,5 @@ page 70114 Paiement_Header
 
     var
         myInt: Integer;
+        DocExterne: Code[50];
 }
