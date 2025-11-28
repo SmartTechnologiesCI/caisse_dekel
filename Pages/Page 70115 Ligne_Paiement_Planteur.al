@@ -14,29 +14,48 @@ page 70115 Ligne_Paiement
 
                 field("Ticket Planteur"; "Ticket Planteur")
                 {
-
+                    Editable = false;
                 }
                 field(Ticket_Concerne; Ticket_Concerne)
+                {
+                    ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+                        HeaderPaiement: Record Entete_Paiement;
+                    begin
+                        rec.TestField(NumDocExten);
+                        HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
+                        if HeaderPaiement.FindFirst() then begin
+                            Rec.Beneficiaire := HeaderPaiement.Beneficiare;
+                        end;
+                    end;
+                }
+                field(NumDocExten; rec.NumDocExten)
                 {
                     ApplicationArea = All;
                 }
                 field("Code planteur"; "Code planteur")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Nom planteur"; "Nom planteur")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Code Transporteur"; "Code Transporteur")
                 {
                     ApplicationArea = All;
                     Visible = false;
+                    Editable = false;
                 }
                 field("Nom Transporteur"; "Nom Transporteur")
                 {
                     ApplicationArea = All;
                     Visible = false;
+                    Editable = false;
                 }
                 field(Beneficiaire; Beneficiaire)
                 {
@@ -45,19 +64,23 @@ page 70115 Ligne_Paiement
                 field("Statut paiement Planteur"; "Statut paiement Planteur")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("POIDS ENTREE"; "POIDS ENTREE")
                 {
                     ApplicationArea = all;
+                    Editable = false;
 
                 }
                 field("POIDS SORTIE"; "POIDS SORTIE")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("POIDS NET"; "POIDS NET")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
 
             }

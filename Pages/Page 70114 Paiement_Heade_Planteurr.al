@@ -100,9 +100,12 @@ page 70114 Paiement_Header
                 trigger OnAction()
                 var
                     ItemWeightBridge: Record "Item Weigh Bridge";
+                    ItemWeightBridge2: Record "Item Weigh Bridge";
                     EnteteHeader: Record Entete_Paiement;
                 begin
+
                     ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
+                    ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
                     if ItemWeightBridge.FindSet() then begin
                         repeat begin
                             PayerPlanteur(ItemWeightBridge)
