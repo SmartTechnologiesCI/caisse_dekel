@@ -22,7 +22,7 @@ page 70119 Ligne_Paiement_Transporteur
                     trigger OnValidate()
                     var
                         myInt: Integer;
-                        HeaderPaiement: Record Entete_Paiement;
+                        HeaderPaiement: Record Entete_Paiement_Transporteur;
                     begin
                         rec.TestField(NumDocExten);
                         HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
@@ -54,13 +54,13 @@ page 70119 Ligne_Paiement_Transporteur
                 field("Code Transporteur"; "Code Transporteur")
                 {
                     ApplicationArea = All;
-                    Visible = false;
+                    // Visible = false;
 
                 }
                 field("Nom Transporteur"; "Nom Transporteur")
                 {
                     ApplicationArea = All;
-                    Visible = false;
+                    // Visible = false;
 
                 }
                 field(Beneficiaire; Beneficiaire)
