@@ -82,6 +82,15 @@ page 70005 "Caisse RoleCenter"
                 ApplicationArea = All;
                 RunObject = Page 70116;
             }
+            action(Paiement_Multiple_Transp)
+            {
+                Caption = 'Paiement Multiple Transporteur';
+                Promoted = true;
+                PromotedCategory = Process;
+                RunPageMode = Create;
+                ApplicationArea = All;
+                RunObject = Page ListePaiementTransporteur;
+            }
             action(ImpressionPaimentPlanter)
             {
                 Caption = 'Impression en masse planteur';
