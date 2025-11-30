@@ -307,6 +307,17 @@ page 70112 "Paiement Ticket"
                         // rowid1 := rec.RowID;
                         // Message('a: %1 b: %2', ticket1,row);
                         PayerPlanteur();
+                        ItemWeighBridge.SetRange(TICKET, Ticket1);
+                        ItemWeighBridge.SetRange("Ticket Planteur", TicketPlanteur1);
+                        ItemWeighBridge.SetRange("Row No.", rowno1);
+                        ItemWeighBridge.SetRange(RowID, ROWID1);
+                        if ItemWeighBridge.FindFirst() then begin
+                            // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
+                            Page.Run(page::"Paiement Valide", ItemWeighBridge);
+                            // Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
+
+
+                        end;
                         // ItemWeighBridge.SetRange(TICKET, rec.TICKET);
                         // ItemWeighBridge.SetRange("Ticket Planteur", rec."Ticket Planteur");
                         // ItemWeighBridge.SetRange("Row No.", rec."Row No.");
@@ -352,21 +363,21 @@ page 70112 "Paiement Ticket"
                         rowno1 := rec."Row No.";
                         TicketPlanteur1 := rec."Ticket Planteur";
 
-                       
+
                         // row := rec."Row No.";
                         // ticketplanteur := rec."Ticket Planteur";
                         // rowid1 := rec.RowID;
                         PayerTransporteur();
                         ItemWeighBridge.SetRange(TICKET, Ticket1);
-                        ItemWeighBridge.SetRange("Ticket Planteur",TicketPlanteur1);
+                        ItemWeighBridge.SetRange("Ticket Planteur", TicketPlanteur1);
                         ItemWeighBridge.SetRange("Row No.", rowno1);
                         ItemWeighBridge.SetRange(RowID, ROWID1);
                         if ItemWeighBridge.FindFirst() then begin
                             // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
-                            Page.Run(page::"Paiement Valide",ItemWeighBridge);
+                            Page.Run(page::"Paiement Valide", ItemWeighBridge);
                             // Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
-                            
-                            
+
+
                         end;
                         // Ticket.SetRange(TICKET, ticket1);
                         // ticket.SetRange("Row No.", row);
