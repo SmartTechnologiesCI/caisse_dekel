@@ -186,6 +186,21 @@ page 70112 "Paiement Ticket"
                 {
                     Editable = true;
                 }
+                field("Statut paiement"; "Statut paiement")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+                field("Statut paiement Planteur"; "Statut paiement Planteur")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+                field(Statut_Total_Paiement; Statut_Total_Paiement)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
                 // field("Code planteur"; Rec."Code planteur")
                 // {
                 //     ToolTip = 'Specifies the value of the Code planteur field.', Comment = '%';
@@ -261,11 +276,11 @@ page 70112 "Paiement Ticket"
                     trigger OnAction()
                     var
                         Ticket: Record "Item Weigh Bridge";
-                    // ticket1: Integer;
-                    // row: Integer;
-                    // ticketplanteur: code[50];
-                    // rowid1: Integer;
-                    // ItemWeighBridge: Record "Item Weigh Bridge";
+                        // ticket1: Integer;
+                        // row: Integer;
+                        // ticketplanteur: code[50];
+                        // rowid1: Integer;
+                        ItemWeighBridge: Record "Item Weigh Bridge";
 
                     begin
 
@@ -277,6 +292,14 @@ page 70112 "Paiement Ticket"
                         ROWID1 := rec.RowID;
                         rowno1 := rec."Row No.";
                         TicketPlanteur1 := rec."Ticket Planteur";
+                        ItemWeighBridge.SetRange(TICKET, rec.TICKET);
+                        ItemWeighBridge.SetRange("Ticket Planteur", rec."Ticket Planteur");
+                        ItemWeighBridge.SetRange("Row No.", rec."Row No.");
+                        ItemWeighBridge.SetRange(RowID, rec.RowID);
+                        if ItemWeighBridge.FindFirst() then begin
+                            // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
+                            Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
+                        end;
                         // ticket1 := rec.TICKET;
                         // row := rec."Row No.";
                         // ticketplanteur := rec."Ticket Planteur";
@@ -317,6 +340,7 @@ page 70112 "Paiement Ticket"
                         row: Integer;
                         ticketplanteur: code[50];
                         rowid1: Integer;
+                        ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
                         Clear(Ticket1);
                         Clear(rowno1);
@@ -327,6 +351,14 @@ page 70112 "Paiement Ticket"
                         rowno1 := rec."Row No.";
                         TicketPlanteur1 := rec."Ticket Planteur";
 
+                        ItemWeighBridge.SetRange(TICKET, rec.TICKET);
+                        ItemWeighBridge.SetRange("Ticket Planteur", rec."Ticket Planteur");
+                        ItemWeighBridge.SetRange("Row No.", rec."Row No.");
+                        ItemWeighBridge.SetRange(RowID, rec.RowID);
+                        if ItemWeighBridge.FindFirst() then begin
+                            // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
+                            Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
+                        end;
                         // row := rec."Row No.";
                         // ticketplanteur := rec."Ticket Planteur";
                         // rowid1 := rec.RowID;
@@ -540,6 +572,7 @@ page 70112 "Paiement Ticket"
         if (rec."Statut paiement" = true) then begin
             Error('Ce ticket a été déja payé pour le transporteur');
         end else begin
+
             rec."Statut paiement" := true;
             REC.Date_Paiement := WorkDate();
 
