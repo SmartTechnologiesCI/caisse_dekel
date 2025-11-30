@@ -15,7 +15,14 @@ pageextension 70104 "Creation ticket" extends "Creation ticket"
                 RunObject = Page Creation_Ticket;
                 ApplicationArea = All;
             }
-             action("CreateNewMultiPese")
+            action("Historique")
+            {
+                Caption = 'Historique des tickets';
+                RunObject = Page 70113;
+                ApplicationArea = All;
+            }
+
+            action("CreateNewMultiPese")
             {
                 Visible = false;
                 CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket Multipese';
@@ -23,10 +30,10 @@ pageextension 70104 "Creation ticket" extends "Creation ticket"
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
-                
+
 
                 RunObject = page "Ticket Header";
-                
+
                 // RunPageLink=
 
                 // trigger OnAction()
@@ -38,16 +45,16 @@ pageextension 70104 "Creation ticket" extends "Creation ticket"
                 //     jObj: JsonObject;
                 //     jTok: JsonToken;
                 // begin
-                    
+
                 //     Page.Run(Page::"Ticket Header");
                 // end;
             }
-            
-         
+
+
         }
-        
-            
-        
+
+
+
     }
 
     var

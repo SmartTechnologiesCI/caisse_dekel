@@ -20,7 +20,7 @@ page 70113 "Historique Tickets valide"
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(Descending) where("Balance Code" = filter('AY*'),valide = CONST(true));
+                      ORDER(Descending) where("Balance Code" = filter('AY*'), valide = CONST(true));
     //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
@@ -48,6 +48,10 @@ page 70113 "Historique Tickets valide"
                 {
                 }
                 field("Nom Client"; "Nom Client")
+                {
+                    ApplicationArea = All;
+                }
+                field(Description_Client_Fournisseur; Description_Client_Fournisseur)
                 {
                     ApplicationArea = All;
                 }
