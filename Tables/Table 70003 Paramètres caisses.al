@@ -49,6 +49,12 @@ table 70003 "Parametres caisse"
         {
             TableRelation = "Bank Account"."No.";
         }
+        field(13; NumSouschPaie; Code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'N° paie Ticket';
+            TableRelation = "No. Series";
+        }
     }
 
     keys

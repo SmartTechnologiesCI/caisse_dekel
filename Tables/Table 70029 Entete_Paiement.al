@@ -14,6 +14,13 @@ table 70029 Entete_Paiement
         {
             DataClassification = ToBeClassified;
             Caption = 'Planteur';
+            TableRelation = Vendor;
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
+                AssistEdit_PointCaisse(xRec);
+            end;
         }
         field(50002; Date_Paiement; Date)
         {
@@ -47,6 +54,7 @@ table 70029 Entete_Paiement
         {
             DataClassification = ToBeClassified;
             Caption = 'N° Doc Externe';
+            Editable = false;
         }
         field(50029; CNI; Code[250])
         {
@@ -72,7 +80,12 @@ table 70029 Entete_Paiement
             DataClassification = ToBeClassified;
             Caption = 'Archivé';
         }
+        field(50034; "No. Series"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
+
 
     keys
     {
@@ -82,10 +95,35 @@ table 70029 Entete_Paiement
         }
     }
 
+
     fieldgroups
     {
         // Add changes to field groups here
     }
+    procedure AssistEdit_PointCaisse(OldPoint: Record Entete_Paiement): Boolean;
+    var
+        Balance: Record "Parametres caisse";
+        TicketPlanteur: Code[100];
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+    begin
+        // Vérifier qu'une balance est sélectionnée
+        // Rec.TestField(NU);
+        Balance.Get();
+        // Balance.SetRange(Code, Rec."Balance Code");
+        if not Balance.FindFirst() then
+            Error('Renseignement la souche de numéro paie ticket dans paramètre utilisateurs.');
+        if NoSeriesMgt.SelectSeries(Balance.NumSouschPaie, OldPoint."No. Series", Rec."No. Series") then begin
+
+            TicketPlanteur :=
+                NoSeriesMgt.GetNextNo(Rec."No. Series", WorkDate(), true);
+
+            Rec.NumDocExt := TicketPlanteur;
+
+            exit(true);
+        end else begin
+            Error('Impossible de sélectionner la souche de numérotation "%1".', Balance.NumSouschPaie);
+        end;
+    end;
 
     var
         myInt: Integer;
