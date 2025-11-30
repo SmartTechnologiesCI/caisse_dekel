@@ -9,7 +9,7 @@ report 70049 Client_Fournisseur
     {
         dataitem("Item Weigh Bridge"; "Item Weigh Bridge")
         {
-            RequestFilterFields = "Nom Client", "Type opération";
+            RequestFilterFields = "Date validation";
             column(Vehicle_Registration_No_; "Vehicle Registration No.")
             {
 
@@ -46,6 +46,70 @@ report 70049 Client_Fournisseur
             {
 
             }
+            column(Filter; Filter)
+            {
+
+            }
+            column(Centre_Logistique; "Centre Logistique")
+            {
+                //Considéré
+            }
+            column("Désignation_article"; "Désignation article")
+            {
+
+            }
+            column(ValeurTypeOperation; ValeurTypeOperation)
+            {
+
+            }
+            column(PeriodeImpression; PeriodeImpression)
+            {
+
+            }
+            column(Description_Client_Fournisseur; Description_Client_Fournisseur)
+            {
+
+            }
+            column(Client_Fournisseur; "Client/Fournisseur")
+            {
+
+            }
+            trigger OnPreDataItem()
+            var
+                myInt: Integer;
+            begin
+                // if ((CopyStr(GetFilters, StrPos(GetFilters, ':') + 2)) <> (GetFilter("Date validation"))) then begin
+                //     Filter := CopyStr(GetFilters, StrPos(GetFilters, ':') + 2);
+                //     Message(Filter);
+                // end;
+                // if TypeOperation = true then begin
+                //     // Filter := "Nom Client"
+                //     Message('Filter: %1', "Nom Client")
+                // end else
+                //     if Produit = true then begin
+                //         Filter := "Désignation article";
+                //         Message('Filter: %1', Filter);
+                //     end;
+                PeriodeImpression := CopyStr(GetFilters, StrPos(GetFilters, ':') + 2);
+
+
+            end;
+
+            trigger OnAfterGetRecord()
+            var
+                myInt: Integer;
+            begin
+                if TypeOperation = true then begin
+                    Filter := "Type opération";
+                    ValeurTypeOperation := 'TYPE OPERATION'
+                    // Message('FilterProduit: %1', "Nom Client")
+                end else
+                    if Produit = true then begin
+                        Filter := "Désignation article";
+                        ValeurTypeOperation := 'PRODUIT'
+                        // Message('FilterProduit: %1', Filter);
+                    end;
+            end;
 
         }
     }
@@ -60,10 +124,16 @@ report 70049 Client_Fournisseur
             {
                 group(GroupName)
                 {
-                    // field()
-                    // {
+                    field(TypeOperation; TypeOperation)
+                    {
+                        Caption = 'Type Opération';
+                        ApplicationArea = All;
 
-                    // }
+                    }
+                    field(Produit; Produit)
+                    {
+                        ApplicationArea = All;
+                    }
                 }
             }
         }
@@ -84,4 +154,9 @@ report 70049 Client_Fournisseur
 
     var
         myInt: Integer;
+        Filter: Text[50];
+        TypeOperation: Boolean;
+        Produit: Boolean;
+        ValeurTypeOperation: code[100];
+        PeriodeImpression: Text[250];
 }
