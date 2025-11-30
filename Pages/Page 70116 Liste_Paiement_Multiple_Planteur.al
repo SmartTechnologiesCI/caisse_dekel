@@ -5,13 +5,14 @@ page 70116 ListePaiementPlanteur
     UsageCategory = Lists;
     SourceTable = Entete_Paiement;
     CardPageId = Paiement_Header;
+    SourceTableView = where(Archive = const(false));
     layout
     {
         area(Content)
         {
             repeater(General)
             {
-                
+
                 field(Code_Transporteur; Code_Transporteur)
                 {
                     ApplicationArea = All;
@@ -38,6 +39,11 @@ page 70116 ListePaiementPlanteur
                 {
                     ApplicationArea = ALL;
                 }
+                field(Archive; Archive)
+                {
+                    ApplicationArea = All;
+                }
+                
 
             }
         }

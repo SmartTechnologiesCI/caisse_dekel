@@ -5,13 +5,14 @@ page 70117 ListePaiementTransporteur
     UsageCategory = Lists;
     SourceTable = Entete_Paiement_Transporteur;
     CardPageId = Paiement_Header_Transporteur;
+    SourceTableView = where(Archive = const(false));
     layout
     {
         area(Content)
         {
             repeater(General)
             {
-                
+
                 field(Code_Transporteur; Code_Transporteur)
                 {
                     ApplicationArea = All;
@@ -37,6 +38,10 @@ page 70117 ListePaiementTransporteur
                 field(Beneficiare; Beneficiare)
                 {
                     ApplicationArea = ALL;
+                }
+                field(Archive; Archive)
+                {
+                    ApplicationArea = All;
                 }
 
             }
