@@ -6,7 +6,7 @@ page 70118 Paiement_Header_Transporteur
     SourceTable = Entete_Paiement_Transporteur;
     InsertAllowed = true;
     ModifyAllowed = true;
-    Caption = 'Multiple paiement Planteur';
+    Caption = 'Multiple paiement Transporteur';
 
     layout
     {

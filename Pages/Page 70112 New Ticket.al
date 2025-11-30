@@ -256,6 +256,7 @@ page 70112 "Paiement Ticket"
                 {
                     Caption = 'Payer le planteur';
                     ApplicationArea = All;
+                    Visible = PaiementVisiblePlanteur;
 
                     trigger OnAction()
                     var
@@ -308,7 +309,7 @@ page 70112 "Paiement Ticket"
                 {
                     Caption = 'Payer le transporteur';
                     ApplicationArea = All;
-
+                    Visible = PaiementVisibleTransporteur;
                     trigger OnAction()
                     var
                         Ticket: Record "Item Weigh Bridge";
@@ -571,10 +572,27 @@ page 70112 "Paiement Ticket"
         end;
     end;
 
+    trigger OnOpenPage()
+    var
+        myInt: Integer;
+    begin
+        Clear(PaiementVisiblePlanteur);
+        Clear(PaiementVisibleTransporteur);
+        if rec."Statut paiement" = false then begin
+            PaiementVisibleTransporteur := true;
+        end;
+        if rec."Statut paiement Planteur" = false then begin
+            PaiementVisiblePlanteur := TRUE;
+        end;
+    end;
+
     var
         PlanterCodeunit: Codeunit "Planter's Post";
         Ticket1: Integer;
         TicketPlanteur1: Code[50];
         ROWID1: Integer;
         rowno1: Integer;
+        PaiementVisiblePlanteur: Boolean;
+        PaiementVisibleTransporteur: Boolean;
+
 }
