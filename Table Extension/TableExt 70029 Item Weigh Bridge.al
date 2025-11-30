@@ -7,6 +7,20 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             DataClassification = ToBeClassified;
             Caption = 'Entièrement payé';
         }
+        field(55006; Ticket_Concerne; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Ticket(s) Concerné(s)';
+        }
+        field(55007; NumDocExten; code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'N° Doc Externe';
+        }
+        field(55008; Telephone; Code[25])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     keys

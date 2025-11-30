@@ -1,0 +1,151 @@
+table 70029 Entete_Paiement
+{
+    DataClassification = ToBeClassified;
+
+    fields
+    {
+        field(50000; code_Paiement; Integer)
+        {
+            DataClassification = ToBeClassified;
+            AutoIncrement = true;
+
+        }
+        field(50001; Palanteur; code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Planteur';
+            TableRelation = Vendor;
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
+                AssistEdit_PointCaisse(xRec);
+            end;
+        }
+        field(50002; Date_Paiement; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(50003; Beneficiare; Text[250])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(50004; Caissier; Code[250])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Caissier/Caissière';
+        }
+        field(50005; Code_Transporteur; Code[250])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Code transporteur';
+        }
+        field(5006; Nom_Transporteur; Text[250])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Nom Transporteur';
+        }
+        field(5007; Nom_Planteur; Text[250])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Nom planteur';
+        }
+        field(50008; NumDocExt; Code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'N° Doc Externe';
+            Editable = false;
+        }
+        field(50029; CNI; Code[250])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'CARTE NATIONANLE';
+        }
+        field(50030; Mode_Paiement; Option)
+        {
+            Caption = 'Mode Paiement';
+            DataClassification = ToBeClassified;
+            OptionMembers = ESPECE,WAVE,OM,"MTN Money","MOOV Money",CHEQUE;
+        }
+        field(50031; Observation; Text[250])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(50032; Telephone; Code[25])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(50033; Archive; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Archivé';
+        }
+        field(50034; "No. Series"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
+    }
+
+
+    keys
+    {
+        key(Key1; code_Paiement)
+        {
+            Clustered = true;
+        }
+    }
+
+
+    fieldgroups
+    {
+        // Add changes to field groups here
+    }
+    procedure AssistEdit_PointCaisse(OldPoint: Record Entete_Paiement): Boolean;
+    var
+        Balance: Record "Parametres caisse";
+        TicketPlanteur: Code[100];
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+    begin
+        // Vérifier qu'une balance est sélectionnée
+        // Rec.TestField(NU);
+        Balance.Get();
+        // Balance.SetRange(Code, Rec."Balance Code");
+        if not Balance.FindFirst() then
+            Error('Renseignement la souche de numéro paie ticket dans paramètre utilisateurs.');
+        if NoSeriesMgt.SelectSeries(Balance.NumSouschPaie, OldPoint."No. Series", Rec."No. Series") then begin
+
+            TicketPlanteur :=
+                NoSeriesMgt.GetNextNo(Rec."No. Series", WorkDate(), true);
+
+            Rec.NumDocExt := TicketPlanteur;
+
+            exit(true);
+        end else begin
+            Error('Impossible de sélectionner la souche de numérotation "%1".', Balance.NumSouschPaie);
+        end;
+    end;
+
+    var
+        myInt: Integer;
+
+    trigger OnInsert()
+    begin
+
+    end;
+
+    trigger OnModify()
+    begin
+
+    end;
+
+    trigger OnDelete()
+    begin
+
+    end;
+
+    trigger OnRename()
+    begin
+
+    end;
+
+}

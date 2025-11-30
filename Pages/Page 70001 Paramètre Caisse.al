@@ -17,6 +17,10 @@ page 70001 "Paramètres caisses"
                     ApplicationArea = All;
 
                 }
+                field(NumSouschPaie; rec.NumSouschPaie)
+                {
+                    ApplicationArea = All;
+                }
                 field("N° souche Ouverture"; "N° souche Ouverture")
                 {
                     ApplicationArea = All;
@@ -74,6 +78,7 @@ page 70001 "Paramètres caisses"
                 }
 
 
+
             }
         }
     }
@@ -90,7 +95,8 @@ page 70001 "Paramètres caisses"
                 PromotedCategory = Process;
                 RunObject = Page 70025;
             }
-            action(DeleteAll){
+            action(DeleteAll)
+            {
                 trigger OnAction()
                 var
                     cu70000: Codeunit 70000;

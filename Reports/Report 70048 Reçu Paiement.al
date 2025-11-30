@@ -8,7 +8,7 @@ report 70048 Recu_Paiement
     {
         dataitem("Item Weigh Bridge"; "Item Weigh Bridge")
         {
-            RequestFilterFields = "Ticket Planteur";
+            RequestFilterFields = NumDocExten;
             column(Ticket_Planteur; "Ticket Planteur")
             {
 
@@ -70,6 +70,10 @@ report 70048 Recu_Paiement
 
             }
             column(Observation; Observation)
+            {
+
+            }
+            column(Telephone; Telephone)
             {
 
             }
