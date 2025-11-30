@@ -109,8 +109,28 @@ page 70124 PaiementHeaderTransport_Archiv
     {
         area(Processing)
         {
+
+            action(Imprimer)
+            {
+                Caption = 'Imprimer Ticket';
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                trigger OnAction()
+
+                var
+                    Entete_Paiements: Record Entete_Paiement;
+                    itemWigIfbhhf: Record "Item Weigh Bridge";
+                begin
+                    itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
+                    if itemWigIfbhhf.FindFirst() then begin
+                        Report.Run(70048, true, false, itemWigIfbhhf);
+                    end;
+                end;
+            }
             action(Valider)
             {
+                Visible = false;
                 Caption = 'Valider paiement';
                 Promoted = true;
                 PromotedCategory = Process;
