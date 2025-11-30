@@ -4,7 +4,7 @@ page 70120 ListePantTransporteurArchive
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = Entete_Paiement_Transporteur;
-    CardPageId = Paiement_Header_Transporteur;
+    CardPageId = PaiementHeaderTransport_Archiv;
     Caption = 'Archive Paiement Transporteur';
     Editable = false;
     InsertAllowed = false;
