@@ -7,7 +7,7 @@ page 70124 PaiementHeaderTransport_Archiv
     InsertAllowed = false;
     ModifyAllowed = false;
     DeleteAllowed = false;
-    Caption = 'Multiple paiement Planteur';
+    Caption = 'Multiple paiement Transporteur';
 
     layout
     {
