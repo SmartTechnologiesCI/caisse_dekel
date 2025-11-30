@@ -18,8 +18,14 @@ table 70029 Entete_Paiement
             trigger OnValidate()
             var
                 myInt: Integer;
+                Souche: Record Souche;
             begin
                 AssistEdit_PointCaisse(xRec);
+                Souche.Reset();
+                Souche.Init();
+                Souche.User := UserId;
+                Souche.Code_Souche := NumDocExt;
+                Souche.Insert();
             end;
         }
         field(50002; Date_Paiement; Date)

@@ -23,8 +23,14 @@ page 70115 Ligne_Paiement
                     var
                         myInt: Integer;
                         HeaderPaiement: Record Entete_Paiement;
+                        Souche: Record Souche;
                     begin
-                        rec.TestField(NumDocExten);
+                        // rec.TestField(NumDocExten);
+                        Souche.SetRange(User, UserId);
+                        if Souche.FindLast() then begin
+                            rec.NumDocExten := Souche.Code_Souche;
+                        end;
+
                         HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
                         if HeaderPaiement.FindFirst() then begin
                             Rec.Beneficiaire := HeaderPaiement.Beneficiare;
@@ -33,6 +39,7 @@ page 70115 Ligne_Paiement
                             REC.Observation := HeaderPaiement.Observation;
                             REC.Telephone := HeaderPaiement.Telephone;
                         end;
+
                     end;
                 }
                 field(NumDocExten; rec.NumDocExten)

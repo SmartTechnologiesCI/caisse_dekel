@@ -23,8 +23,13 @@ page 70119 Ligne_Paiement_Transporteur
                     var
                         myInt: Integer;
                         HeaderPaiement: Record Entete_Paiement_Transporteur;
+                        Souche: Record Souche;
                     begin
-                        rec.TestField(NumDocExten);
+                        // rec.TestField(NumDocExten);
+                        Souche.SetRange(User, UserId);
+                        if Souche.FindLast() then begin
+                            rec.NumDocExten := Souche.Code_Souche;
+                        end;
                         HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
                         if HeaderPaiement.FindFirst() then begin
                             Rec.Beneficiaire := HeaderPaiement.Beneficiare;
@@ -62,6 +67,14 @@ page 70119 Ligne_Paiement_Transporteur
                     ApplicationArea = All;
                     // Visible = false;
 
+                }
+                field("Type opération"; "Type opération")
+                {
+                    ApplicationArea = All;
+                }
+                field("Type of Transportation"; "Type of Transportation")
+                {
+                    ApplicationArea = All;
                 }
                 field(Beneficiaire; Beneficiaire)
                 {

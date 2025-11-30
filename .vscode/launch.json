@@ -9,7 +9,7 @@
             "environmentType": "OnPrem",
             "server": "http://localhost:8080/BC230",
             "serverInstance": "BC230",
-            "authentication": "UserPassword",
+            "authentication": "Windows",
             "startupObjectId": 70049,
             "startupObjectType": "Report",
             "breakOnError": "All",
@@ -18,9 +18,8 @@
             "enableSqlInformationDebugger": true,
             "tenant": "default",
             "usePublicURLFromServer": true,
-
-            "schemaUpdateMode": "ForceSync",
-            "port": 7049
+            "schemaUpdateMode": "Synchronize",
+            "port": 2349
 
             
         }
