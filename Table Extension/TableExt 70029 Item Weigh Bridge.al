@@ -30,6 +30,25 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         {
             DataClassification = ToBeClassified;
             Caption = 'Total Achat planteur';
+            Editable = false;
+        }
+        field(55011; Impot; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Impôt 1,5 %';
+            Editable = false;
+        }
+        field(55012; TotalPlanteurTTc; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Total Achat planteur(TTC:)';
+            Editable = false;
+        }
+        field(55013; TotalTransPorteurTTC; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Total Achat Transporteur (TTC:)';
+            Editable = false;
         }
     }
 

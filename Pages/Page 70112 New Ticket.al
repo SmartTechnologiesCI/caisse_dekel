@@ -253,6 +253,11 @@ page 70112 "Paiement Ticket"
                     ApplicationArea = All;
                     Editable = false;
                 }
+                field(Impot; Impot)
+                {
+                    ApplicationArea = All;
+                }
+
                 field(Total; Total)
                 {
                     ApplicationArea = All;
@@ -261,6 +266,17 @@ page 70112 "Paiement Ticket"
                 field(TotalPlanteur; TotalPlanteur)
                 {
                     ApplicationArea = aLL;
+                    Editable = false;
+                }
+                field(TotalPlanteurTTc; TotalPlanteurTTc)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+                field(TotalTransPorteurTTC; TotalTransPorteurTTC)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
                 }
                 //<<Fabrice Smart 05_03_25
             }
