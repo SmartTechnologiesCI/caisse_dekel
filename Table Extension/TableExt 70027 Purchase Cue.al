@@ -60,7 +60,13 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         field(60010; "Ticket non  payés"; Integer)
         {
             FieldClass = FlowField;
-            CalcFormula = count("Item Weigh Bridge" where( Valide = const(true), Statut_Total_Paiement = const(false)));
+            CalcFormula = count("Item Weigh Bridge" where(Valide = const(true), Statut_Total_Paiement = const(false)));
+
+        }
+        field(60011; "Ticket En attente paiement"; Integer)
+        {
+            FieldClass = FlowField;
+            CalcFormula = count("Item Weigh Bridge" where(Valide = const(true), En_Attente_Paiement = const(true)));
 
         }
 

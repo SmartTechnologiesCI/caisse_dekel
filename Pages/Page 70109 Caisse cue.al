@@ -74,7 +74,7 @@ page 70109 "Caisse cue"
                     var
                         ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
-                        ItemWeighBridge.SetFilter("Date validation", '<%1', WorkDate);
+                        ItemWeighBridge.SetFilter("Date validation", '<%1', "date filter 2");
                         ItemWeighBridge.SetRange(valide, true);
                         ItemWeighBridge.SetRange("Statut paiement Planteur", false);
                         ItemWeighBridge.FindFirst();
@@ -118,6 +118,26 @@ page 70109 "Caisse cue"
                         Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
                     end;
                 }
+                 field("Ticket En attente paiement";"Ticket En attente paiement")
+                {
+                    ApplicationArea = All;
+                    DrillDown = true;
+                    Visible = true;
+                    Importance = Promoted;
+                    Style = Attention;
+                    Caption = 'Ticket(s) en attente paiement';
+                    trigger OnDrillDown()
+                    var
+                        ItemWeighBridge: Record "Item Weigh Bridge";
+                    begin
+                        // ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
+                        ItemWeighBridge.SetRange(valide, true);
+                        ItemWeighBridge.SetRange(En_Attente_Paiement,true);
+                        ItemWeighBridge.FindFirst();
+                        Page.RunModal(Page::"Ticket Caisse", ItemWeighBridge);
+                    end;
+                }
+
                 //FnGeek*********
             }
             cuegroup("Ticket(s) facturé(s)")
@@ -205,7 +225,7 @@ page 70109 "Caisse cue"
     var
         myInt: Integer;
     begin
-        SetFilter("date filter 3", '=%', WorkDate());
-        SetFilter("date filter 2", '<%', WorkDate());
+        SetFilter("date filter 3", '=%1', WorkDate());
+        SetFilter("date filter 2", '<%1', WorkDate());
     end;
 }

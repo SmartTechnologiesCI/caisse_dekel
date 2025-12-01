@@ -201,6 +201,10 @@ page 70112 "Paiement Ticket"
                     ApplicationArea = All;
                     Editable = false;
                 }
+                field(En_Attente_Paiement; En_Attente_Paiement)
+                {
+                    ApplicationArea = All;
+                }
                 // field("Code planteur"; Rec."Code planteur")
                 // {
                 //     ToolTip = 'Specifies the value of the Code planteur field.', Comment = '%';
