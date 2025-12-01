@@ -54,6 +54,13 @@ table 70003 "Parametres caisse"
             DataClassification = ToBeClassified;
             Caption = 'N° paie Ticket';
             TableRelation = "No. Series";
+
+        }
+        field(14; PoucentageImpot; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Pourcentage Impôt';
+            DecimalPlaces = 3;
         }
     }
 

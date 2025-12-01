@@ -16,30 +16,34 @@ page 70112 "Paiement Ticket"
                 field(MultiPese; rec.MultiPese)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Nombre de planteurs"; Rec."Nombre de planteurs")
                 {
                     ApplicationArea = All;
-                    Enabled = REC.MultiPese;
+                    Editable = false;
                 }
                 field("Balance Code"; Rec."Balance Code")
                 {
                     ToolTip = 'Specifies the value of the Balance Code field.', Comment = '%';
-                    trigger OnAssistEdit()
-                    begin
-                        if Rec.AssistEdit_PointCaisse(xRec) then
-                            CurrPage.Update();
-                    end;
+                    Editable = false;
+                    // trigger OnAssistEdit()
+                    // begin
+                    //     if Rec.AssistEdit_PointCaisse(xRec) then
+                    //         CurrPage.Update();
+                    // end;
                 }
                 //<<Fabrice Smart 05_03_25
                 field("Client/Fournisseur"; rec."Client/Fournisseur")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Code article"; rec."Code article")
                 {
                     ApplicationArea = All;
                     TableRelation = Item;
+                    Editable = false;
 
                     trigger OnValidate()
                     var
@@ -59,7 +63,7 @@ page 70112 "Paiement Ticket"
                 }
                 field(ORIGINE; rec.ORIGINE)
                 {
-                    Enabled = NOT REC.MultiPese;
+                    Editable = false;
                     ApplicationArea = All;
                     TableRelation = Origine.Origine;
                     trigger OnValidate()
@@ -77,21 +81,25 @@ page 70112 "Paiement Ticket"
                 field("Type Vehicule"; REC."Type Vehicule")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                     TableRelation = "Type Vehicule"."Matricule Vehicule";
                 }
                 field("Vehicle Registration No."; "Vehicle Registration No.")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
 
                 field("Driver Name"; Rec."Driver Name")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Code Transporteur"; REC."Code Transporteur")
                 {
                     ApplicationArea = All;
                     TableRelation = Vendor;
+                    Editable = false;
 
                     trigger OnValidate()
                     var
@@ -113,6 +121,7 @@ page 70112 "Paiement Ticket"
                 {
                     ToolTip = 'Specifies the value of the Type opération field.', Comment = '%';
                     TableRelation = "Type operation"."Type Operation";
+                    Editable = false;
                     trigger OnValidate()
                     var
                         myInt: Integer;
@@ -128,12 +137,13 @@ page 70112 "Paiement Ticket"
                 field("Type of Transportation"; rec."Type of Transportation")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Code planteur"; "Code planteur")
                 {
                     ApplicationArea = All;
                     // TableRelation = Vendor where("Vendor Posting Group"=const(''));
-                    Enabled = not REC.MultiPese;
+                    Editable = false;
                     // Enabled = rec.MultiPese;
                     TableRelation = Vendor;
                     trigger OnValidate()
@@ -156,18 +166,20 @@ page 70112 "Paiement Ticket"
                 field("Code magasin"; "Code magasin")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 //<<Fabrice Smart 05_03_25
                 field("Ticket Planteur"; Rec."Ticket Planteur")
                 {
                     ToolTip = 'Specifies the value of the Ticket Planteur field.', Comment = '%';
                     ApplicationArea = All;
+                    Editable = false;
                     // Editable = false;
-                    trigger OnAssistEdit()
-                    begin
-                        if Rec.AssistEdit_PointCaisse(xRec) then
-                            CurrPage.Update();
-                    end;
+                    // trigger OnAssistEdit()
+                    // begin
+                    //     if Rec.AssistEdit_PointCaisse(xRec) then
+                    //         CurrPage.Update();
+                    // end;
                 }
                 field("Item Origin"; Rec."Item Origin")
                 {
@@ -177,14 +189,16 @@ page 70112 "Paiement Ticket"
                 field(BonEnlevement; REC.BonEnlevement)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("N° Commande PIC"; "N° Commande PIC")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Process Ticket"; rec."Process Ticket")
                 {
-                    Editable = true;
+                    Editable = false;
                 }
                 field("Statut paiement"; "Statut paiement")
                 {
@@ -204,6 +218,7 @@ page 70112 "Paiement Ticket"
                 field(En_Attente_Paiement; En_Attente_Paiement)
                 {
                     ApplicationArea = All;
+
                 }
                 // field("Code planteur"; Rec."Code planteur")
                 // {
@@ -262,6 +277,7 @@ page 70112 "Paiement Ticket"
                 {
                     ApplicationArea = All;
                     Caption = 'Total Achat Transporteur';
+                    Editable = false;
                 }
                 field(TotalPlanteur; TotalPlanteur)
                 {
@@ -657,7 +673,10 @@ page 70112 "Paiement Ticket"
     var
         myInt: Integer;
         PrixAchat: Record "Prix Achat";
+        ParaCaisse: Record "Parametres caisse";
     begin
+        ParaCaisse.Reset();
+        ParaCaisse.Get();
         if REC."Statut paiement Planteur" = true then begin
             // Nom_Concerne := "Nom planteur";
             PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
@@ -666,7 +685,9 @@ page 70112 "Paiement Ticket"
             PrixAchat.SetFilter("Ending Date", '>=%1', rec."Date validation");
             PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
             if PrixAchat.FindFirst() then begin
+                REC.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
                 rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + PrixAchat."Direct Unit Cost" * rec."POIDS NET";
                 REC.Modify();
             end;
         end else begin
@@ -678,7 +699,9 @@ page 70112 "Paiement Ticket"
                 PrixAchat.SetFilter("Ending Date", '>=%1', "Date validation");
                 PrixAchat.SetRange(Type_Operation_Options, "Type opération");
                 if PrixAchat.FindFirst() then begin
+                    rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
                     REC.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                    REC.TotalTransPorteurTTC := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + (PrixAchat."Direct Unit Cost" * rec."POIDS NET");
                     REC.Modify()
                 end;
             end;

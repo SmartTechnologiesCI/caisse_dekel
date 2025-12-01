@@ -38,6 +38,7 @@ pageextension 70001 "Item List" extends "Item List"
         {
             Visible = false;
         }
+        
         /* modify(InventoryField)
          {
            //  Visible = false;
