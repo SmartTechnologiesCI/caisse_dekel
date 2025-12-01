@@ -50,6 +50,11 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             Caption = 'Total Achat Transporteur (TTC:)';
             Editable = false;
         }
+        field(55014; Poids_Total; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Poids Total';
+        }
     }
 
     keys

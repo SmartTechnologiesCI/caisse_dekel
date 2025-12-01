@@ -19,8 +19,9 @@ page 70115 Ligne_Paiement
                 {
                     ApplicationArea = All;
                 }
-                field("Date validation";"Date validation"){
-                    ApplicationArea=All;
+                field("Date validation"; "Date validation")
+                {
+                    ApplicationArea = All;
                 }
 
                 field("Ticket Planteur"; "Ticket Planteur")
@@ -50,7 +51,9 @@ page 70115 Ligne_Paiement
                             REC.Observation := HeaderPaiement.Observation;
                             REC.Telephone := HeaderPaiement.Telephone;
                         end;
-
+                        //****Paiement
+                        REC.Poids_Total += rec."POIDS NET";
+                        REC.Modify();
                     end;
                 }
                 field(NumDocExten; rec.NumDocExten)
@@ -127,8 +130,10 @@ page 70115 Ligne_Paiement
                 }
 
             }
+            
         }
     }
+
 
     actions
     {
@@ -144,7 +149,46 @@ page 70115 Ligne_Paiement
             }
         }
     }
+    procedure SommeTotale()
+    var
+        myInt: Integer;
+        PrixAchat: Record "Prix Achat";
+        ParaCaisse: Record "Parametres caisse";
+    begin
+        ParaCaisse.Reset();
+        ParaCaisse.Get();
+        if REC."Statut paiement Planteur" = true then begin
+            // Nom_Concerne := "Nom planteur";
+            PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
+            PrixAchat.SetFilter("Item No.", '=%1', 'RPH-9003');
+            PrixAchat.SetFilter("Starting Date", '<=%1', rec."Date validation");
+            PrixAchat.SetFilter("Ending Date", '>=%1', rec."Date validation");
+            PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
+            if PrixAchat.FindFirst() then begin
+                REC.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                REC.Modify();
+            end;
+        end else begin
+            if rec."Statut paiement" = true then begin
+                // Nom_Concerne := "Driver Name";
+                PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
+                PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
+                PrixAchat.SetFilter("Starting Date", '<=%1', "Date validation");
+                PrixAchat.SetFilter("Ending Date", '>=%1', "Date validation");
+                PrixAchat.SetRange(Type_Operation_Options, "Type opération");
+                if PrixAchat.FindFirst() then begin
+                    rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                    REC.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                    REC.TotalTransPorteurTTC := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + (PrixAchat."Direct Unit Cost" * rec."POIDS NET");
+                    REC.Modify()
+                end;
+            end;
+        end;
+    end;
 
     var
         myInt: Integer;
+        testtotal: Decimal;
 }

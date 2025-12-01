@@ -74,6 +74,10 @@ report 70049 Client_Fournisseur
             {
 
             }
+            column(Weighing_1_Date; "Weighing 1 Date")
+            {
+
+            }
             trigger OnPreDataItem()
             var
                 myInt: Integer;

@@ -99,6 +99,12 @@ page 70114 Paiement_Header
                 SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement Planteur" = const(false);
 
             }
+            part(TotauxCardPage; TotauxCardPage)
+            {
+                Caption = 'Paiement';
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement Planteur" = const(false);
+
+            }
         }
     }
 

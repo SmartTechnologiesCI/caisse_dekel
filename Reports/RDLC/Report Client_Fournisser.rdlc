@@ -2041,6 +2041,9 @@ End Function
         <Field Name="Client_Fournisseur">
           <DataField>Client_Fournisseur</DataField>
         </Field>
+        <Field Name="Weighing_1_Date">
+          <DataField>Weighing_1_Date</DataField>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>DataSource</DataSourceName>
