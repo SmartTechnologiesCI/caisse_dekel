@@ -80,6 +80,10 @@ page 70119 Ligne_Paiement_Transporteur
                 {
 
                 }
+                field(En_Attente_Paiement; En_Attente_Paiement)
+                {
+                    ApplicationArea = All;
+                }
                 field(NCNI; NCNI)
                 {
                     ApplicationArea = All;

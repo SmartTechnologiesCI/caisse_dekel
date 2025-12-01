@@ -72,6 +72,10 @@ page 70115 Ligne_Paiement
                 {
 
                 }
+                field(En_Attente_Paiement; En_Attente_Paiement)
+                {
+                    ApplicationArea = All;
+                }
                 field(NCNI; NCNI)
                 {
                     ApplicationArea = All;
