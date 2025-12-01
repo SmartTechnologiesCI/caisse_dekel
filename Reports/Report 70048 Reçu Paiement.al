@@ -125,7 +125,7 @@ report 70048 Recu_Paiement
                     if TicketTransporteur = true then begin
                         Nom_Concerne := "Driver Name";
                         PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
-                        PrixAchat.SetFilter("Item No.", '=%1', 'RPH-9003');
+                        PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
                         PrixAchat.SetFilter("Starting Date", '<=%1', "Date validation");
                         PrixAchat.SetFilter("Ending Date", '>=%1', "Date validation");
                         PrixAchat.SetRange(Type_Operation_Options, "Type opération");
