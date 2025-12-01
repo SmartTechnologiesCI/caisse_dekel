@@ -21,6 +21,11 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         {
             DataClassification = ToBeClassified;
         }
+        field(55009; En_Attente_Paiement; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'En attente de paiement';
+        }
     }
 
     keys
