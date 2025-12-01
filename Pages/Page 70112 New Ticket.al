@@ -256,7 +256,11 @@ page 70112 "Paiement Ticket"
                 field(Total; Total)
                 {
                     ApplicationArea = All;
-                    Caption = 'Prix Total Achat';
+                    Caption = 'Total Achat Transporteur';
+                }
+                field(TotalPlanteur; TotalPlanteur)
+                {
+                    ApplicationArea = aLL;
                 }
                 //<<Fabrice Smart 05_03_25
             }
@@ -300,7 +304,7 @@ page 70112 "Paiement Ticket"
                         Ticket1 := rec.TICKET;
                         ROWID1 := rec.RowID;
                         rowno1 := rec."Row No.";
-                         TicketPlanteur1 := rec."Ticket Planteur";
+                        TicketPlanteur1 := rec."Ticket Planteur";
                         // ItemWeighBridge.SetRange(TICKET, rec.TICKET);
                         // ItemWeighBridge.SetRange("Ticket Planteur", rec."Ticket Planteur");
                         // ItemWeighBridge.SetRange("Row No.", rec."Row No.");
@@ -322,7 +326,7 @@ page 70112 "Paiement Ticket"
                         ItemWeighBridge.SetRange("Row No.", rowno1);
                         ItemWeighBridge.SetRange(RowID, ROWID1);
                         if ItemWeighBridge.FindFirst() then begin
-                           
+
                             // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
                             Page.Run(page::"Paiement Valide", ItemWeighBridge);
                             // Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
@@ -646,7 +650,7 @@ page 70112 "Paiement Ticket"
             PrixAchat.SetFilter("Ending Date", '>=%1', rec."Date validation");
             PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
             if PrixAchat.FindFirst() then begin
-                rec.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
                 REC.Modify();
             end;
         end else begin

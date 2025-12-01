@@ -26,6 +26,11 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             DataClassification = ToBeClassified;
             Caption = 'En attente de paiement';
         }
+        field(55010; TotalPlanteur; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Total Achat planteur';
+        }
     }
 
     keys
