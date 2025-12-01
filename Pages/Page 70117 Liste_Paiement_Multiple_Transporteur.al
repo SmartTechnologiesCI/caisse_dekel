@@ -12,7 +12,10 @@ page 70117 ListePaiementTransporteur
         {
             repeater(General)
             {
+                field(NumDocExt; NumDocExt)
+                {
 
+                }
                 field(Code_Transporteur; Code_Transporteur)
                 {
                     ApplicationArea = All;

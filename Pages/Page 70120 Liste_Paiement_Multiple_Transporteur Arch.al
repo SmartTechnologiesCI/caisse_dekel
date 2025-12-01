@@ -15,6 +15,10 @@ page 70120 ListePantTransporteurArchive
         {
             repeater(General)
             {
+                field(NumDocExt; NumDocExt)
+                {
+                    ApplicationArea = All;
+                }
 
                 field(Code_Transporteur; Code_Transporteur)
                 {

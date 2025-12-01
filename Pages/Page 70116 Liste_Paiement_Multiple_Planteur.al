@@ -13,6 +13,10 @@ page 70116 ListePaiementPlanteur
             repeater(General)
             {
 
+                field(NumDocExt; NumDocExt)
+                {
+                    ApplicationArea = All;
+                }
                 field(Code_Transporteur; Code_Transporteur)
                 {
                     ApplicationArea = All;
@@ -43,7 +47,7 @@ page 70116 ListePaiementPlanteur
                 {
                     ApplicationArea = All;
                 }
-                
+
 
             }
         }

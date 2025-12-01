@@ -3,7 +3,7 @@ page 70121 ListePantPlanteurArchive
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
-    
+
     SourceTable = Entete_Paiement;
     SourceTableView = where(Archive = const(true));
     CardPageId = ArchiEntetePlanteur;
@@ -17,6 +17,10 @@ page 70121 ListePantPlanteurArchive
         {
             repeater(General)
             {
+                field(NumDocExt; NumDocExt)
+                {
+                    ApplicationArea = All;
+                }
 
                 field(Code_Transporteur; Code_Transporteur)
                 {
