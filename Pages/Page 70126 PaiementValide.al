@@ -1243,6 +1243,7 @@ page 70126 "Paiement Valide"
             END;
             UNTIL Fournisseurs.NEXT = 0;
         ///carelle,,,
+        /*FnGeek 01_12_25
         ItemWeighBridge.SetRange(TICKET, REC.TICKET);
         ItemWeighBridge.SetRange("Ticket Planteur", REC."Ticket Planteur");
         ItemWeighBridge.SetRange("Row No.", "Row No.");
@@ -1254,6 +1255,7 @@ page 70126 "Paiement Valide"
 
 
         end;
+        */
     end;
 
     var

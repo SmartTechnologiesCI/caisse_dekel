@@ -253,6 +253,11 @@ page 70112 "Paiement Ticket"
                     ApplicationArea = All;
                     Editable = false;
                 }
+                field(Total; Total)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Prix Total Achat';
+                }
                 //<<Fabrice Smart 05_03_25
             }
             // part(MultiPeseSubForm; MultiPeseSubForm)
@@ -295,29 +300,32 @@ page 70112 "Paiement Ticket"
                         Ticket1 := rec.TICKET;
                         ROWID1 := rec.RowID;
                         rowno1 := rec."Row No.";
-                        TicketPlanteur1 := rec."Ticket Planteur";
-                        ItemWeighBridge.SetRange(TICKET, rec.TICKET);
-                        ItemWeighBridge.SetRange("Ticket Planteur", rec."Ticket Planteur");
-                        ItemWeighBridge.SetRange("Row No.", rec."Row No.");
-                        ItemWeighBridge.SetRange(RowID, rec.RowID);
-                        if ItemWeighBridge.FindFirst() then begin
-                            // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
-                            Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
-                            Page.Run(page::"Ticket Caisse");
-                        end;
+                         TicketPlanteur1 := rec."Ticket Planteur";
+                        // ItemWeighBridge.SetRange(TICKET, rec.TICKET);
+                        // ItemWeighBridge.SetRange("Ticket Planteur", rec."Ticket Planteur");
+                        // ItemWeighBridge.SetRange("Row No.", rec."Row No.");
+                        // ItemWeighBridge.SetRange(RowID, rec.RowID);
+                        // if ItemWeighBridge.FindFirst() then begin
+                        //     // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
+                        //     Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
+                        //     Page.Run(page::"Ticket Caisse");
+                        // end;
                         // ticket1 := rec.TICKET;
                         // row := rec."Row No.";
                         // ticketplanteur := rec."Ticket Planteur";
                         // rowid1 := rec.RowID;
                         // Message('a: %1 b: %2', ticket1,row);
                         PayerPlanteur();
+                        SommeTotale();
                         ItemWeighBridge.SetRange(TICKET, Ticket1);
                         ItemWeighBridge.SetRange("Ticket Planteur", TicketPlanteur1);
                         ItemWeighBridge.SetRange("Row No.", rowno1);
                         ItemWeighBridge.SetRange(RowID, ROWID1);
                         if ItemWeighBridge.FindFirst() then begin
+                           
                             // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
                             Page.Run(page::"Paiement Valide", ItemWeighBridge);
+                            // Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
                             // Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
 
 
@@ -621,6 +629,38 @@ page 70112 "Paiement Ticket"
             if (rec."Statut paiement" = true) OR (rec."Type opération" = 'ACHAT COMPTANT') then begin
                 Rec.Statut_Total_Paiement := true;
                 rec.Modify();
+            end;
+        end;
+    end;
+    //FnGeek
+    procedure SommeTotale()
+    var
+        myInt: Integer;
+        PrixAchat: Record "Prix Achat";
+    begin
+        if REC."Statut paiement Planteur" = true then begin
+            // Nom_Concerne := "Nom planteur";
+            PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
+            PrixAchat.SetFilter("Item No.", '=%1', 'RPH-9003');
+            PrixAchat.SetFilter("Starting Date", '<=%1', rec."Date validation");
+            PrixAchat.SetFilter("Ending Date", '>=%1', rec."Date validation");
+            PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
+            if PrixAchat.FindFirst() then begin
+                rec.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                REC.Modify();
+            end;
+        end else begin
+            if rec."Statut paiement" = true then begin
+                // Nom_Concerne := "Driver Name";
+                PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
+                PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
+                PrixAchat.SetFilter("Starting Date", '<=%1', "Date validation");
+                PrixAchat.SetFilter("Ending Date", '>=%1', "Date validation");
+                PrixAchat.SetRange(Type_Operation_Options, "Type opération");
+                if PrixAchat.FindFirst() then begin
+                    REC.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                    REC.Modify()
+                end;
             end;
         end;
     end;

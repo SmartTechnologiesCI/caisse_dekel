@@ -137,7 +137,9 @@ report 70048 Recu_Paiement
             end;
 
         }
+
     }
+
 
     requestpage
     {
@@ -162,7 +164,10 @@ report 70048 Recu_Paiement
 
                 }
             }
-        }
+           
+    }
+    
+        
 
         actions
         {
@@ -189,4 +194,5 @@ report 70048 Recu_Paiement
         TicketTransporteur: Boolean;
         Nom_Concerne: Code[250];
         PrixAchat: Record "Prix Achat";
+        
 }
