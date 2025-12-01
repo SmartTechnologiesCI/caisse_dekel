@@ -11,6 +11,17 @@ page 70115 Ligne_Paiement
         {
             repeater(General)
             {
+                field("Weighing 1 Date"; "Weighing 1 Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Weighing 2 Date"; "Weighing 2 Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Date validation";"Date validation"){
+                    ApplicationArea=All;
+                }
 
                 field("Ticket Planteur"; "Ticket Planteur")
                 {
