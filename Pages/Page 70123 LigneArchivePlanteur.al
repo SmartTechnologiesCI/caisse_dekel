@@ -19,6 +19,18 @@ page 70123 Ligne_Paiement_Achive_Planteur
                 {
                     Editable = false;
                 }
+                field("Weighing 1 Date"; "Weighing 1 Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Weighing 2 Date"; "Weighing 2 Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Date validation"; "Date validation")
+                {
+                    ApplicationArea = All;
+                }
                 field(Ticket_Concerne; Ticket_Concerne)
                 {
                     ApplicationArea = All;

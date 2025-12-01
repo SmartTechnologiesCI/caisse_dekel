@@ -16,6 +16,17 @@ page 70125 LignePaiementTransportArchiv
                 {
                     Editable = false;
                 }
+                field("Weighing 1 Date"; "Weighing 1 Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Weighing 2 Date"; "Weighing 2 Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Date validation";"Date validation"){
+                    
+                }
                 field(Ticket_Concerne; Ticket_Concerne)
                 {
                     ApplicationArea = All;
