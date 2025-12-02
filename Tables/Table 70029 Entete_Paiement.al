@@ -155,6 +155,12 @@ table 70029 Entete_Paiement
             CalcFormula = sum("Item Weigh Bridge".TotalPlanteur where(NumDocExten = field(NumDocExt), "Statut paiement Planteur" = const(true)));
 
         }
+        field(55019; NaturePiece; Option)
+        {
+            Caption = 'NATURE DE LA PIECE';
+            OptionMembers = CNI,PASSEPORT,PERMIS,CS,AUTRES;
+        }
+
 
 
     }

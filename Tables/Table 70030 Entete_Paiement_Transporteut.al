@@ -150,6 +150,12 @@ table 70030 Entete_Paiement_Transporteur
             CalcFormula = sum("Item Weigh Bridge".TotalPlanteur where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
 
         }
+        field(55019; NaturePiece; Option)
+        {
+            Caption = 'NATURE DE LA PIECE';
+            OptionMembers = CNI,PASSEPORT,PERMIS,CS,AUTRES;
+        }
+
 
         // field(55015; PrixUnitaire; Decimal)
         // {
