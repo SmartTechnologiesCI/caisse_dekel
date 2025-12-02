@@ -13,7 +13,7 @@ page 70124 PaiementHeaderTransport_Archiv
     {
         area(Content)
         {
-            group(GroupName)
+            group(Général)
             {
                 field(Code_Transporteur; Code_Transporteur)
                 {
@@ -94,6 +94,22 @@ page 70124 PaiementHeaderTransport_Archiv
                 {
                     ApplicationArea = All;
                 }
+            }
+            group(Paiement)
+            {
+                field(Poids_Total2; Poids_Total2)
+                {
+                    ApplicationArea = All;
+                }
+                field(TotalPlanteur2; TotalPlanteur2)
+                {
+                    ApplicationArea = All;
+                }
+                field(TotalPlanteurTTc2; TotalPlanteurTTc2)
+                {
+                    ApplicationArea = All;
+                }
+
             }
             part(LignePaiementTransportArchiv; LignePaiementTransportArchiv)
             {

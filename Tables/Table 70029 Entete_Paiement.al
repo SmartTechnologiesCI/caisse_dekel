@@ -130,6 +130,33 @@ table 70029 Entete_Paiement
             Caption = 'Prix unitaire (FCFA)';
         }
 
+        //**
+        field(55016; TotalPlanteurTTc2; Decimal)
+        {
+            FieldClass = FlowField;
+            Caption = 'Total Achat planteur(TTC:) FCFA';
+            Editable = false;
+            CalcFormula = sum("Item Weigh Bridge".TotalPlanteurTTc where(NumDocExten = field(NumDocExt), "Statut paiement Planteur" = const(true)));
+        }
+
+        field(55017; Poids_Total2; Decimal)
+        {
+            FieldClass = FlowField;
+            Caption = 'Poids Total (KG)';
+            Editable = false;
+            CalcFormula = sum("Item Weigh Bridge".Poids_Total where(NumDocExten = field(NumDocExt), "Statut paiement Planteur" = const(true)));
+        }
+        field(55018; TotalPlanteur2; Decimal)
+        {
+
+
+            Caption = 'Total Achat planteur (FCFA)';
+            FieldClass = FlowField;
+            CalcFormula = sum("Item Weigh Bridge".TotalPlanteur where(NumDocExten = field(NumDocExt), "Statut paiement Planteur" = const(true)));
+
+        }
+
+
     }
 
 

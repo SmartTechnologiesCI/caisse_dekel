@@ -4,6 +4,7 @@ page 70119 Ligne_Paiement_Transporteur
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = "Item Weigh Bridge";
+    Caption = 'Ligne Transport';
 
     layout
     {
@@ -94,12 +95,28 @@ page 70119 Ligne_Paiement_Transporteur
                             HeaderPaiement.Modify();
 
                         end;
-                        end;
+                    end;
 
                 }
                 field(Marqueur; Marqueur)
                 {
                     ApplicationArea = All;
+                }
+                field("POIDS ENTREE"; "POIDS ENTREE")
+                {
+                    ApplicationArea = all;
+                    Editable = false;
+
+                }
+                field("POIDS SORTIE"; "POIDS SORTIE")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+                field("POIDS NET"; "POIDS NET")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
                 }
                 field(PrixUnitaire; PrixUnitaire)
                 {
@@ -188,22 +205,7 @@ page 70119 Ligne_Paiement_Transporteur
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("POIDS ENTREE"; "POIDS ENTREE")
-                {
-                    ApplicationArea = all;
-                    Editable = false;
 
-                }
-                field("POIDS SORTIE"; "POIDS SORTIE")
-                {
-                    ApplicationArea = All;
-                    Editable = false;
-                }
-                field("POIDS NET"; "POIDS NET")
-                {
-                    ApplicationArea = All;
-                    Editable = false;
-                }
 
             }
         }
@@ -213,17 +215,17 @@ page 70119 Ligne_Paiement_Transporteur
     {
         area(Processing)
         {
-            action(ActionName)
-            {
+            // action(ActionName)
+            // {
 
-                trigger OnAction()
-                begin
+            //     trigger OnAction()
+            //     begin
 
-                end;
-            }
+            //     end;
+            // }
         }
     }
-     procedure SommeTotale()
+    procedure SommeTotale()
     var
         myInt: Integer;
         PrixAchat: Record "Prix Achat";

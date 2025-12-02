@@ -125,6 +125,32 @@ table 70030 Entete_Paiement_Transporteur
             Caption = 'Poids Total (KG)';
             Editable = false;
         }
+        //****
+        field(55016; TotalPlanteurTTc2; Decimal)
+        {
+            FieldClass = FlowField;
+            Caption = 'Total Achat Transporteur(TTC:) FCFA';
+            Editable = false;
+            CalcFormula = sum("Item Weigh Bridge".TotalPlanteurTTc where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
+        }
+
+        field(55017; Poids_Total2; Decimal)
+        {
+            FieldClass = FlowField;
+            Caption = 'Poids Total (KG)';
+            Editable = false;
+            CalcFormula = sum("Item Weigh Bridge".Poids_Total where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
+        }
+        field(55018; TotalPlanteur2; Decimal)
+        {
+
+
+            Caption = 'Total Achat Transporteur (FCFA)';
+            FieldClass = FlowField;
+            CalcFormula = sum("Item Weigh Bridge".TotalPlanteur where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
+
+        }
+
         // field(55015; PrixUnitaire; Decimal)
         // {
         //     DataClassification = ToBeClassified;

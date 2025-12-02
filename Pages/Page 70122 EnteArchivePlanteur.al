@@ -14,7 +14,7 @@ page 70122 ArchiEntetePlanteur
     {
         area(Content)
         {
-            group(GroupName)
+            group(Général)
             {
                 field(Code_Transporteur; Code_Transporteur)
                 {
@@ -95,6 +95,22 @@ page 70122 ArchiEntetePlanteur
                 {
                     ApplicationArea = All;
                 }
+            }
+            group(Paiement)
+            {
+                field(Poids_Total2;Poids_Total2)
+                {
+                    ApplicationArea = All;
+                }
+                field(TotalPlanteur2; TotalPlanteur2)
+                {
+                    ApplicationArea = All;
+                }
+                field(TotalPlanteurTTc2; TotalPlanteurTTc2)
+                {
+                    ApplicationArea = All;
+                }
+
             }
             part(Ligne_Paiement_Achive_Planteur; Ligne_Paiement_Achive_Planteur)
             {
