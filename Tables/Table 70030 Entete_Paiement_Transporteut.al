@@ -26,7 +26,7 @@ table 70030 Entete_Paiement_Transporteur
                 Souche.User := UserId;
                 Souche.Code_Souche := NumDocExt;
                 Souche.Insert();
-                
+
             end;
         }
         field(50002; Date_Paiement; Date)
@@ -91,6 +91,45 @@ table 70030 Entete_Paiement_Transporteur
         {
             DataClassification = ToBeClassified;
         }
+        field(55010; TotalPlanteur; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Total Achat Transporteur';
+            Editable = false;
+            trigger OnValidate()
+            var
+                myInt: Integer;
+                ParaCaisse: Record "Parametres caisse";
+            begin
+                // ParaCaisse.Reset();
+                // ParaCaisse.Get();
+                // rec.Impot:=ParaCaisse.PoucentageImpot*
+            end;
+        }
+        field(55011; Impot; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Impôt 1,5 %';
+            Editable = false;
+        }
+        field(55012; TotalPlanteurTTc; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Total Achat Transporteur(TTC:) FCFA';
+            Editable = false;
+        }
+
+        field(55014; Poids_Total; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Poids Total (KG)';
+            Editable = false;
+        }
+        // field(55015; PrixUnitaire; Decimal)
+        // {
+        //     DataClassification = ToBeClassified;
+        //     Caption = 'Prix unitaire (FCFA)';
+        // }
     }
 
     keys

@@ -4,7 +4,8 @@ page 70127 TotauxCardPage
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = "Item Weigh Bridge";
-    ;
+    ModifyAllowed = true;
+    InsertAllowed = true;
 
     layout
     {
@@ -12,7 +13,7 @@ page 70127 TotauxCardPage
         {
             group(Paiement)
             {
-                field(Poids_Total; Poids_Total)
+                field(Poids_Total; REC.Poids_Total)
                 {
                     ApplicationArea = All;
                 }

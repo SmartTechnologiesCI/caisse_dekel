@@ -10,7 +10,7 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         field(55006; Ticket_Concerne; Boolean)
         {
             DataClassification = ToBeClassified;
-            Caption = 'Ticket(s) Concerné(s)';
+            Caption = 'Ticket(s) Concerné(s) Planteur';
         }
         field(55007; NumDocExten; code[50])
         {
@@ -29,31 +29,52 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         field(55010; TotalPlanteur; Decimal)
         {
             DataClassification = ToBeClassified;
-            Caption = 'Total Achat planteur';
+            Caption = 'Total Achat planteur (FCFA)';
             Editable = false;
+            DecimalPlaces = 6;
         }
         field(55011; Impot; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Impôt 1,5 %';
             Editable = false;
+            DecimalPlaces = 6;
         }
         field(55012; TotalPlanteurTTc; Decimal)
         {
             DataClassification = ToBeClassified;
-            Caption = 'Total Achat planteur(TTC:)';
+            Caption = 'Total Achat planteur(TTC:) FCFA';
             Editable = false;
+            DecimalPlaces = 6;
         }
         field(55013; TotalTransPorteurTTC; Decimal)
         {
             DataClassification = ToBeClassified;
-            Caption = 'Total Achat Transporteur (TTC:)';
+            Caption = 'Total Achat Transporteur (TTC:) FCFA';
             Editable = false;
+            DecimalPlaces = 6;
         }
         field(55014; Poids_Total; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Poids Total';
+            Editable = false;
+            DecimalPlaces = 6;
+        }
+        field(55015; Ticket_Concerne_Transport; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Ticket(s) Concerné(s) Transporteur';
+        }
+        field(55016; PrixUnitaire; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Prix unitaire(FCFA)';
+            DecimalPlaces = 6;
+        }
+        field(55017; Marqueur; Boolean)
+        {
+            DataClassification = ToBeClassified;
         }
     }
 

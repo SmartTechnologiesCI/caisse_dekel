@@ -12,7 +12,7 @@ page 70118 Paiement_Header_Transporteur
     {
         area(Content)
         {
-            group(GroupName)
+            group(Général)
             {
                 field(Code_Transporteur; Code_Transporteur)
                 {
@@ -94,6 +94,27 @@ page 70118 Paiement_Header_Transporteur
                     ApplicationArea = All;
                 }
             }
+            group(Paiement)
+            {
+                field(Poids_Total; Poids_Total)
+                {
+                    ApplicationArea = All;
+
+                }
+                field(TotalPlanteur; TotalPlanteur)
+                {
+                    ApplicationArea = All;
+                    
+                }
+                field(Impot; Impot)
+                {
+                    ApplicationArea = All;
+                }
+                field(TotalPlanteurTTc; TotalPlanteurTTc)
+                {
+                    ApplicationArea = All;
+                }
+            }
             part(Ligne_Paiement_Transporteur; Ligne_Paiement_Transporteur)
             {
                 SubPageLink = "Code Transporteur" = field(Palanteur), "Statut paiement" = const(false);
@@ -120,7 +141,7 @@ page 70118 Paiement_Header_Transporteur
                     EnteteHeader: Record Entete_Paiement_Transporteur;
                 begin
 
-                    ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
+                    ItemWeightBridge.SetFilter(Ticket_Concerne_Transport, '=%1', true);
                     ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
                     ItemWeightBridge.SetFilter("Statut paiement", '=%1', false);
                     if ItemWeightBridge.FindSet() then begin

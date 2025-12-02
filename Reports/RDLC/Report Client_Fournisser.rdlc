@@ -11,76 +11,6 @@
       <rd:DataSourceID>65a21eea-ed80-4c53-a09e-4b8d55395c1e</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Vehicle_Registration_No_">
-          <DataField>Vehicle_Registration_No_</DataField>
-        </Field>
-        <Field Name="Date_validation">
-          <DataField>Date_validation</DataField>
-        </Field>
-        <Field Name="Weighing_2_Hour">
-          <DataField>Weighing_2_Hour</DataField>
-        </Field>
-        <Field Name="Ticket_Planteur">
-          <DataField>Ticket_Planteur</DataField>
-        </Field>
-        <Field Name="POIDS_ENTREE">
-          <DataField>POIDS_ENTREE</DataField>
-        </Field>
-        <Field Name="POIDS_ENTREEFormat">
-          <DataField>POIDS_ENTREEFormat</DataField>
-        </Field>
-        <Field Name="POIDS_SORTIE">
-          <DataField>POIDS_SORTIE</DataField>
-        </Field>
-        <Field Name="POIDS_SORTIEFormat">
-          <DataField>POIDS_SORTIEFormat</DataField>
-        </Field>
-        <Field Name="POIDS_NET">
-          <DataField>POIDS_NET</DataField>
-        </Field>
-        <Field Name="POIDS_NETFormat">
-          <DataField>POIDS_NETFormat</DataField>
-        </Field>
-        <Field Name="Nom_Client">
-          <DataField>Nom_Client</DataField>
-        </Field>
-        <Field Name="Type_opération">
-          <DataField>Type_opération</DataField>
-        </Field>
-        <Field Name="Filter">
-          <DataField>Filter</DataField>
-        </Field>
-        <Field Name="Centre_Logistique">
-          <DataField>Centre_Logistique</DataField>
-        </Field>
-        <Field Name="Désignation_article">
-          <DataField>Désignation_article</DataField>
-        </Field>
-        <Field Name="ValeurTypeOperation">
-          <DataField>ValeurTypeOperation</DataField>
-        </Field>
-        <Field Name="PeriodeImpression">
-          <DataField>PeriodeImpression</DataField>
-        </Field>
-        <Field Name="Description_Client_Fournisseur">
-          <DataField>Description_Client_Fournisseur</DataField>
-        </Field>
-        <Field Name="Client_Fournisseur">
-          <DataField>Client_Fournisseur</DataField>
-        </Field>
-        <Field Name="Weighing_1_Date">
-          <DataField>Weighing_1_Date</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -2013,12 +1943,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -2058,4 +1982,74 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Vehicle_Registration_No_">
+          <DataField>Vehicle_Registration_No_</DataField>
+        </Field>
+        <Field Name="Date_validation">
+          <DataField>Date_validation</DataField>
+        </Field>
+        <Field Name="Weighing_2_Hour">
+          <DataField>Weighing_2_Hour</DataField>
+        </Field>
+        <Field Name="Ticket_Planteur">
+          <DataField>Ticket_Planteur</DataField>
+        </Field>
+        <Field Name="POIDS_ENTREE">
+          <DataField>POIDS_ENTREE</DataField>
+        </Field>
+        <Field Name="POIDS_ENTREEFormat">
+          <DataField>POIDS_ENTREEFormat</DataField>
+        </Field>
+        <Field Name="POIDS_SORTIE">
+          <DataField>POIDS_SORTIE</DataField>
+        </Field>
+        <Field Name="POIDS_SORTIEFormat">
+          <DataField>POIDS_SORTIEFormat</DataField>
+        </Field>
+        <Field Name="POIDS_NET">
+          <DataField>POIDS_NET</DataField>
+        </Field>
+        <Field Name="POIDS_NETFormat">
+          <DataField>POIDS_NETFormat</DataField>
+        </Field>
+        <Field Name="Nom_Client">
+          <DataField>Nom_Client</DataField>
+        </Field>
+        <Field Name="Type_opération">
+          <DataField>Type_opération</DataField>
+        </Field>
+        <Field Name="Filter">
+          <DataField>Filter</DataField>
+        </Field>
+        <Field Name="Centre_Logistique">
+          <DataField>Centre_Logistique</DataField>
+        </Field>
+        <Field Name="Désignation_article">
+          <DataField>Désignation_article</DataField>
+        </Field>
+        <Field Name="ValeurTypeOperation">
+          <DataField>ValeurTypeOperation</DataField>
+        </Field>
+        <Field Name="PeriodeImpression">
+          <DataField>PeriodeImpression</DataField>
+        </Field>
+        <Field Name="Description_Client_Fournisseur">
+          <DataField>Description_Client_Fournisseur</DataField>
+        </Field>
+        <Field Name="Client_Fournisseur">
+          <DataField>Client_Fournisseur</DataField>
+        </Field>
+        <Field Name="Weighing_1_Date">
+          <DataField>Weighing_1_Date</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

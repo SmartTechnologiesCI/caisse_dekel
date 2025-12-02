@@ -115,8 +115,8 @@ report 70048 Recu_Paiement
                     Nom_Concerne := "Nom planteur";
                     PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
                     PrixAchat.SetFilter("Item No.", '=%1', 'RPH-9003');
-                    PrixAchat.SetFilter("Starting Date", '<=%1', "Date validation");
-                    PrixAchat.SetFilter("Ending Date", '>=%1', "Date validation");
+                    PrixAchat.SetFilter("Starting Date", '<=%1', "Weighing 1 Date");
+                    PrixAchat.SetFilter("Ending Date", '>=%1', "Weighing 1 Date");
                     PrixAchat.SetRange(Type_Operation_Options, "Type opération");
                     if PrixAchat.FindFirst() then begin
                         Prix := PrixAchat."Direct Unit Cost";
@@ -126,8 +126,8 @@ report 70048 Recu_Paiement
                         Nom_Concerne := "Driver Name";
                         PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
                         PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
-                        PrixAchat.SetFilter("Starting Date", '<=%1', "Date validation");
-                        PrixAchat.SetFilter("Ending Date", '>=%1', "Date validation");
+                        PrixAchat.SetFilter("Starting Date", '<=%1', "Weighing 1 Date");
+                        PrixAchat.SetFilter("Ending Date", '>=%1', "Weighing 1 Date");
                         PrixAchat.SetRange(Type_Operation_Options, "Type opération");
                         if PrixAchat.FindFirst() then begin
                             Prix := PrixAchat."Direct Unit Cost";
@@ -164,10 +164,10 @@ report 70048 Recu_Paiement
 
                 }
             }
-           
-    }
-    
-        
+
+        }
+
+
 
         actions
         {
@@ -194,5 +194,5 @@ report 70048 Recu_Paiement
         TicketTransporteur: Boolean;
         Nom_Concerne: Code[250];
         PrixAchat: Record "Prix Achat";
-        
+
 }

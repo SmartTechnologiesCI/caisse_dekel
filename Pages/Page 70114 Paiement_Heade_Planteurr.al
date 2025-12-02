@@ -93,6 +93,32 @@ page 70114 Paiement_Header
                 {
                     ApplicationArea = All;
                 }
+                field(TotalFictif; TotalFictif)
+                {
+                    ApplicationArea = All;
+                    Visible = false;
+                }
+
+            }
+            group(Paie)
+            {
+                field(Poids_Total; Poids_Total)
+                {
+                    ApplicationArea = All;
+                    
+                }
+                field(TotalPlanteur; TotalPlanteur)
+                {
+                    ApplicationArea = All;
+                }
+                field(Impot; Impot)
+                {
+                    ApplicationArea = All;
+                }
+                field(TotalPlanteurTTc; TotalPlanteurTTc)
+                {
+                    ApplicationArea = All;
+                }
             }
             part(Ligne_Paiement; Ligne_Paiement)
             {
@@ -101,8 +127,9 @@ page 70114 Paiement_Header
             }
             part(TotauxCardPage; TotauxCardPage)
             {
+                Visible = false;
                 Caption = 'Paiement';
-                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement Planteur" = const(false);
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement Planteur" = const(false), Ticket_Concerne = const(false);
 
             }
         }
@@ -280,4 +307,5 @@ page 70114 Paiement_Header
     var
         myInt: Integer;
         DocExterne: Code[50];
+        TotalFictif: Decimal;
 }
