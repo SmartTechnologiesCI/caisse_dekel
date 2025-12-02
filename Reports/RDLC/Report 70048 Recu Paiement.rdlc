@@ -1085,7 +1085,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=(Sum(Fields!Prix.Value*Fields!POIDS_NET.Value)*0.015)+Sum(Fields!Prix.Value*Fields!POIDS_NET.Value)</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>#,0;(#,0)</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>

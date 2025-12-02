@@ -139,7 +139,7 @@ table 70030 Entete_Paiement_Transporteur
             FieldClass = FlowField;
             Caption = 'Poids Total (KG)';
             Editable = false;
-            CalcFormula = sum("Item Weigh Bridge".Poids_Total where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
+            CalcFormula = sum("Item Weigh Bridge"."POIDS NET" where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
         }
         field(55018; TotalPlanteur2; Decimal)
         {
