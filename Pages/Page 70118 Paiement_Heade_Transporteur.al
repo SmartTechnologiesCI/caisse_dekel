@@ -123,7 +123,7 @@ page 70118 Paiement_Header_Transporteur
             }
             part(Ligne_Paiement_Transporteur; Ligne_Paiement_Transporteur)
             {
-                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(false), valide = const(true);
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(false), valide = const(true),En_Attente_Paiement = const(false);
 
             }
         }

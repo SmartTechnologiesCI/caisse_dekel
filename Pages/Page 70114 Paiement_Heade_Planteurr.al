@@ -129,7 +129,7 @@ page 70114 Paiement_Header
             }
             part(Ligne_Paiement; Ligne_Paiement)
             {
-                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement Planteur" = const(false), valide = const(true);
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement Planteur" = const(false), valide = const(true), En_Attente_Paiement = const(false);
 
             }
             part(TotauxCardPage; TotauxCardPage)
