@@ -31,35 +31,35 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             DataClassification = ToBeClassified;
             Caption = 'Total Achat planteur (FCFA)';
             Editable = false;
-            DecimalPlaces = 6;
+            DecimalPlaces = 4;
         }
         field(55011; Impot; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Impôt 1,5 %';
             Editable = false;
-            DecimalPlaces = 6;
+            DecimalPlaces = 4;
         }
         field(55012; TotalPlanteurTTc; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Total Achat planteur(TTC:) FCFA';
             Editable = false;
-            DecimalPlaces = 6;
+            DecimalPlaces = 4;
         }
         field(55013; TotalTransPorteurTTC; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Total Achat Transporteur (TTC:) FCFA';
             Editable = false;
-            DecimalPlaces = 6;
+            DecimalPlaces = 4;
         }
         field(55014; Poids_Total; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Poids Total';
             Editable = false;
-            DecimalPlaces = 6;
+            DecimalPlaces = 4;
         }
         field(55015; Ticket_Concerne_Transport; Boolean)
         {
@@ -70,7 +70,7 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         {
             DataClassification = ToBeClassified;
             Caption = 'Prix unitaire(FCFA)';
-            DecimalPlaces = 6;
+            DecimalPlaces = 4;
             Editable = false;
         }
         field(55017; Marqueur; Boolean)
@@ -86,8 +86,19 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         {
             DataClassification = ToBeClassified;
             Caption = 'Prix unitaire Transport(FCFA)';
-            DecimalPlaces = 6;
+            DecimalPlaces = 4;
             Editable = FALSE;
+        }
+        field(55020; MarqueurTransport; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
+         field(55021; TotalTransporteur; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Total Achat Transport (FCFA)';
+            Editable = false;
+            DecimalPlaces = 4;
         }
 
     }

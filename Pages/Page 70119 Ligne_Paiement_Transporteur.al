@@ -63,11 +63,17 @@ page 70119 Ligne_Paiement_Transporteur
 
                         Souche.SetRange(User, UserId);
                         if Souche.FindLast() then begin
-                            rec.NumDocExten := Souche.Code_Souche;
+                            if rec.Ticket_Concerne_Transport = true then begin
+                                rec.NumDocExten := Souche.Code_Souche;
+                            end else begin
+                                rec.NumDocExten := '';
+                            end;
+
                         end;
                         SommeTotale();
                         HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
                         if HeaderPaiement.FindFirst() then begin
+
                             Rec.Beneficiaire := HeaderPaiement.Beneficiare;
                             REC.NCNI := HeaderPaiement.CNI;
                             REC.Mode_Paiement := HeaderPaiement.Mode_Paiement;
@@ -81,14 +87,19 @@ page 70119 Ligne_Paiement_Transporteur
                             if ItemWeightBridge.FindSet() then begin
                                 repeat begin
 
-                                    if ItemWeightBridge.Marqueur = false then begin
+                                    if ItemWeightBridge.MarqueurTransport = false then begin
                                         HeaderPaiement.Poids_Total += rec."POIDS NET";
                                         HeaderPaiement.TotalPlanteur += rec.TotalPlanteur;
                                         HeaderPaiement.Impot += rec.Impot;
                                         HeaderPaiement.TotalPlanteurTTc += rec.TotalPlanteurTTc;
                                         // Message('Ticket: %1 Poids: %2 RecPoids: %3', ItemWeightBridge."Ticket Planteur", HeaderPaiement.Poids_Total, rec."POIDS NET")
                                     end;
-                                    rec.Marqueur := TRUE;
+                                    if rec.Ticket_Concerne_Transport = true then begin
+                                        rec.MarqueurTransport := TRUE;
+                                    end else begin
+                                        rec.MarqueurTransport := false;
+                                    end;
+
 
                                 end until ItemWeightBridge.Next() = 0;
                             end;
@@ -98,7 +109,7 @@ page 70119 Ligne_Paiement_Transporteur
                     end;
 
                 }
-                field(Marqueur; Marqueur)
+                field(MarqueurTransport; MarqueurTransport)
                 {
                     ApplicationArea = All;
                 }
@@ -120,23 +131,39 @@ page 70119 Ligne_Paiement_Transporteur
                 }
                 field(PrixUnitaire; PrixUnitaire)
                 {
+                    Visible = false;
+                    ApplicationArea = All;
+                }
+                field(PrixUnitaireTansport; PrixUnitaireTansport)
+                {
                     ApplicationArea = All;
                 }
 
                 field(Impot; Impot)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                     // DecimalPlaces=3;
                 }
                 field(TotalPlanteur; TotalPlanteur)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                     // DecimalPlaces=3;
+                }
+                field(TotalTransport; TotalTransport)
+                {
+                    ApplicationArea = All;
                 }
                 field(TotalPlanteurTTc; TotalPlanteurTTc)
                 {
                     ApplicationArea = All;
                     DecimalPlaces = 3;
+                    Visible = false;
+                }
+                field(TotalTransPorteurTTC; TotalTransPorteurTTC)
+                {
+                    ApplicationArea = all;
                 }
 
                 field(NumDocExten; rec.NumDocExten)
@@ -243,20 +270,12 @@ page 70119 Ligne_Paiement_Transporteur
         PrixAchat.SetFilter("Ending Date", '>=%1', rec."Weighing 1 Date");
         PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
         if PrixAchat.FindFirst() then begin
-            //*** Taxe
-            // VendorSplitTaxSetup.SetRange("Vendor No.", rec."Code planteur");
-            // if VendorSplitTaxSetup.FindFirst() then begin
-            //     REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            //     taxe := (VendorSplitTaxSetup.Percentage / 100);
-            // end else begin
-            //     Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
-            // end;
-            // //***tAXE
-            // 
-            REC.PrixUnitaire := PrixAchat."Direct Unit Cost";
+
+            rec.Impot := 0;
+            REC.PrixUnitaireTansport := PrixAchat."Direct Unit Cost";
             // REC.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            rec.TotalPlanteurTTc := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            rec.TotalTransport := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            rec.TotalTransPorteurTTC := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
             // rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + PrixAchat."Direct Unit Cost" * rec."POIDS NET";
             REC.Modify();
         end else begin
