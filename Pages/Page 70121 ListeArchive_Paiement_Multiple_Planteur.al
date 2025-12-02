@@ -77,4 +77,11 @@ page 70121 ListePantPlanteurArchive
     begin
         SetFilter(Archive, '=%1', true);
     end;
+
+    trigger OnClosePage()
+    var
+        myInt: Integer;
+    begin
+        // RUN(Page::ListePaiementPlanteur)
+    end;
 }

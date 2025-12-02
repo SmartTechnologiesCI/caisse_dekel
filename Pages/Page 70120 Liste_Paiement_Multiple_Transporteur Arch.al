@@ -75,4 +75,11 @@ page 70120 ListePantTransporteurArchive
     begin
         SetFilter(Archive, '=%1', true);
     end;
+
+    trigger OnClosePage()
+    var
+        myInt: Integer;
+    begin
+        // Run(Page::ListePaiementTransporteur);
+    end;
 }

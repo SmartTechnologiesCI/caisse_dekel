@@ -105,7 +105,7 @@ page 70114 Paiement_Header
                 field(Poids_Total; Poids_Total)
                 {
                     ApplicationArea = All;
-                    
+
                 }
                 field(TotalPlanteur; TotalPlanteur)
                 {
@@ -151,8 +151,11 @@ page 70114 Paiement_Header
                     ItemWeightBridge: Record "Item Weigh Bridge";
                     ItemWeightBridge2: Record "Item Weigh Bridge";
                     EnteteHeader: Record Entete_Paiement;
+                    nudoc: code[50];
+                    Entete_Paiement: Record Entete_Paiement;
                 begin
 
+                    nudoc := rec.NumDocExt;
                     ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
                     ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
                     ItemWeightBridge.SetFilter("Statut paiement Planteur", '=%1', false);
@@ -163,6 +166,11 @@ page 70114 Paiement_Header
                     end else begin
                         Error('Vous n''avez rien sélectionné');
                     end;
+                    Entete_Paiement.SetRange(NumDocExt, nudoc);
+                    if Entete_Paiement.FindFirst() then begin
+                        Run(Page::ListePantPlanteurArchive, Entete_Paiement);
+                    end;
+
 
                 end;
             }

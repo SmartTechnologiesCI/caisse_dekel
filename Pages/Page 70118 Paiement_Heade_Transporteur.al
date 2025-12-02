@@ -104,7 +104,7 @@ page 70118 Paiement_Header_Transporteur
                 field(TotalPlanteur; TotalPlanteur)
                 {
                     ApplicationArea = All;
-                    
+
                 }
                 field(Impot; Impot)
                 {
@@ -139,6 +139,8 @@ page 70118 Paiement_Header_Transporteur
                     ItemWeightBridge: Record "Item Weigh Bridge";
                     ItemWeightBridge2: Record "Item Weigh Bridge";
                     EnteteHeader: Record Entete_Paiement_Transporteur;
+                    Entete_Paiement: Record Entete_Paiement;
+                    nudoc: Code[50];
                 begin
 
                     ItemWeightBridge.SetFilter(Ticket_Concerne_Transport, '=%1', true);
@@ -151,7 +153,10 @@ page 70118 Paiement_Header_Transporteur
                     end else begin
                         Error('Vous n''avez rien sélectionné');
                     end;
-
+                    Entete_Paiement.SetRange(NumDocExt, nudoc);
+                    if Entete_Paiement.FindFirst() then begin
+                        Run(Page::ListePantTransporteurArchive, Entete_Paiement);
+                    end;
                 end;
             }
         }
