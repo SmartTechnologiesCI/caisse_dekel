@@ -32,6 +32,7 @@ table 70030 Entete_Paiement_Transporteur
         field(50002; Date_Paiement; Date)
         {
             DataClassification = ToBeClassified;
+
         }
         field(50003; Beneficiare; Text[250])
         {
@@ -41,6 +42,7 @@ table 70030 Entete_Paiement_Transporteur
         {
             DataClassification = ToBeClassified;
             Caption = 'Caissier/Caissière';
+            Editable = false;
         }
         field(50005; Code_Transporteur; Code[250])
         {
@@ -166,7 +168,7 @@ table 70030 Entete_Paiement_Transporteur
 
     keys
     {
-        key(Key1; code_Paiement,NumDocExt)
+        key(Key1; code_Paiement, NumDocExt)
         {
             Clustered = true;
         }

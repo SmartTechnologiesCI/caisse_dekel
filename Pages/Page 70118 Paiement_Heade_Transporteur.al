@@ -26,6 +26,7 @@ page 70118 Paiement_Header_Transporteur
                         ItemWeighBridge.SetRange("Ticket Planteur", rec.Palanteur);
                         if ItemWeighBridge.FindFirst() then begin
                             rec.Nom_Planteur := Nom_Planteur;
+
                         end;
 
 
@@ -122,7 +123,7 @@ page 70118 Paiement_Header_Transporteur
             }
             part(Ligne_Paiement_Transporteur; Ligne_Paiement_Transporteur)
             {
-                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(false);
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(false), valide = const(true);
 
             }
         }
@@ -346,6 +347,14 @@ page 70118 Paiement_Header_Transporteur
             ItemWeighBridgecaisse."Ligne paiement trans" := ItemWeignt."Ligne paiement trans";
             ItemWeighBridgecaisse.Modify()
         end;
+    end;
+
+    trigger OnNewRecord(BelowxRec: Boolean)
+    var
+        myInt: Integer;
+    begin
+        REC.Date_Paiement := WorkDate();
+        rec.Caissier := UserId;
     end;
 
     var

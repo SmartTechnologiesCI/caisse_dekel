@@ -40,6 +40,7 @@ table 70029 Entete_Paiement
         {
             DataClassification = ToBeClassified;
             Caption = 'Caissier/Caissière';
+            Editable=false;
         }
         field(50005; Code_Transporteur; Code[250])
         {
