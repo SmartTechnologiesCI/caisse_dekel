@@ -128,6 +128,7 @@ page 70005 "Caisse RoleCenter"
                 RunPageMode = Create;
                 ApplicationArea = All;
                 RunObject = report 70048;
+                Visible = false;
             }
             action(ImpressionTansporrteur)
             {
@@ -137,6 +138,7 @@ page 70005 "Caisse RoleCenter"
                 RunPageMode = Create;
                 ApplicationArea = All;
                 RunObject = report 70048;
+                Visible = false;
             }
 
 

@@ -61,12 +61,22 @@ page 70121 ListePantPlanteurArchive
     {
         area(Processing)
         {
-            action(ActionName)
+            action(Imprimer)
             {
-
+                Caption = 'Imprimer Ticket';
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
                 trigger OnAction()
-                begin
 
+                var
+                    Entete_Paiements: Record Entete_Paiement;
+                    itemWigIfbhhf: Record "Item Weigh Bridge";
+                begin
+                    itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
+                    if itemWigIfbhhf.FindFirst() then begin
+                        Report.Run(70048, true, false, itemWigIfbhhf);
+                    end;
                 end;
             }
         }

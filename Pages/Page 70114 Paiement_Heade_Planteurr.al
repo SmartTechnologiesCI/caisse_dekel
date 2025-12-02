@@ -12,7 +12,7 @@ page 70114 Paiement_Header
     {
         area(Content)
         {
-            group(GroupName)
+            group(Général)
             {
                 field(Code_Transporteur; Code_Transporteur)
                 {
@@ -26,8 +26,9 @@ page 70114 Paiement_Header
                         ItemWeighBridge.SetRange("Ticket Planteur", rec.Palanteur);
                         if ItemWeighBridge.FindFirst() then begin
                             rec.Nom_Planteur := Nom_Planteur;
+                            // rec.Modify()
                         end;
-
+                        CurrPage.Update();
 
                     end;
 
@@ -158,22 +159,26 @@ page 70114 Paiement_Header
                     nudoc: code[50];
                     Entete_Paiement: Record Entete_Paiement;
                 begin
-
-                    nudoc := rec.NumDocExt;
-                    ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
-                    ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
-                    ItemWeightBridge.SetFilter("Statut paiement Planteur", '=%1', false);
-                    if ItemWeightBridge.FindSet() then begin
-                        repeat begin
-                            PayerPlanteur(ItemWeightBridge)
-                        end until ItemWeightBridge.Next() = 0;
+                    if Confirm('Voulez vous valider le paiement') then begin
+                        nudoc := rec.NumDocExt;
+                        ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
+                        ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        ItemWeightBridge.SetFilter("Statut paiement Planteur", '=%1', false);
+                        if ItemWeightBridge.FindSet() then begin
+                            repeat begin
+                                PayerPlanteur(ItemWeightBridge)
+                            end until ItemWeightBridge.Next() = 0;
+                        end else begin
+                            Error('Vous n''avez rien sélectionné');
+                        end;
+                        Entete_Paiement.SetRange(NumDocExt, nudoc);
+                        if Entete_Paiement.FindFirst() then begin
+                            Run(Page::ListePantPlanteurArchive, Entete_Paiement);
+                        end;
                     end else begin
-                        Error('Vous n''avez rien sélectionné');
+                        exit
                     end;
-                    Entete_Paiement.SetRange(NumDocExt, nudoc);
-                    if Entete_Paiement.FindFirst() then begin
-                        Run(Page::ListePantPlanteurArchive, Entete_Paiement);
-                    end;
+
 
 
                 end;

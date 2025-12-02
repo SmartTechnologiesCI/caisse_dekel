@@ -122,7 +122,7 @@ page 70118 Paiement_Header_Transporteur
             }
             part(Ligne_Paiement_Transporteur; Ligne_Paiement_Transporteur)
             {
-                SubPageLink = "Code Transporteur" = field(Palanteur), "Statut paiement" = const(false);
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(false);
 
             }
         }
@@ -147,21 +147,27 @@ page 70118 Paiement_Header_Transporteur
                     Entete_Paiement: Record Entete_Paiement;
                     nudoc: Code[50];
                 begin
-
-                    ItemWeightBridge.SetFilter(Ticket_Concerne_Transport, '=%1', true);
-                    ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
-                    ItemWeightBridge.SetFilter("Statut paiement", '=%1', false);
-                    if ItemWeightBridge.FindSet() then begin
-                        repeat begin
-                            PayerTransporteur(ItemWeightBridge)
-                        end until ItemWeightBridge.Next() = 0;
+                    if Confirm('Voulez vous valider le paiement') then begin
+                        nudoc := Rec.NumDocExt;
+                        ItemWeightBridge.SetFilter(Ticket_Concerne_Transport, '=%1', true);
+                        ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        ItemWeightBridge.SetFilter("Statut paiement", '=%1', false);
+                        if ItemWeightBridge.FindSet() then begin
+                            repeat begin
+                                PayerTransporteur(ItemWeightBridge)
+                            end until ItemWeightBridge.Next() = 0;
+                        end else begin
+                            Error('Vous n''avez rien sélectionné');
+                        end;
+                        EnteteHeader.SetRange(NumDocExt, nudoc);
+                        if EnteteHeader.FindFirst() then begin
+                            Run(Page::ListePantTransporteurArchive, EnteteHeader);
+                        end;
                     end else begin
-                        Error('Vous n''avez rien sélectionné');
+                        exit
                     end;
-                    Entete_Paiement.SetRange(NumDocExt, nudoc);
-                    if Entete_Paiement.FindFirst() then begin
-                        Run(Page::ListePantTransporteurArchive, Entete_Paiement);
-                    end;
+
+
                 end;
             }
         }

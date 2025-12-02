@@ -71,14 +71,23 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             DataClassification = ToBeClassified;
             Caption = 'Prix unitaire(FCFA)';
             DecimalPlaces = 6;
+            Editable = false;
         }
         field(55017; Marqueur; Boolean)
         {
             DataClassification = ToBeClassified;
-        } field(55018; NaturePiece; Option)
+        }
+        field(55018; NaturePiece; Option)
         {
             Caption = 'NATURE DE LA PIECE';
             OptionMembers = CNI,PASSEPORT,PERMIS,CS,AUTRES;
+        }
+        field(55019; PrixUnitaireTansport; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Prix unitaire Transport(FCFA)';
+            DecimalPlaces = 6;
+            Editable = FALSE;
         }
 
     }

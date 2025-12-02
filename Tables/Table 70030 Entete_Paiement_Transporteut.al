@@ -166,7 +166,7 @@ table 70030 Entete_Paiement_Transporteur
 
     keys
     {
-        key(Key1; code_Paiement)
+        key(Key1; code_Paiement,NumDocExt)
         {
             Clustered = true;
         }
