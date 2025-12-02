@@ -277,6 +277,10 @@ page 70112 "Paiement Ticket"
                 {
                     ApplicationArea = All;
                 }
+                field(PrixUnitaire; PrixUnitaire)
+                {
+                    ApplicationArea = All;
+                }
 
                 field(Total; Total)
                 {

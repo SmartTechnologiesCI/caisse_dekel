@@ -111,6 +111,13 @@ report 70048 Recu_Paiement
             var
                 myInt: Integer;
             begin
+                // if FindFirst() then begin
+                //     if "Statut paiement Planteur" = true then begin
+                //         TicketPlanteur := true;
+                //     end else begin
+
+                //     end;
+                // end;
                 if TicketPlanteur = true then begin
                     Nom_Concerne := "Nom planteur";
                     PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
@@ -134,7 +141,9 @@ report 70048 Recu_Paiement
                         end;
                     end;
                 end;
+
             end;
+
 
         }
 
