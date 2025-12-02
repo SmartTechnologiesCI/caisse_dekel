@@ -65,6 +65,11 @@ page 70118 Paiement_Header_Transporteur
                 {
                     ApplicationArea = All;
                 }
+                field(NaturePiece; NaturePiece)
+                {
+                    ApplicationArea = All;
+                }
+
                 field(CNI; CNI)
                 {
                     ApplicationArea = All;

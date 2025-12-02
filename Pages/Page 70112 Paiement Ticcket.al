@@ -232,6 +232,11 @@ page 70112 "Paiement Ticket"
                 {
                     ApplicationArea = All;
                 }
+                field(NaturePiece; NaturePiece)
+                {
+                    ApplicationArea = All;
+                }
+
                 field(NCNI; rec.NCNI)
                 {
                     ApplicationArea = All;

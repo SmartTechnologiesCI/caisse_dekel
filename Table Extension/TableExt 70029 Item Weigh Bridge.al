@@ -75,7 +75,12 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         field(55017; Marqueur; Boolean)
         {
             DataClassification = ToBeClassified;
+        } field(55018; NaturePiece; Option)
+        {
+            Caption = 'NATURE DE LA PIECE';
+            OptionMembers = CNI,PASSEPORT,PERMIS,CS,AUTRES;
         }
+
     }
 
     keys

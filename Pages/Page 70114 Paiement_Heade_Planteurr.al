@@ -65,6 +65,10 @@ page 70114 Paiement_Header
                 {
                     ApplicationArea = All;
                 }
+                field(NaturePiece; NaturePiece)
+                {
+                    ApplicationArea = All;
+                }
                 field(CNI; CNI)
                 {
                     ApplicationArea = All;
