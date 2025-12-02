@@ -89,6 +89,12 @@ page 70110 "Ticket Caisse"
                 field("POIDS NET"; "POIDS NET")
                 {
                 }
+                field(PrixUnitaire; PrixUnitaire) { }
+                field(PrixUnitaireTansport; PrixUnitaireTansport) { }
+                field(TotalPlanteur; TotalPlanteur) { }
+                field(TotalPlanteurTTc; TotalPlanteurTTc) { }
+                field(TotalTransport; TotalTransport) { }
+                field(TotalTransPorteurTTC; TotalTransPorteurTTC) { }
                 field("Item Origin"; "Item Origin")
                 {
                     CaptionML = FRA = 'Origine produit', ENU = 'Origin product';
@@ -1168,6 +1174,7 @@ page 70110 "Ticket Caisse"
     trigger OnOpenPage()
     begin
 
+
         AnnuleFacture := FALSE;
         UserSetup2.RESET;
         IF UserSetup2.GET(USERID) THEN BEGIN
@@ -1217,6 +1224,104 @@ page 70110 "Ticket Caisse"
             END;
             UNTIL Fournisseurs.NEXT = 0;
         ///carelle,,,
+    end;
+
+    trigger OnAfterGetRecord()
+    var
+        myInt: Integer;
+    begin
+        SommeTotale();
+    end;
+
+    procedure SommeTotale()
+    var
+        myInt: Integer;
+        PrixAchat: Record "Prix Achat";
+        ParaCaisse: Record "Parametres caisse";
+        VendorSplitTaxSetup: Record "Vendor Split Tax Setup";
+    begin
+        ParaCaisse.Reset();
+        ParaCaisse.Get();
+        // if REC."Statut paiement Planteur" = true then begin
+        //     // Nom_Concerne := "Nom planteur";
+        //     PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
+        //     PrixAchat.SetFilter("Item No.", '=%1', 'RPH-9003');
+        //     PrixAchat.SetFilter("Starting Date", '<=%1', rec."Weighing 1 Date");
+        //     PrixAchat.SetFilter("Ending Date", '>=%1', rec."Weighing 1 Date");
+        //     PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
+        //     if PrixAchat.FindFirst() then begin
+        //         rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
+        //         REC.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+        //         rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+        //         rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+        //         REC.Modify();
+        //         Message('yes');
+        //     end;
+        // end else begin
+        //     if rec."Statut paiement" = true then begin
+        //         // Nom_Concerne := "Driver Name";
+        //         PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
+        //         PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
+        //         PrixAchat.SetFilter("Starting Date", '<=%1', "Weighing 1 Date");
+        //         PrixAchat.SetFilter("Ending Date", '>=%1', "Weighing 1 Date");
+        //         PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
+        //         if PrixAchat.FindFirst() then begin
+        //             rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
+        //             rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+        //             REC.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+        //             REC.TotalTransPorteurTTC := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + (PrixAchat."Direct Unit Cost" * rec."POIDS NET");
+        //             REC.Modify()
+        //         end;
+        //     end else
+        //         if ((rec."Statut paiement" = true) and (REC."Statut paiement Planteur" = true)) then begin
+        // Nom_Concerne := "Driver Name";
+        PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
+        PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
+        PrixAchat.SetFilter("Starting Date", '<=%1', "Weighing 1 Date");
+        PrixAchat.SetFilter("Ending Date", '>=%1', "Weighing 1 Date");
+        PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
+        if PrixAchat.FindFirst() then begin
+            rec.PrixUnitaireTansport := PrixAchat."Direct Unit Cost";
+            // rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            // rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            // rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            REC.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            REC.TotalTransPorteurTTC := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            ;
+            REC.Modify()
+        end;
+        PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
+        PrixAchat.SetFilter("Item No.", '=%1', 'RPH-9003');
+        PrixAchat.SetFilter("Starting Date", '<=%1', "Weighing 1 Date");
+        PrixAchat.SetFilter("Ending Date", '>=%1', "Weighing 1 Date");
+        PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
+        if PrixAchat.FindFirst() then begin
+            VendorSplitTaxSetup.SetRange("Vendor No.", rec."Code planteur");
+            if VendorSplitTaxSetup.FindFirst() then begin
+                rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
+                REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET") - (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * (VendorSplitTaxSetup.Percentage / 100));
+                REC.Modify()
+            end else begin
+                Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
+                rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
+                REC.Impot := 0;
+                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteurTTc := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                REC.Modify()
+            end;
+
+            // rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+
+            // REC.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            // REC.TotalTransPorteurTTC := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + (PrixAchat."Direct Unit Cost" * rec."POIDS NET");
+
+
+        end;
+        // end;
+
+        // end;
     end;
 
     var

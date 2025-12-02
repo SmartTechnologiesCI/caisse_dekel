@@ -125,12 +125,12 @@ page 70115 Ligne_Paiement
                 field(TotalPlanteurTTc; TotalPlanteurTTc)
                 {
                     ApplicationArea = All;
-                    DecimalPlaces=3;
+                    DecimalPlaces = 3;
                 }
                 field(Poids_Total; Poids_Total)
                 {
                     ApplicationArea = All;
-                    Visible = false;   
+                    Visible = false;
                     // DecimalPlaces=3;     
                 }
                 field(NumDocExten; rec.NumDocExten)
@@ -216,6 +216,8 @@ page 70115 Ligne_Paiement
         myInt: Integer;
         PrixAchat: Record "Prix Achat";
         ParaCaisse: Record "Parametres caisse";
+        VendorSplitTaxSetup: Record "Vendor Split Tax Setup";
+        taxe: Decimal;
     begin
         ParaCaisse.Reset();
         ParaCaisse.Get();
@@ -228,10 +230,24 @@ page 70115 Ligne_Paiement
         PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
         if PrixAchat.FindFirst() then begin
             REC.PrixUnitaire := PrixAchat."Direct Unit Cost";
-            REC.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            REC.Modify();
+            //*** Taxe
+            VendorSplitTaxSetup.SetRange("Vendor No.", rec."Code planteur");
+            if VendorSplitTaxSetup.FindFirst() then begin
+                REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                taxe := (VendorSplitTaxSetup.Percentage / 100);
+                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET") - (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * taxe);
+                REC.Modify();
+            end else begin
+                Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
+                REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                // taxe := (VendorSplitTaxSetup.Percentage / 100);
+                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteurTTc := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                REC.Modify()
+            end;
+            //***tAXE
+
         end else begin
             Error('Le prix n''est pas configuré pour la période du %1', rec."Weighing 1 Date");
         end;

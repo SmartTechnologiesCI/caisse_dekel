@@ -980,7 +980,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=(Sum(Fields!Prix.Value*Fields!POIDS_NET.Value))*0.015</Value>
+                                  <Value>=iif(Fields!TaxeImpot.Value=1,0,(Sum(Fields!Prix.Value*Fields!POIDS_NET.Value)*Fields!TaxeImpot.Value))</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1084,7 +1084,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=(Sum(Fields!Prix.Value*Fields!POIDS_NET.Value)*0.015)+Sum(Fields!Prix.Value*Fields!POIDS_NET.Value)</Value>
+                                  <Value>=iif(Fields!TaxeImpot.Value=1,(sum(Fields!POIDS_NET.Value*Fields!Prix.Value)),(Sum(Fields!Prix.Value*Fields!POIDS_NET.Value)-Sum(Fields!Prix.Value*Fields!POIDS_NET.Value)*Fields!TaxeImpot.Value))</Value>
                                   <Style>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>
@@ -2476,6 +2476,12 @@ a9ag60gDb8qQ8NieLD9jda6pDQtVEv1UqXVWVFaW3xxaFXbEsoP0ID2TK50u8kAfKfzHnOI/ylmdqnKt
         </Field>
         <Field Name="Telephone">
           <DataField>Telephone</DataField>
+        </Field>
+        <Field Name="TaxeImpot">
+          <DataField>TaxeImpot</DataField>
+        </Field>
+        <Field Name="TaxeImpotFormat">
+          <DataField>TaxeImpotFormat</DataField>
         </Field>
       </Fields>
       <Query>

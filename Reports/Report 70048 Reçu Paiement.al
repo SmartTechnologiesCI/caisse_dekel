@@ -77,6 +77,10 @@ report 70048 Recu_Paiement
             {
 
             }
+            column(TaxeImpot; TaxeImpot)
+            {
+
+            }
 
             trigger OnPreDataItem()
             var
@@ -110,6 +114,7 @@ report 70048 Recu_Paiement
             trigger OnAfterGetRecord()
             var
                 myInt: Integer;
+                VendorSplitTaxSetup: Record "Vendor Split Tax Setup";
             begin
                 // if FindFirst() then begin
                 //     if "Statut paiement Planteur" = true then begin
@@ -118,7 +123,15 @@ report 70048 Recu_Paiement
 
                 //     end;
                 // end;
+
                 if TicketPlanteur = true then begin
+                    VendorSplitTaxSetup.SetRange("Vendor No.", "Code planteur");
+                    if VendorSplitTaxSetup.FindFirst() then begin
+                        TaxeImpot := VendorSplitTaxSetup.Percentage/100;
+                        // taxe := (VendorSplitTaxSetup.Percentage / 100);
+                    end else begin
+                        TaxeImpot := 1;
+                    end;
                     Nom_Concerne := "Nom planteur";
                     PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
                     PrixAchat.SetFilter("Item No.", '=%1', 'RPH-9003');
@@ -130,6 +143,7 @@ report 70048 Recu_Paiement
                     end;
                 end else begin
                     if TicketTransporteur = true then begin
+                        TaxeImpot := 1;
                         Nom_Concerne := "Driver Name";
                         PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
                         PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
@@ -203,5 +217,6 @@ report 70048 Recu_Paiement
         TicketTransporteur: Boolean;
         Nom_Concerne: Code[250];
         PrixAchat: Record "Prix Achat";
+        TaxeImpot: Decimal;
 
 }

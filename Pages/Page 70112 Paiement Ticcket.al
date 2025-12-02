@@ -637,6 +637,7 @@ page 70112 "Paiement Ticket"
         myInt: Integer;
         PrixAchat: Record "Prix Achat";
         ParaCaisse: Record "Parametres caisse";
+        VendorSplitTaxSetup: Record "Vendor Split Tax Setup";
     begin
         ParaCaisse.Reset();
         ParaCaisse.Get();
@@ -680,11 +681,12 @@ page 70112 "Paiement Ticket"
         PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
         if PrixAchat.FindFirst() then begin
             rec.PrixUnitaireTansport := PrixAchat."Direct Unit Cost";
-            rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            // rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
             // rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
             // rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + PrixAchat."Direct Unit Cost" * rec."POIDS NET";
             REC.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            REC.TotalTransPorteurTTC := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + (PrixAchat."Direct Unit Cost" * rec."POIDS NET");
+            REC.TotalTransPorteurTTC := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            ;
             REC.Modify()
         end;
         PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
@@ -693,13 +695,28 @@ page 70112 "Paiement Ticket"
         PrixAchat.SetFilter("Ending Date", '>=%1', "Weighing 1 Date");
         PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
         if PrixAchat.FindFirst() then begin
-            rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
-            rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            VendorSplitTaxSetup.SetRange("Vendor No.", rec."Code planteur");
+            if VendorSplitTaxSetup.FindFirst() then begin
+                rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
+                REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET") - (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * (VendorSplitTaxSetup.Percentage / 100));
+                REC.Modify()
+            end else begin
+                Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
+                rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
+                REC.Impot := 0;
+                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteurTTc := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                REC.Modify()
+            end;
+
+            // rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+
             // REC.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
             // REC.TotalTransPorteurTTC := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + (PrixAchat."Direct Unit Cost" * rec."POIDS NET");
-            REC.Modify()
+
+
         end;
         // end;
 

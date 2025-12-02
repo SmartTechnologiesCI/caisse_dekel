@@ -230,6 +230,8 @@ page 70119 Ligne_Paiement_Transporteur
         myInt: Integer;
         PrixAchat: Record "Prix Achat";
         ParaCaisse: Record "Parametres caisse";
+        VendorSplitTaxSetup: Record "Vendor Split Tax Setup";
+        taxe: Decimal;
     begin
         ParaCaisse.Reset();
         ParaCaisse.Get();
@@ -241,10 +243,21 @@ page 70119 Ligne_Paiement_Transporteur
         PrixAchat.SetFilter("Ending Date", '>=%1', rec."Weighing 1 Date");
         PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
         if PrixAchat.FindFirst() then begin
+            //*** Taxe
+            // VendorSplitTaxSetup.SetRange("Vendor No.", rec."Code planteur");
+            // if VendorSplitTaxSetup.FindFirst() then begin
+            //     REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            //     taxe := (VendorSplitTaxSetup.Percentage / 100);
+            // end else begin
+            //     Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
+            // end;
+            // //***tAXE
+            // 
             REC.PrixUnitaire := PrixAchat."Direct Unit Cost";
-            REC.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            // REC.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
             rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            rec.TotalPlanteurTTc := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            // rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + PrixAchat."Direct Unit Cost" * rec."POIDS NET";
             REC.Modify();
         end else begin
             Error('Le prix n''est pas configuré pour la période du %1', rec."Weighing 1 Date");
