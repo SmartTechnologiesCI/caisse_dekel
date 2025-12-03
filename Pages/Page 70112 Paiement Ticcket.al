@@ -218,6 +218,21 @@ page 70112 "Paiement Ticket"
                 field(En_Attente_Paiement; En_Attente_Paiement)
                 {
                     ApplicationArea = All;
+                    //FnGeek*****
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+                    begin
+                        // Message('eee:%1', rec.Mode_Paiement);
+                        if ((REC.Mode_Paiement = rec.Mode_Paiement::ESPECE) or (REC.Mode_Paiement = rec.Mode_Paiement::"MOOV Money") or (REC.Mode_Paiement = rec.Mode_Paiement::"MTN Money") or (REC.Mode_Paiement = rec.Mode_Paiement::OM) or (REC.Mode_Paiement = rec.Mode_Paiement::Push) or (REC.Mode_Paiement = rec.Mode_Paiement::WAVE)) then begin
+                            if REC.En_Attente_Paiement = TRUE then begin
+                                Error('Le mode de paiement est différent de CHEQUE ou VIREMENT');
+                            end;
+                        end;
+                        // if ( REC.Mode_Paiement <> rec.Mode_Paiement::Virement) then begin
+                        //     Error('Le mode de paiement est différent de CHEQUE ou VIREMENT');
+                        // end;
+                    end;
 
                 }
                 // field("Code planteur"; Rec."Code planteur")
@@ -339,6 +354,7 @@ page 70112 "Paiement Ticket"
 
                     begin
                         if Confirm('Voulez vous valider le paiement') then begin
+                            rec.TestField(En_Attente_Paiement, false);
                             Clear(Ticket1);
                             Clear(rowno1);
                             Clear(ROWID1);
@@ -366,7 +382,7 @@ page 70112 "Paiement Ticket"
                 }
                 action(Paiement_Transpoteur)
                 {
-                    Caption = 'Payer le transporteur';
+                    Caption = 'Payer le transport';
                     ApplicationArea = All;
                     Visible = PaiementVisibleTransporteur;
                     trigger OnAction()
@@ -379,6 +395,7 @@ page 70112 "Paiement Ticket"
                         ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
                         if Confirm('Voulez vous valider le paiement') then begin
+                            rec.TestField(En_Attente_Paiement, false);
                             Clear(Ticket1);
                             Clear(rowno1);
                             Clear(ROWID1);
@@ -553,6 +570,7 @@ page 70112 "Paiement Ticket"
         ItemWeighBridgecaisse."Posting Date" := rec."Posting Date";
         ItemWeighBridgecaisse.Statut_Total_Paiement := rec.Statut_Total_Paiement;
         ItemWeighBridgecaisse.Date_Paiement := WorkDate();
+
         ItemWeighBridgecaisse.Insert()
     end;
 
