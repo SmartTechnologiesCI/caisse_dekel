@@ -73,7 +73,7 @@ page 70120 ListePantTransporteurArchive
                 begin
                     itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
                     if itemWigIfbhhf.FindFirst() then begin
-                        Report.Run(70048, true, false, itemWigIfbhhf);
+                        Report.Run(70050, true, false, itemWigIfbhhf);
                     end;
                 end;
             }
