@@ -133,7 +133,7 @@ table 70030 Entete_Paiement_Transporteur
             FieldClass = FlowField;
             Caption = 'Total Achat Transporteur(TTC:) FCFA';
             Editable = false;
-            CalcFormula = sum("Item Weigh Bridge".TotalPlanteurTTc where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
+            CalcFormula = sum("Item Weigh Bridge".TotalTransPorteurTTC where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
         }
 
         field(55017; Poids_Total2; Decimal)
@@ -149,7 +149,7 @@ table 70030 Entete_Paiement_Transporteur
 
             Caption = 'Total Achat Transporteur (FCFA)';
             FieldClass = FlowField;
-            CalcFormula = sum("Item Weigh Bridge".TotalPlanteur where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
+            CalcFormula = sum("Item Weigh Bridge".TotalTransPorteurTTC where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
 
         }
         field(55019; NaturePiece; Option)

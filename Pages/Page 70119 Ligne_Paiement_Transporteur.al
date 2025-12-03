@@ -87,24 +87,28 @@ page 70119 Ligne_Paiement_Transporteur
                             if ItemWeightBridge.FindSet() then begin
                                 repeat begin
 
+
                                     if ItemWeightBridge.MarqueurTransport = false then begin
+
                                         HeaderPaiement.Poids_Total += rec."POIDS NET";
-                                        HeaderPaiement.TotalPlanteur += rec.TotalPlanteur;
+                                        HeaderPaiement.TotalPlanteur += rec.TotalTransport;
                                         HeaderPaiement.Impot += rec.Impot;
-                                        HeaderPaiement.TotalPlanteurTTc += rec.TotalPlanteurTTc;
-                                        // Message('Ticket: %1 Poids: %2 RecPoids: %3', ItemWeightBridge."Ticket Planteur", HeaderPaiement.Poids_Total, rec."POIDS NET")
+                                        HeaderPaiement.TotalPlanteurTTc += rec.TotalTransPorteurTTC;
+
                                     end;
-                                    if rec.Ticket_Concerne_Transport = true then begin
-                                        rec.MarqueurTransport := TRUE;
-                                    end else begin
-                                        rec.MarqueurTransport := false;
-                                    end;
+
+                                    rec.MarqueurTransport := TRUE;
+
 
 
                                 end until ItemWeightBridge.Next() = 0;
                             end;
+
                             HeaderPaiement.Modify();
 
+                        end;
+                        if rec.Ticket_Concerne_Transport = false then begin
+                            rec.MarqueurTransport := false;
                         end;
                     end;
 

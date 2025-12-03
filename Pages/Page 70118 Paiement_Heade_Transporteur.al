@@ -116,7 +116,7 @@ page 70118 Paiement_Header_Transporteur
                 {
                     ApplicationArea = All;
                 }
-                field(TotalPlanteurTTc; TotalPlanteurTTc)
+                field(TotalPlanteurTT; TotalPlanteurTTc)
                 {
                     ApplicationArea = All;
                 }

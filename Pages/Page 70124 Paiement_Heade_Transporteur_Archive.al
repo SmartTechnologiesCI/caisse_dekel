@@ -114,7 +114,7 @@ page 70124 PaiementHeaderTransport_Archiv
             part(LignePaiementTransportArchiv; LignePaiementTransportArchiv)
             {
                 // SubPageLink = "Code Transporteur" = field(Palanteur), "Statut paiement" = const(false);
-                SubPageLink = "Code Transporteur" = field(Palanteur), "Statut paiement" = const(true), NumDocExten = field(NumDocExt);
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(true), NumDocExten = field(NumDocExt);
 
 
             }

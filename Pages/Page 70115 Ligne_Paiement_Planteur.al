@@ -68,7 +68,12 @@ page 70115 Ligne_Paiement
 
                         Souche.SetRange(User, UserId);
                         if Souche.FindLast() then begin
-                            rec.NumDocExten := Souche.Code_Souche;
+                            if rec.Ticket_Concerne = true then begin
+                                rec.NumDocExten := Souche.Code_Souche;
+                            end else begin
+                                rec.NumDocExten := '';
+                            end;
+
                         end;
                         SommeTotale();
                         HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
@@ -99,6 +104,9 @@ page 70115 Ligne_Paiement
                             end;
                             HeaderPaiement.Modify();
 
+                        end;
+                        if rec.Ticket_Concerne = false then begin
+                            rec.Marqueur := false;
                         end;
 
                     end;
