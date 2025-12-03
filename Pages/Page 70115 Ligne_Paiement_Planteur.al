@@ -25,6 +25,9 @@ page 70115 Ligne_Paiement
                 {
                     Editable = false;
                 }
+                field("Type opération";"Type opération"){
+                    
+                }
                 field("Weighing 1 Date"; "Weighing 1 Date")
                 {
                     ApplicationArea = All;

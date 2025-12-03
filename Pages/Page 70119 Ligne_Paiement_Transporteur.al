@@ -17,6 +17,10 @@ page 70119 Ligne_Paiement_Transporteur
                 {
                     Editable = false;
                 }
+                field("Type opération"; "Type opération")
+                {
+
+                }
                 field("Weighing 1 Date"; "Weighing 1 Date")
                 {
                     ApplicationArea = All;
@@ -198,10 +202,10 @@ page 70119 Ligne_Paiement_Transporteur
                     // Visible = false;
 
                 }
-                field("Type opération"; "Type opération")
-                {
-                    ApplicationArea = All;
-                }
+                // field("Type opération"; "Type opération")
+                // {
+                //     ApplicationArea = All;
+                // }
                 field("Type of Transportation"; "Type of Transportation")
                 {
                     ApplicationArea = All;

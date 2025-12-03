@@ -140,6 +140,13 @@ page 70005 "Caisse RoleCenter"
                 RunObject = report 70048;
                 Visible = false;
             }
+            action("Recap")
+            {
+                Caption = 'Etat des bons de paiement transport';
+                RunObject = report 50501;
+                ApplicationArea = All;
+            }
+
             action("Historique")
             {
                 Caption = 'Les tickets validés';

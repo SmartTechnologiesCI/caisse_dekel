@@ -11,79 +11,6 @@
       <rd:DataSourceID>dba9ac82-e435-49b3-85a8-e82d7fc1f13c</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Ticket_Planteur">
-          <DataField>Ticket_Planteur</DataField>
-        </Field>
-        <Field Name="Date_validation">
-          <DataField>Date_validation</DataField>
-        </Field>
-        <Field Name="Vehicle_Registration_No_">
-          <DataField>Vehicle_Registration_No_</DataField>
-        </Field>
-        <Field Name="POIDS_NET">
-          <DataField>POIDS_NET</DataField>
-        </Field>
-        <Field Name="POIDS_NETFormat">
-          <DataField>POIDS_NETFormat</DataField>
-        </Field>
-        <Field Name="Prix">
-          <DataField>Prix</DataField>
-        </Field>
-        <Field Name="PrixFormat">
-          <DataField>PrixFormat</DataField>
-        </Field>
-        <Field Name="Picture">
-          <DataField>Picture</DataField>
-        </Field>
-        <Field Name="Item_Origin">
-          <DataField>Item_Origin</DataField>
-        </Field>
-        <Field Name="Date_Paiement">
-          <DataField>Date_Paiement</DataField>
-        </Field>
-        <Field Name="Concerne">
-          <DataField>Concerne</DataField>
-        </Field>
-        <Field Name="Nom_Concerne">
-          <DataField>Nom_Concerne</DataField>
-        </Field>
-        <Field Name="Type_opération">
-          <DataField>Type_opération</DataField>
-        </Field>
-        <Field Name="TICKET">
-          <DataField>TICKET</DataField>
-        </Field>
-        <Field Name="Beneficiaire">
-          <DataField>Beneficiaire</DataField>
-        </Field>
-        <Field Name="NCNI">
-          <DataField>NCNI</DataField>
-        </Field>
-        <Field Name="Mode_Paiement">
-          <DataField>Mode_Paiement</DataField>
-        </Field>
-        <Field Name="Observation">
-          <DataField>Observation</DataField>
-        </Field>
-        <Field Name="Telephone">
-          <DataField>Telephone</DataField>
-        </Field>
-        <Field Name="TaxeImpot">
-          <DataField>TaxeImpot</DataField>
-        </Field>
-        <Field Name="TaxeImpotFormat">
-          <DataField>TaxeImpotFormat</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -2374,12 +2301,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -2502,4 +2423,77 @@ a9ag60gDb8qQ8NieLD9jda6pDQtVEv1UqXVWVFaW3xxaFXbEsoP0ID2TK50u8kAfKfzHnOI/ylmdqnKt
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Ticket_Planteur">
+          <DataField>Ticket_Planteur</DataField>
+        </Field>
+        <Field Name="Date_validation">
+          <DataField>Date_validation</DataField>
+        </Field>
+        <Field Name="Vehicle_Registration_No_">
+          <DataField>Vehicle_Registration_No_</DataField>
+        </Field>
+        <Field Name="POIDS_NET">
+          <DataField>POIDS_NET</DataField>
+        </Field>
+        <Field Name="POIDS_NETFormat">
+          <DataField>POIDS_NETFormat</DataField>
+        </Field>
+        <Field Name="Prix">
+          <DataField>Prix</DataField>
+        </Field>
+        <Field Name="PrixFormat">
+          <DataField>PrixFormat</DataField>
+        </Field>
+        <Field Name="Picture">
+          <DataField>Picture</DataField>
+        </Field>
+        <Field Name="Item_Origin">
+          <DataField>Item_Origin</DataField>
+        </Field>
+        <Field Name="Date_Paiement">
+          <DataField>Date_Paiement</DataField>
+        </Field>
+        <Field Name="Concerne">
+          <DataField>Concerne</DataField>
+        </Field>
+        <Field Name="Nom_Concerne">
+          <DataField>Nom_Concerne</DataField>
+        </Field>
+        <Field Name="Type_opération">
+          <DataField>Type_opération</DataField>
+        </Field>
+        <Field Name="TICKET">
+          <DataField>TICKET</DataField>
+        </Field>
+        <Field Name="Beneficiaire">
+          <DataField>Beneficiaire</DataField>
+        </Field>
+        <Field Name="NCNI">
+          <DataField>NCNI</DataField>
+        </Field>
+        <Field Name="Mode_Paiement">
+          <DataField>Mode_Paiement</DataField>
+        </Field>
+        <Field Name="Observation">
+          <DataField>Observation</DataField>
+        </Field>
+        <Field Name="Telephone">
+          <DataField>Telephone</DataField>
+        </Field>
+        <Field Name="TaxeImpot">
+          <DataField>TaxeImpot</DataField>
+        </Field>
+        <Field Name="TaxeImpotFormat">
+          <DataField>TaxeImpotFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>
