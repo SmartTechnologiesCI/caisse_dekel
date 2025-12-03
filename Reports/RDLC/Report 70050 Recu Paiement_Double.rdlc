@@ -1200,7 +1200,7 @@
             <DataSetName>DataSet_Result</DataSetName>
             <Top>1.23752in</Top>
             <Left>0.55109in</Left>
-            <Height>1.14167in</Height>
+            <Height>1.14166in</Height>
             <Width>7.41667in</Width>
             <Style>
               <Border>
@@ -1452,7 +1452,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>CARTE NATIONALE </Value>
+                        <Value>N° de pièce</Value>
                         <Style>
                           <FontFamily>Times New Roman</FontFamily>
                           <FontSize>8pt</FontSize>
@@ -1718,7 +1718,7 @@
                         <Style>
                           <FontFamily>Times New Roman</FontFamily>
                           <FontSize>8pt</FontSize>
-                          <FontWeight>Normal</FontWeight>
+                          <FontWeight>Bold</FontWeight>
                           <TextDecoration>None</TextDecoration>
                         </Style>
                       </TextRun>
@@ -1906,11 +1906,46 @@
                   </RightBorder>
                 </Style>
               </Line>
+              <Textbox Name="Textbox88">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Imprimé le [&amp;ExecutionTime]</Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontWeight>Normal</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>#000000</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox87</rd:DefaultName>
+                <Top>2.14958in</Top>
+                <Left>2.52095in</Left>
+                <Height>0.25in</Height>
+                <Width>1.8in</Width>
+                <ZIndex>19</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>2.44171in</Top>
             <Left>0.53525in</Left>
-            <Height>2.16055in</Height>
+            <Height>2.39958in</Height>
             <Width>7.46029in</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -3715,7 +3750,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>CARTE NATIONALE </Value>
+                            <Value>N° de pièce</Value>
                             <Style>
                               <FontFamily>Times New Roman</FontFamily>
                               <FontSize>8pt</FontSize>
@@ -3981,7 +4016,7 @@
                             <Style>
                               <FontFamily>Times New Roman</FontFamily>
                               <FontSize>8pt</FontSize>
-                              <FontWeight>Normal</FontWeight>
+                              <FontWeight>Bold</FontWeight>
                               <TextDecoration>None</TextDecoration>
                             </Style>
                           </TextRun>
@@ -4540,11 +4575,46 @@
                   </Border>
                 </Style>
               </Rectangle>
+              <Textbox Name="Textbox87">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Imprimé le [&amp;ExecutionTime]</Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontWeight>Normal</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>#000000</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox87</rd:DefaultName>
+                <Top>4.81775in</Top>
+                <Left>2.91463in</Left>
+                <Height>0.25in</Height>
+                <Width>1.8in</Width>
+                <ZIndex>3</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>5.06225in</Top>
             <Left>0.48204in</Left>
-            <Height>4.5203in</Height>
+            <Height>5.06775in</Height>
             <Width>7.52306in</Width>
             <ZIndex>3</ZIndex>
             <Style>
@@ -4554,7 +4624,7 @@
             </Style>
           </Rectangle>
           <Line Name="Line3">
-            <Top>4.84407in</Top>
+            <Top>4.99281in</Top>
             <Left>0.55109in</Left>
             <Height>0in</Height>
             <Width>7.49458in</Width>
@@ -4582,7 +4652,7 @@
             </Style>
           </Line>
         </ReportItems>
-        <Height>9.58255in</Height>
+        <Height>10.13in</Height>
         <Style>
           <Border>
             <Style>None</Style>
