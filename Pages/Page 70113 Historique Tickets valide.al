@@ -341,9 +341,19 @@ page 70113 "Historique Tickets valide"
                     Caption = 'Ticket Pont Bascule';
                     Promoted = true;
                     PromotedCategory = Process;
+
                     trigger OnAction()
+                    var
+                        ItemWeightBridge: Record "Item Weigh Bridge";
                     begin
-                        Report.Run(50500);
+                        ItemWeightBridge.SetRange(TICKET, rec.TICKET);
+                        ItemWeightBridge.SetRange("Ticket Planteur", rec."Ticket Planteur");
+                        ItemWeightBridge.SetRange("Row No.", rec."Row No.");
+                        ItemWeightBridge.SetRange(RowID, rec.RowID);
+                        if (ItemWeightBridge.FindFirst()) then begin
+                            Report.run(Report::"Ticket de caisse", true, false, ItemWeightBridge)
+                        end;
+
                     end;
                 }
                 action(Rapport_Quotidien)
