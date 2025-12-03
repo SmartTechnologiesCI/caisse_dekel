@@ -161,6 +161,14 @@ table 70029 Entete_Paiement
             Caption = 'NATURE DE LA PIECE';
             OptionMembers = CNI,PASSEPORT,PERMIS,CS,AUTRES;
         }
+        field(55020; TestToal; Decimal)
+        {
+             FieldClass = FlowField;
+            Caption = 'Total Fab FCFA';
+            Editable = false;
+            CalcFormula = sum("Item Weigh Bridge".TotalPlanteurTTc where(NumDocExten = field(NumDocExt), Ticket_Concerne = const(true)));
+
+        }
 
 
 

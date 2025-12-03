@@ -126,6 +126,10 @@ page 70114 Paiement_Header
                 {
                     ApplicationArea = All;
                 }
+                field(TestToal; TestToal)
+                {
+                    ApplicationArea = All;
+                }
             }
             part(Ligne_Paiement; Ligne_Paiement)
             {

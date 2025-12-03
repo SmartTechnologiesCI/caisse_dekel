@@ -100,6 +100,10 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             Editable = false;
             DecimalPlaces = 4;
         }
+        field(55022; TestToal; Decimal)
+        {
+            DataClassification = ToBeClassified;
+        }
 
     }
 
