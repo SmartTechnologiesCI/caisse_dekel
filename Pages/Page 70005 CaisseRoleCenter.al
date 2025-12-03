@@ -140,6 +140,12 @@ page 70005 "Caisse RoleCenter"
                 RunObject = report 70048;
                 Visible = false;
             }
+            action("Historique")
+            {
+                Caption = 'Les tickets validés';
+                RunObject = Page 70113;
+                ApplicationArea = All;
+            }
 
 
 
