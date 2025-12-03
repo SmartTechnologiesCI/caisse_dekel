@@ -634,7 +634,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Prix.Value*Fields!POIDS_NET.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>0;(0)</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -783,7 +785,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Sum(Fields!Prix.Value*Fields!POIDS_NET.Value)</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>0;(0)</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -981,7 +985,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=iif(Fields!TaxeImpot.Value=1,0,(Sum(Fields!Prix.Value*Fields!POIDS_NET.Value)*Fields!TaxeImpot.Value))</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>0;(0)</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
