@@ -42,7 +42,8 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         {
 
             FieldClass = FlowField;
-            CalcFormula = count("Item Weigh Bridge" where("Weighing 1 Date"= field("date filter 4"), Valide = const(true), "Statut paiement Planteur" = const(false)));
+
+            CalcFormula = count("Item Weigh Bridge" where("Weighing 1 Date" = field("date filter 4"), Valide = const(true), "Statut paiement Planteur" = const(false)));
         }
         field(60008; "Ticket(s) Facturé(s) Planteur"; Integer)
         {
@@ -71,7 +72,7 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         }
         field(60012; "Date filter 4"; Date)
         {
-            DataClassification = ToBeClassified;
+            FieldClass = FlowFilter;
         }
 
 

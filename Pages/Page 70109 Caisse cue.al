@@ -227,6 +227,6 @@ page 70109 "Caisse cue"
     begin
         SetFilter("date filter 3", '=%1', WorkDate());
         SetFilter("date filter 2", '=%1', WorkDate());
-        SetFilter("Date filter 4",'<%1',WorkDate());
+        SetFilter("Date filter 4", '<%1', WorkDate());
     end;
 }
