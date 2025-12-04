@@ -142,13 +142,13 @@ page 70005 "Caisse RoleCenter"
             }
             action("Recap transporteur")
             {
-                Caption = 'Etat des bons de paiement transport';
+                Caption = 'Etat Recap transporteur';
                 RunObject = report 50501;
                 ApplicationArea = All;
             }
             action("Recap planteur")
             {
-                Caption = 'Etat des bons de paiement planteur';
+                Caption = 'Etat Recap planteur';
                 RunObject = report 50502;
                 ApplicationArea = All;
             }
