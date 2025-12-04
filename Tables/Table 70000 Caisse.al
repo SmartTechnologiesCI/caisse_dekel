@@ -1,6 +1,6 @@
 table 70000 Caisse
 {
-    DataCaptionFields = "Code caisse", "Nom caisse";
+    // DataCaptionFields = "Code caisse", "Nom caisse";
     fields
     {
         field(1; "Code caisse"; Code[30])

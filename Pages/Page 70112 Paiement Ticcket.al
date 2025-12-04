@@ -367,6 +367,7 @@ page 70112 "Paiement Ticket"
                     begin
                         if Confirm('Voulez vous valider le paiement') then begin
                             rec.TestField(En_Attente_Paiement, false);
+                            // CheckSoldePlanteur();
                             Clear(Ticket1);
                             Clear(rowno1);
                             Clear(ROWID1);
@@ -409,6 +410,7 @@ page 70112 "Paiement Ticket"
                     begin
                         if Confirm('Voulez vous valider le paiement') then begin
                             rec.TestField(En_Attente_Paiement, false);
+                            // CheckSoldePTransPort();
                             Clear(Ticket1);
                             Clear(rowno1);
                             Clear(ROWID1);
@@ -815,6 +817,43 @@ page 70112 "Paiement Ticket"
         Transaction."Origine Operation" := rec.ORIGINE;
         Transaction.Insert()
     end;
+
+    procedure CheckSoldePlanteur()
+    var
+        Transaction: Record Transactions;
+        total: Decimal;
+    begin
+        Clear(total);
+        // REC.CalcFields(TotalPlanteurTTc);
+        Transaction.SetFilter("user id", '=%1', UserId);
+        if Transaction.FindSet() then begin
+            repeat begin
+                total += Transaction."Montant NET";
+            end until Transaction.Next() = 0;
+            if rec.TotalPlanteurTTc > total then begin
+                Error('Vous ne pouvez pas payer ce ticket de solde %1 car le solde de la caisse est %2', rec.TotalPlanteurTTc, total);
+            end;
+        end;
+    end;
+
+    procedure CheckSoldePTransPort()
+    var
+        Transaction: Record Transactions;
+        total: Decimal;
+    begin
+        Clear(total);
+        // REC.CalcFields(TotalPlanteurTTc);
+        Transaction.SetFilter("user id", '=%1', UserId);
+        if Transaction.FindSet() then begin
+            repeat begin
+                total += Transaction."Montant NET";
+            end until Transaction.Next() = 0;
+            if rec.TotalTransPorteurTTC > total then begin
+                Error('Vous ne pouvez pas payer ce ticket de solde %1 car le solde de la caisse est %2', rec.TotalTransPorteurTTC, total);
+            end;
+        end;
+    end;
+
 
     trigger OnOpenPage()
     var

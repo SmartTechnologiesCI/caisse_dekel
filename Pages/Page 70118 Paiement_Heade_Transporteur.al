@@ -179,7 +179,8 @@ page 70118 Paiement_Header_Transporteur
                         ItemWeightBridge.SetFilter("Statut paiement", '=%1', false);
                         if ItemWeightBridge.FindSet() then begin
                             repeat begin
-                                PayerTransporteur(ItemWeightBridge)
+                                PayerTransporteur(ItemWeightBridge);
+                                TransactionsTransport(ItemWeightBridge);
                             end until ItemWeightBridge.Next() = 0;
                         end else begin
                             Error('Vous n''avez rien sélectionné');
@@ -370,6 +371,54 @@ page 70118 Paiement_Header_Transporteur
             ItemWeighBridgecaisse."Ligne paiement" := true;
             ItemWeighBridgecaisse."Ligne paiement trans" := ItemWeignt."Ligne paiement trans";
             ItemWeighBridgecaisse.Modify()
+        end;
+    end;
+
+    procedure TransactionsTransport(ItemWeigtn2: Record "Item Weigh Bridge")
+    var
+        myInt: Integer;
+        Transaction: Record Transactions;
+        Caisse: Record Caisse;
+    begin
+        Transaction.Reset();
+        Transaction.Init();
+        Transaction.Source := Transaction.Source::"E/S";
+        Transaction.Date := WorkDate();
+        Transaction.Heure := Time;
+        Transaction.Description := ItemWeigtn2."Ticket Planteur" + ':' + ' ' + ItemWeigtn2."Code Transporteur" + ' ' + ItemWeigtn2.ORIGINE;
+        Transaction.Montant := -ItemWeigtn2.TotalTransport;
+        Caisse.SetRange("User ID", UserId);
+        if Caisse.FindFirst() then begin
+            Transaction."Code caisse" := Caisse."Code caisse";
+        end else begin
+            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+        end;
+        Transaction."N° Client" := ItemWeigtn2."Code Transporteur";
+        Transaction.Nom := ItemWeigtn2."Nom Transporteur";
+        Transaction."N° Document" := ItemWeigtn2."Ticket Planteur";
+        Transaction."Mode de reglement" := Format(rec.Mode_Paiement);
+        Transaction."user id" := UserId;
+        Transaction."validée" := true;
+        Transaction."Montant NET" := -ItemWeigtn2.TotalTransPorteurTTC;
+        Transaction."Origine Operation" := ItemWeigtn2.ORIGINE;
+        Transaction.Insert()
+    end;
+
+    procedure CheckSolde()
+    var
+        Transaction: Record Transactions;
+        total: Decimal;
+    begin
+        Clear(total);
+        REC.CalcFields(TotalTransportTTC);
+        Transaction.SetFilter("user id", '=%1', UserId);
+        if Transaction.FindSet() then begin
+            repeat begin
+                total += Transaction."Montant NET";
+            end until Transaction.Next() = 0;
+            if rec.TotalTransportTTC > total then begin
+                Error('Vous ne pouvez pas payer ce ticket de solde %1 car le solde de la caisse est %2', rec.TotalTransportTTC, total);
+            end;
         end;
     end;
 

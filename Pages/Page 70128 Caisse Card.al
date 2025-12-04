@@ -4,14 +4,15 @@ page 70128 CaisseCard
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = Caisse;
-    
+    InsertAllowed = true;
+    ModifyAllowed = true;
     layout
     {
         area(Content)
         {
             group(Général)
             {
-               field("Code caisse"; "Code caisse")
+                field("Code caisse"; "Code caisse")
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -26,24 +27,35 @@ page 70128 CaisseCard
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field(Solde; Solde)
+                field(Solde; rec.Solde)
                 {
                     ApplicationArea = All;
+                    DrillDown = true;
                     Editable = false;
+                    trigger OnDrillDown()
+                    var
+                        myInt: Integer;
+                        Transaction: Record Transactions;
+                    begin
+                        Transaction.SetFilter("user id", reC."User ID");
+                        if Transaction.FindSet() then begin
+                            page.Run(page::"Liste des transactions", Transaction);
+                        end;
+                    end;
                 }
 
             }
         }
     }
-    
+
     actions
     {
         area(Processing)
         {
-           
+
         }
     }
-    
+
     var
         myInt: Integer;
 }

@@ -133,22 +133,22 @@ page 70114 Paiement_Header
                 field(PoidTotalRegime; PoidTotalRegime)
                 {
                     ApplicationArea = All;
-                    Editable=false;
+                    Editable = false;
                 }
                 field(TotalRegime; TotalRegime)
                 {
                     ApplicationArea = All;
-                    Editable=false;
+                    Editable = false;
                 }
                 field(TotalRegimeIMPOT; TotalRegimeIMPOT)
                 {
                     ApplicationArea = All;
-                    Editable=false;
+                    Editable = false;
                 }
                 field(TotalRegimeTTC; TotalRegimeTTC)
                 {
                     ApplicationArea = All;
-                    Editable=false;
+                    Editable = false;
                 }
             }
             part(Ligne_Paiement; Ligne_Paiement)
@@ -192,7 +192,8 @@ page 70114 Paiement_Header
                         ItemWeightBridge.SetFilter("Statut paiement Planteur", '=%1', false);
                         if ItemWeightBridge.FindSet() then begin
                             repeat begin
-                                PayerPlanteur(ItemWeightBridge)
+                                PayerPlanteur(ItemWeightBridge);
+                                Transactionsplanteur(ItemWeightBridge);
                             end until ItemWeightBridge.Next() = 0;
                         end else begin
                             Error('Vous n''avez rien sélectionné');
@@ -347,6 +348,37 @@ page 70114 Paiement_Header
         end;
     end;
 
+    procedure Transactionsplanteur(ItemWeigtn: Record "Item Weigh Bridge")
+    var
+        myInt: Integer;
+        Transaction: Record Transactions;
+        Caisse: Record Caisse;
+    begin
+        Transaction.Reset();
+        Transaction.Init();
+        Transaction.Source := Transaction.Source::"E/S";
+        Transaction.Date := WorkDate();
+        Transaction.Heure := Time;
+        Transaction.Description := ItemWeigtn."Ticket Planteur" + ':' + ' ' + ItemWeigtn."Code planteur" + ' ' + ItemWeigtn.ORIGINE;
+        Transaction.Montant := -rec.TotalPlanteur;
+        Caisse.SetRange("User ID", UserId);
+        if Caisse.FindFirst() then begin
+            Transaction."Code caisse" := Caisse."Code caisse";
+        end else begin
+            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+        end;
+        Transaction."N° Client" := ItemWeigtn."Code planteur";
+        Transaction.Nom := ItemWeigtn."Nom planteur";
+        Transaction."N° Document" := ItemWeigtn."Ticket Planteur";
+        Transaction."Mode de reglement" := Format(rec.Mode_Paiement);
+        Transaction."user id" := UserId;
+        Transaction."validée" := true;
+        Transaction."Montant NET" := -ItemWeigtn.TotalPlanteurTTc;
+        Transaction."Origine Operation" := ItemWeigtn.ORIGINE;
+        Transaction.Insert()
+    end;
+
+   
     trigger OnNewRecord(BelowxRec: Boolean)
     var
         myInt: Integer;
