@@ -159,11 +159,11 @@ page 70005 "Caisse RoleCenter"
                 RunObject = Page TicketsPayes;
                 ApplicationArea = All;
             }
-            action("Ciasse")
+            action("Caisse")
             {
-                Caption = 'caisse';
+                Caption = 'Point de caisse';
                 RunObject = Page PointCaisses;
-                // RunPageLink = "User ID" =usu
+                
                 ApplicationArea = All;
 
             }

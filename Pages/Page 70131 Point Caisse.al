@@ -6,7 +6,7 @@ page 70131 PointCaisses
     CardPageId = CaisseCard;
     InsertAllowed = false;
     ModifyAllowed = false;
-    DeleteAllowed = true;
+    DeleteAllowed = false;
     SourceTable = Caisse;
     layout
     {
