@@ -1,17 +1,17 @@
-page 70128 Caisse_Card
+page 70128 CaisseCard
 {
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = Caisse;
-
+    
     layout
     {
         area(Content)
         {
             group(Général)
             {
-                field("Code caisse"; "Code caisse")
+               field("Code caisse"; "Code caisse")
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -32,24 +32,18 @@ page 70128 Caisse_Card
                     Editable = false;
                 }
 
-
             }
         }
-      
     }
-
-
+    
     actions
     {
         area(Processing)
         {
-            
+           
         }
     }
-    trigger OnOpenPage()
+    
     var
         myInt: Integer;
-    begin
-        // SetFilter(Utilissateir, '');
-    end;
 }
