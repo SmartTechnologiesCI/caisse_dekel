@@ -140,10 +140,16 @@ page 70005 "Caisse RoleCenter"
                 RunObject = report 70048;
                 Visible = false;
             }
-            action("Recap")
+            action("Recap transporteur")
             {
                 Caption = 'Etat des bons de paiement transport';
                 RunObject = report 50501;
+                ApplicationArea = All;
+            }
+            action("Recap planteur")
+            {
+                Caption = 'Etat des bons de paiement planteur';
+                RunObject = report 50502;
                 ApplicationArea = All;
             }
 
