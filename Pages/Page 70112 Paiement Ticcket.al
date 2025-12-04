@@ -553,8 +553,8 @@ page 70112 "Paiement Ticket"
         ItemWeighBridgecaisse.TauxImpotTransp := rec.TauxImpotTransp;
         ItemWeighBridgecaisse.ValeurImpoTransp := rec.ValeurImpoTransp;
         ItemWeighBridgecaisse.MontantNetTransp := rec.MontantNetTransp;
-        ItemWeighBridgecaisse.DateRegime := rec.DateRegime;
-        ItemWeighBridgecaisse.DateTransport := rec.DateTransport;
+        ItemWeighBridgecaisse.DateRegime := Rec.Date_Paiement;
+        ItemWeighBridgecaisse.DateTransport := Rec.Date_Paiement;
         ItemWeighBridgecaisse.NumeroRegime := rec.NumeroRegime;
         ItemWeighBridgecaisse.NumeroTransp := rec.NumeroTransp;
         ItemWeighBridgecaisse."Traitement effectué" := rec."Traitement effectué";
@@ -585,6 +585,7 @@ page 70112 "Paiement Ticket"
         ItemWeighBridgecaisse."No. Series" := rec."No. Series";
         ItemWeighBridgecaisse."Posting Date" := rec."Posting Date";
         ItemWeighBridgecaisse.Statut_Total_Paiement := rec.Statut_Total_Paiement;
+        // ItemWeighBridgecaisse.DateRegime
         ItemWeighBridgecaisse.Date_Paiement := WorkDate();
 
         ItemWeighBridgecaisse.Insert()

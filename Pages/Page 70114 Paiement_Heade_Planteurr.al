@@ -295,8 +295,8 @@ page 70114 Paiement_Header
         ItemWeighBridgecaisse.TauxImpotTransp := ItemWeigthBridge.TauxImpotTransp;
         ItemWeighBridgecaisse.ValeurImpoTransp := ItemWeigthBridge.ValeurImpoTransp;
         ItemWeighBridgecaisse.MontantNetTransp := ItemWeigthBridge.MontantNetTransp;
-        ItemWeighBridgecaisse.DateRegime := ItemWeigthBridge.DateRegime;
-        ItemWeighBridgecaisse.DateTransport := ItemWeigthBridge.DateTransport;
+        ItemWeighBridgecaisse.DateRegime := Rec.Date_Paiement;
+        ItemWeighBridgecaisse.DateTransport := Rec.Date_Paiement;
         ItemWeighBridgecaisse.NumeroRegime := ItemWeigthBridge.NumeroRegime;
         ItemWeighBridgecaisse.NumeroTransp := ItemWeigthBridge.NumeroTransp;
         ItemWeighBridgecaisse."Traitement effectué" := ItemWeigthBridge."Traitement effectué";
