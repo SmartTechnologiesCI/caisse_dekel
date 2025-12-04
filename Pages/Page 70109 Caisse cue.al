@@ -112,6 +112,7 @@ page 70109 "Caisse cue"
                         ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
                         // ItemWeighBridge.setFilter("Date validation", '=%1', WorkDate());
+                        ItemWeighBridge.SetFilter("Type opération", '=%1|%2', 'ACHAT DIRECT', 'ACHAT COMPTANT');
                         ItemWeighBridge.SetRange(valide, true);
                         ItemWeighBridge.SetRange(Statut_Total_Paiement, false);
                         ItemWeighBridge.FindFirst();
