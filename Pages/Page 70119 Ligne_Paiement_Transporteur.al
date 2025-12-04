@@ -72,6 +72,7 @@ page 70119 Ligne_Paiement_Transporteur
                             // end else begin
                             //     rec.NumDocExten := '';
                             // end;
+                            CurrPage.Update();
 
                         end;
                         SommeTotale();
@@ -92,14 +93,14 @@ page 70119 Ligne_Paiement_Transporteur
                                 repeat begin
 
 
-                                    if ItemWeightBridge.MarqueurTransport = false then begin
+                                    // if ItemWeightBridge.MarqueurTransport = false then begin
 
-                                        HeaderPaiement.Poids_Total += rec."POIDS NET";
-                                        HeaderPaiement.TotalPlanteur += rec.TotalTransport;
-                                        HeaderPaiement.Impot += rec.Impot;
-                                        HeaderPaiement.TotalPlanteurTTc += rec.TotalTransPorteurTTC;
+                                    HeaderPaiement.Poids_Total += rec."POIDS NET";
+                                    HeaderPaiement.TotalPlanteur += rec.TotalTransport;
+                                    HeaderPaiement.Impot += rec.Impot;
+                                    HeaderPaiement.TotalPlanteurTTc += rec.TotalTransPorteurTTC;
 
-                                    end;
+                                    // end;
 
                                     rec.MarqueurTransport := TRUE;
 
@@ -128,8 +129,8 @@ page 70119 Ligne_Paiement_Transporteur
                         end;
                         if rec.Ticket_Concerne_Transport = false then begin
                             rec.MarqueurTransport := false;
-                            // REC.TotalTransport:=0;
-                            // rec.TotalTransPorteurTTC:=0;
+                            REC.TotalTransport := 0;
+                            rec.TotalTransPorteurTTC := 0;
 
                         end;
                     end;
@@ -137,6 +138,7 @@ page 70119 Ligne_Paiement_Transporteur
                 }
                 field(MarqueurTransport; MarqueurTransport)
                 {
+                    Visible = false;
                     ApplicationArea = All;
                 }
                 field("POIDS ENTREE"; "POIDS ENTREE")
@@ -294,6 +296,7 @@ page 70119 Ligne_Paiement_Transporteur
         PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
         PrixAchat.SetFilter("Starting Date", '<=%1', rec."Weighing 1 Date");
         PrixAchat.SetFilter("Ending Date", '>=%1', rec."Weighing 1 Date");
+        PrixAchat.SetRange(CL, 'AY');
         PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
         if PrixAchat.FindFirst() then begin
 

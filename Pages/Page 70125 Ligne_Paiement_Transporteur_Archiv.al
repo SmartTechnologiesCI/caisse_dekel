@@ -24,12 +24,14 @@ page 70125 LignePaiementTransportArchiv
                 {
                     ApplicationArea = All;
                 }
-                field("Date validation";"Date validation"){
-                    
+                field("Date validation"; "Date validation")
+                {
+
                 }
                 field(Ticket_Concerne; Ticket_Concerne)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                     trigger OnValidate()
                     var
                         myInt: Integer;
@@ -45,6 +47,10 @@ page 70125 LignePaiementTransportArchiv
                             REC.Telephone := HeaderPaiement.Telephone;
                         end;
                     end;
+                }
+                field(Ticket_Concerne_Transport; Ticket_Concerne_Transport)
+                {
+
                 }
                 field(NumDocExten; rec.NumDocExten)
                 {

@@ -144,6 +144,7 @@ page 70115 Ligne_Paiement
                 field(Marqueur; Marqueur)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field(PrixUnitaire; PrixUnitaire)
                 {
@@ -281,7 +282,7 @@ page 70115 Ligne_Paiement
                     rec.Marqueur := false;
                     REC.validate(TotalPlanteur, 0);
                     rec.Validate(TotalPlanteurTTc, 0);
-                    rec.Impot:=0;
+                    rec.Impot := 0;
                     // CurrPage.Update();
                 end;
 

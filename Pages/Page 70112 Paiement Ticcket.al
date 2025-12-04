@@ -696,6 +696,7 @@ page 70112 "Paiement Ticket"
         PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
         PrixAchat.SetFilter("Starting Date", '<=%1', "Weighing 1 Date");
         PrixAchat.SetFilter("Ending Date", '>=%1', "Weighing 1 Date");
+        PrixAchat.SetRange(CL,'AY');
         PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
         if PrixAchat.FindFirst() then begin
             rec.PrixUnitaireTansport := PrixAchat."Direct Unit Cost";
