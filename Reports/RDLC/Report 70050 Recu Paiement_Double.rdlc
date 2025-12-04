@@ -1913,7 +1913,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Imprimé le [&amp;ExecutionTime]</Value>
+                        <Value>Imprimé le</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontWeight>Normal</FontWeight>
@@ -1927,10 +1927,45 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox87</rd:DefaultName>
                 <Top>2.14958in</Top>
-                <Left>2.52095in</Left>
+                <Left>2.68762in</Left>
                 <Height>0.25in</Height>
-                <Width>1.8in</Width>
+                <Width>0.71237in</Width>
                 <ZIndex>19</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox90">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Globals!ExecutionTime</Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontWeight>Normal</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>#000000</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox87</rd:DefaultName>
+                <Top>2.14958in</Top>
+                <Left>3.3821in</Left>
+                <Height>0.25in</Height>
+                <Width>2.45373in</Width>
+                <ZIndex>20</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2027,7 +2062,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>ANGLE AV. CHARDY ET BOUL. LAGUNAIRE - TEL: 07 77</Value>
+                        <Value>ANGLE AV. CHARDY ET BOUL. LAGUNAIRE - TEL: 07 77 726 764</Value>
                         <Style>
                           <FontFamily>Times New Roman</FontFamily>
                           <FontSize>6pt</FontSize>
@@ -2042,7 +2077,7 @@
                 <Top>0.59861in</Top>
                 <Left>0.0025in</Left>
                 <Height>0.15833in</Height>
-                <Width>2.43056in</Width>
+                <Width>2.92945in</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -2061,7 +2096,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>ABJ-PLATEAUX 2EME ETAGE, IMM. ARC-EN-CIEL - TEL:</Value>
+                        <Value>ABJ-PLATEAUX 2EME ETAGE, IMM. ARC-EN-CIEL - TEL: 0 759 072 240</Value>
                         <Style>
                           <FontFamily>Times New Roman</FontFamily>
                           <FontSize>6pt</FontSize>
@@ -2076,7 +2111,7 @@
                 <Top>0.44028in</Top>
                 <Left>0.0025in</Left>
                 <Height>0.15833in</Height>
-                <Width>2.43056in</Width>
+                <Width>2.92945in</Width>
                 <ZIndex>3</ZIndex>
                 <Style>
                   <Border>
@@ -2157,7 +2192,6 @@
                         <Value>=Fields!Item_Origin.Value</Value>
                         <Style>
                           <FontFamily>Times New Roman</FontFamily>
-                          <FontSize>12pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
@@ -2169,9 +2203,9 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
                 <Top>0.44028in</Top>
-                <Left>2.50249in</Left>
+                <Left>3.69206in</Left>
                 <Height>0.31666in</Height>
-                <Width>3.32444in</Width>
+                <Width>1.33487in</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
                   <Border>
@@ -4290,7 +4324,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>ANGLE AV. CHARDY ET BOUL. LAGUNAIRE - TEL: 07 77</Value>
+                            <Value>ANGLE AV. CHARDY ET BOUL. LAGUNAIRE - TEL: 07 77 726 764</Value>
                             <Style>
                               <FontFamily>Times New Roman</FontFamily>
                               <FontSize>6pt</FontSize>
@@ -4305,7 +4339,7 @@
                     <Top>0.59861in</Top>
                     <Left>0.0025in</Left>
                     <Height>0.15833in</Height>
-                    <Width>2.43056in</Width>
+                    <Width>2.91989in</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -4324,7 +4358,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>ABJ-PLATEAUX 2EME ETAGE, IMM. ARC-EN-CIEL - TEL:</Value>
+                            <Value>ABJ-PLATEAUX 2EME ETAGE, IMM. ARC-EN-CIEL - TEL: 0 759 072 240</Value>
                             <Style>
                               <FontFamily>Times New Roman</FontFamily>
                               <FontSize>6pt</FontSize>
@@ -4339,7 +4373,7 @@
                     <Top>0.44028in</Top>
                     <Left>0.0025in</Left>
                     <Height>0.15833in</Height>
-                    <Width>2.43056in</Width>
+                    <Width>2.91989in</Width>
                     <ZIndex>3</ZIndex>
                     <Style>
                       <Border>
@@ -4420,7 +4454,6 @@
                             <Value>=Fields!Item_Origin.Value</Value>
                             <Style>
                               <FontFamily>Times New Roman</FontFamily>
-                              <FontSize>12pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -4432,9 +4465,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox12</rd:DefaultName>
                     <Top>0.44028in</Top>
-                    <Left>2.50249in</Left>
+                    <Left>3.6825in</Left>
                     <Height>0.31666in</Height>
-                    <Width>3.32444in</Width>
+                    <Width>1.11611in</Width>
                     <ZIndex>5</ZIndex>
                     <Style>
                       <Border>
@@ -4582,7 +4615,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Imprimé le [&amp;ExecutionTime]</Value>
+                        <Value>Imprimé le </Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontWeight>Normal</FontWeight>
@@ -4596,10 +4629,45 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox87</rd:DefaultName>
                 <Top>4.81775in</Top>
-                <Left>2.91463in</Left>
+                <Left>3.02296in</Left>
                 <Height>0.25in</Height>
-                <Width>1.8in</Width>
+                <Width>0.70443in</Width>
                 <ZIndex>3</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox89">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Globals!ExecutionTime</Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontWeight>Normal</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>#000000</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox87</rd:DefaultName>
+                <Top>4.81775in</Top>
+                <Left>3.72739in</Left>
+                <Height>0.25in</Height>
+                <Width>2.17122in</Width>
+                <ZIndex>4</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>

@@ -150,8 +150,16 @@ page 70005 "Caisse RoleCenter"
             action("Historique")
             {
                 Caption = 'Les tickets validés';
-                RunObject = Page 70113;
+                RunObject = Page TicketsPayes;
                 ApplicationArea = All;
+            }
+            action("Ciasse")
+            {
+                Caption = 'caisse';
+                RunObject = Page Caisses;
+                // RunPageLink = "User ID" =usu
+                ApplicationArea = All;
+
             }
 
 
@@ -200,5 +208,12 @@ page 70005 "Caisse RoleCenter"
 
         }
 
+
     }
+    // trigger OnOpenPage()
+    // var
+    //     myInt: Integer;
+    // begin
+
+    // end;
 }

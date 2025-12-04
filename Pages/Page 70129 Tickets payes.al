@@ -1,4 +1,4 @@
-page 70126 "Paiement Valide"
+page 70129 TicketsPayes
 {
     // PROJECT :
     // ****************************************************************************************************************************************************************
@@ -10,17 +10,18 @@ page 70126 "Paiement Valide"
     // ****************************************************************************************************************************************************************
     // 1.47     B2B    20-Apr-15    SatishKNV           New Page is created for Item Weight Bridge Functionality related.
 
-    CaptionML = ENU = 'Item Weight Bridge', FRA = 'Paiement Validé';
-    DeleteAllowed = false;
-    Editable = false;
+    CaptionML = ENU = 'Item Weight Bridge', FRA = 'Tickets validés';
+    DeleteAllowed = true;
+    Editable = true;
     InsertAllowed = false;
+    UsageCategory = Lists;
     ModifyAllowed = false;
     PageType = List;
-    CardPageId = "Paiement Ticket Valide";
+    CardPageId = "Ticket Caisse";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(Descending)
-                      WHERE("Type of Transportation" = CONST('=RECEPTION'));
+                      ORDER(Descending) where("Balance Code" = filter('AY*'), valide = CONST(true));
+    //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
     {
@@ -45,6 +46,22 @@ page 70126 "Paiement Valide"
                 // }
                 field(TICKET; TICKET)
                 {
+                }
+                field("Nom Client"; "Nom Client")
+                {
+                    ApplicationArea = All;
+                }
+                field(Description_Client_Fournisseur; Description_Client_Fournisseur)
+                {
+                    ApplicationArea = All;
+                }
+                field("Type opération"; "Type opération")
+                {
+
+                }
+                field("Balance Code"; rec."Balance Code")
+                {
+                    ApplicationArea = All;
                 }
                 field("Code Transporteur"; "Code Transporteur")
                 {
@@ -80,14 +97,16 @@ page 70126 "Paiement Valide"
                 //<<Fab Smartech 24_04_25
                 field("POIDS ENTREE"; "POIDS ENTREE")
                 {
-                    Editable = true;
+                    Editable = false;
                     Visible = true;
                 }
                 field("POIDS SORTIE"; "POIDS SORTIE")
                 {
+                    Editable = false;
                 }
                 field("POIDS NET"; "POIDS NET")
                 {
+                    Editable = false;
                 }
                 field("Item Origin"; "Item Origin")
                 {
@@ -119,9 +138,10 @@ page 70126 "Paiement Valide"
                 {
 
                 }
-                field("Type opération"; "Type opération")
-                {
-                }
+                // field("Type opération"; "Type opération")
+                // {
+
+                // }
                 field("Code planteur"; "Code planteur")
                 {
                 }
@@ -178,102 +198,68 @@ page 70126 "Paiement Valide"
         {
             group(Paiement)
             {
-                action(RecuPaiement)
-                {
-                    Caption = 'Reçu Paiement';
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    trigger OnAction()
-                    var
-                        ItemWeighBridge: Record "Item Weigh Bridge";
-                    begin
-                        ItemWeighBridge.SetRange(TICKET, REC.TICKET);
-                        ItemWeighBridge.SetRange("Ticket Planteur", REC."Ticket Planteur");
-                        ItemWeighBridge.SetRange("Row No.", "Row No.");
-                        ItemWeighBridge.SetRange(RowID, RowID);
-                        if ItemWeighBridge.FindFirst() then begin
-                            // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
-                            // Page.Run(page::"Paiement Valide", ItemWeighBridge);
-                            Report.Run(Report::Recu_Paiement_Double, true, false, ItemWeighBridge);
+                // action(Paiement_Planteur)
+                // {
+                //     Caption = 'Payer le planteur';
+                //     Promoted = true;
+                //     PromotedCategory = Process;
+                //     ApplicationArea = All;
 
+                //     trigger OnAction()
+                //     begin
+                //         rec."Statut paiement Planteur" := true;
+                //         rec.Modify();
+                //         if rec."Statut paiement" = true then begin
+                //             Rec.Statut_Total_Paiement := true;
+                //             rec.Modify();
+                //         end;
+                //         if rec.Statut_Total_Paiement = true then begin
+                //             TransFertTicketFromItemWeigntToBridgeCaisse()
+                //         end;
+                //     end;
 
-                        end;
-                    end;
-                }
-                action(Paiement_Planteur)
-                {
-                    Caption = 'Payer le planteur';
-                    Promoted = true;
+                // }
+                // action(Paiement_Transpoteur)
+                // {
+                //     Caption = 'Payer le transporteur';
+                //     Promoted = true;
+                //     PromotedCategory = Process;
+                //     ApplicationArea = All;
 
-                    PromotedCategory = Process;
-                    ApplicationArea = All;
-                    Visible = false;
+                //     trigger OnAction()
+                //     begin
+                //         rec."Statut paiement" := true;
+                //         rec.Modify();
+                //         if rec."Statut paiement Planteur" = true then begin
+                //             rec.Statut_Total_Paiement := true;
+                //             REC.Modify()
+                //         end;
+                //         if rec.Statut_Total_Paiement = true then begin
+                //             TransFertTicketFromItemWeigntToBridgeCaisse()
+                //         end;
+                //     end;
 
-                    trigger OnAction()
-                    begin
-                        PayerPlanteur();
-                    end;
+                // }
+                // action(Paiement_Planteur_Fournissuer)
+                // {
+                //     Caption = 'Payer le planteur & le transporteur';
+                //     Promoted = true;
+                //     PromotedCategory = Process;
+                //     ApplicationArea = All;
 
+                //     trigger OnAction()
+                //     begin
+                //         rec."Statut paiement Planteur" := true;
+                //         rec."Statut paiement" := true;
+                //         REC.Statut_Total_Paiement := true;
+                //         rec.Modify();
+                //         if rec.Statut_Total_Paiement = true then begin
+                //             TransFertTicketFromItemWeigntToBridgeCaisse()
+                //         end;
 
-                }
-                action(Paiement_Transpoteur)
-                {
-                    Caption = 'Payer le transporteur';
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    ApplicationArea = All;
-                    Visible = false;
+                //     end;
 
-                    trigger OnAction()
-                    begin
-                        PayerTransporteur();
-                    end;
-
-                }
-                action(Paiement_Planteur_Fournissuer)
-                {
-                    Caption = 'Payer le planteur & le transporteur';
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    ApplicationArea = All;
-                    Visible = false;
-
-                    trigger OnAction()
-                    begin
-                        rec."Statut paiement Planteur" := true;
-                        rec."Statut paiement" := true;
-                        REC.Statut_Total_Paiement := true;
-                        rec.Modify();
-                        if rec.Statut_Total_Paiement = true then begin
-                            TransFertTicketFromItemWeigntToBridgeCaisse()
-                        end;
-
-                    end;
-
-                }
-                action(Recu_Paiement)
-                {
-                    Caption = 'Reçu Paiement';
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    ApplicationArea = All;
-                    Visible = false;
-                    RunObject = report Recu_Paiement;
-
-                    // trigger OnAction()
-                    // begin
-                    //     rec."Statut paiement Planteur" := true;
-                    //     rec."Statut paiement" := true;
-                    //     REC.Statut_Total_Paiement := true;
-                    //     rec.Modify();
-                    //     if rec.Statut_Total_Paiement = true then begin
-                    //         TransFertTicketFromItemWeigntToBridgeCaisse()
-                    //     end;
-
-                    // end;
-
-                }
-
+                // }
                 //     action(Paiement) 
                 //     {
                 //         Caption = 'Payer le Transporteur';
@@ -324,32 +310,67 @@ page 70126 "Paiement Valide"
 
                 //         end;
                 //     }
-                //     action(Validation)
-                //     {
-                //         Caption = 'Valider le ticket';
-                //         ApplicationArea = All;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         Image = Post;
-                //         trigger OnAction()
-                //         var
-                //             ItemWeight2: Record "Item Weigh Bridge";
-                //             ticket: Record "Item Weigh Bridge";
-                //         begin
-                //             REC.valide := true;
-                //             rec."Date validation" := WorkDate();
-                //             Rec.Modify();
-                //             // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
-                //             Ticket.SetRange(TICKET, rec.TICKET);
-                //             ticket.SetRange("Row No.", rec."Row No.");
-                //             ticket.SetRange(RowID, rec.RowID);
-                //             if ticket.FindFirst() then begin
-                //                 // RunModal(Report::"Ticket de caisse", ticket)
-                //                 Report.Run(Report::"Ticket de caisse", false, true, ticket);
-                //             end;
+                action(Validation)
+                {
+                    Caption = 'Valider le ticket';
+                    ApplicationArea = All;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    Image = Post;
+                    Visible=false;
+                    trigger OnAction()
+                    var
+                        ItemWeight2: Record "Item Weigh Bridge";
+                        ticket: Record "Item Weigh Bridge";
+                    begin
+                        if ((rec."POIDS SORTIE" <= 0) or (rec."POIDS ENTREE" <= 0) or ((rec."POIDS SORTIE" <= 0) and (rec."POIDS ENTREE" <= 0))) then begin
+                            Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
+                        end else begin
+                            rec.TestField(valide, false);
+                            REC.valide := true;
+                            rec."Date validation" := WorkDate();
+                            Rec.Modify();
+                            CurrPage.Update();
+                            // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
+                            Print()
+                        end;
 
-                //         end;
-                //     }
+                    end;
+                }
+                action(Ticket_Pont_Bascule)
+                {
+                    Visible=false;
+                    Caption = 'Ticket Pont Bascule';
+                    Promoted = true;
+                    PromotedCategory = Process;
+
+                    trigger OnAction()
+                    var
+                        ItemWeightBridge: Record "Item Weigh Bridge";
+                    begin
+                        ItemWeightBridge.SetRange(TICKET, rec.TICKET);
+                        ItemWeightBridge.SetRange("Ticket Planteur", rec."Ticket Planteur");
+                        ItemWeightBridge.SetRange("Row No.", rec."Row No.");
+                        ItemWeightBridge.SetRange(RowID, rec.RowID);
+                        if (ItemWeightBridge.FindFirst()) then begin
+                            Report.run(Report::"Ticket de caisse", true, false, ItemWeightBridge)
+                        end;
+
+                    end;
+                }
+                action(Rapport_Quotidien)
+                {
+                    Visible=false;
+                    Caption = 'Rapport Quotidien Client Fournisseur';
+                    ApplicationArea = All;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    trigger OnAction()
+                    begin
+                        Report.Run(70049);
+                    end;
+                }
+
                 //     action("TicketPontBASCULE")
                 //     {
                 //         Caption = 'Ticket pont bascule';
@@ -395,146 +416,149 @@ page 70126 "Paiement Valide"
                 //             end;
                 //         end;
                 //     }
-                //     action("CreateNewMultiPese")
-                //     {
-                //         Visible = false;
-                //         CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket Multipese';
-                //         Image = New;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
+                action("CreateNewMultiPese")
+                {
+                    // Visible=false;
+                    Visible = false;
+                    CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket Multipese';
+                    Image = New;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
 
-                //         RunObject = page "Ticket Header";
-                //         // RunPageLink=
+                    RunObject = page "Ticket Header";
+                    // RunPageLink=
 
-                //         trigger OnAction()
-                //         var
-                //             allRec: Record "Item Weigh Bridge";
-                //             NewRec: Record "Item Weigh Bridge" temporary;
+                    trigger OnAction()
+                    var
+                        allRec: Record "Item Weigh Bridge";
+                        NewRec: Record "Item Weigh Bridge" temporary;
 
-                //             balance: Record Balance;
-                //             jObj: JsonObject;
-                //             jTok: JsonToken;
-                //         begin
-                //             // Run(PAGE::"Ticket Header");
-                //             // NewRec.Init();
-                //             // if allRec.FindLast() then
-                //             //     NewRec.TICKET := allRec.TICKET + 1
-                //             // else
-                //             //     NewRec.TICKET := 1;
-                //             // NewRec."Type of Transportation" := 'RECEPTION';
-                //             // NewRec."Process Ticket" := newRec."Process Ticket"::Create;
-                //             // NewRec.Insert(true);
+                        balance: Record Balance;
+                        jObj: JsonObject;
+                        jTok: JsonToken;
+                    begin
+                        // Run(PAGE::"Ticket Header");
+                        // NewRec.Init();
+                        // if allRec.FindLast() then
+                        //     NewRec.TICKET := allRec.TICKET + 1
+                        // else
+                        //     NewRec.TICKET := 1;
+                        // NewRec."Type of Transportation" := 'RECEPTION';
+                        // NewRec."Process Ticket" := newRec."Process Ticket"::Create;
+                        // NewRec.Insert(true);
 
-                //             // if page.RunModal(page::"Ticket Header", NewRec) = action::LookupOK then begin
-                //             //     Rec := NewRec;
-                //             //     Rec.Insert();
-                //             //     CurrPage.Update(false);
-                //             // end;
-                //             Page.Run(Page::"Ticket Header");
-                //         end;
-                //     }
-                //     action("CreateNew")
-                //     {
-                //         CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket';
-                //         Image = New;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
+                        // if page.RunModal(page::"Ticket Header", NewRec) = action::LookupOK then begin
+                        //     Rec := NewRec;
+                        //     Rec.Insert();
+                        //     CurrPage.Update(false);
+                        // end;
+                        Page.Run(Page::"Ticket Header");
+                    end;
+                }
+                action("CreateNew")
+                {
+                    Visible=false;
+                    CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket';
+                    Image = New;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
 
-                //         trigger OnAction()
-                //         var
-                //             allRec: Record "Item Weigh Bridge";
-                //             NewRec: Record "Item Weigh Bridge" temporary;
+                    trigger OnAction()
+                    var
+                        allRec: Record "Item Weigh Bridge";
+                        NewRec: Record "Item Weigh Bridge" temporary;
 
-                //             balance: Record Balance;
-                //             jObj: JsonObject;
-                //             jTok: JsonToken;
-                //             TicketBuffer: Integer;
-                //             NombrePlanteursBuffer: Integer;
-                //             ItemWeighBridgeMultiPese: Record "Item Weigh Bridge";
-                //             ControlVariable: Integer;
-                //             ItemWeighBridgeMultiPese2: Record "Item Weigh Bridge";
-                //             ItemWeighBridgeMultiPese3: Record "Item Weigh Bridge";
-                //         begin
-                //             // for ControlVariable := StartNumber to EndNumber do begin
+                        balance: Record Balance;
+                        jObj: JsonObject;
+                        jTok: JsonToken;
+                        TicketBuffer: Integer;
+                        NombrePlanteursBuffer: Integer;
+                        ItemWeighBridgeMultiPese: Record "Item Weigh Bridge";
+                        ControlVariable: Integer;
+                        ItemWeighBridgeMultiPese2: Record "Item Weigh Bridge";
+                        ItemWeighBridgeMultiPese3: Record "Item Weigh Bridge";
+                    begin
+                        // for ControlVariable := StartNumber to EndNumber do begin
 
-                //             // end;
-                //             Clear(TicketBuffer);
-                //             Clear(NombrePlanteursBuffer);
-                //             NewRec.Init();
-                //             if allRec.FindLast() then
-                //                 NewRec.TICKET := allRec.TICKET + 1
-                //             else
-                //                 NewRec.TICKET := 1;
-                //             NewRec."Type of Transportation" := 'RECEPTION';
-                //             NewRec."Process Ticket" := newRec."Process Ticket"::Create;
-                //             NewRec.Insert(true);
+                        // end;
+                        Clear(TicketBuffer);
+                        Clear(NombrePlanteursBuffer);
+                        NewRec.Init();
+                        if allRec.FindLast() then
+                            NewRec.TICKET := allRec.TICKET + 1
+                        else
+                            NewRec.TICKET := 1;
+                        NewRec."Type of Transportation" := 'RECEPTION';
+                        NewRec."Process Ticket" := newRec."Process Ticket"::Create;
+                        NewRec.Insert(true);
 
-                //             if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
-                //                 Rec := NewRec;
-                //                 Rec.Insert();
-                //                 TicketBuffer := REC.TICKET;
-                //                 NombrePlanteursBuffer := rec."Nombre de planteurs";
-                //                 CurrPage.Update(false);
-                //             end;
-                //             //<<FnGeek 05_09_25
-                //             ItemWeighBridgeMultiPese.SetRange(TICKET, TicketBuffer);
-                //             if ItemWeighBridgeMultiPese.FindFirst() then begin
-                //                 if ItemWeighBridgeMultiPese.MultiPese = true then begin
-                //                     for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
-                //                         ItemWeighBridgeMultiPese2 := ItemWeighBridgeMultiPese;
-                //                         ItemWeighBridgeMultiPese2.TICKET += (ControlVariable - 1);
-                //                         ItemWeighBridgeMultiPese2."POIDS ENTREE" := 0;
-                //                         ItemWeighBridgeMultiPese2.Insert();
-                //                     end;
-                //                     ItemWeighBridgeMultiPese3.SetFilter("Ticket Planteur", ItemWeighBridgeMultiPese."Ticket Planteur");
-                //                     if ItemWeighBridgeMultiPese3.FindSet() then begin
-                //                         Page.Run(page::MultiPeseSubForm, ItemWeighBridgeMultiPese3);
-                //                     end;
-                //                 end;
-                //             end;
-                //             //<<FnGeek 05_09_25
-                //         end;
-                //     }
-                //     action("updateWeight")
-                //     {
-                //         CaptionML = ENU = 'Update Out Weight', FRA = 'Enregistrer Sortie';
-                //         Image = OutboundEntry;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
+                        if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
+                            Rec := NewRec;
+                            Rec.Insert();
+                            TicketBuffer := REC.TICKET;
+                            NombrePlanteursBuffer := rec."Nombre de planteurs";
+                            CurrPage.Update(false);
+                        end;
+                        //<<FnGeek 05_09_25
+                        ItemWeighBridgeMultiPese.SetRange(TICKET, TicketBuffer);
+                        if ItemWeighBridgeMultiPese.FindFirst() then begin
+                            if ItemWeighBridgeMultiPese.MultiPese = true then begin
+                                for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
+                                    ItemWeighBridgeMultiPese2 := ItemWeighBridgeMultiPese;
+                                    ItemWeighBridgeMultiPese2.TICKET += (ControlVariable - 1);
+                                    ItemWeighBridgeMultiPese2."POIDS ENTREE" := 0;
+                                    ItemWeighBridgeMultiPese2.Insert();
+                                end;
+                                ItemWeighBridgeMultiPese3.SetFilter("Ticket Planteur", ItemWeighBridgeMultiPese."Ticket Planteur");
+                                if ItemWeighBridgeMultiPese3.FindSet() then begin
+                                    Page.Run(page::MultiPeseSubForm, ItemWeighBridgeMultiPese3);
+                                end;
+                            end;
+                        end;
+                        //<<FnGeek 05_09_25
+                    end;
+                }
+                action("updateWeight")
+                {
+                    Visible=false;
+                    CaptionML = ENU = 'Update Out Weight', FRA = 'Enregistrer Sortie';
+                    Image = OutboundEntry;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
 
-                //         trigger OnAction()
-                //         var
-                //             allRec: Record "Item Weigh Bridge";
-                //             NewRec: Record "Item Weigh Bridge" temporary;
+                    trigger OnAction()
+                    var
+                        allRec: Record "Item Weigh Bridge";
+                        NewRec: Record "Item Weigh Bridge" temporary;
 
-                //             balance: Record Balance;
-                //             jObj: JsonObject;
-                //             jTok: JsonToken;
-                //             //08_09_25
-                //             ItemWeighBridge: Record "Item Weigh Bridge";
-                //         begin
-                //             Rec.TestField("Process Ticket", Rec."Process Ticket"::Create);
-                //             NewRec.TransferFields(rec);
-                //             NewRec."Process Ticket" := newRec."Process Ticket"::Update;
-                //             NewRec.Insert(true);
-                //             if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
-                //                 Rec.TransferFields(NewRec);
-                //                 Rec.Modify();
-                //                 CurrPage.Update(false);
-                //             end;
-                //             //08_09_25 FnGeek
-                //             if Rec.MultiPese = true then begin
-                //                 ItemWeighBridge.SetFilter("Ticket Planteur", '=%1', rec."Ticket Planteur");
-                //                 if ItemWeighBridge.FindSet() then begin
-                //                     Page.Run(page::MultiPeseSubForm, ItemWeighBridge);
-                //                 end;
-                //             end;
-                //             //08_09_25 FnGeek
-                //         end;
-                //     }
+                        balance: Record Balance;
+                        jObj: JsonObject;
+                        jTok: JsonToken;
+                        //08_09_25
+                        ItemWeighBridge: Record "Item Weigh Bridge";
+                    begin
+                        Rec.TestField("Process Ticket", Rec."Process Ticket"::Create);
+                        NewRec.TransferFields(rec);
+                        NewRec."Process Ticket" := newRec."Process Ticket"::Update;
+                        NewRec.Insert(true);
+                        if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
+                            Rec.TransferFields(NewRec);
+                            Rec.Modify();
+                            CurrPage.Update(false);
+                        end;
+                        //08_09_25 FnGeek
+                        if Rec.MultiPese = true then begin
+                            ItemWeighBridge.SetFilter("Ticket Planteur", '=%1', rec."Ticket Planteur");
+                            if ItemWeighBridge.FindSet() then begin
+                                Page.Run(page::MultiPeseSubForm, ItemWeighBridge);
+                            end;
+                        end;
+                        //08_09_25 FnGeek
+                    end;
+                }
                 // }
                 // group(ActionGroup1102152013)
                 // {
@@ -1190,8 +1214,6 @@ page 70126 "Paiement Valide"
     end;
 
     trigger OnOpenPage()
-    var
-        ItemWeighBridge: Record "Item Weigh Bridge";
     begin
 
         AnnuleFacture := FALSE;
@@ -1243,19 +1265,6 @@ page 70126 "Paiement Valide"
             END;
             UNTIL Fournisseurs.NEXT = 0;
         ///carelle,,,
-        /*FnGeek 01_12_25
-        ItemWeighBridge.SetRange(TICKET, REC.TICKET);
-        ItemWeighBridge.SetRange("Ticket Planteur", REC."Ticket Planteur");
-        ItemWeighBridge.SetRange("Row No.", "Row No.");
-        ItemWeighBridge.SetRange(RowID, RowID);
-        if ItemWeighBridge.FindFirst() then begin
-            // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
-            // Page.Run(page::"Paiement Valide", ItemWeighBridge);
-            Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
-
-
-        end;
-        */
     end;
 
     var
@@ -1349,7 +1358,7 @@ page 70126 "Paiement Valide"
         ItemWeighBridgecaisse."POIDS ENTREE" := rec."POIDS ENTREE";
         ItemWeighBridgecaisse."POIDS SORTIE" := rec."POIDS SORTIE";
         ItemWeighBridgecaisse."POIDS NET" := rec."POIDS NET";
-        // ItemWeighBridgecaisse."Row No." := rec."Row No.";//FnGeek 18_11_25
+        ItemWeighBridgecaisse."Row No." := rec."Row No.";
         ItemWeighBridgecaisse."Type opération" := rec."Type opération";
         ItemWeighBridgecaisse.Transporteur := rec.Transporteur;
         ItemWeighBridgecaisse.Uploaded := rec.Uploaded;
@@ -1377,6 +1386,8 @@ page 70126 "Paiement Valide"
         ItemWeighBridgecaisse."Sales Invoice No." := rec."Sales Invoice No.";
         ItemWeighBridgecaisse."Code magasin" := rec."Code magasin";
         ItemWeighBridgecaisse."N° Commande PIC" := rec."N° Commande PIC";
+        ItemWeighBridgecaisse.EtatTransport := rec.EtatTransport;
+        ItemWeighBridgecaisse.EtatRegime := rec.EtatRegime;
         ItemWeighBridgecaisse.ValeurAIPH := rec.ValeurAIPH;
         ItemWeighBridgecaisse.TotalRegime := rec.TotalRegime;
         ItemWeighBridgecaisse.TauxOPAR := rec.TauxOPAR;
@@ -1395,12 +1406,12 @@ page 70126 "Paiement Valide"
         ItemWeighBridgecaisse.DateTransport := rec.DateTransport;
         ItemWeighBridgecaisse.NumeroRegime := rec.NumeroRegime;
         ItemWeighBridgecaisse.NumeroTransp := rec.NumeroTransp;
-
+        ItemWeighBridgecaisse."Ligne paiement" := rec."Ligne paiement";
         ItemWeighBridgecaisse."Traitement effectué" := rec."Traitement effectué";
         ItemWeighBridgecaisse.Commentaire := rec.Commentaire;
         ItemWeighBridgecaisse.ValautoDateTime := rec.ValautoDateTime;
         ItemWeighBridgecaisse.CommentaireT := rec.CommentaireT;
-
+        ItemWeighBridgecaisse."Ligne paiement trans" := rec."Ligne paiement trans";
         ItemWeighBridgecaisse.ETATID := rec.ETATID;
         ItemWeighBridgecaisse.ORIGINE := rec.ORIGINE;
         ItemWeighBridgecaisse.Doublon := REC.Doublon;
@@ -1424,83 +1435,25 @@ page 70126 "Paiement Valide"
         ItemWeighBridgecaisse."No. Series" := rec."No. Series";
         ItemWeighBridgecaisse."Posting Date" := rec."Posting Date";
         ItemWeighBridgecaisse.Statut_Total_Paiement := rec.Statut_Total_Paiement;
-        ItemWeighBridgecaisse.Date_Paiement := WorkDate();
         ItemWeighBridgecaisse.Insert()
     end;
 
-    procedure TicketPlanteur()
-    var
-        ItemWeighBridgecaisse: Record "Item Weigh Bridge caisse";
-    begin
-        ItemWeighBridgecaisse.SetRange(TICKET, rec.TICKET);
-        ItemWeighBridgecaisse.SetRange(RowID, rec.RowID);
-        ItemWeighBridgecaisse.SetRange("Ticket Planteur");
-        if ItemWeighBridgecaisse.FindLast() then begin
-            ItemWeighBridgecaisse.EtatRegime := 'PA';
-            ItemWeighBridgecaisse.EtatTransport := rec.EtatTransport;
-            ItemWeighBridgecaisse."Ligne paiement" := true;
-            ItemWeighBridgecaisse."Ligne paiement trans" := rec."Ligne paiement trans";
-            ItemWeighBridgecaisse.Modify()
-        end;
-    end;
-
-    procedure TicketTransporteur()
-    var
-        ItemWeighBridgecaisse: Record "Item Weigh Bridge caisse";
-    begin
-        ItemWeighBridgecaisse.SetRange(TICKET, rec.TICKET);
-        ItemWeighBridgecaisse.SetRange(RowID, rec.RowID);
-        ItemWeighBridgecaisse.SetRange("Ticket Planteur");
-        if ItemWeighBridgecaisse.FindLast() then begin
-            ItemWeighBridgecaisse.EtatRegime := rec.EtatRegime;
-            ItemWeighBridgecaisse.EtatTransport := 'PA';
-            ItemWeighBridgecaisse."Ligne paiement trans" := TRUE;
-            ItemWeighBridgecaisse."Ligne paiement" := rec."Ligne paiement";
-            ItemWeighBridgecaisse.Modify()
-        end;
-
-    end;
-
-    procedure PayerTransporteur()
+    procedure Print()
     var
         myInt: Integer;
+        ticket: Record "Item Weigh Bridge";
     begin
-        if rec."Type opération" = 'ACHAT COMPTANT' then begin
-            Error('On ne peut pas payer le transporteur car ce ticket est: ACHAT COMPTANT');
+        ticket.Reset();
+        Ticket.SetRange(TICKET, rec.TICKET);
+        ticket.SetRange("Row No.", rec."Row No.");
+        ticket.SetRange("Ticket Planteur", rec."Ticket Planteur");
+        ticket.SetRange(RowID, rec.RowID);
+        if ticket.FindFirst() then begin
+            // RunModal(Report::"Ticket de caisse", ticket)
+            Report.Run(50500, false, false, ticket);
         end;
-        if (rec."Statut paiement" = true) then begin
-            Error('Ce ticket a été déja payé pour le transporteur');
-        end else begin
-            rec."Statut paiement" := true;
-            REC.Date_Paiement := WorkDate();
-            rec.Modify();
-            TransFertTicketFromItemWeigntToBridgeCaisse();
-            TicketTransporteur();
-            if rec."Statut paiement Planteur" = true then begin
-                rec.Statut_Total_Paiement := true;
-                REC.Modify()
-            end;
-        end;
-    end;
 
-    procedure PayerPlanteur()
-    var
-        myInt: Integer;
-    begin
-        if rec."Statut paiement Planteur" = true then begin
-            Error('Ce ticket a été déja payé pour le planteur');
-        end else begin
-            rec."Statut paiement Planteur" := true;
-            Rec.Date_Paiement := WorkDate();
-            rec.Modify();
-            TransFertTicketFromItemWeigntToBridgeCaisse();
-            TicketPlanteur();
-            if (rec."Statut paiement" = true) OR (rec."Type opération" = 'ACHAT COMPTANT') then begin
-                Rec.Statut_Total_Paiement := true;
-                rec.Modify();
-            end;
-        end;
-    end;
 
+    end;
 }
 
