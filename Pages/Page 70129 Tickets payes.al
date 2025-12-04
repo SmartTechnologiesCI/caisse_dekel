@@ -520,6 +520,29 @@ page 70129 TicketsPayes
                         //<<FnGeek 05_09_25
                     end;
                 }
+                action(RecuPaiement)
+                {
+                    Caption = 'Reçu Paiement';
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    trigger OnAction()
+                    var
+                        ItemWeighBridge: Record "Item Weigh Bridge";
+                    begin
+                        ItemWeighBridge.SetRange(TICKET, REC.TICKET);
+                        ItemWeighBridge.SetRange("Ticket Planteur", REC."Ticket Planteur");
+                        ItemWeighBridge.SetRange("Row No.", "Row No.");
+                        ItemWeighBridge.SetRange(RowID, RowID);
+                        if ItemWeighBridge.FindFirst() then begin
+                            // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
+                            // Page.Run(page::"Paiement Valide", ItemWeighBridge);
+                            Report.Run(Report::Recu_Paiement_Double, true, false, ItemWeighBridge);
+
+
+                        end;
+                    end;
+                }
+
                 action("updateWeight")
                 {
                     Visible = false;
