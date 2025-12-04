@@ -112,23 +112,43 @@ page 70114 Paiement_Header
                 field(Poids_Total; Poids_Total)
                 {
                     ApplicationArea = All;
+                    Visible = false;
 
                 }
                 field(TotalPlanteur; TotalPlanteur)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field(Impot; Impot)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field(TotalPlanteurTTc; TotalPlanteurTTc)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
-                field(TestToal; TestToal)
+                field(PoidTotalRegime; PoidTotalRegime)
                 {
                     ApplicationArea = All;
+                    Editable=false;
+                }
+                field(TotalRegime; TotalRegime)
+                {
+                    ApplicationArea = All;
+                    Editable=false;
+                }
+                field(TotalRegimeIMPOT; TotalRegimeIMPOT)
+                {
+                    ApplicationArea = All;
+                    Editable=false;
+                }
+                field(TotalRegimeTTC; TotalRegimeTTC)
+                {
+                    ApplicationArea = All;
+                    Editable=false;
                 }
             }
             part(Ligne_Paiement; Ligne_Paiement)

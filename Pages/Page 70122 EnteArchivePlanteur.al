@@ -137,6 +137,7 @@ page 70122 ArchiEntetePlanteur
                     itemWigIfbhhf: Record "Item Weigh Bridge";
                 begin
                     itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
+                    itemWigIfbhhf.SetRange("Statut paiement Planteur",true);
                     if itemWigIfbhhf.FindFirst() then begin
                         Report.Run(70048, true, false, itemWigIfbhhf);
                     end;

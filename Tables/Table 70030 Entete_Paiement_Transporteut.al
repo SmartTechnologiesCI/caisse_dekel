@@ -157,6 +157,37 @@ table 70030 Entete_Paiement_Transporteur
             Caption = 'NATURE DE LA PIECE';
             OptionMembers = CNI,PASSEPORT,PERMIS,CS,AUTRES;
         }
+        //***
+        field(55020; TotalTransportTTC; Decimal)
+        {
+            FieldClass = FlowField;
+            Caption = 'Total Transport (TTC)';
+            Editable = false;
+            CalcFormula = sum("Item Weigh Bridge".TotalTransPorteurTTC where(NumDocExten = field(NumDocExt), Ticket_Concerne_Transport = const(true)));
+
+        }
+        field(55021; TotalTransport; Decimal)
+        {
+            Caption = 'Total Transport (HT)';
+            FieldClass = FlowField;
+            CalcFormula = sum("Item Weigh Bridge".TotalTransport where(NumDocExten = field(NumDocExt), Ticket_Concerne_Transport = const(true)));
+
+        }
+        field(55022; TotalTransportIMPOT; Decimal)
+        {
+            Caption = 'Impôt (%)';
+
+            FieldClass = FlowField;
+            CalcFormula = sum("Item Weigh Bridge".Impot where(NumDocExten = field(NumDocExt), Ticket_Concerne_Transport = const(true)));
+
+        }
+        field(55023; PoidTotalTransport; Decimal)
+        {
+            Caption = 'Poids total (KG)';
+            FieldClass = FlowField;
+            CalcFormula = sum("Item Weigh Bridge"."POIDS NET" where(NumDocExten = field(NumDocExt), Ticket_Concerne_Transport = const(true)));
+
+        }
 
 
         // field(55015; PrixUnitaire; Decimal)

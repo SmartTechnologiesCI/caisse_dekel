@@ -40,7 +40,7 @@ table 70029 Entete_Paiement
         {
             DataClassification = ToBeClassified;
             Caption = 'Caissier/Caissière';
-            Editable=false;
+            Editable = false;
         }
         field(50005; Code_Transporteur; Code[250])
         {
@@ -161,12 +161,33 @@ table 70029 Entete_Paiement
             Caption = 'NATURE DE LA PIECE';
             OptionMembers = CNI,PASSEPORT,PERMIS,CS,AUTRES;
         }
-        field(55020; TestToal; Decimal)
+        field(55020; TotalRegimeTTC; Decimal)
         {
-             FieldClass = FlowField;
-            Caption = 'Total Fab FCFA';
+            FieldClass = FlowField;
+            Caption = 'Total Planteur (TTC)';
             Editable = false;
-            CalcFormula = sum("Item Weigh Bridge".TotalPlanteurTTc where(NumDocExten = field(NumDocExt), Ticket_Concerne = const(true)));
+            CalcFormula = sum("Item Weigh Bridge".TotalPlanteurTTc where(NumDocExten = field(NumDocExt)));
+
+        }
+        field(55021; TotalRegime; Decimal)
+        {
+            Caption = 'Total Planteur(HT)';
+            FieldClass = FlowField;
+            CalcFormula = sum("Item Weigh Bridge".TotalPlanteur where(NumDocExten = field(NumDocExt)));
+
+        }
+        field(55022; TotalRegimeIMPOT; Decimal)
+        {
+            Caption = 'Impôt (%)';
+            FieldClass = FlowField;
+            CalcFormula = sum("Item Weigh Bridge".Impot where(NumDocExten = field(NumDocExt), Ticket_Concerne = const(true)));
+
+        }
+        field(55023; PoidTotalRegime; Decimal)
+        {
+            Caption = 'Poids total (KG)';
+            FieldClass = FlowField;
+            CalcFormula = sum("Item Weigh Bridge"."POIDS NET" where(NumDocExten = field(NumDocExt),Ticket_Concerne=const(true)));
 
         }
 
@@ -177,7 +198,7 @@ table 70029 Entete_Paiement
 
     keys
     {
-        key(Key1; code_Paiement,NumDocExt)
+        key(Key1; code_Paiement, NumDocExt)
         {
             Clustered = true;
         }

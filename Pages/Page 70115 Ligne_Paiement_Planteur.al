@@ -25,8 +25,9 @@ page 70115 Ligne_Paiement
                 {
                     Editable = false;
                 }
-                field("Type opération";"Type opération"){
-                    
+                field("Type opération"; "Type opération")
+                {
+
                 }
                 field("Weighing 1 Date"; "Weighing 1 Date")
                 {
@@ -61,7 +62,9 @@ page 70115 Ligne_Paiement
                 {
                     ApplicationArea = All;
                     trigger OnValidate()
+
                     var
+                        Paiement_Header: Page Paiement_Header;
                         myInt: Integer;
                         HeaderPaiement: Record Entete_Paiement;
                         Souche: Record Souche;
@@ -71,11 +74,13 @@ page 70115 Ligne_Paiement
 
                         Souche.SetRange(User, UserId);
                         if Souche.FindLast() then begin
-                            if rec.Ticket_Concerne = true then begin
-                                rec.NumDocExten := Souche.Code_Souche;
-                            end else begin
-                                rec.NumDocExten := '';
-                            end;
+                            // if rec.Ticket_Concerne = true then begin
+                            rec.NumDocExten := Souche.Code_Souche;
+                            // end else begin
+                            //     rec.Validate(NumDocExten, '');
+
+                            // end;
+                            CurrPage.Update();
 
                         end;
                         SommeTotale();
@@ -94,22 +99,44 @@ page 70115 Ligne_Paiement
                             if ItemWeightBridge.FindSet() then begin
                                 repeat begin
 
-                                    if ItemWeightBridge.Marqueur = false then begin
-                                        HeaderPaiement.Poids_Total += rec."POIDS NET";
-                                        HeaderPaiement.TotalPlanteur += rec.TotalPlanteur;
-                                        HeaderPaiement.Impot += rec.Impot;
-                                        HeaderPaiement.TotalPlanteurTTc += rec.TotalPlanteurTTc;
-                                        // Message('Ticket: %1 Poids: %2 RecPoids: %3', ItemWeightBridge."Ticket Planteur", HeaderPaiement.Poids_Total, rec."POIDS NET")
-                                    end;
+                                    // if ItemWeightBridge.Marqueur = false then begin
+                                    HeaderPaiement.Poids_Total += rec."POIDS NET";
+                                    HeaderPaiement.TotalPlanteur += rec.TotalPlanteur;
+                                    HeaderPaiement.Impot += rec.Impot;
+                                    HeaderPaiement.TotalPlanteurTTc += rec.TotalPlanteurTTc;
+                                    // Message('Yes man');
+                                    // Message('Ticket: %1 Poids: %2 RecPoids: %3', ItemWeightBridge."Ticket Planteur", HeaderPaiement.Poids_Total, rec."POIDS NET")
+                                    // end;
                                     rec.Marqueur := TRUE;
 
+
                                 end until ItemWeightBridge.Next() = 0;
+                            end else begin
+                                HeaderPaiement.Poids_Total := 0;
+                                HeaderPaiement.TotalPlanteur := 0;
+                                HeaderPaiement.Impot := 0;
+                                HeaderPaiement.TotalRegime := 0;
+                                HeaderPaiement.TotalPlanteurTTc := 0;
+                                // Message('No man');
                             end;
                             HeaderPaiement.Modify();
 
+                        end else begin
+                            HeaderPaiement.Poids_Total := 0;
+                            HeaderPaiement.TotalPlanteur := 0;
+                            HeaderPaiement.Impot := 0;
+                            HeaderPaiement.TotalPlanteurTTc := 0;
+                            HeaderPaiement.Impot := 0;
+                            HeaderPaiement.Modify();
+                            // Message('No man2');
                         end;
+
                         if rec.Ticket_Concerne = false then begin
                             rec.Marqueur := false;
+                            REC.TotalPlanteur := 0;
+                            rec.TotalPlanteurTTc := 0;
+                            rec.Impot := 0;
+                            CurrPage.Update();
                         end;
 
                     end;
@@ -244,11 +271,20 @@ page 70115 Ligne_Paiement
             //*** Taxe
             VendorSplitTaxSetup.SetRange("Vendor No.", rec."Code planteur");
             if VendorSplitTaxSetup.FindFirst() then begin
-                REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-                taxe := (VendorSplitTaxSetup.Percentage / 100);
-                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-                rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET") - (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * taxe);
-                REC.Modify();
+                if rec.Ticket_Concerne = true then begin
+                    REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                    taxe := (VendorSplitTaxSetup.Percentage / 100);
+                    rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                    rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET") - (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * taxe);
+                    REC.Modify();
+                end else begin
+                    rec.Marqueur := false;
+                    REC.validate(TotalPlanteur, 0);
+                    rec.Validate(TotalPlanteurTTc, 0);
+                    rec.Impot:=0;
+                    // CurrPage.Update();
+                end;
+
             end else begin
                 Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
                 REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
@@ -344,13 +380,25 @@ page 70115 Ligne_Paiement
         end else begin
             sommeTTc -= rec.TotalPlanteurTTc;
             sommetotal := sommeTTc;
+            // page.
             // Message('Totlal: %1 b: %2', Total, rec."POIDS NET");
         end;
         exit(sommetotal)
     end;
 
+    // trigger O()
+    // var
+    //     myInt: Integer;
+    // begin
 
+    // end;
+    trigger OnModifyRecord(): Boolean
+    var
+        myInt: Integer;
+    begin
+        //    page.
 
+    end;
 
     var
         myInt: Integer;

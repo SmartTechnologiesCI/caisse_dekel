@@ -105,25 +105,49 @@ page 70118 Paiement_Header_Transporteur
                 field(Poids_Total; Poids_Total)
                 {
                     ApplicationArea = All;
+                    Visible = false;
 
                 }
                 field(TotalPlanteur; TotalPlanteur)
                 {
                     ApplicationArea = All;
+                    Visible = false;
 
                 }
                 field(Impot; Impot)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field(TotalPlanteurTT; TotalPlanteurTTc)
                 {
                     ApplicationArea = All;
+                    Visible = false;
+                }
+                field(PoidTotalTransport; PoidTotalTransport)
+                {
+                    ApplicationArea = ll;
+                    Editable = false;
+                }
+                field(TotalTransport; TotalTransport)
+                {
+                    ApplicationArea = ll;
+                    Editable = false;
+                }
+                field(TotalTransportIMPOT; TotalTransportIMPOT)
+                {
+                    ApplicationArea = ll;
+                    Editable = false;
+                }
+                field(TotalTransportTTC; TotalTransportTTC)
+                {
+                    ApplicationArea = ll;
+                    Editable = false;
                 }
             }
             part(Ligne_Paiement_Transporteur; Ligne_Paiement_Transporteur)
             {
-                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(false), valide = const(true),En_Attente_Paiement = const(false), "Type opération"=const('ACHAT DIRECT');
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(false), valide = const(true), En_Attente_Paiement = const(false), "Type opération" = const('ACHAT DIRECT');
 
             }
         }
