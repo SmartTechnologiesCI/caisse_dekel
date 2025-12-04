@@ -317,7 +317,7 @@ page 70129 TicketsPayes
                     Promoted = true;
                     PromotedCategory = Process;
                     Image = Post;
-                    Visible=false;
+                    Visible = false;
                     trigger OnAction()
                     var
                         ItemWeight2: Record "Item Weigh Bridge";
@@ -339,7 +339,7 @@ page 70129 TicketsPayes
                 }
                 action(Ticket_Pont_Bascule)
                 {
-                    Visible=false;
+                    Visible = false;
                     Caption = 'Ticket Pont Bascule';
                     Promoted = true;
                     PromotedCategory = Process;
@@ -360,7 +360,7 @@ page 70129 TicketsPayes
                 }
                 action(Rapport_Quotidien)
                 {
-                    Visible=false;
+                    Visible = false;
                     Caption = 'Rapport Quotidien Client Fournisseur';
                     ApplicationArea = All;
                     Promoted = true;
@@ -458,7 +458,7 @@ page 70129 TicketsPayes
                 }
                 action("CreateNew")
                 {
-                    Visible=false;
+                    Visible = false;
                     CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket';
                     Image = New;
                     Promoted = true;
@@ -522,7 +522,7 @@ page 70129 TicketsPayes
                 }
                 action("updateWeight")
                 {
-                    Visible=false;
+                    Visible = false;
                     CaptionML = ENU = 'Update Out Weight', FRA = 'Enregistrer Sortie';
                     Image = OutboundEntry;
                     Promoted = true;
@@ -1265,6 +1265,7 @@ page 70129 TicketsPayes
             END;
             UNTIL Fournisseurs.NEXT = 0;
         ///carelle,,,
+        SetFilter("Type opération", '=%1|%2', 'ACHAT DIRECT', 'ACHAT COMPTANT');
     end;
 
     var
