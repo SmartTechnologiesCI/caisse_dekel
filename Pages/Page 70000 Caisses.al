@@ -3,7 +3,7 @@ page 70000 Caisses
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
-    CardPageId = CaisseCard;
+    // CardPageId = CaisseCard;
     SourceTable = Caisse;
     layout
     {

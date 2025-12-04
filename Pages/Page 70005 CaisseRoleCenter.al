@@ -156,7 +156,7 @@ page 70005 "Caisse RoleCenter"
             action("Ciasse")
             {
                 Caption = 'caisse';
-                RunObject = Page Caisses;
+                RunObject = Page CaisseCard;
                 // RunPageLink = "User ID" =usu
                 ApplicationArea = All;
 
