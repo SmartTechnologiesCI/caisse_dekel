@@ -3,7 +3,6 @@ page 70128 Caisse_Card
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
-
     SourceTable = Caisse;
 
     layout
@@ -15,27 +14,28 @@ page 70128 Caisse_Card
                 field("Code caisse"; "Code caisse")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Nom caisse"; "Nom caisse")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("User ID"; "User ID")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field(Solde; Solde)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
 
 
             }
         }
-        area(Factboxes)
-        {
-
-        }
+      
     }
 
 
@@ -43,14 +43,7 @@ page 70128 Caisse_Card
     {
         area(Processing)
         {
-            action(ActionName)
-            {
-
-                trigger OnAction()
-                begin
-
-                end;
-            }
+            
         }
     }
     trigger OnOpenPage()

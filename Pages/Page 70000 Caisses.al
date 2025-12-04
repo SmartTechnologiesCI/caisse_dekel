@@ -3,8 +3,8 @@ page 70000 Caisses
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
+    CardPageId = Caisse_Card;
     SourceTable = Caisse;
-
     layout
     {
         area(Content)
@@ -15,6 +15,7 @@ page 70000 Caisses
                 {
                     CaptionML = ENU = 'Code', FRA = 'Code';
                     ApplicationArea = All;
+                    
                 }
                 field("Nom caisse"; "Nom caisse")
                 {
