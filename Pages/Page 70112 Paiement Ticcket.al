@@ -17,16 +17,19 @@ page 70112 "Paiement Ticket"
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Visible = false;
                 }
                 field("Nombre de planteurs"; Rec."Nombre de planteurs")
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Visible = false;
                 }
                 field("Balance Code"; Rec."Balance Code")
                 {
                     ToolTip = 'Specifies the value of the Balance Code field.', Comment = '%';
                     Editable = false;
+                    Visible = false;
                     // trigger OnAssistEdit()
                     // begin
                     //     if Rec.AssistEdit_PointCaisse(xRec) then
@@ -38,12 +41,14 @@ page 70112 "Paiement Ticket"
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Visible = false;
                 }
                 field("Code article"; rec."Code article")
                 {
                     ApplicationArea = All;
                     TableRelation = Item;
                     Editable = false;
+                    Visible = false;
 
                     trigger OnValidate()
                     var
@@ -60,12 +65,14 @@ page 70112 "Paiement Ticket"
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Visible = false;
                 }
                 field(ORIGINE; rec.ORIGINE)
                 {
                     Editable = false;
                     ApplicationArea = All;
                     TableRelation = Origine.Origine;
+                    Visible = false;
                     trigger OnValidate()
                     var
                         myInt: Integer;
@@ -80,6 +87,7 @@ page 70112 "Paiement Ticket"
                 }
                 field("Type Vehicule"; REC."Type Vehicule")
                 {
+                    Visible = false;
                     ApplicationArea = All;
                     Editable = false;
                     TableRelation = "Type Vehicule"."Matricule Vehicule";
@@ -167,6 +175,7 @@ page 70112 "Paiement Ticket"
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Visible = false;
                 }
                 //<<Fabrice Smart 05_03_25
                 field("Ticket Planteur"; Rec."Ticket Planteur")
@@ -190,15 +199,18 @@ page 70112 "Paiement Ticket"
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Visible = false;
                 }
                 field("N° Commande PIC"; "N° Commande PIC")
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Visible = false;
                 }
                 field("Process Ticket"; rec."Process Ticket")
                 {
                     Editable = false;
+                    Visible = false;
                 }
                 field("Statut paiement"; "Statut paiement")
                 {
