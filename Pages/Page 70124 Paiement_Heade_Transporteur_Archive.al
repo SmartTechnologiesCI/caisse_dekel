@@ -139,6 +139,7 @@ page 70124 PaiementHeaderTransport_Archiv
                     itemWigIfbhhf: Record "Item Weigh Bridge";
                 begin
                     itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
+                    itemWigIfbhhf.SetRange("Statut paiement", true);
                     if itemWigIfbhhf.FindFirst() then begin
                         Report.Run(70048, true, false, itemWigIfbhhf);
                     end;

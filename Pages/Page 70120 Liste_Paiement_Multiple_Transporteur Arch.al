@@ -72,6 +72,7 @@ page 70120 ListePantTransporteurArchive
                     itemWigIfbhhf: Record "Item Weigh Bridge";
                 begin
                     itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
+                    itemWigIfbhhf.SetRange("Statut paiement", true);
                     if itemWigIfbhhf.FindFirst() then begin
                         Report.Run(70050, true, false, itemWigIfbhhf);
                     end;

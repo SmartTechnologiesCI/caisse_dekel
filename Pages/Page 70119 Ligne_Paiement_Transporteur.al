@@ -67,11 +67,11 @@ page 70119 Ligne_Paiement_Transporteur
 
                         Souche.SetRange(User, UserId);
                         if Souche.FindLast() then begin
-                            if rec.Ticket_Concerne_Transport = true then begin
-                                rec.NumDocExten := Souche.Code_Souche;
-                            end else begin
-                                rec.NumDocExten := '';
-                            end;
+                            // if rec.Ticket_Concerne_Transport = true then begin
+                            rec.NumDocExten := Souche.Code_Souche;
+                            // end else begin
+                            //     rec.NumDocExten := '';
+                            // end;
 
                         end;
                         SommeTotale();
@@ -106,13 +106,31 @@ page 70119 Ligne_Paiement_Transporteur
 
 
                                 end until ItemWeightBridge.Next() = 0;
+                            end else begin
+                                HeaderPaiement.Poids_Total := 0;
+                                // HeaderPaiement.TotalPlanteur := 0;
+                                HeaderPaiement.Impot := 0;
+                                HeaderPaiement.TotalTransport := 0;
+                                HeaderPaiement.TotalTransportTTC := 0;
+                                // Message('No man');
                             end;
 
                             HeaderPaiement.Modify();
 
+                        end else begin
+                            HeaderPaiement.Poids_Total := 0;
+                            HeaderPaiement.TotalTransport := 0;
+                            HeaderPaiement.Impot := 0;
+                            HeaderPaiement.TotalTransportTTC := 0;
+                            // HeaderPaiement.Impot := 0;
+                            HeaderPaiement.Modify();
+                            // Message('No man2');
                         end;
                         if rec.Ticket_Concerne_Transport = false then begin
                             rec.MarqueurTransport := false;
+                            // REC.TotalTransport:=0;
+                            // rec.TotalTransPorteurTTC:=0;
+
                         end;
                     end;
 
