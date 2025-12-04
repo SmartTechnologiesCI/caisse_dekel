@@ -17,7 +17,7 @@ page 70129 TicketsPayes
     UsageCategory = Lists;
     ModifyAllowed = false;
     PageType = List;
-    CardPageId = "Ticket Caisse";
+    CardPageId = "Paiement Ticket Valide";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
                       ORDER(Descending) where("Balance Code" = filter('AY*'), valide = CONST(true));
