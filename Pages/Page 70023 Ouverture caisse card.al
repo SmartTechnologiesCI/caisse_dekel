@@ -110,6 +110,7 @@ page 70023 "Ouverture caisse card"
                 var
                     MouvTransaction: Record Transactions;
                     Mvnt: Record "Mouvements Entrees Sorties";
+                    
                 begin
                     rec.status := rec.status::Validated;
                     if (Confirm('Voulez-vous enregistrer cette ouverture ?')) then begin

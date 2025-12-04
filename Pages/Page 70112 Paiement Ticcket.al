@@ -364,6 +364,7 @@ page 70112 "Paiement Ticket"
                             rowno1 := rec."Row No.";
                             TicketPlanteur1 := rec."Ticket Planteur";
                             PayerPlanteur();
+                            Transactionsplanteur();
                             ItemWeighBridge.SetRange(TICKET, Ticket1);
                             ItemWeighBridge.SetRange("Ticket Planteur", TicketPlanteur1);
                             ItemWeighBridge.SetRange("Row No.", rowno1);
@@ -405,6 +406,7 @@ page 70112 "Paiement Ticket"
                             rowno1 := rec."Row No.";
                             TicketPlanteur1 := rec."Ticket Planteur";
                             PayerTransporteur();
+                            TransactionsTransport();
                             ItemWeighBridge.SetRange(TICKET, Ticket1);
                             ItemWeighBridge.SetRange("Ticket Planteur", TicketPlanteur1);
                             ItemWeighBridge.SetRange("Row No.", rowno1);
@@ -696,7 +698,7 @@ page 70112 "Paiement Ticket"
         PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
         PrixAchat.SetFilter("Starting Date", '<=%1', "Weighing 1 Date");
         PrixAchat.SetFilter("Ending Date", '>=%1', "Weighing 1 Date");
-        PrixAchat.SetRange(CL,'AY');
+        PrixAchat.SetRange(CL, 'AY');
         PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
         if PrixAchat.FindFirst() then begin
             rec.PrixUnitaireTansport := PrixAchat."Direct Unit Cost";
@@ -740,6 +742,66 @@ page 70112 "Paiement Ticket"
         // end;
 
         // end;
+    end;
+    //FnGeek Ecriture transaction
+    procedure Transactionsplanteur()
+    var
+        myInt: Integer;
+        Transaction: Record Transactions;
+        Caisse: Record Caisse;
+    begin
+        Transaction.Reset();
+        Transaction.Init();
+        Transaction.Source := Transaction.Source::"E/S";
+        Transaction.Date := WorkDate();
+        Transaction.Heure := Time;
+        Transaction.Description := rec."Ticket Planteur" + ':' + ' ' + rec."Code planteur" + ' ' + rec.ORIGINE;
+        Transaction.Montant := -rec.TotalPlanteur;
+        Caisse.SetRange("User ID", UserId);
+        if Caisse.FindFirst() then begin
+            Transaction."Code caisse" := Caisse."Code caisse";
+        end else begin
+            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+        end;
+        Transaction."N° Client" := rec."Code planteur";
+        Transaction.Nom := rec."Nom planteur";
+        Transaction."N° Document" := rec."Ticket Planteur";
+        Transaction."Mode de reglement" := Format(rec.Mode_Paiement);
+        Transaction."user id" := UserId;
+        Transaction."validée" := true;
+        Transaction."Montant NET" := -rec.TotalPlanteurTTc;
+        Transaction."Origine Operation" := rec.ORIGINE;
+        Transaction.Insert()
+    end;
+
+    procedure TransactionsTransport()
+    var
+        myInt: Integer;
+        Transaction: Record Transactions;
+        Caisse: Record Caisse;
+    begin
+        Transaction.Reset();
+        Transaction.Init();
+        Transaction.Source := Transaction.Source::"E/S";
+        Transaction.Date := WorkDate();
+        Transaction.Heure := Time;
+        Transaction.Description := rec."Ticket Planteur" + ':' + ' ' + rec."Code Transporteur" + ' ' + rec.ORIGINE;
+        Transaction.Montant := -rec.TotalTransport;
+        Caisse.SetRange("User ID", UserId);
+        if Caisse.FindFirst() then begin
+            Transaction."Code caisse" := Caisse."Code caisse";
+        end else begin
+            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+        end;
+        Transaction."N° Client" := rec."Code Transporteur";
+        Transaction.Nom := rec."Nom Transporteur";
+        Transaction."N° Document" := rec."Ticket Planteur";
+        Transaction."Mode de reglement" := Format(rec.Mode_Paiement);
+        Transaction."user id" := UserId;
+        Transaction."validée" := true;
+        Transaction."Montant NET" := -rec.TotalTransPorteurTTC;
+        Transaction."Origine Operation" := rec.ORIGINE;
+        Transaction.Insert()
     end;
 
     trigger OnOpenPage()

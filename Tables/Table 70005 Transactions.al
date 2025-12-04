@@ -44,7 +44,8 @@ table 70005 "Transactions"
         }
         field(10; "N° Client"; code[20])
         {
-            TableRelation = Customer."No.";
+            TableRelation = Vendor."No.";
+            Caption = 'Planteur/Transporteur';
 
             trigger OnValidate()
             var
@@ -89,7 +90,7 @@ table 70005 "Transactions"
         field(20; "Origine Operation"; Code[50])
         {
             Caption = 'Origine opération';
-            TableRelation = "Origine operation";
+            // TableRelation = "Origine operation";
         }
 
 

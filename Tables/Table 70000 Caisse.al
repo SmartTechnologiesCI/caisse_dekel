@@ -43,6 +43,16 @@ table 70000 Caisse
         {
             CaptionML = ENU = 'Difference', FRA = 'Différence';
         }
+        field(10; Solde; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = sum(Transactions."Montant NET" where("user id" = field("User ID")));
+        }
+        // field(11; Utilissateir; Text[250])
+        // {
+        //     FieldClass = FlowFilter;
+
+        // }
     }
 
     keys

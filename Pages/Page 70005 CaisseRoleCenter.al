@@ -187,7 +187,7 @@ page 70005 "Caisse RoleCenter"
                 PromotedCategory = Process;
                 ApplicationArea = All;
                 RunObject = Page 70002;
-                Visible = false;
+                // Visible = false;
             }
 
             action("Compte tiers d")
