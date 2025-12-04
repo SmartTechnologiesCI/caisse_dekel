@@ -81,6 +81,10 @@ report 70050 Recu_Paiement_Double
             {
 
             }
+            column(Titre; Titre)
+            {
+
+            }
 
             trigger OnPreDataItem()
             var
@@ -98,6 +102,7 @@ report 70050 Recu_Paiement_Double
                     if TicketPlanteur = true then begin
                         Concerne := Planteur;
                         Nom_Concerne := "Nom planteur";
+                        Titre := 'REGIME';
                         if PrixAchat.FindSet() then begin
 
                         end;
@@ -106,6 +111,7 @@ report 70050 Recu_Paiement_Double
                         if TicketTransporteur = true then begin
                             Concerne := Transporteurname;
                             Nom_Concerne := "Nom Transporteur";
+                            Titre := 'TRANSPORT';
                         end;
                     end;
                 end;
@@ -127,7 +133,7 @@ report 70050 Recu_Paiement_Double
                 if TicketPlanteur = true then begin
                     VendorSplitTaxSetup.SetRange("Vendor No.", "Code planteur");
                     if VendorSplitTaxSetup.FindFirst() then begin
-                        TaxeImpot := VendorSplitTaxSetup.Percentage/100;
+                        TaxeImpot := VendorSplitTaxSetup.Percentage / 100;
                         // taxe := (VendorSplitTaxSetup.Percentage / 100);
                     end else begin
                         TaxeImpot := 1;
@@ -218,5 +224,6 @@ report 70050 Recu_Paiement_Double
         Nom_Concerne: Code[250];
         PrixAchat: Record "Prix Achat";
         TaxeImpot: Decimal;
+        Titre: Text[50];
 
 }

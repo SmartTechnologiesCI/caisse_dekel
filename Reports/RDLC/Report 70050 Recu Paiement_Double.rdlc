@@ -2130,7 +2130,18 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>BON DE PAIEMENT DE REGIME</Value>
+                        <Value>BON DE PAIEMENT DE </Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontFamily>Times New Roman</FontFamily>
+                          <FontSize>12pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>#000000</Color>
+                        </Style>
+                      </TextRun>
+                      <TextRun>
+                        <Value>=Fields!Titre.Value</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>Times New Roman</FontFamily>
@@ -4392,7 +4403,18 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>BON DE PAIEMENT DE REGIME</Value>
+                            <Value>BON DE PAIEMENT DE </Value>
+                            <Style>
+                              <FontStyle>Normal</FontStyle>
+                              <FontFamily>Times New Roman</FontFamily>
+                              <FontSize>12pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                              <TextDecoration>None</TextDecoration>
+                              <Color>#000000</Color>
+                            </Style>
+                          </TextRun>
+                          <TextRun>
+                            <Value>=Fields!Titre.Value</Value>
                             <Style>
                               <FontStyle>Normal</FontStyle>
                               <FontFamily>Times New Roman</FontFamily>
@@ -4965,6 +4987,9 @@ MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26
         </Field>
         <Field Name="TaxeImpotFormat">
           <DataField>TaxeImpotFormat</DataField>
+        </Field>
+        <Field Name="Titre">
+          <DataField>Titre</DataField>
         </Field>
       </Fields>
       <Query>

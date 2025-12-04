@@ -2489,6 +2489,9 @@ a9ag60gDb8qQ8NieLD9jda6pDQtVEv1UqXVWVFaW3xxaFXbEsoP0ID2TK50u8kAfKfzHnOI/ylmdqnKt
         <Field Name="TaxeImpotFormat">
           <DataField>TaxeImpotFormat</DataField>
         </Field>
+        <Field Name="Titre">
+          <DataField>Titre</DataField>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>DataSource</DataSourceName>
