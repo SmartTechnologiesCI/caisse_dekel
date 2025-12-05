@@ -147,6 +147,55 @@ page 70122 ArchiEntetePlanteur
                     end;
                 end;
             }
+            action(Annuler)
+            {
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                trigger OnAction()
+                var
+                    ItemWeighBridgecaisse: Record "Item Weigh Bridge caisse";
+                    itemWeitg: Record "Item Weigh Bridge";
+                    transaction: Record Transactions;
+                    itemWeitg2: Record "Item Weigh Bridge";
+                begin
+                    if Confirm('vouslez vous annuler ce ticket') then begin
+                        REC.StatutAnnulaition := true;
+                        rec.Modify();
+                        transaction.Reset();
+                        transaction.Init();
+                        itemWeitg2.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        if itemWeitg2.FindSet() then begin
+                            repeat begin
+                                AnnulationTicket(itemWeitg2);
+                            end until itemWeitg2.Next() = 0;
+                        end;
+
+                        ItemWeighBridgecaisse.Reset();
+                        ItemWeighBridgecaisse.Init();
+                        ItemWeighBridgecaisse.SetFilter(ItemWeighBridgecaisse.NuDocExtern, '=%1', rec.NumDocExt);
+                        if ItemWeighBridgecaisse.FindSet() then begin
+                            repeat begin
+                                ItemWeighBridgecaisse.Delete();
+                            end until ItemWeighBridgecaisse.Next() = 0;
+                        end;
+
+                        // itemWeitg.SetFilter(NumDocExten, rec.NumDocExt);
+                        itemWeitg.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        if itemWeitg.FindSet() then begin
+                            repeat begin
+                                itemWeitg."Statut paiement" := false;
+                                itemWeitg."Statut paiement Planteur" := false;
+                                itemWeitg.Date_Paiement := 0D;
+                                itemWeitg.Modify();
+                            end until itemWeitg.Next() = 0;
+                        end;
+                        Message('Annulation effectué avec succès');
+                    end else begin
+                        exit
+                    end;
+                end;
+            }
             action(Valider)
             {
                 Caption = 'Valider paiement';
@@ -175,8 +224,70 @@ page 70122 ArchiEntetePlanteur
 
                 end;
             }
+
         }
+
     }
+    procedure AnnulationTicket(ItemWeigtn: Record "Item Weigh Bridge")
+    var
+        myInt: Integer;
+        Transaction: Record Transactions;
+        Caisse: Record Caisse;
+    begin
+        Transaction.Reset();
+        Transaction.Init();
+        Transaction.Source := Transaction.Source::"E/S";
+        Transaction.Date := WorkDate();
+        Transaction.Heure := Time;
+        Transaction.Description := ItemWeigtn."Ticket Planteur" + ':' + ' ' + ItemWeigtn."Code planteur" + ' ' + ItemWeigtn.ORIGINE;
+        Transaction.Montant := rec.TotalPlanteur;
+        Caisse.SetRange("User ID", UserId);
+        if Caisse.FindFirst() then begin
+            Transaction."Code caisse" := Caisse."Code caisse";
+        end else begin
+            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+        end;
+        Transaction."N° Client" := ItemWeigtn."Code planteur";
+        Transaction.Nom := ItemWeigtn."Nom planteur";
+        Transaction."N° Document" := ItemWeigtn."Ticket Planteur";
+        Transaction."Mode de reglement" := Format(rec.Mode_Paiement);
+        Transaction."user id" := UserId;
+        Transaction."validée" := true;
+        Transaction."Montant NET" := ItemWeigtn.TotalPlanteurTTc;
+        Transaction."Origine Operation" := ItemWeigtn.ORIGINE;
+        Transaction.Insert()
+    end;
+
+    procedure AnnulerTicketTransport(ItemWeigtn2: Record "Item Weigh Bridge")
+    var
+        myInt: Integer;
+        Transaction: Record Transactions;
+        Caisse: Record Caisse;
+    begin
+        Transaction.Reset();
+        Transaction.Init();
+        Transaction.Source := Transaction.Source::"E/S";
+        Transaction.Date := WorkDate();
+        Transaction.Heure := Time;
+        Transaction.Description := ItemWeigtn2."Ticket Planteur" + ':' + ' ' + ItemWeigtn2."Code Transporteur" + ' ' + ItemWeigtn2.ORIGINE;
+        Transaction.Montant := ItemWeigtn2.TotalTransport;
+        Caisse.SetRange("User ID", UserId);
+        if Caisse.FindFirst() then begin
+            Transaction."Code caisse" := Caisse."Code caisse";
+        end else begin
+            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+        end;
+        Transaction."N° Client" := ItemWeigtn2."Code Transporteur";
+        Transaction.Nom := ItemWeigtn2."Nom Transporteur";
+        Transaction."N° Document" := ItemWeigtn2."Ticket Planteur";
+        Transaction."Mode de reglement" := Format(rec.Mode_Paiement);
+        Transaction."user id" := UserId;
+        Transaction."validée" := true;
+        Transaction."Montant NET" := ItemWeigtn2.TotalTransPorteurTTC;
+        Transaction."Origine Operation" := ItemWeigtn2.ORIGINE;
+        Transaction.Insert()
+    end;
+
     procedure PayerPlanteur(ItemWeigBridge: Record "Item Weigh Bridge")
     var
         myInt: Integer;
