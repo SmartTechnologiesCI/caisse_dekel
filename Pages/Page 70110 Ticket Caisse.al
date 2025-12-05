@@ -1339,11 +1339,13 @@ page 70110 "Ticket Caisse"
         if PrixAchat.FindFirst() then begin
             VendorSplitTaxSetup.SetRange("Vendor No.", rec."Code planteur");
             if VendorSplitTaxSetup.FindFirst() then begin
-                rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
+                rec.PrixUnitaire := PrixAchat."Direct Unit Cost" - VendorSplitTaxSetup.Cost;
                 REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
                 rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
                 rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET") - (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * (VendorSplitTaxSetup.Percentage / 100));
-                REC.Modify()
+                REC.Modify();
+                // Message('PrixINIT: %1 cost: %2 total: %3', PrixAchat."Direct Unit Cost", VendorSplitTaxSetup.Cost, rec.PrixUnitaire);
+
             end else begin
                 // Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
                 rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
