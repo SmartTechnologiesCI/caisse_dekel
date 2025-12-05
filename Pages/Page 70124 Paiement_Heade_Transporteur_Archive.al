@@ -37,7 +37,7 @@ page 70124 PaiementHeaderTransport_Archiv
                 {
                     ApplicationArea = All;
                     Editable = false;
-                    Visible = false;
+                    // Visible = false;
                 }
                 field(Palanteur; Palanteur)
                 {
@@ -61,6 +61,7 @@ page 70124 PaiementHeaderTransport_Archiv
                 {
                     ApplicationArea = All;
                     Editable = false;
+                    Visible = false;
                 }
                 field(Beneficiare; Beneficiare)
                 {

@@ -268,11 +268,12 @@ page 70115 Ligne_Paiement
         PrixAchat.SetFilter("Ending Date", '>=%1', rec."Weighing 1 Date");
         PrixAchat.SetRange(Type_Operation_Options, rec."Type opération");
         if PrixAchat.FindFirst() then begin
-            REC.PrixUnitaire := PrixAchat."Direct Unit Cost";
+            // REC.PrixUnitaire := PrixAchat."Direct Unit Cost";
             //*** Taxe
             VendorSplitTaxSetup.SetRange("Vendor No.", rec."Code planteur");
             if VendorSplitTaxSetup.FindFirst() then begin
                 if rec.Ticket_Concerne = true then begin
+                    rec.PrixUnitaire := PrixAchat."Direct Unit Cost" - VendorSplitTaxSetup.Cost;
                     REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
                     taxe := (VendorSplitTaxSetup.Percentage / 100);
                     rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
@@ -288,6 +289,7 @@ page 70115 Ligne_Paiement
 
             end else begin
                 Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
+                rec.PrixUnitaire := PrixAchat."Direct Unit Cost" - VendorSplitTaxSetup.Cost;
                 REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
                 // taxe := (VendorSplitTaxSetup.Percentage / 100);
                 rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";

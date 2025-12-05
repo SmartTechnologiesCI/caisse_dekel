@@ -744,7 +744,7 @@ page 70112 "Paiement Ticket"
         if PrixAchat.FindFirst() then begin
             VendorSplitTaxSetup.SetRange("Vendor No.", rec."Code planteur");
             if VendorSplitTaxSetup.FindFirst() then begin
-                rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
+                rec.PrixUnitaire := PrixAchat."Direct Unit Cost" - VendorSplitTaxSetup.Cost;
                 REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
                 rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
                 rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET") - (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * (VendorSplitTaxSetup.Percentage / 100));

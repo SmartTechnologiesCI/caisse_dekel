@@ -187,8 +187,13 @@ table 70029 Entete_Paiement
         {
             Caption = 'Poids total (KG)';
             FieldClass = FlowField;
-            CalcFormula = sum("Item Weigh Bridge"."POIDS NET" where(NumDocExten = field(NumDocExt),Ticket_Concerne=const(true)));
+            CalcFormula = sum("Item Weigh Bridge"."POIDS NET" where(NumDocExten = field(NumDocExt), Ticket_Concerne = const(true)));
 
+        }
+        field(55024; StatutAnnulaition; Boolean)
+        {
+            Caption = 'Annulé';
+            DataClassification = ToBeClassified;
         }
 
 

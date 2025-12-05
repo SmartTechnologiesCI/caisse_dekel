@@ -188,6 +188,11 @@ table 70030 Entete_Paiement_Transporteur
             CalcFormula = sum("Item Weigh Bridge"."POIDS NET" where(NumDocExten = field(NumDocExt), Ticket_Concerne_Transport = const(true)));
 
         }
+        field(55024; StatutAnnulaition; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Annulé';
+        }
 
 
         // field(55015; PrixUnitaire; Decimal)

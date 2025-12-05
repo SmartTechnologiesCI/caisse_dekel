@@ -145,7 +145,14 @@ report 70050 Recu_Paiement_Double
                     PrixAchat.SetFilter("Ending Date", '>=%1', "Weighing 1 Date");
                     PrixAchat.SetRange(Type_Operation_Options, "Type opération");
                     if PrixAchat.FindFirst() then begin
-                        Prix := PrixAchat."Direct Unit Cost";
+                        VendorSplitTaxSetup.SetRange("Vendor No.", "Code planteur");
+                        if VendorSplitTaxSetup.FindFirst() then begin
+                            Prix := PrixAchat."Direct Unit Cost" - VendorSplitTaxSetup.Cost;
+                            // taxe := (VendorSplitTaxSetup.Percentage / 100);
+                        end else begin
+                            Message('Prix non trouvé');
+                        end;
+
                     end;
                 end else begin
                     if TicketTransporteur = true then begin
