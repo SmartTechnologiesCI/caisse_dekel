@@ -95,6 +95,10 @@ page 70124 PaiementHeaderTransport_Archiv
                 {
                     ApplicationArea = All;
                 }
+                field(StatutAnnulaition; StatutAnnulaition)
+                {
+                    ApplicationArea = All;
+                }
             }
             group(Paiement)
             {
