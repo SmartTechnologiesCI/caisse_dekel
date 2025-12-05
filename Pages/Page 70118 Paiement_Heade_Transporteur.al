@@ -235,7 +235,8 @@ page 70118 Paiement_Header_Transporteur
                         if itemWeitg.FindSet() then begin
                             repeat begin
                                 itemWeitg."Statut paiement" := false;
-                                itemWeitg."Statut paiement Planteur" := false;
+                                // itemWeitg."Statut paiement Planteur" := false;
+                                itemWeitg.Statut_Total_Paiement := false;
                                 itemWeitg.Date_Paiement := 0D;
                                 itemWeitg.Modify();
                             end until itemWeitg.Next() = 0;
@@ -371,7 +372,7 @@ page 70118 Paiement_Header_Transporteur
         ItemWeighBridgecaisse.TauxImpotTransp := ItemWeigthBridge.TauxImpotTransp;
         ItemWeighBridgecaisse.ValeurImpoTransp := ItemWeigthBridge.ValeurImpoTransp;
         ItemWeighBridgecaisse.MontantNetTransp := ItemWeigthBridge.MontantNetTransp;
-        ItemWeighBridgecaisse.DateRegime := Rec.Date_Paiement;
+        // ItemWeighBridgecaisse.DateRegime := Rec.Date_Paiement;
         ItemWeighBridgecaisse.DateTransport := rec.Date_Paiement;
         ItemWeighBridgecaisse.NumeroRegime := ItemWeigthBridge.NumeroRegime;
         ItemWeighBridgecaisse.NumeroTransp := ItemWeigthBridge.NumeroTransp;

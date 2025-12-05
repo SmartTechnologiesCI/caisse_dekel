@@ -214,6 +214,7 @@ page 70110 "Ticket Caisse"
                             end;
                             rec."Statut paiement" := false;
                             rec."Statut paiement Planteur" := false;
+                            rec.Statut_Total_Paiement := false;
                             rec.Date_Paiement := 0D;
                             Rec.Modify();
                             Message('Annulation effectué avec succès');

@@ -215,7 +215,7 @@ page 70114 Paiement_Header
                 ApplicationArea = All;
                 Promoted = true;
                 PromotedCategory = Process;
-                Visible=false;
+                Visible = false;
                 trigger OnAction()
                 var
                     ItemWeighBridgecaisse: Record "Item Weigh Bridge caisse";
@@ -248,8 +248,9 @@ page 70114 Paiement_Header
                         itemWeitg.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
                         if itemWeitg.FindSet() then begin
                             repeat begin
-                                itemWeitg."Statut paiement" := false;
+                                // itemWeitg."Statut paiement" := false;
                                 itemWeitg."Statut paiement Planteur" := false;
+                                itemWeitg.Statut_Total_Paiement := false;
                                 itemWeitg.Date_Paiement := 0D;
                                 itemWeitg.Modify();
                             end until itemWeitg.Next() = 0;
@@ -347,7 +348,7 @@ page 70114 Paiement_Header
         ItemWeighBridgecaisse.ValeurImpoTransp := ItemWeigthBridge.ValeurImpoTransp;
         ItemWeighBridgecaisse.MontantNetTransp := ItemWeigthBridge.MontantNetTransp;
         ItemWeighBridgecaisse.DateRegime := Rec.Date_Paiement;
-        ItemWeighBridgecaisse.DateTransport := Rec.Date_Paiement;
+        // ItemWeighBridgecaisse.DateTransport := Rec.Date_Paiement;
         ItemWeighBridgecaisse.NumeroRegime := ItemWeigthBridge.NumeroRegime;
         ItemWeighBridgecaisse.NumeroTransp := ItemWeigthBridge.NumeroTransp;
         ItemWeighBridgecaisse."Traitement effectué" := ItemWeigthBridge."Traitement effectué";
