@@ -4,7 +4,8 @@ page 70112 "Paiement Ticket"
     Caption = 'Paiement';
     PageType = Card;
     SourceTable = "Item Weigh Bridge";
-    InsertAllowed = false;
+    // InsertAllowed = false;
+    ModifyAllowed = true;
     layout
     {
 
@@ -262,15 +263,25 @@ page 70112 "Paiement Ticket"
                 field(NaturePiece; NaturePiece)
                 {
                     ApplicationArea = All;
+                    Editable = true;
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+                    begin
+                        // rec.Modify();
+                        // CurrPage.Update();
+                    end;
                 }
 
                 field(NCNI; rec.NCNI)
                 {
                     ApplicationArea = All;
+                    Caption = 'N° de pièce';
                 }
                 field(Mode_Paiement; rec.Mode_Paiement)
                 {
                     ApplicationArea = All;
+
                 }
                 field(Observation; rec.Observation)
                 {
@@ -868,7 +879,16 @@ page 70112 "Paiement Ticket"
         if rec."Statut paiement Planteur" = false then begin
             PaiementVisiblePlanteur := TRUE;
         end;
-        SommeTotale()
+        SommeTotale();
+        CurrPage.Update();
+
+    end;
+
+    trigger OnModifyRecord(): Boolean
+    var
+        myInt: Integer;
+    begin
+        // CurrPage.Update();
     end;
 
     var

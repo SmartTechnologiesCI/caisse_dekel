@@ -79,6 +79,7 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         }
         field(55018; NaturePiece; Option)
         {
+            DataClassification = ToBeClassified;
             Caption = 'NATURE DE LA PIECE';
             OptionMembers = CNI,PASSEPORT,PERMIS,CS,AUTRES;
         }
@@ -93,7 +94,7 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         {
             DataClassification = ToBeClassified;
         }
-         field(55021; TotalTransporteur; Decimal)
+        field(55021; TotalTransporteur; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Total Achat Transport (FCFA)';
