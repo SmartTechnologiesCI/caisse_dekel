@@ -215,6 +215,8 @@ page 70118 Paiement_Header_Transporteur
                         transaction.Reset();
                         transaction.Init();
                         itemWeitg2.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg2.SetFilter(Ticket_Concerne_Transport, '=%1', true);
+                        itemWeitg2.SetFilter("Statut paiement", '=%1', true);
                         if itemWeitg2.FindSet() then begin
                             repeat begin
                                 AnnulerTicketTransport(itemWeitg2);
@@ -232,6 +234,8 @@ page 70118 Paiement_Header_Transporteur
 
                         // itemWeitg.SetFilter(NumDocExten, rec.NumDocExt);
                         itemWeitg.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg.SetFilter(Ticket_Concerne_Transport, '=%1', true);
+                        itemWeitg.SetFilter("Statut paiement", '=%1', true);
                         if itemWeitg.FindSet() then begin
                             repeat begin
                                 itemWeitg."Statut paiement" := false;

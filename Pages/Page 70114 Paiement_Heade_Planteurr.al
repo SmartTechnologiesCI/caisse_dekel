@@ -229,6 +229,8 @@ page 70114 Paiement_Header
                         transaction.Reset();
                         transaction.Init();
                         itemWeitg2.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg2.SetFilter(Ticket_Concerne, '=%1', true);
+                        itemWeitg2.SetFilter("Statut paiement Planteur", '=%1', true);
                         if itemWeitg2.FindSet() then begin
                             repeat begin
                                 AnnulationTicket(itemWeitg2);
@@ -246,6 +248,8 @@ page 70114 Paiement_Header
 
                         // itemWeitg.SetFilter(NumDocExten, rec.NumDocExt);
                         itemWeitg.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg.SetFilter(Ticket_Concerne, '=%1', true);
+                        itemWeitg.SetFilter("Statut paiement Planteur", '=%1', true);
                         if itemWeitg.FindSet() then begin
                             repeat begin
                                 // itemWeitg."Statut paiement" := false;
