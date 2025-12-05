@@ -135,7 +135,7 @@ page 70124 PaiementHeaderTransport_Archiv
                 ApplicationArea = All;
                 Promoted = true;
                 PromotedCategory = Process;
-                Visible = false;
+                // Visible = false;
                 trigger OnAction()
                 var
                     ItemWeighBridgecaisse: Record "Item Weigh Bridge caisse";
