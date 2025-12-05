@@ -110,7 +110,7 @@ report 70050 Recu_Paiement_Double
                     end else begin
                         if TicketTransporteur = true then begin
                             Concerne := Transporteurname;
-                            Nom_Concerne := "Nom Transporteur";
+                            Nom_Concerne := "Nom planteur";
                             Titre := 'TRANSPORT';
                         end;
                     end;
