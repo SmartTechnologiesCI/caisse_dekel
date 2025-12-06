@@ -214,9 +214,9 @@ page 70118 Paiement_Header_Transporteur
                         rec.Modify();
                         transaction.Reset();
                         transaction.Init();
-                        itemWeitg2.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
-                        itemWeitg2.SetFilter(Ticket_Concerne_Transport, '=%1', true);
-                        itemWeitg2.SetFilter("Statut paiement", '=%1', true);
+                        itemWeitg2.SetFilter(itemWeitg2.NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg2.SetFilter(itemWeitg2.Ticket_Concerne_Transport, '=%1', true);
+                        itemWeitg2.SetFilter(itemWeitg2."Statut paiement", '=%1', true);
                         if itemWeitg2.FindSet() then begin
                             repeat begin
                                 AnnulerTicketTransport(itemWeitg2);
@@ -239,8 +239,8 @@ page 70118 Paiement_Header_Transporteur
                         if itemWeitg.FindSet() then begin
                             repeat begin
                                 itemWeitg."Statut paiement" := false;
-                                // itemWeitg."Statut paiement Planteur" := false;
                                 itemWeitg.Statut_Total_Paiement := false;
+                                itemWeitg.Ticket_Concerne_Transport := false;
                                 itemWeitg.Date_Paiement := 0D;
                                 itemWeitg.Modify();
                             end until itemWeitg.Next() = 0;
@@ -456,6 +456,8 @@ page 70118 Paiement_Header_Transporteur
         Transaction."validée" := true;
         Transaction."Montant NET" := -ItemWeigtn2.TotalTransPorteurTTC;
         Transaction."Origine Operation" := ItemWeigtn2.ORIGINE;
+        Transaction.DocExtern := ItemWeigtn2.NumDocExten;
+        Transaction.Multipaiement := true;
         Transaction.Insert()
     end;
 
@@ -476,7 +478,7 @@ page 70118 Paiement_Header_Transporteur
         if Caisse.FindFirst() then begin
             Transaction."Code caisse" := Caisse."Code caisse";
         end else begin
-            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+            Error('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
         end;
         Transaction."N° Client" := ItemWeigtn2."Code Transporteur";
         Transaction.Nom := ItemWeigtn2."Nom Transporteur";
@@ -486,9 +488,21 @@ page 70118 Paiement_Header_Transporteur
         Transaction."validée" := true;
         Transaction."Montant NET" := ItemWeigtn2.TotalTransPorteurTTC;
         Transaction."Origine Operation" := ItemWeigtn2.ORIGINE;
+        Transaction.DocExtern := ItemWeigtn2.NumDocExten;
+        Transaction.Multipaiement := true;
         Transaction.Insert()
     end;
 
+    procedure CheckCaissier()
+    var
+        myInt: Integer;
+        Caisse: Record Caisse;
+    begin
+        Caisse.SetRange("User ID", UserId);
+        if not Caisse.FindFirst() then begin
+            Error('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+        end;
+    end;
 
     procedure CheckSolde()
     var

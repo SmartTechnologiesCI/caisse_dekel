@@ -210,7 +210,7 @@ page 70114 Paiement_Header
 
                 end;
             }
-            action(Annuler)
+            action(Annuleryyyyy)
             {
                 ApplicationArea = All;
                 Promoted = true;
@@ -224,15 +224,15 @@ page 70114 Paiement_Header
                     itemWeitg2: Record "Item Weigh Bridge";
                 begin
                     if Confirm('vouslez vous annuler ce ticket') then begin
-                        REC.StatutAnnulaition := true;
-                        rec.Modify();
-                        transaction.Reset();
-                        transaction.Init();
-                        itemWeitg2.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
-                        itemWeitg2.SetFilter(Ticket_Concerne, '=%1', true);
+
+                        // transaction.Reset();
+                        // transaction.Init();
+                        itemWeitg2.SetFilter(itemWeitg2.NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg2.SetFilter(itemWeitg2.Ticket_Concerne, '=%1', true);
                         itemWeitg2.SetFilter("Statut paiement Planteur", '=%1', true);
                         if itemWeitg2.FindSet() then begin
                             repeat begin
+                                Message('num: %1', itemWeitg2.NumDocExten);
                                 AnnulationTicket(itemWeitg2);
                             end until itemWeitg2.Next() = 0;
                         end;
@@ -253,12 +253,15 @@ page 70114 Paiement_Header
                         if itemWeitg.FindSet() then begin
                             repeat begin
                                 // itemWeitg."Statut paiement" := false;
+                                itemWeitg.Ticket_Concerne := false;
                                 itemWeitg."Statut paiement Planteur" := false;
                                 itemWeitg.Statut_Total_Paiement := false;
                                 itemWeitg.Date_Paiement := 0D;
                                 itemWeitg.Modify();
                             end until itemWeitg.Next() = 0;
                         end;
+                        REC.StatutAnnulaition := true;
+                        rec.Modify();
                         Message('Annulation effectué avec succès');
                     end else begin
                         exit
@@ -421,7 +424,7 @@ page 70114 Paiement_Header
         if Caisse.FindFirst() then begin
             Transaction."Code caisse" := Caisse."Code caisse";
         end else begin
-            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+            Error('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
         end;
         Transaction."N° Client" := ItemWeigtn."Code planteur";
         Transaction.Nom := ItemWeigtn."Nom planteur";
@@ -431,7 +434,20 @@ page 70114 Paiement_Header
         Transaction."validée" := true;
         Transaction."Montant NET" := -ItemWeigtn.TotalPlanteurTTc;
         Transaction."Origine Operation" := ItemWeigtn.ORIGINE;
+        Transaction.DocExtern := ItemWeigtn.NumDocExten;
+        Transaction.Multipaiement := true;
         Transaction.Insert()
+    end;
+
+    procedure CheckCaissier()
+    var
+        myInt: Integer;
+        Caisse: Record Caisse;
+    begin
+        Caisse.SetRange("User ID", UserId);
+        if not Caisse.FindFirst() then begin
+            Error('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+        end;
     end;
 
     procedure AnnulationTicket(ItemWeigtn: Record "Item Weigh Bridge")
@@ -451,7 +467,7 @@ page 70114 Paiement_Header
         if Caisse.FindFirst() then begin
             Transaction."Code caisse" := Caisse."Code caisse";
         end else begin
-            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+            Error('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
         end;
         Transaction."N° Client" := ItemWeigtn."Code planteur";
         Transaction.Nom := ItemWeigtn."Nom planteur";
@@ -461,6 +477,8 @@ page 70114 Paiement_Header
         Transaction."validée" := true;
         Transaction."Montant NET" := ItemWeigtn.TotalPlanteurTTc;
         Transaction."Origine Operation" := ItemWeigtn.ORIGINE;
+        Transaction.DocExtern := ItemWeigtn.NumDocExten;
+        Transaction.Multipaiement := true;
         Transaction.Insert()
     end;
 

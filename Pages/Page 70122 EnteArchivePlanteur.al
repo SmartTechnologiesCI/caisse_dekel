@@ -165,6 +165,8 @@ page 70122 ArchiEntetePlanteur
                         transaction.Reset();
                         transaction.Init();
                         itemWeitg2.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg2.SetFilter(Ticket_Concerne, '=%1', true);
+                        itemWeitg2.SetFilter("Statut paiement Planteur", '=%1', true);
                         if itemWeitg2.FindSet() then begin
                             repeat begin
                                 AnnulationTicket(itemWeitg2);
@@ -182,10 +184,14 @@ page 70122 ArchiEntetePlanteur
 
                         // itemWeitg.SetFilter(NumDocExten, rec.NumDocExt);
                         itemWeitg.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg.SetFilter(Ticket_Concerne, '=%1', true);
+                        itemWeitg.SetFilter("Statut paiement Planteur", '=%1', true);
                         if itemWeitg.FindSet() then begin
                             repeat begin
-                                itemWeitg."Statut paiement" := false;
+                                // itemWeitg."Statut paiement" := false;
                                 itemWeitg."Statut paiement Planteur" := false;
+                                itemWeitg.Statut_Total_Paiement := false;
+                                itemWeitg.Ticket_Concerne := false;
                                 itemWeitg.Date_Paiement := 0D;
                                 itemWeitg.Modify();
                             end until itemWeitg.Next() = 0;
@@ -240,12 +246,12 @@ page 70122 ArchiEntetePlanteur
         Transaction.Date := WorkDate();
         Transaction.Heure := Time;
         Transaction.Description := ItemWeigtn."Ticket Planteur" + ':' + ' ' + ItemWeigtn."Code planteur" + ' ' + ItemWeigtn.ORIGINE;
-        Transaction.Montant := rec.TotalPlanteur;
+        Transaction.Montant := ItemWeigtn.TotalPlanteur;
         Caisse.SetRange("User ID", UserId);
         if Caisse.FindFirst() then begin
             Transaction."Code caisse" := Caisse."Code caisse";
         end else begin
-            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+            Error('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
         end;
         Transaction."N° Client" := ItemWeigtn."Code planteur";
         Transaction.Nom := ItemWeigtn."Nom planteur";
@@ -255,6 +261,8 @@ page 70122 ArchiEntetePlanteur
         Transaction."validée" := true;
         Transaction."Montant NET" := ItemWeigtn.TotalPlanteurTTc;
         Transaction."Origine Operation" := ItemWeigtn.ORIGINE;
+        Transaction.DocExtern := ItemWeigtn.NumDocExten;
+        Transaction.Multipaiement := true;
         Transaction.Insert()
     end;
 

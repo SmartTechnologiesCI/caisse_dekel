@@ -149,6 +149,8 @@ page 70124 PaiementHeaderTransport_Archiv
                         transaction.Reset();
                         transaction.Init();
                         itemWeitg2.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg2.SetFilter(Ticket_Concerne, '=%1', true);
+                        itemWeitg2.SetFilter("Statut paiement Planteur", '=%1', true);
                         if itemWeitg2.FindSet() then begin
                             repeat begin
                                 AnnulerTicketTransport(itemWeitg2);
@@ -166,10 +168,14 @@ page 70124 PaiementHeaderTransport_Archiv
 
                         // itemWeitg.SetFilter(NumDocExten, rec.NumDocExt);
                         itemWeitg.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg.SetFilter(Ticket_Concerne, '=%1', true);
+                        itemWeitg.SetFilter("Statut paiement Planteur", '=%1', true);
                         if itemWeitg.FindSet() then begin
                             repeat begin
                                 itemWeitg."Statut paiement" := false;
-                                itemWeitg."Statut paiement Planteur" := false;
+                                // itemWeitg."Statut paiement Planteur" := false;
+                                itemWeitg.Statut_Total_Paiement := false;
+                                itemWeitg.Ticket_Concerne_Transport := false;
                                 itemWeitg.Date_Paiement := 0D;
                                 itemWeitg.Modify();
                             end until itemWeitg.Next() = 0;
@@ -247,7 +253,7 @@ page 70124 PaiementHeaderTransport_Archiv
         if Caisse.FindFirst() then begin
             Transaction."Code caisse" := Caisse."Code caisse";
         end else begin
-            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+            Error('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
         end;
         Transaction."N° Client" := ItemWeigtn2."Code Transporteur";
         Transaction.Nom := ItemWeigtn2."Nom Transporteur";
@@ -257,6 +263,8 @@ page 70124 PaiementHeaderTransport_Archiv
         Transaction."validée" := true;
         Transaction."Montant NET" := ItemWeigtn2.TotalTransPorteurTTC;
         Transaction."Origine Operation" := ItemWeigtn2.ORIGINE;
+        Transaction.DocExtern := ItemWeigtn2.NumDocExten;
+        Transaction.Multipaiement := true;
         Transaction.Insert()
     end;
 
@@ -265,7 +273,7 @@ page 70124 PaiementHeaderTransport_Archiv
         myInt: Integer;
     begin
         if ItemWeigBridge."Statut paiement Planteur" = true then begin
-            Message('a: %1 b: %2', ItemWeigBridge."Ticket Planteur", ItemWeigBridge."Statut paiement Planteur");
+            // Message('a: %1 b: %2', ItemWeigBridge."Ticket Planteur", ItemWeigBridge."Statut paiement Planteur");
             Error('Ce ticket a été déja payé pour le planteur');
         end else begin
             ItemWeigBridge."Statut paiement Planteur" := true;

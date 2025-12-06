@@ -31,6 +31,14 @@ page 70002 "Liste des transactions"
                 {
                     ApplicationArea = All;
                 }
+                field(DocExtern; DocExtern)
+                {
+                    ApplicationArea = All;
+                }
+                field(Multipaiement; Multipaiement)
+                {
+                    ApplicationArea = All;
+                }
                 field(Description; Description)
                 {
                     ApplicationArea = All;

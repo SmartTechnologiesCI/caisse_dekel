@@ -92,6 +92,16 @@ table 70005 "Transactions"
             Caption = 'Origine opération';
             // TableRelation = "Origine operation";
         }
+        field(21; DocExtern; code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'N° Doc Externe';
+        }
+        field(22; Multipaiement; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Multi-Paiement';
+        }
 
 
     }

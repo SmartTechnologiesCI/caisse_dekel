@@ -1610,7 +1610,7 @@ page 70110 "Ticket Caisse"
         if Caisse.FindFirst() then begin
             Transaction."Code caisse" := Caisse."Code caisse";
         end else begin
-            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+            Error('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
         end;
         Transaction."N° Client" := ItemWeigtn2."Code Transporteur";
         Transaction.Nom := ItemWeigtn2."Nom Transporteur";
