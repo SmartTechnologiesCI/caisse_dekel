@@ -146,11 +146,11 @@ page 70124 PaiementHeaderTransport_Archiv
                     if Confirm('vouslez vous annuler ce ticket') then begin
                         REC.StatutAnnulaition := true;
                         rec.Modify();
-                        transaction.Reset();
-                        transaction.Init();
+                        // transaction.Reset();
+                        // transaction.Init();
                         itemWeitg2.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
-                        itemWeitg2.SetFilter(Ticket_Concerne, '=%1', true);
-                        itemWeitg2.SetFilter("Statut paiement Planteur", '=%1', true);
+                        itemWeitg2.SetFilter(itemWeitg2.Ticket_Concerne_Transport, '=%1', true);
+                        itemWeitg2.SetFilter("Statut paiement", '=%1', true);
                         if itemWeitg2.FindSet() then begin
                             repeat begin
                                 AnnulerTicketTransport(itemWeitg2);
@@ -168,8 +168,8 @@ page 70124 PaiementHeaderTransport_Archiv
 
                         // itemWeitg.SetFilter(NumDocExten, rec.NumDocExt);
                         itemWeitg.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
-                        itemWeitg.SetFilter(Ticket_Concerne, '=%1', true);
-                        itemWeitg.SetFilter("Statut paiement Planteur", '=%1', true);
+                        itemWeitg.SetFilter(Ticket_Concerne_Transport, '=%1', true);
+                        itemWeitg.SetFilter("Statut paiement", '=%1', true);
                         if itemWeitg.FindSet() then begin
                             repeat begin
                                 itemWeitg."Statut paiement" := false;

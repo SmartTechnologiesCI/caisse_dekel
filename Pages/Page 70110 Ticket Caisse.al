@@ -192,15 +192,16 @@ page 70110 "Ticket Caisse"
 
                     trigger OnAction()
                     var
-                        itemWeitg2: Record "Item Weigh Bridge";
+                        itemWeitg2: Record "Item Weigh Bridge caisse";
                         ItemWeighBridgecaisse: Record "Item Weigh Bridge caisse";
                     begin
                         if Confirm('vouslez vous annuler ce ticket') then begin
                             // transaction.Reset();
                             // transaction.Init();
-                            itemWeitg2.Setrange("Ticket Planteur", rec."Ticket Planteur");
+                            itemWeitg2.SetFilter("Ticket Planteur", '=%1', rec."Ticket Planteur");
                             if itemWeitg2.FindSet() then begin
                                 repeat begin
+                                    Message('ticket: %1', itemWeitg2."Ticket Planteur");
                                     AnnulerTicketT(itemWeitg2);
                                 end until itemWeitg2.Next() = 0;
                             end;
@@ -1593,7 +1594,7 @@ page 70110 "Ticket Caisse"
         end;
     end;
 
-    procedure AnnulerTicketT(ItemWeigtn2: Record "Item Weigh Bridge")
+    procedure AnnulerTicketT(ItemWeigtn2: Record "Item Weigh Bridge caisse")
     var
         myInt: Integer;
         Transaction: Record Transactions;
@@ -1605,7 +1606,7 @@ page 70110 "Ticket Caisse"
         Transaction.Date := WorkDate();
         Transaction.Heure := Time;
         Transaction.Description := ItemWeigtn2."Ticket Planteur" + ':' + ' ' + ItemWeigtn2."Code Transporteur" + ' ' + ItemWeigtn2.ORIGINE;
-        Transaction.Montant := ItemWeigtn2.TotalTransport;
+        // Transaction.Montant := ItemWeigtn2.TotalTransport;
         Caisse.SetRange("User ID", UserId);
         if Caisse.FindFirst() then begin
             Transaction."Code caisse" := Caisse."Code caisse";
@@ -1618,7 +1619,17 @@ page 70110 "Ticket Caisse"
         Transaction."Mode de reglement" := Format(rec.Mode_Paiement);
         Transaction."user id" := UserId;
         Transaction."validée" := true;
-        Transaction."Montant NET" := ItemWeigtn2.TotalTransPorteurTTC;
+        if ItemWeigtn2."Ligne paiement" = true then begin
+            Transaction."Montant NET" := ItemWeigtn2.MontantNetRegime;
+            Message('Regime');
+        end else
+            if ItemWeigtn2."Ligne paiement trans" = true then begin
+
+                Transaction."Montant NET" := ItemWeigtn2.MontantNetTransp;
+                Message('TrNASPORT');
+
+            end;
+        // Transaction."Montant NET" := ItemWeigtn2.TotalTransPorteurTTC;
         Transaction."Origine Operation" := ItemWeigtn2.ORIGINE;
         Transaction.Insert()
     end;

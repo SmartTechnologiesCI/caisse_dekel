@@ -112,6 +112,16 @@ tableextension 70030 "Item Weigh Bridge caisse" extends "Item Weigh Bridge caiss
         {
             DataClassification = ToBeClassified;
         }
+        field(50013; MontantNetPlanteur; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Montant Net Regime';
+        }
+        field(50014; MontantNetTransport; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Montant Net Transport';
+        }
     }
 
     keys

@@ -556,14 +556,14 @@ page 70112 "Paiement Ticket"
         ItemWeighBridgecaisse.TotalOPAR := rec.TotalOPAR;
         ItemWeighBridgecaisse.TauxImpotRegime := rec.TauxImpotRegime;
         ItemWeighBridgecaisse.ValeurImpotRegime := rec.ValeurImpotRegime;
-        ItemWeighBridgecaisse.MontantNetRegime := rec.MontantNetRegime;
+        ItemWeighBridgecaisse.MontantNetRegime := rec.TotalPlanteurTTc;
         ItemWeighBridgecaisse.ValeurTransport := rec.ValeurTransport;
         ItemWeighBridgecaisse.TotalTransport := rec.TotalTransport;
         ItemWeighBridgecaisse.TauxOPAT := rec.TauxOPAT;
         ItemWeighBridgecaisse.TotalOPAT := rec.TotalOPAT;
         ItemWeighBridgecaisse.TauxImpotTransp := rec.TauxImpotTransp;
         ItemWeighBridgecaisse.ValeurImpoTransp := rec.ValeurImpoTransp;
-        ItemWeighBridgecaisse.MontantNetTransp := rec.MontantNetTransp;
+        ItemWeighBridgecaisse.MontantNetTransp := rec.TotalTransPorteurTTC;
         ItemWeighBridgecaisse.DateRegime := Rec.Date_Paiement;
         ItemWeighBridgecaisse.DateTransport := Rec.Date_Paiement;
         ItemWeighBridgecaisse.NumeroRegime := rec.NumeroRegime;
@@ -596,7 +596,9 @@ page 70112 "Paiement Ticket"
         ItemWeighBridgecaisse."No. Series" := rec."No. Series";
         ItemWeighBridgecaisse."Posting Date" := rec."Posting Date";
         ItemWeighBridgecaisse.Statut_Total_Paiement := rec.Statut_Total_Paiement;
+        ItemWeighBridgecaisse.MontantNetPlanteur := rec.TotalPlanteurTTc;
         // ItemWeighBridgecaisse.DateRegime
+        // ItemWeighBridgecaisse.MontantNetTransp
         ItemWeighBridgecaisse.Date_Paiement := WorkDate();
 
         ItemWeighBridgecaisse.Insert()
@@ -751,24 +753,24 @@ page 70112 "Paiement Ticket"
                 rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET") - (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * (VendorSplitTaxSetup.Percentage / 100));
                 REC.Modify();
                 // Message('PrixINIT: %1 cost: %2 total: %3', PrixAchat."Direct Unit Cost", VendorSplitTaxSetup.Cost, rec.PrixUnitaire);
-            
 
-        end else begin
-            Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
-            rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
-            REC.Impot := 0;
-            rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            rec.TotalPlanteurTTc := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-            REC.Modify()
+
+            end else begin
+                Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
+                rec.PrixUnitaire := PrixAchat."Direct Unit Cost";
+                REC.Impot := 0;
+                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteurTTc := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                REC.Modify()
+            end;
+
+            // rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+
+            // REC.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+            // REC.TotalTransPorteurTTC := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + (PrixAchat."Direct Unit Cost" * rec."POIDS NET");
+
+
         end;
-
-        // rec.Impot := ParaCaisse.PoucentageImpot * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-
-        // REC.Total := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-        // REC.TotalTransPorteurTTC := (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * ParaCaisse.PoucentageImpot) + (PrixAchat."Direct Unit Cost" * rec."POIDS NET");
-
-
-    end;
         // end;
 
         // end;
