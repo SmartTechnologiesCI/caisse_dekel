@@ -201,7 +201,7 @@ page 70110 "Ticket Caisse"
                             itemWeitg2.SetFilter("Ticket Planteur", '=%1', rec."Ticket Planteur");
                             if itemWeitg2.FindSet() then begin
                                 repeat begin
-                                    Message('ticket: %1', itemWeitg2."Ticket Planteur");
+                                    // Message('ticket: %1', itemWeitg2."Ticket Planteur");
                                     AnnulerTicketT(itemWeitg2);
                                 end until itemWeitg2.Next() = 0;
                             end;
@@ -1611,7 +1611,7 @@ page 70110 "Ticket Caisse"
         if Caisse.FindFirst() then begin
             Transaction."Code caisse" := Caisse."Code caisse";
         end else begin
-            Error('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
         end;
         Transaction."N° Client" := ItemWeigtn2."Code Transporteur";
         Transaction.Nom := ItemWeigtn2."Nom Transporteur";
@@ -1621,12 +1621,12 @@ page 70110 "Ticket Caisse"
         Transaction."validée" := true;
         if ItemWeigtn2."Ligne paiement" = true then begin
             Transaction."Montant NET" := ItemWeigtn2.MontantNetRegime;
-            Message('Regime');
+            // Message('Regime');
         end else
             if ItemWeigtn2."Ligne paiement trans" = true then begin
 
                 Transaction."Montant NET" := ItemWeigtn2.MontantNetTransp;
-                Message('TrNASPORT');
+                // Message('TrNASPORT');
 
             end;
         // Transaction."Montant NET" := ItemWeigtn2.TotalTransPorteurTTC;

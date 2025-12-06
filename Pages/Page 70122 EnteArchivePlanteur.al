@@ -251,7 +251,7 @@ page 70122 ArchiEntetePlanteur
         if Caisse.FindFirst() then begin
             Transaction."Code caisse" := Caisse."Code caisse";
         end else begin
-            Error('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
+            Message('L''utilisateur %1 n''est pas configuré comme caissier', UserId);
         end;
         Transaction."N° Client" := ItemWeigtn."Code planteur";
         Transaction.Nom := ItemWeigtn."Nom planteur";
