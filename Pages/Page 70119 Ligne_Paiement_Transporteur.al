@@ -72,18 +72,19 @@ page 70119 Ligne_Paiement_Transporteur
                             // end else begin
                             //     rec.NumDocExten := '';
                             // end;
-                            CurrPage.Update();
+                            // CurrPage.Update();
 
                         end;
                         SommeTotale();
                         HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
                         if HeaderPaiement.FindFirst() then begin
-
-                            Rec.Beneficiaire := HeaderPaiement.Beneficiare;
-                            REC.NCNI := HeaderPaiement.CNI;
-                            REC.Mode_Paiement := HeaderPaiement.Mode_Paiement;
-                            REC.Observation := HeaderPaiement.Observation;
-                            REC.Telephone := HeaderPaiement.Telephone;
+                            if rec.Ticket_Concerne_Transport then begin
+                                Rec.Beneficiaire := HeaderPaiement.Beneficiare;
+                                REC.NCNI := HeaderPaiement.CNI;
+                                REC.Mode_Paiement := HeaderPaiement.Mode_Paiement;
+                                REC.Observation := HeaderPaiement.Observation;
+                                REC.Telephone := HeaderPaiement.Telephone;
+                            end;
 
                             //****
                             ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExten);
@@ -131,6 +132,15 @@ page 70119 Ligne_Paiement_Transporteur
                             rec.MarqueurTransport := false;
                             REC.TotalTransport := 0;
                             rec.TotalTransPorteurTTC := 0;
+                            rec.PrixUnitaireTansport := 0;
+                            //FnGeek vider la table
+                            rec.Beneficiaire := '';
+                            REC.NCNI := '';
+                            REc.Telephone := '';
+                            rec.Observation := '';
+                            rec.Date_Paiement := 0D;
+                            rec.NumDocExten := '';
+                            CurrPage.Update();
 
                         end;
                     end;

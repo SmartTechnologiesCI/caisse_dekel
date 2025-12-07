@@ -177,6 +177,16 @@ page 70124 PaiementHeaderTransport_Archiv
                                 itemWeitg.Statut_Total_Paiement := false;
                                 itemWeitg.Ticket_Concerne_Transport := false;
                                 itemWeitg.Date_Paiement := 0D;
+
+                                //***F,gEEK
+                                itemWeitg.Beneficiaire := '';
+                                itemWeitg.NCNI := '';
+                                itemWeitg.Telephone := '';
+                                itemWeitg.Observation := '';
+                                itemWeitg.NumDocExten := '';
+                                itemWeitg.PrixUnitaireTansport := 0;
+                                itemWeitg.TotalTransporteur := 0;
+                                itemWeitg.TotalTransPorteurTTC := 0;
                                 itemWeitg.Modify();
                             end until itemWeitg.Next() = 0;
                         end;
