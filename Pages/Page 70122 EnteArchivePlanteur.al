@@ -143,7 +143,7 @@ page 70122 ArchiEntetePlanteur
                     itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
                     itemWigIfbhhf.SetRange("Statut paiement Planteur", true);
                     if itemWigIfbhhf.FindFirst() then begin
-                        Report.Run(70048, true, false, itemWigIfbhhf);
+                        Report.Run(70050, true, false, itemWigIfbhhf);
                     end;
                 end;
             }
@@ -193,6 +193,18 @@ page 70122 ArchiEntetePlanteur
                                 itemWeitg.Statut_Total_Paiement := false;
                                 itemWeitg.Ticket_Concerne := false;
                                 itemWeitg.Date_Paiement := 0D;
+
+                                //**FnGeek
+                                itemWeitg.Beneficiaire := '';
+                                itemWeitg.NCNI := '';
+                                itemWeitg.Telephone := '';
+                                itemWeitg.Observation := '';
+                                itemWeitg.NumDocExten := '';
+                                itemWeitg.Date_Paiement := 0D;
+                                itemWeitg.PrixUnitaire := 0;
+                                itemWeitg.TotalPlanteur := 0;
+                                itemWeitg.Impot := 0;
+                                itemWeitg.TotalPlanteurTTc := 0;
                                 itemWeitg.Modify();
                             end until itemWeitg.Next() = 0;
                         end;

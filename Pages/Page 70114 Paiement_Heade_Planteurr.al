@@ -181,12 +181,23 @@ page 70114 Paiement_Header
                 var
                     ItemWeightBridge: Record "Item Weigh Bridge";
                     ItemWeightBridge2: Record "Item Weigh Bridge";
+                    ItemWeightBridge1: Record "Item Weigh Bridge";
                     EnteteHeader: Record Entete_Paiement;
                     nudoc: code[50];
                     Entete_Paiement: Record Entete_Paiement;
                 begin
                     if Confirm('Voulez vous valider le paiement') then begin
                         nudoc := rec.NumDocExt;
+                        ItemWeightBridge1.SetFilter(Ticket_Concerne, '=%1', true);
+                        ItemWeightBridge1.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        ItemWeightBridge1.SetFilter("Statut paiement Planteur", '=%1', false);
+                        if ItemWeightBridge1.FindSet() then begin
+                            ItemWeightBridge1.TestField(TotalPlanteur);
+                            ItemWeightBridge1.TestField(TotalPlanteurTTc);
+                            ItemWeightBridge1.TestField(Beneficiaire);
+                            ItemWeightBridge1.TestField(NCNI);
+                            ItemWeightBridge1.TestField(Telephone);
+                        end;
                         ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
                         ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
                         ItemWeightBridge.SetFilter("Statut paiement Planteur", '=%1', false);
@@ -276,7 +287,7 @@ page 70114 Paiement_Header
         myInt: Integer;
     begin
         if ItemWeigBridge."Statut paiement Planteur" = true then begin
-            Message('a: %1 b: %2', ItemWeigBridge."Ticket Planteur", ItemWeigBridge."Statut paiement Planteur");
+            // Message('a: %1 b: %2', ItemWeigBridge."Ticket Planteur", ItemWeigBridge."Statut paiement Planteur");
             Error('Ce ticket a été déja payé pour le planteur');
         end else begin
             ItemWeigBridge."Statut paiement Planteur" := true;

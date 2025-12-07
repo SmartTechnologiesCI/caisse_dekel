@@ -80,17 +80,20 @@ page 70115 Ligne_Paiement
                             //     rec.Validate(NumDocExten, '');
 
                             // end;
-                            CurrPage.Update();
+                            // CurrPage.Update();
 
                         end;
                         SommeTotale();
                         HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
                         if HeaderPaiement.FindFirst() then begin
-                            Rec.Beneficiaire := HeaderPaiement.Beneficiare;
-                            REC.NCNI := HeaderPaiement.CNI;
-                            REC.Mode_Paiement := HeaderPaiement.Mode_Paiement;
-                            REC.Observation := HeaderPaiement.Observation;
-                            REC.Telephone := HeaderPaiement.Telephone;
+                            if rec.Ticket_Concerne = true then begin
+                                Rec.Beneficiaire := HeaderPaiement.Beneficiare;
+                                REC.NCNI := HeaderPaiement.CNI;
+                                REC.Mode_Paiement := HeaderPaiement.Mode_Paiement;
+                                REC.Observation := HeaderPaiement.Observation;
+                                REC.Telephone := HeaderPaiement.Telephone;
+                                // Message('Yes FnGeek');
+                            end;
 
                             //****
                             ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExten);
@@ -136,6 +139,14 @@ page 70115 Ligne_Paiement
                             REC.TotalPlanteur := 0;
                             rec.TotalPlanteurTTc := 0;
                             rec.Impot := 0;
+                            rec.PrixUnitaire := 0;
+                            //FnGeek vider la table
+                            rec.Beneficiaire := '';
+                            REC.NCNI := '';
+                            REc.Telephone := '';
+                            rec.Observation := '';
+                            rec.Date_Paiement := 0D;
+                            rec.NumDocExten := '';
                             CurrPage.Update();
                         end;
 
@@ -274,10 +285,10 @@ page 70115 Ligne_Paiement
             if VendorSplitTaxSetup.FindFirst() then begin
                 if rec.Ticket_Concerne = true then begin
                     rec.PrixUnitaire := PrixAchat."Direct Unit Cost" - VendorSplitTaxSetup.Cost;
-                    REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                    REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * rec.PrixUnitaire * rec."POIDS NET";
                     taxe := (VendorSplitTaxSetup.Percentage / 100);
-                    rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-                    rec.TotalPlanteurTTc := (PrixAchat."Direct Unit Cost" * rec."POIDS NET") - (PrixAchat."Direct Unit Cost" * rec."POIDS NET" * taxe);
+                    rec.TotalPlanteur := rec.PrixUnitaire * rec."POIDS NET";
+                    rec.TotalPlanteurTTc := (rec.PrixUnitaire * rec."POIDS NET") - (rec.PrixUnitaire * rec."POIDS NET" * taxe);
                     REC.Modify();
                 end else begin
                     rec.Marqueur := false;
@@ -290,10 +301,10 @@ page 70115 Ligne_Paiement
             end else begin
                 Message('La retenue impôt du fournisseur : %1 n''est pas configuré', VendorSplitTaxSetup."Vendor No.");
                 rec.PrixUnitaire := PrixAchat."Direct Unit Cost" - VendorSplitTaxSetup.Cost;
-                REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * rec.PrixUnitaire * rec."POIDS NET";
                 // taxe := (VendorSplitTaxSetup.Percentage / 100);
-                rec.TotalPlanteur := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
-                rec.TotalPlanteurTTc := PrixAchat."Direct Unit Cost" * rec."POIDS NET";
+                rec.TotalPlanteur := rec.PrixUnitaire * rec."POIDS NET";
+                rec.TotalPlanteurTTc := rec.PrixUnitaire* rec."POIDS NET";
                 REC.Modify()
             end;
             //***tAXE
