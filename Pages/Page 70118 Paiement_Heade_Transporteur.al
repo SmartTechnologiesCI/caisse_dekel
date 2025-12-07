@@ -175,16 +175,21 @@ page 70118 Paiement_Header_Transporteur
                 begin
                     if Confirm('Voulez vous valider le paiement') then begin
                         nudoc := Rec.NumDocExt;
-                        ItemWeightBridge1.SetFilter(Ticket_Concerne, '=%1', true);
+                        rec.TestField(rec.Beneficiare);
+                        rec.TestField(rec.Telephone);
+                        rec.TestField(CNI);
+                        ItemWeightBridge1.SetFilter(Ticket_Concerne_Transport, '=%1', true);
                         ItemWeightBridge1.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
-                        ItemWeightBridge1.SetFilter("Statut paiement Planteur", '=%1', false);
+                        ItemWeightBridge1.SetFilter("Statut paiement", '=%1', false);
                         if ItemWeightBridge1.FindSet() then begin
-                            ItemWeightBridge1.TestField(TotalTransport);
-                            ItemWeightBridge1.TestField(TotalTransPorteurTTC);
-                             ItemWeightBridge1.TestField(Total);
-                            ItemWeightBridge1.TestField(Beneficiaire);
-                            ItemWeightBridge1.TestField(NCNI);
-                            ItemWeightBridge1.TestField(Telephone);
+                            repeat begin
+                                ItemWeightBridge1.TestField(TotalTransport);
+                                ItemWeightBridge1.TestField(TotalTransPorteurTTC);
+                                ItemWeightBridge1.TestField(Total);
+                                ItemWeightBridge1.TestField(Beneficiaire);
+                                ItemWeightBridge1.TestField(NCNI);
+                                ItemWeightBridge1.TestField(Telephone);
+                            end until ItemWeightBridge1.Next()=0;
                         end;
                         ItemWeightBridge.SetFilter(Ticket_Concerne_Transport, '=%1', true);
                         ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);

@@ -186,6 +186,7 @@ page 70124 PaiementHeaderTransport_Archiv
                                 itemWeitg.NumDocExten := '';
                                 itemWeitg.PrixUnitaireTansport := 0;
                                 itemWeitg.TotalTransporteur := 0;
+                                itemWeitg.TotalTransport := 0;
                                 itemWeitg.TotalTransPorteurTTC := 0;
                                 itemWeitg.Modify();
                             end until itemWeitg.Next() = 0;
@@ -212,7 +213,7 @@ page 70124 PaiementHeaderTransport_Archiv
                     itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
                     itemWigIfbhhf.SetRange("Statut paiement", true);
                     if itemWigIfbhhf.FindFirst() then begin
-                        Report.Run(70048, true, false, itemWigIfbhhf);
+                        Report.Run(70050, true, false, itemWigIfbhhf);
                     end;
                 end;
             }

@@ -157,7 +157,7 @@ report 70050 Recu_Paiement_Double
                 end else begin
                     if TicketTransporteur = true then begin
                         TaxeImpot := 1;
-                        Nom_Concerne := "Driver Name";
+                        Nom_Concerne := "Nom planteur";
                         PrixAchat.setFilter("Purchase Type", '=%1', PrixAchat."Purchase Type"::"Vendor Posting Group");
                         PrixAchat.SetFilter("Item No.", '=%1', 'TRANSPORT');
                         PrixAchat.SetFilter("Starting Date", '<=%1', "Weighing 1 Date");
