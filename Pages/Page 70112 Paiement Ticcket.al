@@ -378,6 +378,9 @@ page 70112 "Paiement Ticket"
                     begin
                         if Confirm('Voulez vous valider le paiement') then begin
                             rec.TestField(En_Attente_Paiement, false);
+                            rec.TestField(Beneficiaire);
+                            rec.TestField(Telephone);
+                            rec.TestField(NCNI);
                             // CheckSoldePlanteur();
                             Clear(Ticket1);
                             Clear(rowno1);
@@ -421,6 +424,9 @@ page 70112 "Paiement Ticket"
                     begin
                         if Confirm('Voulez vous valider le paiement') then begin
                             rec.TestField(En_Attente_Paiement, false);
+                            rec.TestField(Beneficiaire);
+                            rec.TestField(Telephone);
+                            rec.TestField(NCNI);
                             // CheckSoldePTransPort();
                             Clear(Ticket1);
                             Clear(rowno1);
