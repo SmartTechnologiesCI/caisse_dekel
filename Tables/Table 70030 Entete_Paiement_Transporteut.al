@@ -68,7 +68,7 @@ table 70030 Entete_Paiement_Transporteur
         field(50029; CNI; Code[250])
         {
             DataClassification = ToBeClassified;
-            Caption = 'CARTE NATIONANLE';
+            Caption = 'N° Pièce';
         }
         field(50030; Mode_Paiement; Option)
         {
@@ -154,7 +154,7 @@ table 70030 Entete_Paiement_Transporteur
         }
         field(55019; NaturePiece; Option)
         {
-            Caption = 'NATURE DE LA PIECE';
+            Caption = 'Nature pièce';
             OptionMembers = CNI,PASSEPORT,PERMIS,CS,AUTRES;
         }
         //***
