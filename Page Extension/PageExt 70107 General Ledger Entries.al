@@ -4,9 +4,10 @@ pageextension 70107 "General Ledger Entries" extends "General Ledger Entries"
     {
         addafter("Document Type")
         {
-            field(Reversed; Reversed)
+            field(Reverseds; Reversed)
             {
                 ApplicationArea = All;
+                Editable = true;
             }
         }
     }
