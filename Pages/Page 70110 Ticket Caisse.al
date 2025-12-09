@@ -46,6 +46,14 @@ page 70110 "Ticket Caisse"
                 field(TICKET; TICKET)
                 {
                 }
+                field(Date_Paiement; Date_Paiement)
+                {
+                    ApplicationArea = All;
+                }
+                field(NumDocExten; NumDocExten)
+                {
+                    ApplicationArea = All;
+                }
                 field("Code Transporteur"; "Code Transporteur")
                 {
                 }
