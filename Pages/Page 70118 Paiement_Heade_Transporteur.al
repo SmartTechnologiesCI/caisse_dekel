@@ -185,7 +185,7 @@ page 70118 Paiement_Header_Transporteur
                             repeat begin
                                 ItemWeightBridge1.TestField(TotalTransport);
                                 ItemWeightBridge1.TestField(TotalTransPorteurTTC);
-                                ItemWeightBridge1.TestField(Total);
+                                // ItemWeightBridge1.TestField(Total);
                                 ItemWeightBridge1.TestField(Beneficiaire);
                                 ItemWeightBridge1.TestField(NCNI);
                                 ItemWeightBridge1.TestField(Telephone);
