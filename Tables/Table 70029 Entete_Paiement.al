@@ -66,7 +66,7 @@ table 70029 Entete_Paiement
         field(50029; CNI; Code[250])
         {
             DataClassification = ToBeClassified;
-            Caption = 'CARTE NATIONANLE';
+            Caption = 'N° Pièce';
         }
         field(50030; Mode_Paiement; Option)
         {
@@ -158,7 +158,7 @@ table 70029 Entete_Paiement
         }
         field(55019; NaturePiece; Option)
         {
-            Caption = 'NATURE DE LA PIECE';
+            Caption = 'Nature pièce';
             OptionMembers = CNI,PASSEPORT,PERMIS,CS,AUTRES;
         }
         field(55020; TotalRegimeTTC; Decimal)
