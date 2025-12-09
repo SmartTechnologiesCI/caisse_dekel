@@ -145,12 +145,12 @@ page 70002 "Liste des transactions"
     var
         userPerso: record "User Personalization";
     begin
-        SetRange(Date, WorkDate);
-        userPerso.SetRange("User ID", UserId);
-        if userPerso.FindFirst() then begin
-            editable := userPerso."Profile ID" <> 'COMMERCIAL';
-            CurrPage.Editable := editable;
-        end;
+        // SetRange(Date, WorkDate);
+        // userPerso.SetRange("User ID", UserId);
+        // if userPerso.FindFirst() then begin
+        //     editable := userPerso."Profile ID" <> 'COMMERCIAL';
+        //     CurrPage.Editable := editable;
+        // end;
     end;
 
     trigger OnAfterGetRecord()

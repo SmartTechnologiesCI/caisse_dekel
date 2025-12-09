@@ -17,4 +17,7 @@ enum 70000 Source
     value(5; "Point de caisse")
     {
     }
+    value(6; "Transfert de fond")
+    {
+    }
 }

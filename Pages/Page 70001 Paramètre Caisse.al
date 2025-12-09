@@ -21,6 +21,10 @@ page 70001 "Paramètres caisses"
                 {
                     ApplicationArea = All;
                 }
+                field(SoucheNumPaiement; SoucheNumPaiement)
+                {
+                    ApplicationArea = ALL;
+                }
                 field(PoucentageImpot; PoucentageImpot)
                 {
                     ApplicationArea = All;
@@ -80,7 +84,7 @@ page 70001 "Paramètres caisses"
                     ApplicationArea = All;
 
                 }
-               
+
 
 
             }

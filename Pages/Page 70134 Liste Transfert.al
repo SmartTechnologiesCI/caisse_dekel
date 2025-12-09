@@ -1,32 +1,27 @@
-page 70131 PointCaisses
+page 70134 ListTransfert
 {
     PageType = List;
     ApplicationArea = All;
+    Caption = 'Liste des transferts';
     UsageCategory = Lists;
-    CardPageId = CaisseCard;
-    InsertAllowed = false;
-    ModifyAllowed = false;
-    DeleteAllowed = false;
-    SourceTable = Caisse;
+    SourceTable = EntetTransfert;
+    SourceTableView = where(valide = const(false));
+    CardPageId = EnteteTransfert;
+
+
     layout
     {
         area(Content)
         {
-            repeater("Caisses")
+            repeater(Général)
             {
-                field("Code"; "Code caisse")
+                field(Caissier; Caissier)
                 {
-                    CaptionML = ENU = 'Code', FRA = 'Code';
                     ApplicationArea = All;
-
                 }
-                field("Nom caisse"; "Nom caisse")
+                field(Caisse; Caisse)
                 {
-                    CaptionML = ENU = 'Name', FRA = 'Nom';
-                }
-                field(Compte; Compte)
-                {
-                    CaptionML = ENU = 'General account', FRA = 'Compte général';
+                    ApplicationArea = All;
                 }
                 field(Solde; Solde)
                 {
@@ -38,15 +33,23 @@ page 70131 PointCaisses
                         myInt: Integer;
                         Transaction: Record Transactions;
                     begin
-                        Transaction.SetFilter("Code caisse", reC."Code caisse");
+                        Transaction.SetFilter("user id", reC.Caissier);
                         if Transaction.FindSet() then begin
                             page.Run(page::"Liste des transactions", Transaction);
                         end;
                     end;
                 }
-                field("User ID"; "User ID")
+                field(NumDocExtern; NumDocExtern)
                 {
-                    CaptionML = ENU = 'User ID', FRA = 'Code utilisateur';
+                    ApplicationArea = All;
+                }
+                field(Observation; Observation)
+                {
+                    ApplicationArea = All;
+                }
+                field(DateTransFert; DateTransFert)
+                {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -62,9 +65,8 @@ page 70131 PointCaisses
         {
             action(ActionName)
             {
-                ApplicationArea = All;
 
-                trigger OnAction();
+                trigger OnAction()
                 begin
 
                 end;

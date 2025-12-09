@@ -46,7 +46,7 @@ table 70000 Caisse
         field(10; Solde; Decimal)
         {
             FieldClass = FlowField;
-            CalcFormula = sum(Transactions."Montant NET" where("user id" = field("User ID")));
+            CalcFormula = sum(Transactions."Montant NET" where("Code caisse" = field("Code caisse")));
         }
         // field(11; Utilissateir; Text[250])
         // {

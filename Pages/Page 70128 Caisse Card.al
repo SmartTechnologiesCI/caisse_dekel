@@ -37,7 +37,7 @@ page 70128 CaisseCard
                         myInt: Integer;
                         Transaction: Record Transactions;
                     begin
-                        Transaction.SetFilter("user id", reC."User ID");
+                        Transaction.SetFilter("Code caisse", reC."Code caisse");
                         if Transaction.FindSet() then begin
                             page.Run(page::"Liste des transactions", Transaction);
                         end;

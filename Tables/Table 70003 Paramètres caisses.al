@@ -62,6 +62,12 @@ table 70003 "Parametres caisse"
             Caption = 'Pourcentage Impôt';
             DecimalPlaces = 3;
         }
+        field(15; SoucheNumPaiement; Code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'N° souche TransFert Fonds';
+            TableRelation = "No. Series";
+        }
     }
 
     keys
