@@ -248,6 +248,10 @@ page 70112 "Paiement Ticket"
                     end;
 
                 }
+                field(NumDocExten; rec.NumDocExten)
+                {
+                    ApplicationArea = All;
+                }
                 // field("Code planteur"; Rec."Code planteur")
                 // {
                 //     ToolTip = 'Specifies the value of the Code planteur field.', Comment = '%';
@@ -259,6 +263,12 @@ page 70112 "Paiement Ticket"
                 field(Beneficiaire; rec.Beneficiaire)
                 {
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+                    begin
+                        AssistEdit_PaiementCaisse(xRec);
+                    end;
                 }
                 field(NaturePiece; NaturePiece)
                 {

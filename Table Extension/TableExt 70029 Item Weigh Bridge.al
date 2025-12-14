@@ -105,13 +105,14 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         {
             DataClassification = ToBeClassified;
         }
-       
+
         // field(55023; PoidSTemporaire; Tot)
         // {
         //     DataClassification = ToBeClassified;
         // }
 
     }
+
 
     keys
     {
@@ -122,6 +123,32 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
     {
         // Add changes to field groups here
     }
+    procedure AssistEdit_PaiementCaisse(OldPoint: Record "Item Weigh Bridge"): Boolean;
+    var
+        Balance: Record "Parametres caisse";
+        TicketPlanteur: Code[100];
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+    begin
+        // Vérifier qu'une balance est sélectionnée
+        // Rec.TestField(NU);
+        Balance.Get();
+        // Balance.SetRange(Code, Rec."Balance Code");
+        if not Balance.FindFirst() then
+            Error('Renseignement la souche de numéro paie ticket dans paramètre utilisateurs.');
+        // if NoSeriesMgt.DoGetNextNo(Balance.NumSouschPaie, OldPoint."No. Series", Rec."No. Series") then begin
+        //  if NoSeriesMgt.DoGetNextNo(Balance.NumSouschPaie, OldPoint."No. Series", Rec."No. Series") then begin
+
+
+            TicketPlanteur :=
+                NoSeriesMgt.GetNextNo(Balance.NumSouschPaie, WorkDate(), true);
+
+            Rec.NumDocExten := TicketPlanteur;
+
+            exit(true);
+        // end else begin
+        //     Error('Impossible de sélectionner la souche de numérotation "%1".', Balance.NumSouschPaie);
+        // end;
+    end;
 
     var
         myInt: Integer;
