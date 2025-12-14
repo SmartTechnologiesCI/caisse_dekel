@@ -251,6 +251,7 @@ page 70112 "Paiement Ticket"
                 field(NumDocExten; rec.NumDocExten)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 // field("Code planteur"; Rec."Code planteur")
                 // {
@@ -491,13 +492,13 @@ page 70112 "Paiement Ticket"
                     var
                         ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
-                        ItemWeighBridge.SetRange(TICKET, Ticket1);
-                        ItemWeighBridge.SetRange("Ticket Planteur", TicketPlanteur1);
-                        ItemWeighBridge.SetRange("Row No.", rowno1);
-                        ItemWeighBridge.SetRange(RowID, ROWID1);
+                        ItemWeighBridge.SetRange(TICKET, REC.TICKET);
+                        ItemWeighBridge.SetRange("Ticket Planteur", REC."Ticket Planteur");
+                        ItemWeighBridge.SetRange("Row No.", rec."Row No.");
+                        ItemWeighBridge.SetRange(RowID, rec.RowID);
                         if ItemWeighBridge.FindFirst() then begin
-                            // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
-                            Report.Run(Report::Recu_Paiement, true, false, ItemWeighBridge);
+                            Report.Run(Report::Recu_Paiement_Double, true, false, ItemWeighBridge);
+
                         end;
                     end;
                 }

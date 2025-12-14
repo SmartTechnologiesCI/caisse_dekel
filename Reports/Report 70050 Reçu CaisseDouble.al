@@ -103,24 +103,30 @@ report 70050 Recu_Paiement_Double
                         Concerne := Planteur;
                         Nom_Concerne := "Nom planteur";
                         Titre := 'REGIME';
-                        if PrixAchat.FindSet() then begin
 
-                        end;
+                        // Message('aaabbbFnGek: %1 Ticket: %2', "Statut paiement Planteur", "Ticket Planteur");
+                        // if PrixAchat.FindSet() then begin
+
+                        // end;
                         // PrixAchat.SetRange("Type operation", "Type opération");
                     end else begin
                         if TicketTransporteur = true then begin
                             Concerne := Transporteurname;
                             Nom_Concerne := "Nom planteur";
                             Titre := 'TRANSPORT';
+                            //***FnGeek
+                            // Message('aaa: %1 bb: %2', "Statut paiement", "Ticket Planteur");
                         end;
                     end;
                 end;
+
             end;
 
             trigger OnAfterGetRecord()
             var
                 myInt: Integer;
                 VendorSplitTaxSetup: Record "Vendor Split Tax Setup";
+                WeightItem: Record "Item Weigh Bridge";
             begin
                 // if FindFirst() then begin
                 //     if "Statut paiement Planteur" = true then begin
@@ -129,6 +135,29 @@ report 70050 Recu_Paiement_Double
 
                 //     end;
                 // end;
+                // /*
+                Clear(visiblePlanteur);
+                Clear(visibleTransport);
+                WeightItem.SetRange("Ticket Planteur", "Ticket Planteur");
+                // WeightItem.SetRange(TICKET, TICKET);
+                // WeightItem.SetRange("Row No.", "Row No.");
+                // WeightItem.SetRange(RowID, RowID);
+                if WeightItem.FindFirst() then begin
+                    if WeightItem."Statut paiement" = false then begin
+                        if TicketTransporteur = true then begin
+                            Error('Le transport n''est pas encore payé');
+                        end;
+                    end;
+                    if WeightItem."Statut paiement Planteur" = false then begin
+                        if TicketPlanteur = TRUE then begin
+                            Error('Le regime n''est pas encore payé');
+                        end;
+                    end;
+                    // Message('aa: %1 bb: %2', WeightItem."Statut paiement", WeightItem."Statut paiement Planteur");
+                end;
+                // */
+
+
 
                 if TicketPlanteur = true then begin
                     VendorSplitTaxSetup.SetRange("Vendor No.", "Code planteur");
@@ -172,7 +201,9 @@ report 70050 Recu_Paiement_Double
             end;
 
 
+
         }
+
 
     }
 
@@ -192,10 +223,12 @@ report 70050 Recu_Paiement_Double
                     field(TicketPlanteur; TicketPlanteur)
                     {
                         ApplicationArea = All;
+                        // Visible = visiblePlanteur;
                     }
                     field(TicketTransporteur; TicketTransporteur)
                     {
                         ApplicationArea = All;
+                        // Visible = visibleTransport;
                     }
 
                 }
@@ -232,5 +265,7 @@ report 70050 Recu_Paiement_Double
         PrixAchat: Record "Prix Achat";
         TaxeImpot: Decimal;
         Titre: Text[50];
+        visibleTransport: Boolean;
+        visiblePlanteur: Boolean;
 
 }
