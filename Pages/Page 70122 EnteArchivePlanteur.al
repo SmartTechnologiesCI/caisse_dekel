@@ -158,7 +158,12 @@ page 70122 ArchiEntetePlanteur
                     itemWeitg: Record "Item Weigh Bridge";
                     transaction: Record Transactions;
                     itemWeitg2: Record "Item Weigh Bridge";
+                    UserSetup: Record "User Setup";
                 begin
+                    UserSetup.SetRange("User ID", UserId);
+                    if UserSetup.FindFirst() then begin
+                        UserSetup.TestField(UserSetup.AutorisationAnnulation, true);
+                    end;
                     if Confirm('vouslez vous annuler ce ticket') then begin
                         REC.StatutAnnulaition := true;
                         rec.Modify();

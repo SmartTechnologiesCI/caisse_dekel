@@ -25,6 +25,16 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         {
             DataClassification = ToBeClassified;
             Caption = 'En attente de paiement';
+            trigger OnValidate()
+            var
+                myInt: Integer;
+                UserSetup: Record "User Setup";
+            begin
+                UserSetup.SetRange("User ID", UserId);
+                if UserSetup.FindFirst() then begin
+                    UserSetup.TestField(UserSetup.EnAttentePaiement, true);
+                end;
+            end;
         }
         field(55010; TotalPlanteur; Decimal)
         {
@@ -139,12 +149,12 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         //  if NoSeriesMgt.DoGetNextNo(Balance.NumSouschPaie, OldPoint."No. Series", Rec."No. Series") then begin
 
 
-            TicketPlanteur :=
-                NoSeriesMgt.GetNextNo(Balance.NumSouschPaie, WorkDate(), true);
+        TicketPlanteur :=
+            NoSeriesMgt.GetNextNo(Balance.NumSouschPaie, WorkDate(), true);
 
-            Rec.NumDocExten := TicketPlanteur;
+        Rec.NumDocExten := TicketPlanteur;
 
-            exit(true);
+        exit(true);
         // end else begin
         //     Error('Impossible de sélectionner la souche de numérotation "%1".', Balance.NumSouschPaie);
         // end;

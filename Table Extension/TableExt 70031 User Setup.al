@@ -7,6 +7,12 @@ tableextension 70031 "User Setup" extends "User Setup"
             DataClassification = ToBeClassified;
             Caption = 'Autorisation ticket en attente paiement';
         }
+        field(50001; AutorisationAnnulation; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Autorisation Annulation Ticket';
+
+        }
     }
 
     keys
