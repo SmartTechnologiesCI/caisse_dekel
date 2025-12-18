@@ -20,7 +20,7 @@ page 70111 Creation_Ticket
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(Descending) where("Balance Code" = filter('AY*'),valide = CONST(false));
+                      ORDER(Descending) where("Balance Code" = filter('AY*'), valide = CONST(false));
     //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
@@ -318,6 +318,7 @@ page 70111 Creation_Ticket
                         ItemWeight2: Record "Item Weigh Bridge";
                         ticket: Record "Item Weigh Bridge";
                     begin
+                        TestField(valide, false);
                         if ((rec."POIDS SORTIE" <= 0) or (rec."POIDS ENTREE" <= 0) or ((rec."POIDS SORTIE" <= 0) and (rec."POIDS ENTREE" <= 0))) then begin
                             Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
                         end else begin
