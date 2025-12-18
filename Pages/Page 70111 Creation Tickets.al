@@ -327,6 +327,7 @@ page 70111 Creation_Ticket
                             rec."Date validation" := WorkDate();
                             Rec.Modify();
                             CurrPage.Update();
+                            Commit();
                             // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
                             Print()
                         end;
@@ -1431,7 +1432,7 @@ page 70111 Creation_Ticket
         ticket.SetRange(RowID, rec.RowID);
         if ticket.FindFirst() then begin
             // RunModal(Report::"Ticket de caisse", ticket)
-            Report.Run(50500, false, false, ticket);
+            Report.Run(50500, true, false, ticket);
         end;
 
 
