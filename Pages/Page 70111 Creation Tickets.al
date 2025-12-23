@@ -329,7 +329,9 @@ page 70111 Creation_Ticket
                             CurrPage.Update();
                             Commit();
                             // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
-                            Print()
+                            Print();
+                            rec.imprime := true;
+                            REC.Modify()
                         end;
 
                     end;
