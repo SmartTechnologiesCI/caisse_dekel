@@ -11,11 +11,12 @@ page 70113 "Historique Tickets valide"
     // 1.47     B2B    20-Apr-15    SatishKNV           New Page is created for Item Weight Bridge Functionality related.
 
     CaptionML = ENU = 'Item Weight Bridge', FRA = 'Historique tickets Validés';
-    DeleteAllowed = true;
-    Editable = true;
+    DeleteAllowed = false;
+    Editable = false;
     InsertAllowed = false;
     UsageCategory = Lists;
     ModifyAllowed = false;
+
     PageType = List;
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
