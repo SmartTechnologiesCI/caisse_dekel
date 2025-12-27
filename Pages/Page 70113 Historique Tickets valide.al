@@ -16,7 +16,6 @@ page 70113 "Historique Tickets valide"
     InsertAllowed = false;
     UsageCategory = Lists;
     ModifyAllowed = false;
-
     PageType = List;
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
