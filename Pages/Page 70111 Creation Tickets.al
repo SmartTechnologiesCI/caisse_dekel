@@ -11,8 +11,9 @@ page 70111 Creation_Ticket
     // 1.47     B2B    20-Apr-15    SatishKNV           New Page is created for Item Weight Bridge Functionality related.
 
     CaptionML = ENU = 'Item Weight Bridge', FRA = 'Création tickets';
-    DeleteAllowed = false;
+
     Editable = false;
+    DeleteAllowed = false;
     InsertAllowed = false;
     UsageCategory = Lists;
     ModifyAllowed = false;
