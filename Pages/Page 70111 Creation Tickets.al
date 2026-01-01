@@ -326,6 +326,7 @@ page 70111 Creation_Ticket
                             rec.TestField(valide, false);
                             REC.valide := true;
                             rec."Date validation" := WorkDate();
+                            rec.UserName := UserId;
                             Rec.Modify();
                             CurrPage.Update();
                             Commit();
