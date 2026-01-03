@@ -4,7 +4,7 @@ page 70079 "Epargnes"
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "Depôt";
-    CardPageId = 70004;
+    CardPageId = 70014;
     //Editable  = false;;
     SourceTableView = where(isBonus = const(true));
     layout

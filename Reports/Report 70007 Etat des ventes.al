@@ -1,4 +1,4 @@
-report 70007 "Etat des ventes"
+report 70051 "Etat des ventes"
 {
     RDLCLayout = 'Reports\RDLC\Report 70007 Etat des ventes.rdlc';
     Caption = 'Listes des articles vendu du jour';

@@ -1,4 +1,4 @@
-page 70002 "Liste des transactions"
+page 70012 "Liste des transactions"
 {
     PageType = List;
     ApplicationArea = All;

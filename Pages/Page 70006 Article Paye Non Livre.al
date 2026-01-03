@@ -1,4 +1,4 @@
-page 70006 "Article PayeNonLivre List"
+page 70016 "Article PayeNonLivre List"
 {
     PageType = List;
     ApplicationArea = All;

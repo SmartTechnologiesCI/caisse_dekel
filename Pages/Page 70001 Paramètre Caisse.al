@@ -1,4 +1,4 @@
-page 70001 "Paramètres caisses"
+page 70011 "Paramètres caisses"
 {
     PageType = List;
     ApplicationArea = All;
@@ -107,7 +107,7 @@ page 70001 "Paramètres caisses"
             {
                 trigger OnAction()
                 var
-                    cu70000: Codeunit 70000;
+                    cu70000: Codeunit 70010;
                 begin
                     cu70000.DeleteElements();
                 end;

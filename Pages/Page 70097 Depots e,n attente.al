@@ -4,7 +4,7 @@ page 70097 "Depots en attente"
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "Depôt";
-    CardPageId = 70004;
+    CardPageId = 70014;
     //Editable  = false;;
     // silue samuel 07/03/2025 SourceTableView = where(isBonus = const(false), validated = const(false), DemandeApprobation = const(true), Correction = const(false));
         SourceTableView = where(isBonus = const(false), validated = const(false), Correction = const(false));

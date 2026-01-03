@@ -1,4 +1,4 @@
-page 70000 Caisses
+page 70010 Caisses
 {
     PageType = List;
     ApplicationArea = All;

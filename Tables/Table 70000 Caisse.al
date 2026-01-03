@@ -1,4 +1,4 @@
-table 70000 Caisse
+table 70010 Caisse
 {
     // DataCaptionFields = "Code caisse", "Nom caisse";
     fields
