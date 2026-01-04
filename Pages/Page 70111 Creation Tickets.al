@@ -307,6 +307,23 @@ page 70111 Creation_Ticket
 
                 //         end;
                 //     }
+                action(Impression)
+                {
+                    Caption = 'Imprimer multiple-Pesé';
+                    ApplicationArea = All;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    trigger OnAction()
+                    var
+                        ItemWeighBridge: Record "Item Weigh Bridge";
+                    begin
+                        ItemWeighBridge.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
+                        ItemWeighBridge.SetFilter(MultiPese, '=%1', true);
+                        if ItemWeighBridge.FindSet() then begin
+                            Report.Run(50566, true, false, ItemWeighBridge);
+                        end;
+                    end;
+                }
                 action(Validation)
                 {
                     Caption = 'Valider le ticket';
