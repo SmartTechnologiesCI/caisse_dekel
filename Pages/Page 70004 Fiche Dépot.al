@@ -1,4 +1,4 @@
-page 70004 "Fiche dépot"
+page 70014 "Fiche dépot"
 {
     PageType = Card;
     ApplicationArea = All;
@@ -423,7 +423,7 @@ page 70004 "Fiche dépot"
     var
         Caisse: Record Caisse;
         hide: Boolean;
-        postLedger: Codeunit 70000;
+        postLedger: Codeunit 70010;
         confirmSave: TextConst ENU = 'Would you like to save this transaction ?', FRA = 'Souhaitez-vous enregistrer cette transaction ?';
         cancelSave: TextConst ENU = 'Would you like to cancel this transaction ?', FRA = 'Souhaitez-vous annuler cette transaction ?';
 }

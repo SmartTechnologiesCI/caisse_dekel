@@ -4,7 +4,7 @@ page 70062 "Dépôts Liste"
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "Depôt";
-    CardPageId = 70004;
+    CardPageId = 70014;
     Editable = false;
     layout
     {

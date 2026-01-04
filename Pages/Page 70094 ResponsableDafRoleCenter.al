@@ -77,7 +77,7 @@ page 70094 "ResponsableDaf RC"
                 }
                 action("Transactions journalières")
                 {
-                    RunObject = Page 70002;
+                    RunObject = Page 70012;
                 }
                 action("Historique des dépôts")
                 {

@@ -1,4 +1,4 @@
-codeunit 70000 "Post Ledger"
+codeunit 70010 "Post Ledger"
 {
     trigger OnRun()
     var

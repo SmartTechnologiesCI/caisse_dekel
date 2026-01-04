@@ -1,10 +1,10 @@
-page 70003 "Dépôts"
+page 70013 "Dépôts"
 {
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "Depôt";
-    CardPageId = 70004;
+    CardPageId = 70014;
     //Editable  = false;;
     SourceTableView = where(isBonus = const(false));
     layout

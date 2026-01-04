@@ -151,7 +151,7 @@ page 70105 "facturier Entête"
         // etat: Report 204;
         totalCarton: Decimal;
         totalQuantite: Decimal;
-        "postLedger": Codeunit 70000;
+        "postLedger": Codeunit 70010;
         "Montant TVA": Decimal;
         "Montant Payé": Decimal;
         //"Montant epargne": Decimal;

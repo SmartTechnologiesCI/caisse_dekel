@@ -5,7 +5,7 @@ profile "Caisse"
     RoleCenter = "Caisse RoleCenter";
     //Customizations = SalesLinesCustomizations;
 }
-page 70005 "Caisse RoleCenter"
+page 70015 "Caisse RoleCenter"
 {
     PageType = RoleCenter;
     SourceTable = "Caisse Cue";
@@ -42,7 +42,7 @@ page 70005 "Caisse RoleCenter"
                 Promoted = true;
                 PromotedCategory = Process;
                 ApplicationArea = All;
-                RunObject = Page 70004;
+                RunObject = Page 70014;
                 RunPageMode = Create;
                 Visible = false;
             }
@@ -184,7 +184,7 @@ page 70005 "Caisse RoleCenter"
                 Promoted = true;
                 PromotedCategory = Process;
                 ApplicationArea = All;
-                RunObject = Page 70003;
+                RunObject = Page 70013;
                 Visible = false;
             }
             action("Liste des mouvements de caisse")
@@ -200,7 +200,7 @@ page 70005 "Caisse RoleCenter"
                 Promoted = true;
                 PromotedCategory = Process;
                 ApplicationArea = All;
-                RunObject = Page 70002;
+                RunObject = Page 70012;
                 // Visible = false;
             }
 
