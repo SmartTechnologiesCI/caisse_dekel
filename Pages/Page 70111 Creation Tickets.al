@@ -360,6 +360,7 @@ page 70141 Creation_Ticket
                     Caption = 'Ticket Pont Bascule';
                     Promoted = true;
                     PromotedCategory = Process;
+                    Visible = false;
                     trigger OnAction()
                     begin
                         Report.Run(50500);
