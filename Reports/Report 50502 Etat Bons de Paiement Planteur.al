@@ -23,6 +23,7 @@ report 70056 "Etat Bons Paiement Planteur"
             column(Tex003; Tex003) { }
             column(dateD; dateD) { }
             column(DateF; DateF) { }
+            column(NumDocExten;NumDocExten) { }
             column(Type_Operation_Options; Type_Operation_Options) { }
             column(Operation; Operation) { }
             column(TICKET; TICKET) { }
