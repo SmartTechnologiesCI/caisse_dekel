@@ -10,6 +10,142 @@
       <rd:DataSourceID>a65ac0b3-3978-4103-9b89-837ead43b255</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="Text001">
+          <DataField>Text001</DataField>
+        </Field>
+        <Field Name="CompanyInfoPicture">
+          <DataField>CompanyInfoPicture</DataField>
+        </Field>
+        <Field Name="Text004">
+          <DataField>Text004</DataField>
+        </Field>
+        <Field Name="Tex003">
+          <DataField>Tex003</DataField>
+        </Field>
+        <Field Name="dateD">
+          <DataField>dateD</DataField>
+        </Field>
+        <Field Name="DateF">
+          <DataField>DateF</DataField>
+        </Field>
+        <Field Name="NumDocExten">
+          <DataField>NumDocExten</DataField>
+        </Field>
+        <Field Name="Type_Operation_Options">
+          <DataField>Type_Operation_Options</DataField>
+        </Field>
+        <Field Name="Operation">
+          <DataField>Operation</DataField>
+        </Field>
+        <Field Name="TICKET">
+          <DataField>TICKET</DataField>
+        </Field>
+        <Field Name="Date_Paiement">
+          <DataField>Date_Paiement</DataField>
+        </Field>
+        <Field Name="Driver_Name">
+          <DataField>Driver_Name</DataField>
+        </Field>
+        <Field Name="TicketPlanteur">
+          <DataField>TicketPlanteur</DataField>
+        </Field>
+        <Field Name="Text002">
+          <DataField>Text002</DataField>
+        </Field>
+        <Field Name="POIDS_ENTREE">
+          <DataField>POIDS_ENTREE</DataField>
+        </Field>
+        <Field Name="POIDS_ENTREEFormat">
+          <DataField>POIDS_ENTREEFormat</DataField>
+        </Field>
+        <Field Name="Item_Origin">
+          <DataField>Item_Origin</DataField>
+        </Field>
+        <Field Name="POIDS_NET">
+          <DataField>POIDS_NET</DataField>
+        </Field>
+        <Field Name="POIDS_NETFormat">
+          <DataField>POIDS_NETFormat</DataField>
+        </Field>
+        <Field Name="POIDS_SORTIE">
+          <DataField>POIDS_SORTIE</DataField>
+        </Field>
+        <Field Name="POIDS_SORTIEFormat">
+          <DataField>POIDS_SORTIEFormat</DataField>
+        </Field>
+        <Field Name="Code_Transporteur">
+          <DataField>Code_Transporteur</DataField>
+        </Field>
+        <Field Name="Nom_Transporteur">
+          <DataField>Nom_Transporteur</DataField>
+        </Field>
+        <Field Name="Nom_planteur">
+          <DataField>Nom_planteur</DataField>
+        </Field>
+        <Field Name="Weighing_1_Hour">
+          <DataField>Weighing_1_Hour</DataField>
+        </Field>
+        <Field Name="Weighing_2_Hour">
+          <DataField>Weighing_2_Hour</DataField>
+        </Field>
+        <Field Name="Type_opération">
+          <DataField>Type_opération</DataField>
+        </Field>
+        <Field Name="Code_planteur">
+          <DataField>Code_planteur</DataField>
+        </Field>
+        <Field Name="N_Commande_PIC">
+          <DataField>N_Commande_PIC</DataField>
+        </Field>
+        <Field Name="Vehicle_Registration_No">
+          <DataField>Vehicle_Registration_No</DataField>
+        </Field>
+        <Field Name="Type_of_Transportation">
+          <DataField>Type_of_Transportation</DataField>
+        </Field>
+        <Field Name="Beneficiaire">
+          <DataField>Beneficiaire</DataField>
+        </Field>
+        <Field Name="Désignation_article">
+          <DataField>Désignation_article</DataField>
+        </Field>
+        <Field Name="Weighing_1_Date">
+          <DataField>Weighing_1_Date</DataField>
+        </Field>
+        <Field Name="Weighing_2_Date">
+          <DataField>Weighing_2_Date</DataField>
+        </Field>
+        <Field Name="Utilisateur">
+          <DataField>Utilisateur</DataField>
+        </Field>
+        <Field Name="Type_Vehicule">
+          <DataField>Type_Vehicule</DataField>
+        </Field>
+        <Field Name="DescriptionVehicule">
+          <DataField>DescriptionVehicule</DataField>
+        </Field>
+        <Field Name="Matricule_Autre">
+          <DataField>Matricule_Autre</DataField>
+        </Field>
+        <Field Name="NumVehicule">
+          <DataField>NumVehicule</DataField>
+        </Field>
+        <Field Name="Prix">
+          <DataField>Prix</DataField>
+        </Field>
+        <Field Name="PrixFormat">
+          <DataField>PrixFormat</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -18,7 +154,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>20.83647cm</Width>
+                  <Width>24.26547cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -31,28 +167,28 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>1.40677cm</Width>
+                                <Width>2.75363cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1.87243cm</Width>
+                                <Width>1.99943cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>2.04177cm</Width>
+                                <Width>2.26124cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>2.57091cm</Width>
+                                <Width>2.76141cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>3.12362cm</Width>
+                                <Width>3.14478cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1.55494cm</Width>
+                                <Width>1.93594cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>2.01766cm</Width>
+                                <Width>2.39866cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>3.1242cm</Width>
+                                <Width>3.5052cm</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1007,7 +1143,7 @@
                             <TablixMembers>
                               <TablixMember>
                                 <TablixHeader>
-                                  <Size>3.1242cm</Size>
+                                  <Size>3.5052cm</Size>
                                   <CellContents>
                                     <Textbox Name="Textbox5">
                                       <CanGrow>true</CanGrow>
@@ -1079,7 +1215,7 @@
                                   </SortExpression>
                                 </SortExpressions>
                                 <TablixHeader>
-                                  <Size>3.1242cm</Size>
+                                  <Size>3.5052cm</Size>
                                   <CellContents>
                                     <Textbox Name="NumDocExten">
                                       <CanGrow>true</CanGrow>
@@ -1134,7 +1270,7 @@
                               </TablixMember>
                               <TablixMember>
                                 <TablixHeader>
-                                  <Size>3.1242cm</Size>
+                                  <Size>3.5052cm</Size>
                                   <CellContents>
                                     <Textbox Name="Textbox8">
                                       <CanGrow>true</CanGrow>
@@ -1291,10 +1427,10 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>0.31315cm</Top>
-            <Left>0.09737cm</Left>
+            <Top>0.17639cm</Top>
+            <Left>2.21239cm</Left>
             <Height>3.57066cm</Height>
-            <Width>20.83647cm</Width>
+            <Width>24.26547cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1302,10 +1438,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.02167cm</Height>
+        <Height>3.81055cm</Height>
         <Style />
       </Body>
-      <Width>20.93384cm</Width>
+      <Width>28.34993cm</Width>
       <Page>
         <PageHeader>
           <Height>2.63321cm</Height>
@@ -1330,7 +1466,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>7.71737cm</Left>
+              <Left>15.49329cm</Left>
               <Height>0.89633cm</Height>
               <Width>12.85664cm</Width>
               <Style>
@@ -1385,7 +1521,7 @@
               <Top>0.52293in</Top>
               <Left>0.00001cm</Left>
               <Height>0.222in</Height>
-              <Width>2.93611in</Width>
+              <Width>3.51111in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1419,7 +1555,7 @@
               <Top>0.75881in</Top>
               <Left>0.00001cm</Left>
               <Height>0.23622in</Height>
-              <Width>2.93611in</Width>
+              <Width>3.51111in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -1451,7 +1587,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox9</rd:DefaultName>
               <Top>1.00217cm</Top>
-              <Left>12.75504cm</Left>
+              <Left>20.53096cm</Left>
               <Height>0.6cm</Height>
               <Width>3.74883cm</Width>
               <ZIndex>3</ZIndex>
@@ -1499,7 +1635,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox13</rd:DefaultName>
               <Top>1.79917cm</Top>
-              <Left>9.74938cm</Left>
+              <Left>17.5253cm</Left>
               <Height>0.6cm</Height>
               <Width>10.20467cm</Width>
               <ZIndex>4</ZIndex>
@@ -1520,7 +1656,7 @@
               <Sizing>FitProportional</Sizing>
               <Top>0.03074cm</Top>
               <Height>1.22695cm</Height>
-              <Width>7.45773cm</Width>
+              <Width>8.91823cm</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -1546,6 +1682,12 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1637,140 +1779,4 @@ ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFF
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="Text001">
-          <DataField>Text001</DataField>
-        </Field>
-        <Field Name="CompanyInfoPicture">
-          <DataField>CompanyInfoPicture</DataField>
-        </Field>
-        <Field Name="Text004">
-          <DataField>Text004</DataField>
-        </Field>
-        <Field Name="Tex003">
-          <DataField>Tex003</DataField>
-        </Field>
-        <Field Name="dateD">
-          <DataField>dateD</DataField>
-        </Field>
-        <Field Name="DateF">
-          <DataField>DateF</DataField>
-        </Field>
-        <Field Name="NumDocExten">
-          <DataField>NumDocExten</DataField>
-        </Field>
-        <Field Name="Type_Operation_Options">
-          <DataField>Type_Operation_Options</DataField>
-        </Field>
-        <Field Name="Operation">
-          <DataField>Operation</DataField>
-        </Field>
-        <Field Name="TICKET">
-          <DataField>TICKET</DataField>
-        </Field>
-        <Field Name="Date_Paiement">
-          <DataField>Date_Paiement</DataField>
-        </Field>
-        <Field Name="Driver_Name">
-          <DataField>Driver_Name</DataField>
-        </Field>
-        <Field Name="TicketPlanteur">
-          <DataField>TicketPlanteur</DataField>
-        </Field>
-        <Field Name="Text002">
-          <DataField>Text002</DataField>
-        </Field>
-        <Field Name="POIDS_ENTREE">
-          <DataField>POIDS_ENTREE</DataField>
-        </Field>
-        <Field Name="POIDS_ENTREEFormat">
-          <DataField>POIDS_ENTREEFormat</DataField>
-        </Field>
-        <Field Name="Item_Origin">
-          <DataField>Item_Origin</DataField>
-        </Field>
-        <Field Name="POIDS_NET">
-          <DataField>POIDS_NET</DataField>
-        </Field>
-        <Field Name="POIDS_NETFormat">
-          <DataField>POIDS_NETFormat</DataField>
-        </Field>
-        <Field Name="POIDS_SORTIE">
-          <DataField>POIDS_SORTIE</DataField>
-        </Field>
-        <Field Name="POIDS_SORTIEFormat">
-          <DataField>POIDS_SORTIEFormat</DataField>
-        </Field>
-        <Field Name="Code_Transporteur">
-          <DataField>Code_Transporteur</DataField>
-        </Field>
-        <Field Name="Nom_Transporteur">
-          <DataField>Nom_Transporteur</DataField>
-        </Field>
-        <Field Name="Nom_planteur">
-          <DataField>Nom_planteur</DataField>
-        </Field>
-        <Field Name="Weighing_1_Hour">
-          <DataField>Weighing_1_Hour</DataField>
-        </Field>
-        <Field Name="Weighing_2_Hour">
-          <DataField>Weighing_2_Hour</DataField>
-        </Field>
-        <Field Name="Type_opération">
-          <DataField>Type_opération</DataField>
-        </Field>
-        <Field Name="Code_planteur">
-          <DataField>Code_planteur</DataField>
-        </Field>
-        <Field Name="N_Commande_PIC">
-          <DataField>N_Commande_PIC</DataField>
-        </Field>
-        <Field Name="Vehicle_Registration_No">
-          <DataField>Vehicle_Registration_No</DataField>
-        </Field>
-        <Field Name="Type_of_Transportation">
-          <DataField>Type_of_Transportation</DataField>
-        </Field>
-        <Field Name="Beneficiaire">
-          <DataField>Beneficiaire</DataField>
-        </Field>
-        <Field Name="Désignation_article">
-          <DataField>Désignation_article</DataField>
-        </Field>
-        <Field Name="Weighing_1_Date">
-          <DataField>Weighing_1_Date</DataField>
-        </Field>
-        <Field Name="Weighing_2_Date">
-          <DataField>Weighing_2_Date</DataField>
-        </Field>
-        <Field Name="Utilisateur">
-          <DataField>Utilisateur</DataField>
-        </Field>
-        <Field Name="Type_Vehicule">
-          <DataField>Type_Vehicule</DataField>
-        </Field>
-        <Field Name="DescriptionVehicule">
-          <DataField>DescriptionVehicule</DataField>
-        </Field>
-        <Field Name="Matricule_Autre">
-          <DataField>Matricule_Autre</DataField>
-        </Field>
-        <Field Name="NumVehicule">
-          <DataField>NumVehicule</DataField>
-        </Field>
-        <Field Name="Prix">
-          <DataField>Prix</DataField>
-        </Field>
-        <Field Name="PrixFormat">
-          <DataField>PrixFormat</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>
