@@ -116,10 +116,13 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             DataClassification = ToBeClassified;
         }
 
-        // field(55023; PoidSTemporaire; Tot)
-        // {
-        //     DataClassification = ToBeClassified;
-        // }
+        field(55023; Annule; Option)
+        {
+            DataClassification = ToBeClassified;
+            OptionMembers = " ","Envoyé en annulation","Annulation refusée","Annulé";
+
+            // Caption = 'Annulé';
+        }
 
     }
 

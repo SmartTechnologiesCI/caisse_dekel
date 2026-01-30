@@ -143,13 +143,13 @@ page 70015 "Caisse RoleCenter"
             action("Recap transporteur")
             {
                 Caption = 'Etat Recap transporteur';
-                RunObject = report 50501;
+                RunObject = report 70055;
                 ApplicationArea = All;
             }
             action("Recap planteur")
             {
                 Caption = 'Etat Recap planteur';
-                RunObject = report 50502;
+                RunObject = report 70056;
                 ApplicationArea = All;
             }
 
