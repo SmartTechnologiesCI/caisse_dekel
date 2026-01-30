@@ -116,10 +116,12 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             DataClassification = ToBeClassified;
         }
 
-        field(55023; Annule; Boolean)
+        field(55023; Annule; Option)
         {
             DataClassification = ToBeClassified;
-            Caption = 'Annulé';
+            OptionMembers = " ","Envoyé en annulation","Annulation refusée","Annulé";
+
+            // Caption = 'Annulé';
         }
 
     }
