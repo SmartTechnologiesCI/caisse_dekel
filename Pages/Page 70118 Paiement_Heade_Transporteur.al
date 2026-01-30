@@ -329,8 +329,8 @@ page 70118 Paiement_Header_Transporteur
         if ItemWeighBridgecaisse.FindLast() then begin
             ItemWeighBridgecaisse.EtatRegime := ItemWeignt2.EtatRegime;
             ItemWeighBridgecaisse.EtatTransport := 'PA';
-            ItemWeighBridgecaisse."Ligne paiement trans" := TRUE;
-            ItemWeighBridgecaisse."Ligne paiement" := ItemWeignt2."Ligne paiement";
+            // ItemWeighBridgecaisse."Ligne paiement trans" := TRUE;
+            // ItemWeighBridgecaisse."Ligne paiement" := ItemWeignt2."Ligne paiement";
             ItemWeighBridgecaisse.Modify()
         end;
 
@@ -440,8 +440,8 @@ page 70118 Paiement_Header_Transporteur
         if ItemWeighBridgecaisse.FindLast() then begin
             ItemWeighBridgecaisse.EtatRegime := 'PA';
             ItemWeighBridgecaisse.EtatTransport := ItemWeignt.EtatTransport;
-            ItemWeighBridgecaisse."Ligne paiement" := true;
-            ItemWeighBridgecaisse."Ligne paiement trans" := ItemWeignt."Ligne paiement trans";
+            // ItemWeighBridgecaisse."Ligne paiement" := true;
+            // ItemWeighBridgecaisse."Ligne paiement trans" := ItemWeignt."Ligne paiement trans";
             ItemWeighBridgecaisse.Modify()
         end;
     end;
