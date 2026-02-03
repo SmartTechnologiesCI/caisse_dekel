@@ -17,7 +17,7 @@ tableextension 70031 "User Setup" extends "User Setup"
         {
            
             DataClassification = ToBeClassified;
-            OptionMembers = " ","Envoyé en annulation","Annulation refusée","Annulé";
+            OptionMembers = " ","Autorisation d'envoie","Accord d'autorisation d'annulation","Autorisé à Annuler";
 
             // Caption = 'Annulé';
         }

@@ -2,41 +2,97 @@ pageextension 70110 "New Ticket" extends "New Ticket"
 {
     layout
     {
-        // Add changes to page layout here
+        addafter("Process Ticket")
+        {
+            field(Annule; REC.Annule)
+            {
+                ApplicationArea = All;
+            }
+        }
     }
 
     actions
     {
         addafter(Validation)
         {
-            action(DemanderAnnulation)
+            action(Envoie)
             {
-                Caption = 'Envoyer en annulation';
-                trigger OnAction()
-                begin
+                Promoted = true;
+                PromotedCategory = Process;
+                ApplicationArea = All;
+                Caption = 'Demander une annulation';
+                Visible = AnnuleDemande;
 
+                trigger OnAction()
+                var
+                    UserSetep: Record "User Setup";
+                    UserSetep2: Record "User Setup";
+                begin
+                    rec.TestField(Annule, Rec.Annule::" ");
+                    REC.Annule := rec.Annule::"Envoyé en annulation";
+                    rec.Modify();
                 end;
             }
             action(AutorisationAnnulation)
             {
-                Caption = 'Autoriser annulation';
+                Promoted = true;
+                PromotedCategory = Process;
+                ApplicationArea = All;
+                Visible = AnnuleAutorisation;
+                Caption = 'Autoriser l''annulation';
                 trigger OnAction()
                 begin
-
+                    REC.TestField(Annule, rec.Annule::"Envoyé en annulation");
+                    REC.Annule := rec.Annule::"Autorisé à être annulé";
+                    rec.Modify();
                 end;
             }
-            action(Annuler)
+            action(AnnulerTicket)
             {
-                Caption = 'Annuler';
+                Caption = 'Aannuler le ticket(Non Payé)';
+                Promoted = true;
+                PromotedCategory = Process;
+                ApplicationArea = All;
+                Visible = AnnulationAnnuler;
                 trigger OnAction()
                 begin
-
+                    rec.TestField(Annule, rec.Annule::"Autorisé à être annulé");
+                    rec.Annule := rec.Annule::"Annulé";
+                    rec.Modify();
                 end;
             }
         }
 
     }
+    trigger OnOpenPage()
+    var
+        myInt: Integer;
+        UserSetep: Record "User Setup";
+    begin
+        Clear(AnnulationAnnuler);
+        Clear(AnnuleDemande);
+        Clear(AnnuleAutorisation);
+        UserSetep.SetRange("User ID", UserId);
+        if UserSetep.FindFirst() then begin
+            if UserSetep.Annule = UserSetep.Annule::"Autorisation d'envoie" then begin
+                AnnuleDemande := true;
+            end;
+            if UserSetep.Annule = UserSetep.Annule::"Accord d'autorisation d'annulation" then begin
+
+                AnnuleAutorisation := true;
+            end;
+            if UserSetep.Annule = UserSetep.Annule::"Autorisé à Annuler" then begin
+
+                AnnulationAnnuler := true;
+
+            end;
+        end;
+    end;
 
     var
         myInt: Integer;
+        //Annulation de ticket
+        AnnuleDemande: Boolean;
+        AnnuleAutorisation: Boolean;
+        AnnulationAnnuler: Boolean;
 }
