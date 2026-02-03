@@ -9,7 +9,7 @@
             "environmentType": "OnPrem",
             "server": "http://localhost:8080/BC230",
             "serverInstance": "BC230",
-            "authentication": "UserPassword",
+            "authentication": "Windows",
             "startupObjectId": 22,
             "startupObjectType": "Page",
             "breakOnError": "All",
@@ -20,7 +20,7 @@
             "usePublicURLFromServer": true,
 
             "schemaUpdateMode": "Synchronize",
-            "port": 7049,
+            "port": 2349,
             
 
         }

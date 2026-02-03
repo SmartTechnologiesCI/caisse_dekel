@@ -320,8 +320,16 @@ page 70141 Creation_Ticket
                     ApplicationArea = All;
                     Caption = 'Demander une annulation';
                     trigger OnAction()
+                    var
+                        UserSetep: Record "User Setup";
+                        UserSetep2: Record "User Setup";
                     begin
-
+                        UserSetep.SetRange("User ID", UserId);
+                        if UserSetep.FindFirst() then begin
+                            if UserSetep.Annule = UserSetep.Annule::"Envoyé en annulation" then begin
+                                AnnuleDemande := true;
+                            end;
+                        end;
                     end;
                 }
                 action(AutorisationAnnulation)
@@ -1259,6 +1267,8 @@ page 70141 Creation_Ticket
     end;
 
     trigger OnOpenPage()
+    var
+        UserSetep: Record "User Setup";
     begin
 
         AnnuleFacture := FALSE;
@@ -1310,6 +1320,19 @@ page 70141 Creation_Ticket
             END;
             UNTIL Fournisseurs.NEXT = 0;
         ///carelle,,,
+        //***************
+        Clear(AnnulationAnnuler);
+        Clear(AnnuleDemande);
+        Clear(AnnuleAutorisation);
+        UserSetep.SetRange("User ID", UserId);
+        if UserSetep.FindFirst() then begin
+            if UserSetep.Annule = UserSetep.Annule::"Envoyé en annulation" then begin
+                AnnuleDemande := true;
+                AnnulationAnnuler := true;
+                AnnuleAutorisation := true;
+            end;
+        end;
+
     end;
 
     var
@@ -1345,7 +1368,10 @@ page 70141 Creation_Ticket
         Text003: Label 'Accounting Period is not created.';
         Text0020: Label 'You dont have permission in Item journal.';
         Text0001: Label 'Traitement    #1';
-
+        //Annulation de ticket
+        AnnuleDemande: Boolean;
+        AnnuleAutorisation: Boolean;
+        AnnulationAnnuler: Boolean;
         ////***
 
         UserSetup2: Record "User Setup";

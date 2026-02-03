@@ -13,7 +13,15 @@ tableextension 70031 "User Setup" extends "User Setup"
             Caption = 'Autorisation Annulation Ticket';
 
         }
-        
+        field(55023; Annule; Option)
+        {
+           
+            DataClassification = ToBeClassified;
+            OptionMembers = " ","Envoyé en annulation","Annulation refusée","Annulé";
+
+            // Caption = 'Annulé';
+        }
+
     }
 
     keys
