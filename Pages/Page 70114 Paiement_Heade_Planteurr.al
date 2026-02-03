@@ -417,8 +417,8 @@ page 70114 Paiement_Header
         if ItemWeighBridgecaisse.FindLast() then begin
             ItemWeighBridgecaisse.EtatRegime := 'PA';
             ItemWeighBridgecaisse.EtatTransport := ItemWeignt.EtatTransport;
-            ItemWeighBridgecaisse."Ligne paiement" := true;
-            ItemWeighBridgecaisse."Ligne paiement trans" := ItemWeignt."Ligne paiement trans";
+            // ItemWeighBridgecaisse."Ligne paiement" := true;//****FnGeek 30_01_26
+            // ItemWeighBridgecaisse."Ligne paiement trans" := ItemWeignt."Ligne paiement trans";//****FnGeek 30_01_26
             ItemWeighBridgecaisse.Modify()
         end;
     end;

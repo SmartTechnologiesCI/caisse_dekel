@@ -631,8 +631,8 @@ page 70112 "Paiement Ticket"
         if ItemWeighBridgecaisse.FindLast() then begin
             ItemWeighBridgecaisse.EtatRegime := 'PA';
             ItemWeighBridgecaisse.EtatTransport := rec.EtatTransport;
-            ItemWeighBridgecaisse."Ligne paiement" := true;
-            ItemWeighBridgecaisse."Ligne paiement trans" := rec."Ligne paiement trans";
+            // ItemWeighBridgecaisse."Ligne paiement" := true;
+            // ItemWeighBridgecaisse."Ligne paiement trans" := rec."Ligne paiement trans";
             ItemWeighBridgecaisse.Modify()
         end;
     end;
@@ -647,8 +647,8 @@ page 70112 "Paiement Ticket"
         if ItemWeighBridgecaisse.FindLast() then begin
             ItemWeighBridgecaisse.EtatRegime := rec.EtatRegime;
             ItemWeighBridgecaisse.EtatTransport := 'PA';
-            ItemWeighBridgecaisse."Ligne paiement trans" := TRUE;
-            ItemWeighBridgecaisse."Ligne paiement" := rec."Ligne paiement";
+            // ItemWeighBridgecaisse."Ligne paiement trans" := TRUE;
+            // ItemWeighBridgecaisse."Ligne paiement" := rec."Ligne paiement";
             ItemWeighBridgecaisse.Modify()
         end;
 

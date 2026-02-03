@@ -14,7 +14,7 @@ page 70141 Creation_Ticket
 
     Editable = false;
     DeleteAllowed = false;
-    
+
     InsertAllowed = false;
     UsageCategory = Lists;
     ModifyAllowed = false;
@@ -73,6 +73,10 @@ page 70141 Creation_Ticket
                 }
                 //<<Fab Smartech 24_04_25
                 field(valide; REC.valide)
+                {
+                    ApplicationArea = All;
+                }
+                field(Annule; REC.Annule)
                 {
                     ApplicationArea = All;
                 }
@@ -308,6 +312,41 @@ page 70141 Creation_Ticket
 
                 //         end;
                 //     }
+                //******Fonctionnalité d'annulation de ticket
+                action(Envoie)
+                {
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ApplicationArea = All;
+                    Caption = 'Demander une annulation';
+                    trigger OnAction()
+                    begin
+
+                    end;
+                }
+                action(AutorisationAnnulation)
+                {
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ApplicationArea = All;
+                    Caption = 'Autoriser l''annulation';
+                    trigger OnAction()
+                    begin
+
+                    end;
+                }
+                action(AnnulerTicket)
+                {
+                    Caption = 'Aannuler le ticket';
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ApplicationArea = All;
+                    trigger OnAction()
+                    begin
+
+                    end;
+                }
+                //*****
                 action(Impression)
                 {
                     Caption = 'Imprimer multiple-Pesé';
@@ -356,7 +395,7 @@ page 70141 Creation_Ticket
 
                     end;
                 }
-                
+
                 action(Ticket_Pont_Bascule)
                 {
                     Caption = 'Ticket Pont Bascule';
