@@ -7,6 +7,7 @@ pageextension 70110 "New Ticket" extends "New Ticket"
             field(Annule; REC.Annule)
             {
                 ApplicationArea = All;
+                Editable = false;
             }
         }
     }
