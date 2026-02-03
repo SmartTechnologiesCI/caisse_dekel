@@ -14,6 +14,7 @@ page 70141 Creation_Ticket
 
     Editable = false;
     DeleteAllowed = false;
+    
     InsertAllowed = false;
     UsageCategory = Lists;
     ModifyAllowed = false;
@@ -355,6 +356,7 @@ page 70141 Creation_Ticket
 
                     end;
                 }
+                
                 action(Ticket_Pont_Bascule)
                 {
                     Caption = 'Ticket Pont Bascule';

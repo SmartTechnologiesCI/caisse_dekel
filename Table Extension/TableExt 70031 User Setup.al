@@ -13,6 +13,7 @@ tableextension 70031 "User Setup" extends "User Setup"
             Caption = 'Autorisation Annulation Ticket';
 
         }
+        
     }
 
     keys
