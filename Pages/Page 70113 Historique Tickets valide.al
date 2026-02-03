@@ -78,6 +78,10 @@ page 70113 "Historique Tickets valide"
                 {
                     ApplicationArea = All;
                 }
+                field(Annule; REC.Annule)
+                {
+                    ApplicationArea = All;
+                }
                 field("Date validation"; rec."Date validation")
                 {
                     ApplicationArea = All;
