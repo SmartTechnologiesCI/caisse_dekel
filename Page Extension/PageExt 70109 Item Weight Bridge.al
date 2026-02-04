@@ -13,6 +13,13 @@ pageextension 70109 "Item Weight Bridge" extends "Item Weight Bridge"
                 ApplicationArea = All;
             }
         }
+        addafter(valide)
+        {
+            field(Annule; REC.Annule)
+            {
+                ApplicationArea = All;
+            }
+        }
     }
 
     actions
