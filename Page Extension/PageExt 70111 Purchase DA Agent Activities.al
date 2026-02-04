@@ -16,9 +16,12 @@ pageextension 70111 "Purchase DA Agent Activities" extends "Purchase DA Agent Ac
                     var
                         ItemWeignt: Record "Item Weigh Bridge";
                     begin
-                        ItemWeignt.SetRange(Annule,ItemWeignt.Annule::"Envoyé en annulation");
+                        
+                        ItemWeignt.SetRange("Envoyé en annulation",true);
+                        ItemWeignt.SetRange("Autorisé à être annulé",true);
+                        ItemWeignt.SetRange(TicketAnnule,false);
                         if ItemWeignt.FindFirst() then begin
-                            Page.Run(50208,ItemWeignt);
+                            Page.Run(50208, ItemWeignt);
                         end;
                     end;
                 }
@@ -32,7 +35,10 @@ pageextension 70111 "Purchase DA Agent Activities" extends "Purchase DA Agent Ac
                     var
                         ItemWeignt: Record "Item Weigh Bridge";
                     begin
-                        // ItemWeignt.SetRange(Annule,);
+                        ItemWeignt.SetRange(Annule, ItemWeignt.Annule::"Envoyé en annulation");
+                        if ItemWeignt.FindFirst() then begin
+                            Page.Run(50208, ItemWeignt);
+                        end;
                     end;
                 }
                 field(TicketAAnnule; rec.TicketAAnnule)
@@ -41,7 +47,13 @@ pageextension 70111 "Purchase DA Agent Activities" extends "Purchase DA Agent Ac
                     DrillDown = true;
                     Visible = TicketAAnnules;
                     trigger OnDrillDown()
+                    var
+                        ItemWeignt: Record "Item Weigh Bridge";
                     begin
+                        ItemWeignt.SetRange(Annule, ItemWeignt.Annule::"Autorisé à être annulé");
+                        if ItemWeignt.FindFirst() then begin
+                            Page.Run(50208, ItemWeignt);
+                        end;
                     end;
                 }
             }

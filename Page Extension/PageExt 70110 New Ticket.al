@@ -33,6 +33,7 @@ pageextension 70110 "New Ticket" extends "New Ticket"
                     REC.Annule := rec.Annule::"Envoyé en annulation";
                     rec."Envoyé en annulation" := true;
                     rec.Modify();
+                    Message('Demande envoyé avec succès');
                 end;
             }
             action(AutorisationAnnulation)
@@ -48,6 +49,7 @@ pageextension 70110 "New Ticket" extends "New Ticket"
                     REC.Annule := rec.Annule::"Autorisé à être annulé";
                     REC."Autorisé à être annulé" := true;
                     rec.Modify();
+                    Message('Autorisation accordée avec succès');
                 end;
             }
             action(AnnulerTicket)
@@ -63,6 +65,7 @@ pageextension 70110 "New Ticket" extends "New Ticket"
                     rec.Annule := rec.Annule::"Annulé";
                     rec.TicketAnnule := true;
                     rec.Modify();
+                    Message('Annulation effectuée avec succès');
                 end;
             }
         }
