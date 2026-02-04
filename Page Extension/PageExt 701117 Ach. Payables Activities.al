@@ -1,8 +1,8 @@
-pageextension 70114 "Bookkeeper Activities" extends "Bookkeeper Activities"
+pageextension 70117 "Ach. Payables Activities" extends "Ach. Payables Activities"
 {
     layout
     {
-        addafter("Cash Management")
+        addafter("Document Approvals")
         {
             cuegroup("AnnutionTicket")
             {
@@ -64,6 +64,7 @@ pageextension 70114 "Bookkeeper Activities" extends "Bookkeeper Activities"
     {
         // Add changes to page actions here
     }
+
 
     trigger OnAfterGetRecord()
     var
