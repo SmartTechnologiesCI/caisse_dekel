@@ -74,6 +74,24 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         {
             FieldClass = FlowFilter;
         }
+        //*************************Piles annulation de tickets
+        field(60013; EnvoyEnAnnulation; Integer)
+        {
+
+            FieldClass = FlowField;
+            Caption = 'Envoyé(s) en annulation';
+        }
+        field(60014; DemandeAutorisation; Integer)
+        {
+            Caption = 'Demande d''autorisation d''annulation';
+            FieldClass = FlowField;
+        }
+        field(60015; TicketAAnnule; Integer)
+        {
+           
+            FieldClass = FlowField;
+        }
+        //*************************Piles annulation de tickets
 
 
     }
