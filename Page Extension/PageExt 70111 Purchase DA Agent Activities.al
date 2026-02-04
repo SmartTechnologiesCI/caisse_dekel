@@ -13,9 +13,14 @@ pageextension 70111 "Purchase DA Agent Activities" extends "Purchase DA Agent Ac
                     DrillDown = true;
                     Visible = EnvoyEnAnnulations;
                     trigger OnDrillDown()
+                    var
+                        ItemWeignt: Record "Item Weigh Bridge";
                     begin
+                        ItemWeignt.SetRange(Annule,ItemWeignt.Annule::"Envoyé en annulation");
+                        if ItemWeignt.FindFirst() then begin
+                            Page.Run(50208,ItemWeignt);
+                        end;
                     end;
-
                 }
                 field(DemandeAutorisation; REC.DemandeAutorisation)
                 {
@@ -24,7 +29,10 @@ pageextension 70111 "Purchase DA Agent Activities" extends "Purchase DA Agent Ac
                     DrillDown = true;
                     Visible = DemandeAutorisations;
                     trigger OnDrillDown()
+                    var
+                        ItemWeignt: Record "Item Weigh Bridge";
                     begin
+                        // ItemWeignt.SetRange(Annule,);
                     end;
                 }
                 field(TicketAAnnule; rec.TicketAAnnule)
