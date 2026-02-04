@@ -80,17 +80,29 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
 
             FieldClass = FlowField;
             Caption = 'Envoyé(s) en annulation';
+            CalcFormula = count("Item Weigh Bridge" where("Envoyé en annulation" = const(true), TicketAnnule = const(false)));
         }
         field(60014; DemandeAutorisation; Integer)
         {
             Caption = 'Demande d''autorisation d''annulation';
             FieldClass = FlowField;
+            CalcFormula = count("Item Weigh Bridge" where("Envoyé en annulation" = const(true)));
         }
         field(60015; TicketAAnnule; Integer)
         {
-           
+
             FieldClass = FlowField;
+            Caption = 'Ticket(s )à annulé(s)';
+            CalcFormula = count("Item Weigh Bridge" where("Autorisé à être annulé" = const(true)));
+
         }
+        // field(60016; AnnuleOption; Option)
+        // {
+        //     DataClassification = ToBeClassified;
+        //     OptionMembers = " ","Envoyé en annulation","Annulation refusée","Annulé","Autorisé à être annulé";
+
+        //     // Caption = 'Annulé';
+        // }
         //*************************Piles annulation de tickets
 
 

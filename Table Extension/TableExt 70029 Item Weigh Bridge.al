@@ -123,6 +123,19 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
 
             // Caption = 'Annulé';
         }
+        field(55024; "Envoyé en annulation"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(55025; "Autorisé à être annulé"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(55026; TicketAnnule; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
+
 
     }
 
