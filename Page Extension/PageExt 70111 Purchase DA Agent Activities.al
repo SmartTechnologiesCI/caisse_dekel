@@ -7,7 +7,7 @@ pageextension 70111 "Purchase DA Agent Activities" extends "Purchase DA Agent Ac
             cuegroup("AnnutionTicket")
             {
                 Caption = 'Annulatin de tickets';
-                field(EnvoyEnAnnulation; EnvoyEnAnnulation)
+                field(EnvoyEnAnnulation; rec.EnvoyEnAnnulation)
                 {
                     ApplicationArea = All;
                     DrillDown = true;
@@ -16,7 +16,7 @@ pageextension 70111 "Purchase DA Agent Activities" extends "Purchase DA Agent Ac
                     end;
 
                 }
-                field(DemandeAutorisation; DemandeAutorisation)
+                field(DemandeAutorisation; REC.DemandeAutorisation)
                 {
 
                     ApplicationArea = All;
@@ -25,7 +25,7 @@ pageextension 70111 "Purchase DA Agent Activities" extends "Purchase DA Agent Ac
                     begin
                     end;
                 }
-                field(TicketAAnnule; TicketAAnnule)
+                field(TicketAAnnule; rec.TicketAAnnule)
                 {
                     ApplicationArea = All;
                     DrillDown = true;
@@ -44,4 +44,8 @@ pageextension 70111 "Purchase DA Agent Activities" extends "Purchase DA Agent Ac
 
     var
         myInt: Integer;
+        EnvoyEnAnnulation: Boolean;
+        DemandeAutorisation: Boolean;
+        TicketAAnnule: Boolean;
+
 }
