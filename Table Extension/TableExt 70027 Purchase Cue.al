@@ -86,14 +86,14 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         {
             Caption = 'Demande d''autorisation d''annulation';
             FieldClass = FlowField;
-            CalcFormula = count("Item Weigh Bridge" where("Envoyé en annulation" = const(true)));
+            CalcFormula = count("Item Weigh Bridge" where("Envoyé en annulation" = const(true),"Autorisé à être annulé" = const(false)));
         }
         field(60015; TicketAAnnule; Integer)
         {
 
             FieldClass = FlowField;
             Caption = 'Ticket(s )à annulé(s)';
-            CalcFormula = count("Item Weigh Bridge" where("Autorisé à être annulé" = const(true)));
+            CalcFormula = count("Item Weigh Bridge" where("Autorisé à être annulé" = const(true),TicketAnnule = const(false)));
 
         }
         // field(60016; AnnuleOption; Option)

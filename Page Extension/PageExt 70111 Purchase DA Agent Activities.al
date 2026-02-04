@@ -18,7 +18,7 @@ pageextension 70111 "Purchase DA Agent Activities" extends "Purchase DA Agent Ac
                     begin
                         
                         ItemWeignt.SetRange("Envoyé en annulation",true);
-                        ItemWeignt.SetRange("Autorisé à être annulé",true);
+                        // ItemWeignt.SetRange("Autorisé à être annulé",true);
                         ItemWeignt.SetRange(TicketAnnule,false);
                         if ItemWeignt.FindFirst() then begin
                             Page.Run(50208, ItemWeignt);
