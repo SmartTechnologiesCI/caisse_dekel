@@ -1,8 +1,8 @@
-pageextension 70113 "Acc. Payables Activities" extends "Acc. Payables Activities"
+pageextension 70115 "P_ DA Agent Act. Cadres" extends "P_ DA Agent Act. Cadres"
 {
     layout
     {
-        addafter(Payments)
+        addafter("Pre-arrival Follow-up on Purchase Orders")
         {
             cuegroup("AnnutionTicket")
             {
