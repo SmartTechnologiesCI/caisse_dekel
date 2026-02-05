@@ -21,11 +21,7 @@ tableextension 70031 "User Setup" extends "User Setup"
 
             // Caption = 'Annulé';
         }
-        field(55024; AutorisationValidationFourn; Boolean)
-        {
-            DataClassification = ToBeClassified;
-            Caption = 'Autorisation Val. Fourn.';
-        }
+        
     }
 
     keys
