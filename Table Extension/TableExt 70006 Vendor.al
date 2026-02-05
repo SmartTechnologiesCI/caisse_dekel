@@ -11,6 +11,12 @@ tableextension 70006 "Vendor ext" extends Vendor
             // CalcFormula = sum("Purchase Line"."Amount Including VAT");
 
         }
+        field(70001; ModeleFournisseur; code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = "Vendor Templ.".Code;
+            Caption = 'Modèle fournisseur';
+        }
     }
 
     var
