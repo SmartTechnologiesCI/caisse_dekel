@@ -16,6 +16,18 @@ tableextension 70006 "Vendor ext" extends Vendor
             DataClassification = ToBeClassified;
             TableRelation = "Vendor Templ.".Code;
             Caption = 'Modèle fournisseur';
+            trigger OnValidate()
+            var
+                VendorTemplate: Record "Vendor Templ.";
+            begin
+                VendorTemplate.SetRange(Code, ModeleFournisseur);
+                if VendorTemplate.FindFirst() then begin
+                    rec."Gen. Bus. Posting Group" := VendorTemplate."Gen. Bus. Posting Group";
+                    rec."VAT Bus. Posting Group" := VendorTemplate."VAT Bus. Posting Group";
+                    rec."Vendor Posting Group" := VendorTemplate."Vendor Posting Group";
+                    REC.Modify();
+                end;
+            end;
         }
     }
 
