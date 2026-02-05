@@ -86,14 +86,14 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         {
             Caption = 'Demande d''autorisation d''annulation';
             FieldClass = FlowField;
-            CalcFormula = count("Item Weigh Bridge" where("Envoyé en annulation" = const(true),"Autorisé à être annulé" = const(false)));
+            CalcFormula = count("Item Weigh Bridge" where("Envoyé en annulation" = const(true), "Autorisé à être annulé" = const(false)));
         }
         field(60015; TicketAAnnule; Integer)
         {
 
             FieldClass = FlowField;
             Caption = 'Ticket(s )à annulé(s)';
-            CalcFormula = count("Item Weigh Bridge" where("Autorisé à être annulé" = const(true),TicketAnnule = const(false)));
+            CalcFormula = count("Item Weigh Bridge" where("Autorisé à être annulé" = const(true), TicketAnnule = const(false)));
 
         }
         // field(60016; AnnuleOption; Option)
@@ -104,6 +104,20 @@ tableextension 70027 "Purchase Cue" extends "Purchase Cue"
         //     // Caption = 'Annulé';
         // }
         //*************************Piles annulation de tickets
+        //Validation fournisseur
+        field(60016; FournisseurEnAttenteValidation; Integer)
+        {
+            Caption = 'Fournisseur(s) en attente de validation';
+            FieldClass = FlowField;
+            CalcFormula = count(Vendor where(Nouveau = const(true)));
+        }
+        field(60017; FournisseurValide; Integer)
+        {
+            FieldClass = FlowField;
+            CalcFormula = count(Vendor where(valide = const(true)));
+            Caption = 'Fournisseur(s) validé(s)';
+        }
+
 
 
     }
