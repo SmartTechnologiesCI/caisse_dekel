@@ -15,13 +15,17 @@ tableextension 70031 "User Setup" extends "User Setup"
         }
         field(55023; Annule; Option)
         {
-           
+
             DataClassification = ToBeClassified;
             OptionMembers = " ","Autorisation d'envoie","Accord d'autorisation d'annulation","Autorisé à Annuler";
 
             // Caption = 'Annulé';
         }
-
+        field(55024; AutorisationValidationFourn; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Autorisation Val. Fourn.';
+        }
     }
 
     keys

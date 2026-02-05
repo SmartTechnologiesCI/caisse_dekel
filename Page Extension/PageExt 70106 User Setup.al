@@ -16,6 +16,10 @@ pageextension 70106 "User Setup" extends "User Setup"
             {
                 ApplicationArea = All;
             }
+            field(AutorisationValidationFourn; AutorisationValidationFourn)
+            {
+                ApplicationArea = All;
+            }
         }
     }
 
