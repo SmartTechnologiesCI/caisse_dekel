@@ -86,6 +86,13 @@ report 70050 Recu_Paiement_Double
 
             }
 
+            //Centre Logistique
+            column(CL; CL)
+            {
+
+            }
+            //Centre Logistique
+
             trigger OnPreDataItem()
             var
                 TypeOperation: Option;
@@ -127,6 +134,7 @@ report 70050 Recu_Paiement_Double
                 myInt: Integer;
                 VendorSplitTaxSetup: Record "Vendor Split Tax Setup";
                 WeightItem: Record "Item Weigh Bridge";
+                Caisse: Record Caisse;
             begin
                 // if FindFirst() then begin
                 //     if "Statut paiement Planteur" = true then begin
@@ -136,6 +144,7 @@ report 70050 Recu_Paiement_Double
                 //     end;
                 // end;
                 // /*
+                Clear(CL);
                 Clear(visiblePlanteur);
                 Clear(visibleTransport);
                 WeightItem.SetRange("Ticket Planteur", "Ticket Planteur");
@@ -157,7 +166,12 @@ report 70050 Recu_Paiement_Double
                 end;
                 // */
 
-
+                //Centre Logistique
+                Caisse.SetRange("User ID", UserId);
+                if Caisse.FindFirst() then begin
+                    CL := Caisse.DescriptionCentreLogistique;
+                end;
+                //Centre Logistique
 
                 if TicketPlanteur = true then begin
                     VendorSplitTaxSetup.SetRange("Vendor No.", "Code planteur");
@@ -267,5 +281,6 @@ report 70050 Recu_Paiement_Double
         Titre: Text[50];
         visibleTransport: Boolean;
         visiblePlanteur: Boolean;
+        CL: Code[50];
 
 }
