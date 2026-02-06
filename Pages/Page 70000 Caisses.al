@@ -21,6 +21,15 @@ page 70010 Caisses
                 {
                     CaptionML = ENU = 'Name', FRA = 'Nom';
                 }
+                field(CentreLogistique; REC.CentreLogistique)
+                {
+                    ApplicationArea = All;
+
+                }
+                field(DescriptionCentreLogistique; DescriptionCentreLogistique)
+                {
+                    ApplicationArea = All;
+                }
                 field(Compte; Compte)
                 {
                     CaptionML = ENU = 'General account', FRA = 'Compte général';

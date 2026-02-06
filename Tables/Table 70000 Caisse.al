@@ -16,6 +16,7 @@ table 70010 Caisse
             CaptionML = ENU = 'User Name', FRA = 'Utilisateur';
             TableRelation = "User Setup"."User ID";
         }
+
         field(4; "Compte"; Text[50])
         {
             CaptionML = ENU = 'Account N°', FRA = 'N° Compte comptable';
@@ -53,6 +54,28 @@ table 70010 Caisse
         //     FieldClass = FlowFilter;
 
         // }
+        field(11; CentreLogistique; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Centre Logistique';
+            TableRelation = Origine;
+            trigger OnValidate()
+            var
+                myInt: Integer;
+                origin: Record Origine;
+            begin
+                origin.SetRange("Code Origine", REC.CentreLogistique);
+                if origin.FindFirst() then begin
+                    rec.DescriptionCentreLogistique := origin.Origine;
+                    REC.Modify()
+                end;
+            end;
+        }
+        field(12; DescriptionCentreLogistique; Code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Description CL';
+        }
     }
 
     keys
