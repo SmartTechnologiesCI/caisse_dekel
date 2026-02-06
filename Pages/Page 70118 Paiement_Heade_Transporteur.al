@@ -313,6 +313,7 @@ page 70118 Paiement_Header_Transporteur
             ItemWeigBridge2."Statut paiement" := true;
             ItemWeigBridge2.Date_Paiement := WorkDate();
             ItemWeigBridge2.NumDocExten := rec.NumDocExt;
+            ItemWeigBridge2.NumeroPaiementTransport := rec.NumDocExt;
             ItemWeigBridge2.Modify();
             //***
             rec.Archive := true;

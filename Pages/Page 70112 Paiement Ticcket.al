@@ -4,8 +4,11 @@ page 70112 "Paiement Ticket"
     Caption = 'Paiement';
     PageType = Card;
     SourceTable = "Item Weigh Bridge";
+    InsertAllowed = false;
+
     // InsertAllowed = false;
-    ModifyAllowed = true;
+    ModifyAllowed = false;
+    DeleteAllowed = false;
     layout
     {
 

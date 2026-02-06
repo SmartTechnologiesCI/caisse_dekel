@@ -15,6 +15,7 @@ page 70140 "Ticket Caisse"
     Editable = false;
     InsertAllowed = false;
     ModifyAllowed = false;
+    
     PageType = List;
     CardPageId = "Paiement Ticket";
     SourceTable = "Item Weigh Bridge";
