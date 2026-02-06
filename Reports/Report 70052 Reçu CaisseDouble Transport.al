@@ -1,8 +1,8 @@
-report 70050 Recu_Paiement_Double
+report 70052 Recu_Paiement_Double_Transport
 {
     UsageCategory = ReportsAndAnalysis;
     ApplicationArea = All;
-    Caption = 'Reçu Paiement';
+    Caption = 'Reçu Paiement Transport';
     RDLCLayout = 'Reports\RDLC\Report 70050 Recu Paiement_Double.rdlc';
     dataset
     {
@@ -97,9 +97,10 @@ report 70050 Recu_Paiement_Double
             var
                 TypeOperation: Option;
             begin
-
+                Clear(TicketTransporteur);
                 CompanyInfo.get();
                 CompanyInfo.CalcFields(Picture);
+                TicketTransporteur := true;
                 if ((TicketPlanteur = false) and (TicketTransporteur = false)) then begin
                     Error('Choisissez le type de ticket (Soit Planteur soit Transporteur)');
                 end else begin
@@ -136,6 +137,7 @@ report 70050 Recu_Paiement_Double
                 WeightItem: Record "Item Weigh Bridge";
                 Caisse: Record Caisse;
             begin
+
                 // if FindFirst() then begin
                 //     if "Statut paiement Planteur" = true then begin
                 //         TicketPlanteur := true;
@@ -237,11 +239,13 @@ report 70050 Recu_Paiement_Double
                     field(TicketPlanteur; TicketPlanteur)
                     {
                         ApplicationArea = All;
+                        Visible = false;
                         // Visible = visiblePlanteur;
                     }
                     field(TicketTransporteur; TicketTransporteur)
                     {
                         ApplicationArea = All;
+                        Visible = false;
                         // Visible = visibleTransport;
                     }
 

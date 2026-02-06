@@ -74,7 +74,7 @@ page 70120 ListePantTransporteurArchive
                     itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
                     itemWigIfbhhf.SetRange("Statut paiement", true);
                     if itemWigIfbhhf.FindFirst() then begin
-                        Report.Run(70050, true, false, itemWigIfbhhf);
+                        Report.Run(70052, true, false, itemWigIfbhhf);
                     end;
                 end;
             }

@@ -219,7 +219,7 @@ page 70124 PaiementHeaderTransport_Archiv
                     itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
                     itemWigIfbhhf.SetRange("Statut paiement", true);
                     if itemWigIfbhhf.FindFirst() then begin
-                        Report.Run(70050, true, false, itemWigIfbhhf);
+                        Report.Run(70052, true, false, itemWigIfbhhf);
                     end;
                 end;
             }

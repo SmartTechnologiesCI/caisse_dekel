@@ -461,7 +461,7 @@ page 70130 "Paiement Ticket Valide"
                         if ItemWeighBridge.FindFirst() then begin
                             // (Report::Recu_Paiement,true, false, ItemWeighBridge."Ticket Planteur");
                             // Page.Run(page::"Paiement Valide", ItemWeighBridge);
-                            Report.Run(Report::Recu_Paiement_Double, true, false, ItemWeighBridge);
+                            // Report.Run(Report::Recu_Paiement_Double, true, false, ItemWeighBridge);
 
 
                         end;

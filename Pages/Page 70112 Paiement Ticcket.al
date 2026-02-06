@@ -506,7 +506,7 @@ page 70112 "Paiement Ticket"
                         ItemWeighBridge.SetRange("Row No.", rec."Row No.");
                         ItemWeighBridge.SetRange(RowID, rec.RowID);
                         if ItemWeighBridge.FindFirst() then begin
-                            Report.Run(Report::Recu_Paiement_Double, true, false, ItemWeighBridge);
+                            // Report.Run(Report::Recu_Paiement_Double, true, false, ItemWeighBridge);
 
                         end;
                     end;
