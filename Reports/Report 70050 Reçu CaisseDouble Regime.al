@@ -92,6 +92,10 @@ report 70050 Recu_Paiement_Double_Regime
 
             }
             //Centre Logistique
+            column(NumDocExten; NumDocExten)
+            {
+
+            }
 
             trigger OnPreDataItem()
             var
@@ -245,7 +249,7 @@ report 70050 Recu_Paiement_Double_Regime
                     field(TicketTransporteur; TicketTransporteur)
                     {
                         ApplicationArea = All;
-                         Visible = false;
+                        Visible = false;
                         // Visible = visibleTransport;
                     }
 

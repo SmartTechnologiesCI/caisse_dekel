@@ -91,6 +91,9 @@ report 70052 Recu_Paiement_Double_Transport
             {
 
             }
+            column(NumDocExten;NumDocExten){
+                
+            }
             //Centre Logistique
 
             trigger OnPreDataItem()

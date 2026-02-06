@@ -62,7 +62,7 @@ table 70030 Entete_Paiement_Transporteur
         field(50008; NumDocExt; Code[50])
         {
             DataClassification = ToBeClassified;
-            Caption = 'N° Doc Externe';
+            Caption = 'N° Document';
             Editable = false;
         }
         field(50029; CNI; Code[250])

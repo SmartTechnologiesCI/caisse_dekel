@@ -1998,7 +1998,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Fields!TICKET.Value</Value>
+                        <Value>=Fields!NumDocExten.Value</Value>
                         <Style>
                           <FontFamily>Times New Roman</FontFamily>
                         </Style>
@@ -2008,7 +2008,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox27</rd:DefaultName>
-                <Top>0.86805in</Top>
+                <Top>0.82639in</Top>
                 <Left>1.0025in</Left>
                 <Height>0.20833in</Height>
                 <Width>1.43056in</Width>
@@ -4994,6 +4994,9 @@ MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26
         </Field>
         <Field Name="CL">
           <DataField>CL</DataField>
+        </Field>
+        <Field Name="NumDocExten">
+          <DataField>NumDocExten</DataField>
         </Field>
       </Fields>
       <Query>
