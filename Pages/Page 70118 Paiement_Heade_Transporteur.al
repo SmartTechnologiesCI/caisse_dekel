@@ -172,7 +172,14 @@ page 70118 Paiement_Header_Transporteur
                     EnteteHeader: Record Entete_Paiement_Transporteur;
                     Entete_Paiement: Record Entete_Paiement;
                     nudoc: Code[50];
+                    Vendor: Record Vendor;
                 begin
+                    Vendor.SetRange("No.", rec.Palanteur);
+                    if Vendor.FindFirst() then begin
+                        if Vendor.Statut <> Vendor.Statut::"Validé" then begin
+                            Error('Ce planteur n''est pas validé');
+                        end;
+                    end;
                     if Confirm('Voulez vous valider le paiement') then begin
                         nudoc := Rec.NumDocExt;
                         rec.TestField(rec.Beneficiare);
@@ -189,7 +196,8 @@ page 70118 Paiement_Header_Transporteur
                                 ItemWeightBridge1.TestField(Beneficiaire);
                                 ItemWeightBridge1.TestField(NCNI);
                                 ItemWeightBridge1.TestField(Telephone);
-                            end until ItemWeightBridge1.Next()=0;
+                                ItemWeightBridge1.TestField(TicketAnnule, false);
+                            end until ItemWeightBridge1.Next() = 0;
                         end;
                         ItemWeightBridge.SetFilter(Ticket_Concerne_Transport, '=%1', true);
                         ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);

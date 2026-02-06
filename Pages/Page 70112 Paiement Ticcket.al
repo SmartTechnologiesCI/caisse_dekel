@@ -261,9 +261,11 @@ page 70112 "Paiement Ticket"
             }
             group(Paiement)
             {
+
                 field(Beneficiaire; rec.Beneficiaire)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                     trigger OnValidate()
                     var
                         myInt: Integer;
@@ -274,7 +276,7 @@ page 70112 "Paiement Ticket"
                 field(NaturePiece; NaturePiece)
                 {
                     ApplicationArea = All;
-                    Editable = true;
+                    Editable = false;
                     trigger OnValidate()
                     var
                         myInt: Integer;
@@ -288,19 +290,22 @@ page 70112 "Paiement Ticket"
                 {
                     ApplicationArea = All;
                     Caption = 'N° de pièce';
+                    Editable = false;
                 }
                 field(Mode_Paiement; rec.Mode_Paiement)
                 {
                     ApplicationArea = All;
-
+                    Editable = false;
                 }
                 field(Observation; rec.Observation)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
-                field(Telephone; Telephone)
+                field(Telephone; REC.Telephone)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
 
             }
@@ -379,8 +384,8 @@ page 70112 "Paiement Ticket"
                 {
                     Caption = 'Payer le planteur';
                     ApplicationArea = All;
-                    Visible = PaiementVisiblePlanteur;
-
+                    // Visible = PaiementVisiblePlanteur;
+                    Visible = false;
                     trigger OnAction()
                     var
                         Ticket: Record "Item Weigh Bridge";
@@ -423,7 +428,8 @@ page 70112 "Paiement Ticket"
                 {
                     Caption = 'Payer le transport';
                     ApplicationArea = All;
-                    Visible = PaiementVisibleTransporteur;
+                    // Visible = PaiementVisibleTransporteur;
+                    Visible = false;
                     trigger OnAction()
                     var
                         Ticket: Record "Item Weigh Bridge";
@@ -486,7 +492,7 @@ page 70112 "Paiement Ticket"
                 {
                     Caption = 'Reçu Paiement';
                     ApplicationArea = All;
-
+                    Visible = false;
                     // RunObject = report Recu_Paiement;
                     trigger OnAction()
                     var

@@ -183,9 +183,17 @@ page 70114 Paiement_Header
                     ItemWeightBridge2: Record "Item Weigh Bridge";
                     ItemWeightBridge1: Record "Item Weigh Bridge";
                     EnteteHeader: Record Entete_Paiement;
+                    ItemWeightBridgeAnnuler: Record "Item Weigh Bridge";
                     nudoc: code[50];
                     Entete_Paiement: Record Entete_Paiement;
+                    Vendor: Record Vendor;
                 begin
+                    Vendor.SetRange("No.", rec.Palanteur);
+                    if Vendor.FindFirst() then begin
+                        if Vendor.Statut <> Vendor.Statut::"Validé" then begin
+                            Error('Ce planteur n''est pas validé');
+                        end;
+                    end;
                     if Confirm('Voulez vous valider le paiement') then begin
                         nudoc := rec.NumDocExt;
                         rec.TestField(rec.Beneficiare);
@@ -201,6 +209,7 @@ page 70114 Paiement_Header
                                 ItemWeightBridge1.TestField(Beneficiaire);
                                 ItemWeightBridge1.TestField(NCNI);
                                 ItemWeightBridge1.TestField(Telephone);
+                                ItemWeightBridge1.TestField(TicketAnnule, false);
                             end until ItemWeightBridge1.Next() = 0;
                         end;
                         ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
