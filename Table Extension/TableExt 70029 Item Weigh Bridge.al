@@ -181,6 +181,13 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         // end;
     end;
 
+    trigger OnInsert()
+    var
+        myInt: Integer;
+    begin
+
+    end;
+
     var
         myInt: Integer;
 }

@@ -24,7 +24,7 @@ tableextension 70032 "Finance Cue" extends "Finance Cue"
             CalcFormula = count("Item Weigh Bridge" where("Autorisé à être annulé" = const(true),TicketAnnule = const(false)));
 
         }
-        
+       
     }
     
     keys
