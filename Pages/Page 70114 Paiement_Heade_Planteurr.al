@@ -100,6 +100,26 @@ page 70114 Paiement_Header
                 {
                     ApplicationArea = All;
                 }
+                field(CLPaiement; rec.CLPaiement)
+                {
+                    ApplicationArea = All;
+                    TableRelation = Origine;
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+                        origin: Record Origine;
+                    begin
+                        origin.SetRange("Code Origine", REC.CLPaiement);
+                        if origin.FindFirst() then begin
+                            rec.DescriptionCL := origin.Origine;
+                            REC.Modify()
+                        end;
+                    end;
+                }
+                field(DescriptionCL; rec.DescriptionCL)
+                {
+                    ApplicationArea = All;
+                }
                 field(TotalFictif; TotalFictif)
                 {
                     ApplicationArea = All;

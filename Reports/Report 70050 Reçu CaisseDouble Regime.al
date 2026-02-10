@@ -96,7 +96,7 @@ report 70050 Recu_Paiement_Double_Regime
             {
 
             }
-
+           
             trigger OnPreDataItem()
             var
                 TypeOperation: Option;
@@ -140,6 +140,7 @@ report 70050 Recu_Paiement_Double_Regime
                 VendorSplitTaxSetup: Record "Vendor Split Tax Setup";
                 WeightItem: Record "Item Weigh Bridge";
                 Caisse: Record Caisse;
+                // ItemW: Record 
             begin
 
                 // if FindFirst() then begin

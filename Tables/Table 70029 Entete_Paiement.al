@@ -195,7 +195,16 @@ table 70029 Entete_Paiement
             Caption = 'Annulé';
             DataClassification = ToBeClassified;
         }
-
+        field(55025; CLPaiement; code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Centre Logistique';
+        }
+        field(55026; DescriptionCL; code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Description CL';
+        }
 
 
     }

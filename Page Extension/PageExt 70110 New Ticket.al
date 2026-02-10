@@ -105,6 +105,7 @@ pageextension 70110 "New Ticket" extends "New Ticket"
 
 
     begin
+        /******FnGeek 10_02_26
         if rec."POIDS ENTREE" = 0 then begin
             Balance.SetRange(Code, rec."Balance Code");
             if Balance.FindFirst() then begin
@@ -121,6 +122,7 @@ pageextension 70110 "New Ticket" extends "New Ticket"
             end;
 
         end;
+        */
     end;
 
     var

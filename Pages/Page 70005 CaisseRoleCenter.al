@@ -104,7 +104,7 @@ page 70015 "Caisse RoleCenter"
             }
             action(Paiement_Multiple)
             {
-                Caption = 'Paiement Multiple Planteur';
+                Caption = 'Paiement Régime';
                 Promoted = true;
                 PromotedCategory = Process;
                 RunPageMode = Create;
@@ -113,7 +113,7 @@ page 70015 "Caisse RoleCenter"
             }
             action(Paiement_Multiple_Transp)
             {
-                Caption = 'Paiement Multiple Transporteur';
+                Caption = 'Paiement Transport';
                 Promoted = true;
                 PromotedCategory = Process;
                 RunPageMode = Create;
