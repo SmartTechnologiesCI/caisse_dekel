@@ -99,6 +99,9 @@ page 70122 ArchiEntetePlanteur
                 {
                     ApplicationArea = All;
                 }
+                field(DescriptionCL;rec.DescriptionCL){
+                    
+                }
             }
             group(Paiement)
             {

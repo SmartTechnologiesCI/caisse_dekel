@@ -96,7 +96,7 @@ report 70050 Recu_Paiement_Double_Regime
             {
 
             }
-           
+
             trigger OnPreDataItem()
             var
                 TypeOperation: Option;
@@ -140,7 +140,7 @@ report 70050 Recu_Paiement_Double_Regime
                 VendorSplitTaxSetup: Record "Vendor Split Tax Setup";
                 WeightItem: Record "Item Weigh Bridge";
                 Caisse: Record Caisse;
-                // ItemW: Record 
+            // ItemW: Record 
             begin
 
                 // if FindFirst() then begin
@@ -174,9 +174,8 @@ report 70050 Recu_Paiement_Double_Regime
                 // */
 
                 //Centre Logistique
-                Caisse.SetRange("User ID", UserId);
-                if Caisse.FindFirst() then begin
-                    CL := Caisse.DescriptionCentreLogistique;
+                if FindFirst() then begin
+                    CL := CLpaiement;
                 end;
                 //Centre Logistique
 

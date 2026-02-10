@@ -140,6 +140,10 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             DataClassification = ToBeClassified;
             Caption = 'N° Paiement Transport';
         }
+        field(55028; CLpaiement; code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
 
 
     }

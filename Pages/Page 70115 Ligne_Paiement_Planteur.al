@@ -29,6 +29,10 @@ page 70115 Ligne_Paiement
                 {
 
                 }
+                field(CLpaiement; REC.CLpaiement)
+                {
+                    ApplicationArea = All;
+                }
                 field("Weighing 1 Date"; "Weighing 1 Date")
                 {
                     ApplicationArea = All;
@@ -86,12 +90,18 @@ page 70115 Ligne_Paiement
                         SommeTotale();
                         HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
                         if HeaderPaiement.FindFirst() then begin
+                            HeaderPaiement.TestField(Beneficiare);
+                            HeaderPaiement.TestField(CNI);
+                            HeaderPaiement.TestField(Mode_Paiement);
+                            HeaderPaiement.TestField(Telephone);
+                            HeaderPaiement.TestField(CLPaiement);
                             if rec.Ticket_Concerne = true then begin
                                 Rec.Beneficiaire := HeaderPaiement.Beneficiare;
                                 REC.NCNI := HeaderPaiement.CNI;
                                 REC.Mode_Paiement := HeaderPaiement.Mode_Paiement;
                                 REC.Observation := HeaderPaiement.Observation;
                                 REC.Telephone := HeaderPaiement.Telephone;
+                                Rec.CLpaiement := HeaderPaiement.DescriptionCL;
                                 // Message('Yes FnGeek');
                             end;
 
@@ -304,7 +314,7 @@ page 70115 Ligne_Paiement
                 REC.Impot := (VendorSplitTaxSetup.Percentage / 100) * rec.PrixUnitaire * rec."POIDS NET";
                 // taxe := (VendorSplitTaxSetup.Percentage / 100);
                 rec.TotalPlanteur := rec.PrixUnitaire * rec."POIDS NET";
-                rec.TotalPlanteurTTc := rec.PrixUnitaire* rec."POIDS NET";
+                rec.TotalPlanteurTTc := rec.PrixUnitaire * rec."POIDS NET";
                 REC.Modify()
             end;
             //***tAXE
