@@ -3,7 +3,7 @@ report 70052 Recu_Paiement_Double_Transport
     UsageCategory = ReportsAndAnalysis;
     ApplicationArea = All;
     Caption = 'Reçu Paiement Transport';
-    RDLCLayout = 'Reports\RDLC\Report 70050 Recu Paiement_Double.rdlc';
+    RDLCLayout = 'Reports\RDLC\Report 70052 Recu Paiement_Double.rdlc';
     dataset
     {
         dataitem("Item Weigh Bridge"; "Item Weigh Bridge")
@@ -91,6 +91,10 @@ report 70052 Recu_Paiement_Double_Transport
             {
 
             }
+            column(CLpaiement; CLpaiement)
+            {
+
+            }
             column(NumDocExten; NumDocExten)
             {
 
@@ -163,6 +167,8 @@ report 70052 Recu_Paiement_Double_Transport
                 // WeightItem.SetRange("Row No.", "Row No.");
                 // WeightItem.SetRange(RowID, RowID);
                 if WeightItem.FindFirst() then begin
+                    CL := WeightItem.CLpaiement;
+                    // Message('cl: %1 bb: %2', CL,WeightItem."Ticket Planteur");
                     if WeightItem."Statut paiement" = false then begin
                         if TicketTransporteur = true then begin
                             Error('Le transport n''est pas encore payé');
@@ -179,9 +185,9 @@ report 70052 Recu_Paiement_Double_Transport
 
                 //Centre Logistique
                 // Caisse.SetRange("User ID", UserId);
-                if FindFirst() then begin
-                    CL := CLpaiement;
-                end;
+                // if FindFirst() then begin
+                //     CL := CLpaiement;
+                // end;
                 //Centre Logistique
 
                 if TicketPlanteur = true then begin

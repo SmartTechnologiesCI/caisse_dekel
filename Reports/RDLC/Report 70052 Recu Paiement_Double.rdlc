@@ -1998,7 +1998,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Fields!NumDocExten.Value</Value>
+                        <Value>=Fields!NumeroDocTransport.Value</Value>
                         <Style>
                           <FontFamily>Times New Roman</FontFamily>
                         </Style>
@@ -2200,7 +2200,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Fields!CLpaiement.Value</Value>
+                        <Value>=Fields!CL.Value</Value>
                         <Style>
                           <FontFamily>Times New Roman</FontFamily>
                           <FontWeight>Bold</FontWeight>
@@ -4272,7 +4272,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=First(Fields!NumDocExten.Value, "DataSet_Result")</Value>
+                            <Value>=Fields!NumeroDocTransport.Value</Value>
                             <Style>
                               <FontFamily>Times New Roman</FontFamily>
                             </Style>
@@ -5000,6 +5000,9 @@ MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26
         </Field>
         <Field Name="NumDocExten">
           <DataField>NumDocExten</DataField>
+        </Field>
+        <Field Name="NumeroDocTransport">
+          <DataField>NumeroDocTransport</DataField>
         </Field>
       </Fields>
       <Query>

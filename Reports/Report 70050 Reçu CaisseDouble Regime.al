@@ -91,11 +91,16 @@ report 70050 Recu_Paiement_Double_Regime
             {
 
             }
+            column(CLpaiement; CLpaiement)
+            {
+
+            }
             //Centre Logistique
             column(NumDocExten; NumDocExten)
             {
 
             }
+            
 
             trigger OnPreDataItem()
             var
@@ -174,9 +179,9 @@ report 70050 Recu_Paiement_Double_Regime
                 // */
 
                 //Centre Logistique
-                if FindFirst() then begin
-                    CL := CLpaiement;
-                end;
+                // if FindFirst() then begin
+                //     CL := CLpaiement;
+                // end;
                 //Centre Logistique
 
                 if TicketPlanteur = true then begin

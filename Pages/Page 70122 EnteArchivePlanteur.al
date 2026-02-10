@@ -8,7 +8,7 @@ page 70122 ArchiEntetePlanteur
     InsertAllowed = false;
     ModifyAllowed = false;
     DeleteAllowed = false;
-    Caption = 'Multiple paiement Planteur Archive';
+    Caption = 'Multiple paiement Régime Archive';
 
     layout
     {
@@ -99,8 +99,9 @@ page 70122 ArchiEntetePlanteur
                 {
                     ApplicationArea = All;
                 }
-                field(DescriptionCL;rec.DescriptionCL){
-                    
+                field(DescriptionCL; rec.DescriptionCL)
+                {
+
                 }
             }
             group(Paiement)
@@ -146,6 +147,10 @@ page 70122 ArchiEntetePlanteur
                     itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
                     itemWigIfbhhf.SetRange("Statut paiement Planteur", true);
                     if itemWigIfbhhf.FindFirst() then begin
+                        // repeat begin
+                        //      Message('NPC: %1 Ticket: %2', itemWigIfbhhf.NumDocExten, itemWigIfbhhf."Ticket Planteur"); 
+                        // end until itemWigIfbhhf.Next()=0;
+                      
                         Report.Run(70050, true, false, itemWigIfbhhf);
                     end;
                 end;

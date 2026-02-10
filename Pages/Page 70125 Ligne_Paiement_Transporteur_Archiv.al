@@ -20,6 +20,10 @@ page 70125 LignePaiementTransportArchiv
                 {
                     ApplicationArea = All;
                 }
+                field(CLpaiement; Rec.CLpaiement)
+                {
+                    ApplicationArea = All;
+                }
                 field("Weighing 1 Date"; "Weighing 1 Date")
                 {
                     ApplicationArea = All;

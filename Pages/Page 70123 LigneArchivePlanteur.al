@@ -19,6 +19,14 @@ page 70123 Ligne_Paiement_Achive_Planteur
                 {
                     Editable = false;
                 }
+                field(NumDocExten; rec.NumDocExten)
+                {
+                    ApplicationArea = All;
+                }
+                field(CLpaiement; REC.CLpaiement)
+                {
+                    ApplicationArea = All;
+                }
                 field("Weighing 1 Date"; "Weighing 1 Date")
                 {
                     ApplicationArea = All;
@@ -50,10 +58,7 @@ page 70123 Ligne_Paiement_Achive_Planteur
                         end;
                     end;
                 }
-                field(NumDocExten; rec.NumDocExten)
-                {
-                    ApplicationArea = All;
-                }
+
                 field("Code planteur"; "Code planteur")
                 {
                     ApplicationArea = All;
