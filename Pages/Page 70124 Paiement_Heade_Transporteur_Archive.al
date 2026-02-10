@@ -125,7 +125,7 @@ page 70124 PaiementHeaderTransport_Archiv
             part(LignePaiementTransportArchiv; LignePaiementTransportArchiv)
             {
                 // SubPageLink = "Code Transporteur" = field(Palanteur), "Statut paiement" = const(false);
-                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(true), NumeroDocTransport = field(NumDocExt);
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(true), NumeroDocTransport = field(NumeroDocTransport);
 
 
             }
@@ -160,7 +160,7 @@ page 70124 PaiementHeaderTransport_Archiv
                         rec.Modify();
                         // transaction.Reset();
                         // transaction.Init();
-                        itemWeitg2.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg2.SetFilter(NumeroDocTransport, '=%1', rec.NumeroDocTransport);
                         itemWeitg2.SetFilter(itemWeitg2.Ticket_Concerne_Transport, '=%1', true);
                         itemWeitg2.SetFilter("Statut paiement", '=%1', true);
                         if itemWeitg2.FindSet() then begin
@@ -171,7 +171,7 @@ page 70124 PaiementHeaderTransport_Archiv
 
                         ItemWeighBridgecaisse.Reset();
                         ItemWeighBridgecaisse.Init();
-                        ItemWeighBridgecaisse.SetFilter(ItemWeighBridgecaisse.NuDocExtern, '=%1', rec.NumDocExt);
+                        ItemWeighBridgecaisse.SetFilter(ItemWeighBridgecaisse.NuDocExtern, '=%1', rec.NumeroDocTransport);
                         if ItemWeighBridgecaisse.FindSet() then begin
                             repeat begin
                                 ItemWeighBridgecaisse.Delete();
@@ -179,7 +179,7 @@ page 70124 PaiementHeaderTransport_Archiv
                         end;
 
                         // itemWeitg.SetFilter(NumDocExten, rec.NumDocExt);
-                        itemWeitg.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                        itemWeitg.SetFilter(NumeroDocTransport, '=%1', rec.NumeroDocTransport);
                         itemWeitg.SetFilter(Ticket_Concerne_Transport, '=%1', true);
                         itemWeitg.SetFilter("Statut paiement", '=%1', true);
                         if itemWeitg.FindSet() then begin
@@ -195,7 +195,7 @@ page 70124 PaiementHeaderTransport_Archiv
                                 itemWeitg.NCNI := '';
                                 itemWeitg.Telephone := '';
                                 itemWeitg.Observation := '';
-                                itemWeitg.NumDocExten := '';
+                                itemWeitg.NumeroDocTransport := '';
                                 itemWeitg.PrixUnitaireTansport := 0;
                                 itemWeitg.TotalTransporteur := 0;
                                 itemWeitg.TotalTransport := 0;
@@ -222,7 +222,7 @@ page 70124 PaiementHeaderTransport_Archiv
                     Entete_Paiements: Record Entete_Paiement;
                     itemWigIfbhhf: Record "Item Weigh Bridge";
                 begin
-                    itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
+                    itemWigIfbhhf.SetRange(NumeroDocTransport, REC.NumeroDocTransport);
                     itemWigIfbhhf.SetRange("Statut paiement", true);
                     if itemWigIfbhhf.FindFirst() then begin
                         Report.Run(70052, true, false, itemWigIfbhhf);
@@ -245,7 +245,7 @@ page 70124 PaiementHeaderTransport_Archiv
                 begin
 
                     ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
-                    ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExt);
+                    ItemWeightBridge.SetFilter(NumeroDocTransport, '=%1', rec.NumeroDocTransport);
                     ItemWeightBridge.SetFilter("Statut paiement", '=%1', false);
                     if ItemWeightBridge.FindSet() then begin
                         repeat begin
@@ -286,7 +286,7 @@ page 70124 PaiementHeaderTransport_Archiv
         Transaction."validée" := true;
         Transaction."Montant NET" := ItemWeigtn2.TotalTransPorteurTTC;
         Transaction."Origine Operation" := ItemWeigtn2.ORIGINE;
-        Transaction.DocExtern := ItemWeigtn2.NumDocExten;
+        Transaction.DocExtern := ItemWeigtn2.NumeroDocTransport;
         Transaction.Multipaiement := true;
         Transaction.Insert()
     end;
@@ -300,7 +300,7 @@ page 70124 PaiementHeaderTransport_Archiv
             Error('Ce ticket a été déja payé pour le planteur');
         end else begin
             ItemWeigBridge."Statut paiement Planteur" := true;
-            ItemWeigBridge.NumDocExten := (ItemWeigBridge."Code planteur" + Format(rec.code_Paiement));
+            ItemWeigBridge.NumeroDocTransport := (ItemWeigBridge."Code planteur" + Format(rec.code_Paiement));
             ItemWeigBridge.Date_Paiement := WorkDate();
             ItemWeigBridge.Modify();
             // Message('yes1:%1', ItemWeigBridge."Statut paiement Planteur");
@@ -325,7 +325,7 @@ page 70124 PaiementHeaderTransport_Archiv
         end else begin
             ItemWeigBridge2."Statut paiement" := true;
             ItemWeigBridge2.Date_Paiement := WorkDate();
-            ItemWeigBridge2.NumDocExten := rec.NumDocExt;
+            ItemWeigBridge2.NumeroDocTransport := rec.NumeroDocTransport;
             ItemWeigBridge2.Modify();
             //***
             rec.Archive := true;
@@ -447,7 +447,7 @@ page 70124 PaiementHeaderTransport_Archiv
         ItemWeighBridgecaisse."Posting Date" := ItemWeigthBridge."Posting Date";
         ItemWeighBridgecaisse.Statut_Total_Paiement := ItemWeigthBridge.Statut_Total_Paiement;
         ItemWeighBridgecaisse.Date_Paiement := WorkDate();
-        ItemWeighBridgecaisse.NuDocExtern := ItemWeigthBridge.NumDocExten;
+        ItemWeighBridgecaisse.NumeroDocTransport := ItemWeigthBridge.NumeroDocTransport;
         ItemWeighBridgecaisse.Insert()
     end;
 

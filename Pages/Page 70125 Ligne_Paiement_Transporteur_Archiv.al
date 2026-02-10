@@ -16,6 +16,10 @@ page 70125 LignePaiementTransportArchiv
                 {
                     Editable = false;
                 }
+                field(NumeroDocTransport; NumeroDocTransport)
+                {
+                    ApplicationArea = All;
+                }
                 field("Weighing 1 Date"; "Weighing 1 Date")
                 {
                     ApplicationArea = All;

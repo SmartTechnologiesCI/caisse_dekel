@@ -38,6 +38,7 @@ page 70120 ListePantTransporteurArchive
                 field(Palanteur; Palanteur)
                 {
                     ApplicationArea = All;
+                    
                 }
                 field(Nom_Planteur; Nom_Planteur)
                 {
@@ -76,7 +77,7 @@ page 70120 ListePantTransporteurArchive
                     Entete_Paiements: Record Entete_Paiement_Transporteur;
                     itemWigIfbhhf: Record "Item Weigh Bridge";
                 begin
-                    itemWigIfbhhf.SetRange(NumDocExten, REC.NumDocExt);
+                    itemWigIfbhhf.SetRange(NumeroDocTransport, REC.NumeroDocTransport);
                     itemWigIfbhhf.SetRange("Statut paiement", true);
                     if itemWigIfbhhf.FindFirst() then begin
                         Report.Run(70052, true, false, itemWigIfbhhf);
