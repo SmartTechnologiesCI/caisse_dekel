@@ -144,6 +144,11 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         {
             DataClassification = ToBeClassified;
         }
+        field(55029; NumeroDocTransport; CODE[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'N° Document Transport';
+        }
 
 
     }

@@ -122,6 +122,12 @@ tableextension 70030 "Item Weigh Bridge caisse" extends "Item Weigh Bridge caiss
             DataClassification = ToBeClassified;
             Caption = 'Montant Net Transport';
         }
+        field(55015; NumeroDocTransport; CODE[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'N° Document Transport';
+        }
+        
     }
 
     keys

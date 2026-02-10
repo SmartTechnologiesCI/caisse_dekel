@@ -17,9 +17,17 @@ page 70119 Ligne_Paiement_Transporteur
                 {
                     Editable = false;
                 }
-                field("Type opération"; "Type opération")
+                field(NumeroDocTransport; NumeroDocTransport)
+                {
+                    ApplicationArea = All;
+                }
+                field("Type opération"; rec."Type opération")
                 {
 
+                }
+                field(CLpaiement; REC.CLpaiement)
+                {
+                    ApplicationArea = All;
                 }
                 field("Weighing 1 Date"; "Weighing 1 Date")
                 {
@@ -68,7 +76,7 @@ page 70119 Ligne_Paiement_Transporteur
                         Souche.SetRange(User, UserId);
                         if Souche.FindLast() then begin
                             // if rec.Ticket_Concerne_Transport = true then begin
-                            rec.NumDocExten := Souche.Code_Souche;
+                            rec.NumeroDocTransport := Souche.Code_Souche;
                             // end else begin
                             //     rec.NumDocExten := '';
                             // end;
@@ -76,18 +84,24 @@ page 70119 Ligne_Paiement_Transporteur
 
                         end;
                         SommeTotale();
-                        HeaderPaiement.SetRange(NumDocExt, rec.NumDocExten);
+                        HeaderPaiement.SetRange(NumeroDocTransport, rec.NumeroDocTransport);
                         if HeaderPaiement.FindFirst() then begin
+                            HeaderPaiement.TestField(Beneficiare);
+                            HeaderPaiement.TestField(CNI);
+                            HeaderPaiement.TestField(Mode_Paiement);
+                            HeaderPaiement.TestField(Telephone);
+                            HeaderPaiement.TestField(CLPaiement);
                             if rec.Ticket_Concerne_Transport then begin
                                 Rec.Beneficiaire := HeaderPaiement.Beneficiare;
                                 REC.NCNI := HeaderPaiement.CNI;
                                 REC.Mode_Paiement := HeaderPaiement.Mode_Paiement;
                                 REC.Observation := HeaderPaiement.Observation;
                                 REC.Telephone := HeaderPaiement.Telephone;
+                                rec.CLpaiement := HeaderPaiement.DescriptionCL;
                             end;
 
                             //****
-                            ItemWeightBridge.SetFilter(NumDocExten, '=%1', rec.NumDocExten);
+                            ItemWeightBridge.SetFilter(NumeroDocTransport, '=%1', rec.NumeroDocTransport);
                             ItemWeightBridge.SetFilter(Ticket_Concerne_Transport, '=%1', true);
                             ItemWeightBridge.SetFilter("Statut paiement", '=%1', false);
                             if ItemWeightBridge.FindSet() then begin
@@ -139,7 +153,7 @@ page 70119 Ligne_Paiement_Transporteur
                             REc.Telephone := '';
                             rec.Observation := '';
                             rec.Date_Paiement := 0D;
-                            rec.NumDocExten := '';
+                            rec.NumeroDocTransport := '';
                             CurrPage.Update();
 
                         end;

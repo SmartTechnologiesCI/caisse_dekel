@@ -4998,6 +4998,9 @@ MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26MdrmmW3aphujbZ7Zpm26
         <Field Name="NumDocExten">
           <DataField>NumDocExten</DataField>
         </Field>
+        <Field Name="NumeroDocTransport">
+          <DataField>NumeroDocTransport</DataField>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>DataSource</DataSourceName>

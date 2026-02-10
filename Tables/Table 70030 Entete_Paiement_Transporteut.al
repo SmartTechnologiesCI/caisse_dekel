@@ -24,7 +24,7 @@ table 70030 Entete_Paiement_Transporteur
                 Souche.Reset();
                 Souche.Init();
                 Souche.User := UserId;
-                Souche.Code_Souche := NumDocExt;
+                Souche.Code_Souche := NumeroDocTransport;
                 Souche.Insert();
 
             end;
@@ -37,6 +37,7 @@ table 70030 Entete_Paiement_Transporteur
         field(50003; Beneficiare; Text[250])
         {
             DataClassification = ToBeClassified;
+            Caption = 'Bénéficiaire';
         }
         field(50004; Caissier; Code[250])
         {
@@ -62,19 +63,19 @@ table 70030 Entete_Paiement_Transporteur
         field(50008; NumDocExt; Code[50])
         {
             DataClassification = ToBeClassified;
-            Caption = 'N° Document';
+            Caption = 'N° Document Régime';
             Editable = false;
         }
         field(50029; CNI; Code[250])
         {
             DataClassification = ToBeClassified;
-            Caption = 'N° Pièce';
+            Caption = 'N° Pièce d''identité';
         }
         field(50030; Mode_Paiement; Option)
         {
             Caption = 'Mode Paiement';
             DataClassification = ToBeClassified;
-            OptionMembers = ESPECE,WAVE,OM,"MTN Money","MOOV Money",CHEQUE;
+            OptionMembers = " ",ESPECE,WAVE,OM,"MTN Money","MOOV Money",CHEQUE;
         }
         field(50031; Observation; Text[250])
         {
@@ -133,7 +134,7 @@ table 70030 Entete_Paiement_Transporteur
             FieldClass = FlowField;
             Caption = 'Total Achat Transporteur(TTC:) FCFA';
             Editable = false;
-            CalcFormula = sum("Item Weigh Bridge".TotalTransPorteurTTC where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
+            CalcFormula = sum("Item Weigh Bridge".TotalTransPorteurTTC where(NumeroDocTransport = field(NumeroDocTransport), "Statut paiement" = const(true)));
         }
 
         field(55017; Poids_Total2; Decimal)
@@ -141,7 +142,7 @@ table 70030 Entete_Paiement_Transporteur
             FieldClass = FlowField;
             Caption = 'Poids Total (KG)';
             Editable = false;
-            CalcFormula = sum("Item Weigh Bridge"."POIDS NET" where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
+            CalcFormula = sum("Item Weigh Bridge"."POIDS NET" where(NumeroDocTransport = field(NumeroDocTransport), "Statut paiement" = const(true)));
         }
         field(55018; TotalPlanteur2; Decimal)
         {
@@ -149,7 +150,7 @@ table 70030 Entete_Paiement_Transporteur
 
             Caption = 'Total Achat Transporteur (FCFA)';
             FieldClass = FlowField;
-            CalcFormula = sum("Item Weigh Bridge".TotalTransPorteurTTC where(NumDocExten = field(NumDocExt), "Statut paiement" = const(true)));
+            CalcFormula = sum("Item Weigh Bridge".TotalTransPorteurTTC where(NumeroDocTransport = field(NumeroDocTransport), "Statut paiement" = const(true)));
 
         }
         field(55019; NaturePiece; Option)
@@ -163,14 +164,14 @@ table 70030 Entete_Paiement_Transporteur
             FieldClass = FlowField;
             Caption = 'Total Transport (TTC)';
             Editable = false;
-            CalcFormula = sum("Item Weigh Bridge".TotalTransPorteurTTC where(NumDocExten = field(NumDocExt), Ticket_Concerne_Transport = const(true)));
+            CalcFormula = sum("Item Weigh Bridge".TotalTransPorteurTTC where(NumeroDocTransport = field(NumeroDocTransport), Ticket_Concerne_Transport = const(true)));
 
         }
         field(55021; TotalTransport; Decimal)
         {
             Caption = 'Total Transport (HT)';
             FieldClass = FlowField;
-            CalcFormula = sum("Item Weigh Bridge".TotalTransport where(NumDocExten = field(NumDocExt), Ticket_Concerne_Transport = const(true)));
+            CalcFormula = sum("Item Weigh Bridge".TotalTransport where(NumeroDocTransport = field(NumeroDocTransport), Ticket_Concerne_Transport = const(true)));
 
         }
         field(55022; TotalTransportIMPOT; Decimal)
@@ -178,14 +179,14 @@ table 70030 Entete_Paiement_Transporteur
             Caption = 'Impôt (%)';
 
             FieldClass = FlowField;
-            CalcFormula = sum("Item Weigh Bridge".Impot where(NumDocExten = field(NumDocExt), Ticket_Concerne_Transport = const(true)));
+            CalcFormula = sum("Item Weigh Bridge".Impot where(NumeroDocTransport = field(NumeroDocTransport), Ticket_Concerne_Transport = const(true)));
 
         }
         field(55023; PoidTotalTransport; Decimal)
         {
             Caption = 'Poids total (KG)';
             FieldClass = FlowField;
-            CalcFormula = sum("Item Weigh Bridge"."POIDS NET" where(NumDocExten = field(NumDocExt), Ticket_Concerne_Transport = const(true)));
+            CalcFormula = sum("Item Weigh Bridge"."POIDS NET" where(NumeroDocTransport = field(NumeroDocTransport), Ticket_Concerne_Transport = const(true)));
 
         }
         field(55024; StatutAnnulaition; Boolean)
@@ -194,7 +195,22 @@ table 70030 Entete_Paiement_Transporteur
             Caption = 'Annulé';
         }
 
-
+        field(55025; CLPaiement; code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Centre Logistique';
+        }
+        field(55026; DescriptionCL; code[50])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Description CL';
+        }
+        field(55027; NumeroDocTransport; CODE[50])
+        {
+            // DataClassification = ToBeClassified;
+            Caption = 'N° Document Transport';
+            Editable = false;
+        }
         // field(55015; PrixUnitaire; Decimal)
         // {
         //     DataClassification = ToBeClassified;
@@ -204,7 +220,7 @@ table 70030 Entete_Paiement_Transporteur
 
     keys
     {
-        key(Key1; code_Paiement, NumDocExt)
+        key(Key1; code_Paiement, NumeroDocTransport)
         {
             Clustered = true;
         }
@@ -231,7 +247,7 @@ table 70030 Entete_Paiement_Transporteur
             TicketPlanteur :=
                 NoSeriesMgt.GetNextNo(Rec."No. Series", WorkDate(), true);
 
-            Rec.NumDocExt := TicketPlanteur;
+            Rec.NumeroDocTransport := TicketPlanteur;
 
             exit(true);
         end else begin

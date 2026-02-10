@@ -18,6 +18,11 @@ page 70120 ListePantTransporteurArchive
                 field(NumDocExt; NumDocExt)
                 {
                     ApplicationArea = All;
+                    Visible = false;
+                }
+                field(NumeroDocTransport; rec.NumeroDocTransport)
+                {
+
                 }
 
                 field(Code_Transporteur; Code_Transporteur)

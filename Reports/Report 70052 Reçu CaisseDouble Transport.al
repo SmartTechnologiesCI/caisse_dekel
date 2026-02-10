@@ -91,9 +91,15 @@ report 70052 Recu_Paiement_Double_Transport
             {
 
             }
-            column(NumDocExten;NumDocExten){
-                
+            column(NumDocExten; NumDocExten)
+            {
+
             }
+            column(NumeroDocTransport; NumeroDocTransport)
+            {
+
+            }
+
             //Centre Logistique
 
             trigger OnPreDataItem()
@@ -172,9 +178,9 @@ report 70052 Recu_Paiement_Double_Transport
                 // */
 
                 //Centre Logistique
-                Caisse.SetRange("User ID", UserId);
-                if Caisse.FindFirst() then begin
-                    CL := Caisse.DescriptionCentreLogistique;
+                // Caisse.SetRange("User ID", UserId);
+                if FindFirst() then begin
+                    CL := CLpaiement;
                 end;
                 //Centre Logistique
 

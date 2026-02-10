@@ -94,12 +94,17 @@ page 70124 PaiementHeaderTransport_Archiv
                 field(NumDocExt; NumDocExt)
                 {
                     ApplicationArea = All;
+                    Visible = false;
+                }
+                field(NumeroDocTransport; NumeroDocTransport)
+                {
+                    ApplicationArea = All;
                 }
                 field(StatutAnnulaition; StatutAnnulaition)
                 {
                     ApplicationArea = All;
                 }
-                
+
             }
             group(Paiement)
             {
@@ -120,7 +125,7 @@ page 70124 PaiementHeaderTransport_Archiv
             part(LignePaiementTransportArchiv; LignePaiementTransportArchiv)
             {
                 // SubPageLink = "Code Transporteur" = field(Palanteur), "Statut paiement" = const(false);
-                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(true), NumDocExten = field(NumDocExt);
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(true), NumeroDocTransport = field(NumDocExt);
 
 
             }

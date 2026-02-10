@@ -14,7 +14,11 @@ page 70117 ListePaiementTransporteur
             {
                 field(NumDocExt; NumDocExt)
                 {
-
+                    visible = false;
+                }
+                field(NumeroDocTransport; rec.NumeroDocTransport)
+                {
+                    ApplicationArea = All;
                 }
                 field(Code_Transporteur; Code_Transporteur)
                 {
