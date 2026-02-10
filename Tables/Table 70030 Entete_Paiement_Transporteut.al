@@ -208,7 +208,7 @@ table 70030 Entete_Paiement_Transporteur
         field(55027; NumeroDocTransport; CODE[50])
         {
             // DataClassification = ToBeClassified;
-            Caption = 'N° Document Transport';
+            Caption = 'N° paiement transport';
             Editable = false;
         }
         // field(55015; PrixUnitaire; Decimal)

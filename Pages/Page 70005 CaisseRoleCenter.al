@@ -68,7 +68,7 @@ page 70015 "Caisse RoleCenter"
                     Promoted = True;
                     ApplicationArea = All;
                     PromotedCategory = Category12;
-                    Caption = 'Archives paiement planteur';
+                    Caption = 'Archives paiement régime';
                     RunObject = page ListePantPlanteurArchive;
 
                 }
@@ -77,7 +77,7 @@ page 70015 "Caisse RoleCenter"
                     Promoted = True;
                     ApplicationArea = All;
                     PromotedCategory = Category12;
-                    Caption = 'Archives paiement Transporteur';
+                    Caption = 'Archives paiement transport';
                     RunObject = page ListePantTransporteurArchive;
 
                 }

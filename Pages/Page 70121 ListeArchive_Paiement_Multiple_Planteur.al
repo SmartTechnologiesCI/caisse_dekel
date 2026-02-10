@@ -7,7 +7,7 @@ page 70121 ListePantPlanteurArchive
     SourceTable = Entete_Paiement;
     SourceTableView = where(Archive = const(true));
     CardPageId = ArchiEntetePlanteur;
-    Caption = 'Archive Paiement Planteur';
+    Caption = 'Archives paiement régime';
     Editable = false;
     InsertAllowed = false;
     ModifyAllowed = false;

@@ -8,7 +8,7 @@ page 70122 ArchiEntetePlanteur
     InsertAllowed = false;
     ModifyAllowed = false;
     DeleteAllowed = false;
-    Caption = 'Multiple paiement Régime Archive';
+    Caption = 'Archives paiement régime';
 
     layout
     {
