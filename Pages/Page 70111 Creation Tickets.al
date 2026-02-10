@@ -49,15 +49,25 @@ page 70141 Creation_Ticket
                 field(TICKET; TICKET)
                 {
                 }
-                field("Nom Client"; "Nom Client")
+                field("Ticket Planteur"; "Ticket Planteur")
                 {
-                    ApplicationArea = All;
+
                 }
+
+
                 field("Type opération"; "Type opération")
                 {
 
                 }
                 field("Balance Code"; rec."Balance Code")
+                {
+                    ApplicationArea = All;
+                }
+                field(MultiPese; rec.MultiPese)
+                {
+                    ApplicationArea = All;
+                }
+                field(CodeMultiPese; rec.CodeMultiPese)
                 {
                     ApplicationArea = All;
                 }
@@ -67,10 +77,7 @@ page 70141 Creation_Ticket
                 field("Nom Transporteur"; "Nom Transporteur")
                 {
                 }
-                field("Ticket Planteur"; "Ticket Planteur")
-                {
 
-                }
                 //<<Fab Smartech 24_04_25
                 field(valide; REC.valide)
                 {
@@ -93,6 +100,10 @@ page 70141 Creation_Ticket
                     ApplicationArea = All;
                 }
                 field(Statut_Total_Paiement; REC.Statut_Total_Paiement)
+                {
+                    ApplicationArea = All;
+                }
+                field("Nom Client"; "Nom Client")
                 {
                     ApplicationArea = All;
                 }
@@ -1320,7 +1331,7 @@ page 70141 Creation_Ticket
             UNTIL Fournisseurs.NEXT = 0;
         ///carelle,,,
         //***************
-       
+
 
     end;
 
@@ -1357,7 +1368,7 @@ page 70141 Creation_Ticket
         Text003: Label 'Accounting Period is not created.';
         Text0020: Label 'You dont have permission in Item journal.';
         Text0001: Label 'Traitement    #1';
-        
+
         ////***
 
         UserSetup2: Record "User Setup";
