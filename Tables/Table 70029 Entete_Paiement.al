@@ -60,7 +60,7 @@ table 70029 Entete_Paiement
         field(50008; NumDocExt; Code[50])
         {
             DataClassification = ToBeClassified;
-            Caption = 'N° Document';
+            Caption = 'N° Paiement Régime';
             Editable = false;
         }
         field(50029; CNI; Code[250])

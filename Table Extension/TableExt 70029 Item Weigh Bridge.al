@@ -15,7 +15,7 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         field(55007; NumDocExten; code[50])
         {
             DataClassification = ToBeClassified;
-            Caption = 'N° document';
+            Caption = 'N° Paiement Régime';
         }
         field(55008; Telephone; Code[25])
         {
@@ -147,7 +147,7 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         field(55029; NumeroDocTransport; CODE[50])
         {
             DataClassification = ToBeClassified;
-            Caption = 'N° Document Transport';
+            Caption = 'N° Paiement Transport';
         }
 
 
