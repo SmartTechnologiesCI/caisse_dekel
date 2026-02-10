@@ -28,8 +28,6 @@ page 70124 PaiementHeaderTransport_Archiv
                         if ItemWeighBridge.FindFirst() then begin
                             rec.Nom_Planteur := Nom_Planteur;
                         end;
-
-
                     end;
 
                 }
