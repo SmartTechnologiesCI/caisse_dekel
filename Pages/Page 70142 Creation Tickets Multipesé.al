@@ -12,7 +12,7 @@ page 70142 Creation_Ticket_Multipese
 
     CaptionML = ENU = 'Item Weight Bridge', FRA = 'Création tickets Multi Pesé';
 
-    Editable = false;
+    // Editable = false;
     DeleteAllowed = false;
 
     InsertAllowed = false;
