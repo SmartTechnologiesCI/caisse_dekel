@@ -107,15 +107,15 @@ page 70118 Paiement_Header_Transporteur
                 field(CLPaiement; rec.CLPaiement)
                 {
                     ApplicationArea = All;
-                    TableRelation = Origine;
+                    TableRelation = MagasinCentreLogistique;
                     trigger OnValidate()
                     var
                         myInt: Integer;
-                        origin: Record Origine;
+                        origin: Record MagasinCentreLogistique;
                     begin
-                        origin.SetRange("Code Origine", REC.CLPaiement);
+                        origin.SetRange(Prefixe, REC.CLPaiement);
                         if origin.FindFirst() then begin
-                            rec.DescriptionCL := origin.Origine;
+                            rec.DescriptionCL := origin.Description;
                             REC.Modify()
                         end;
                     end;
