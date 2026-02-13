@@ -242,17 +242,19 @@ table 70030 Entete_Paiement_Transporteur
         // Balance.SetRange(Code, Rec."Balance Code");
         if not Balance.FindFirst() then
             Error('Renseignement la souche de numéro paie ticket dans paramètre utilisateurs.');
-        if NoSeriesMgt.SelectSeries(Balance.NumSouschPaie, OldPoint."No. Series", Rec."No. Series") then begin
-
+        // if NoSeriesMgt.SelectSeries(Balance.NumSouschPaie, OldPoint."No. Series", Rec."No. Series") then begin
+        if rec.NumeroDocTransport = '' then begin
             TicketPlanteur :=
-                NoSeriesMgt.GetNextNo(Rec."No. Series", WorkDate(), true);
+                       NoSeriesMgt.GetNextNo(Balance.NumSouschPaie, WorkDate(), true);
 
             Rec.NumeroDocTransport := TicketPlanteur;
 
             exit(true);
-        end else begin
-            Error('Impossible de sélectionner la souche de numérotation "%1".', Balance.NumSouschPaie);
         end;
+
+        // end else begin
+        //     Error('Impossible de sélectionner la souche de numérotation "%1".', Balance.NumSouschPaie);
+        // end;
     end;
 
     var
