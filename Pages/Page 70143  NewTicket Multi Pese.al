@@ -465,7 +465,7 @@ page 70143 "New Ticket Multi Pese"
                                 if rec.CodeMultiPese = '' then begin
                                     if Rec.AssistEdit_PointCaisses(xRec) then
                                         rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
-                                        CurrPage.Update();
+                                    CurrPage.Update();
                                 end;
 
                                 // end else begin
@@ -550,6 +550,14 @@ page 70143 "New Ticket Multi Pese"
     begin
         // Message('New record');
         // rec.Insert();
+    end;
+
+    trigger OnOpenPage()
+    var
+        myInt: Integer;
+    begin
+        rec.MultiPese := true;
+        
     end;
 
     var

@@ -22,7 +22,7 @@ page 70142 Creation_Ticket_Multipese
     CardPageId = "New Ticket Multi Pese";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(Descending) where("Balance Code" = filter('AY*'), valide = CONST(false));
+                      ORDER(Descending) where("Balance Code" = filter('AY*'), valide = CONST(false), MultiPese = const(true));
     //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
@@ -46,12 +46,17 @@ page 70142 Creation_Ticket_Multipese
                 //     ApplicationArea = all;
                 //     Editable = true;
                 // }
-                field(TICKET; TICKET)
-                {
-                }
+                // field(TICKET; TICKET)
+                // {
+                // }
                 field("Ticket Planteur"; "Ticket Planteur")
                 {
 
+                }
+                field(CodeMultiPese; rec.CodeMultiPese)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Code Multi pesé';
                 }
 
 
@@ -67,10 +72,7 @@ page 70142 Creation_Ticket_Multipese
                 {
                     ApplicationArea = All;
                 }
-                field(CodeMultiPese; rec.CodeMultiPese)
-                {
-                    ApplicationArea = All;
-                }
+
                 field("Code Transporteur"; "Code Transporteur")
                 {
                 }
@@ -585,7 +587,7 @@ page 70142 Creation_Ticket_Multipese
                                         if NoSeriesLine.FindFirst() then begin
                                             NoSeriesLine."Last No. Used" := ItemWeighBridgeMultiPese."Ticket Planteur";
                                             NoSeriesLine.Modify();
-                                            Message('aaa: %1', NoSeriesLine."Last No. Used");
+                                            // Message('aaa: %1', NoSeriesLine."Last No. Used");
                                         end;
                                     end;
 
@@ -631,9 +633,9 @@ page 70142 Creation_Ticket_Multipese
                         end;
                         //08_09_25 FnGeek
                         if Rec.MultiPese = true then begin
-                            ItemWeighBridge.SetFilter("Ticket Planteur", '=%1', rec."Ticket Planteur");
+                            ItemWeighBridge.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
                             if ItemWeighBridge.FindSet() then begin
-                                Page.Run(page::MultiPeseSubForm, ItemWeighBridge);
+                                Page.Run(page::Creation_Ticket_Multipese, ItemWeighBridge);
                             end;
                         end;
                         //08_09_25 FnGeek
