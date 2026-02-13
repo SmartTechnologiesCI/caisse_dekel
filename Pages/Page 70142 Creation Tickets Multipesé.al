@@ -17,7 +17,7 @@ page 70142 Creation_Ticket_Multipese
 
     InsertAllowed = false;
     UsageCategory = Lists;
-    ModifyAllowed = false;
+    // ModifyAllowed = false;
     PageType = List;
     CardPageId = "New Ticket Multi Pese";
     SourceTable = "Item Weigh Bridge";
@@ -52,6 +52,7 @@ page 70142 Creation_Ticket_Multipese
                 field("Ticket Planteur"; "Ticket Planteur")
                 {
 
+                    Editable = false;
                 }
                 field(CodeMultiPese; rec.CodeMultiPese)
                 {
@@ -626,7 +627,7 @@ page 70142 Creation_Ticket_Multipese
                         NewRec.TransferFields(rec);
                         NewRec."Process Ticket" := newRec."Process Ticket"::Update;
                         NewRec.Insert(true);
-                        if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
+                        if page.RunModal(page::"New Ticket Multi Pese", NewRec) = action::LookupOK then begin
                             Rec.TransferFields(NewRec);
                             Rec.Modify();
                             CurrPage.Update(false);
