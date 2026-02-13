@@ -10,7 +10,7 @@ page 70142 Creation_Ticket_Multipese
     // ****************************************************************************************************************************************************************
     // 1.47     B2B    20-Apr-15    SatishKNV           New Page is created for Item Weight Bridge Functionality related.
 
-    CaptionML = ENU = 'Item Weight Bridge', FRA = 'Création tickets multi-pesé';
+    CaptionML = ENU = 'Item Weight Bridge', FRA = 'Création tickets Multi Pesé';
 
     Editable = false;
     DeleteAllowed = false;
@@ -19,7 +19,7 @@ page 70142 Creation_Ticket_Multipese
     UsageCategory = Lists;
     ModifyAllowed = false;
     PageType = List;
-    CardPageId = "New Ticket";
+    CardPageId = "New Ticket Multi Pese";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
                       ORDER(Descending) where("Balance Code" = filter('AY*'), valide = CONST(false));
@@ -543,6 +543,8 @@ page 70142 Creation_Ticket_Multipese
                         ControlVariable: Integer;
                         ItemWeighBridgeMultiPese2: Record "Item Weigh Bridge";
                         ItemWeighBridgeMultiPese3: Record "Item Weigh Bridge";
+                        NoSeriesLine: Record "No. Series Line";
+                        Balances: Record Balance;
                     begin
                         // for ControlVariable := StartNumber to EndNumber do begin
 
@@ -558,7 +560,7 @@ page 70142 Creation_Ticket_Multipese
                         NewRec."Process Ticket" := newRec."Process Ticket"::Create;
                         NewRec.Insert(true);
 
-                        if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
+                        if page.RunModal(page::"New Ticket Multi Pese", NewRec) = action::LookupOK then begin
                             Rec := NewRec;
                             Rec.Insert();
                             TicketBuffer := REC.TICKET;
@@ -570,14 +572,29 @@ page 70142 Creation_Ticket_Multipese
                         if ItemWeighBridgeMultiPese.FindFirst() then begin
                             if ItemWeighBridgeMultiPese.MultiPese = true then begin
                                 for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
-                                    ItemWeighBridgeMultiPese2 := ItemWeighBridgeMultiPese;
-                                    ItemWeighBridgeMultiPese2.TICKET += (ControlVariable - 1);
-                                    ItemWeighBridgeMultiPese2."POIDS ENTREE" := 0;
-                                    ItemWeighBridgeMultiPese2.Insert();
+
+                                    ItemWeighBridgeMultiPese.TICKET += (ControlVariable - 1);
+                                    ItemWeighBridgeMultiPese."Ticket Planteur" := IncStr(ItemWeighBridgeMultiPese."Ticket Planteur");
+
+                                    ItemWeighBridgeMultiPese."POIDS ENTREE" := 0;
+                                    ItemWeighBridgeMultiPese.Insert();
+                                    //********FnGeek 13_02_26
+                                    Balances.SetRange(Code, ItemWeighBridgeMultiPese."Balance Code");
+                                    if Balances.FindFirst() then begin
+                                        NoSeriesLine.SetRange("Series Code", Balances."Souche N°");
+                                        if NoSeriesLine.FindFirst() then begin
+                                            NoSeriesLine."Last No. Used" := ItemWeighBridgeMultiPese."Ticket Planteur";
+                                            NoSeriesLine.Modify();
+                                            Message('aaa: %1', NoSeriesLine."Last No. Used");
+                                        end;
+                                    end;
+
+
+                                    //********FnGeek
                                 end;
-                                ItemWeighBridgeMultiPese3.SetFilter("Ticket Planteur", ItemWeighBridgeMultiPese."Ticket Planteur");
+                                ItemWeighBridgeMultiPese3.SetFilter(CodeMultiPese, ItemWeighBridgeMultiPese.CodeMultiPese);
                                 if ItemWeighBridgeMultiPese3.FindSet() then begin
-                                    Page.Run(page::MultiPeseSubForm, ItemWeighBridgeMultiPese3);
+                                    Page.Run(page::Creation_Ticket_Multipese, ItemWeighBridgeMultiPese3);
                                 end;
                             end;
                         end;

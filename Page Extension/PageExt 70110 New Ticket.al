@@ -69,13 +69,7 @@ pageextension 70110 "New Ticket" extends "New Ticket"
                     Message('Annulation effectuée avec succès');
                 end;
             }
-            action("EmbeddingActionss")
-            {
-                Caption = 'Tickets pont bascule multi-pesé';
-                RunObject = Page 70142;
-                ApplicationArea = All;
-                // Visible = false;
-            }
+            
         }
 
     }
