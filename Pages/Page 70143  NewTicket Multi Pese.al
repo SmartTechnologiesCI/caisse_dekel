@@ -370,19 +370,19 @@ page 70143 "New Ticket Multi Pese"
                 field("POIDS ENTREE"; Rec."POIDS ENTREE")
                 {
                     ToolTip = 'Specifies the value of the POIDS ENTREE field.', Comment = '%';
-                    Editable = false;
+                    // Editable = false;
                 }
                 field("POIDS SORTIE"; Rec."POIDS SORTIE")
                 {
                     ToolTip = 'Specifies the value of the POIDS SORTIE field.', Comment = '%';
                     // Editable = false;
-                    Editable = false;
+                    // Editable = false;
                 }
                 //<<Fabrice Smart 05_03_25
                 field("POIDS NET"; rec."POIDS NET")
                 {
                     ApplicationArea = All;
-                    Editable = false;
+                    // Editable = false;
                     // Editable = false;
                 }
                 field("Weighing 1 Date"; REC."Weighing 1 Date")

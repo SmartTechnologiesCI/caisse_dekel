@@ -63,7 +63,25 @@ page 70142 Creation_Ticket_Multipese
 
                 field("Type opération"; "Type opération")
                 {
+                    TableRelation = "Type operation"."Type Operation";
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+                        TypeOperation: Record "Type operation";
+                    begin
+                        TypeOperation.SetRange("Type Operation", rec."Type opération");
+                        if TypeOperation.FindFirst() then begin
+                            // rec."Type of Transportation" := 'RECEPTION';
+                            rec."Type of Transportation" := TypeOperation.Mouvement;
+                            REC.Modify();
+                        end;
+                    end;
 
+                }
+                field(ORIGINE; ORIGINE)
+                {
+                    ApplicationArea = All;
+                    TableRelation = Origine;
                 }
                 field("Balance Code"; rec."Balance Code")
                 {
@@ -113,7 +131,7 @@ page 70142 Creation_Ticket_Multipese
                 //<<Fab Smartech 24_04_25
                 field("POIDS ENTREE"; "POIDS ENTREE")
                 {
-                    Editable = false;
+                    // Editable = false;
                     Visible = true;
                 }
                 field("POIDS SORTIE"; "POIDS SORTIE")
@@ -122,7 +140,41 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("POIDS NET"; "POIDS NET")
                 {
-                    Editable = false;
+                    // Editable = false;
+                    trigger OnValidate()
+
+                    var
+                        ItemWeightBridge: Record "Item Weigh Bridge";
+                        ItemWeightBridge2: Record "Item Weigh Bridge";
+                    begin
+                        //FnGeek 08_09_25
+                        if rec.MultiPese = true then begin
+                            if rec."POIDS ENTREE" <> 0 then begin
+                                REC."POIDS SORTIE" := rec."POIDS ENTREE" - rec."POIDS NET";
+                                rec."Process Ticket" := rec."Process Ticket"::Validated;
+                                rec.Modify();
+                                ItemWeightBridge.SetRange(TICKET, (rec.TICKET + 1));
+                                if ItemWeightBridge.FindFirst() then begin
+                                    ItemWeightBridge.VALIDATE("POIDS ENTREE", rec."POIDS SORTIE");
+                                    ItemWeightBridge.Modify();
+                                    ItemWeightBridge2.SetRange(TICKET, ItemWeightBridge.TICKET);
+                                    if ItemWeightBridge2.FindFirst() then begin
+                                        if ItemWeightBridge2."POIDS SORTIE" <> 0 then begin
+                                            // if ItemWeightBridge2."POIDS NET" = 0 then begin
+                                            if ItemWeightBridge2."POIDS ENTREE" <> 0 then begin
+                                                ItemWeightBridge2."POIDS NET" := ItemWeightBridge2."POIDS ENTREE" - ItemWeightBridge2."POIDS SORTIE";
+                                                ItemWeightBridge2."Process Ticket" := ItemWeightBridge2."Process Ticket"::Validated;
+                                                ItemWeightBridge2.Modify();
+                                            end;
+                                            // end;
+                                        end;
+                                    end;
+                                end;
+                            end;
+                        end;
+
+                        //FnGeek 08_09_25
+                    end;
                 }
                 field("Item Origin"; "Item Origin")
                 {
@@ -160,6 +212,25 @@ page 70142 Creation_Ticket_Multipese
                 // }
                 field("Code planteur"; "Code planteur")
                 {
+                    TableRelation = Vendor;
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+
+                        Planteur: Record Vendor;
+                    begin
+                        if Rec.AssistEdit_PointCaisse(xRec) then
+                            CurrPage.Update();
+
+                        Planteur.SetRange("No.", rec."Code planteur");
+                        if Planteur.FindFirst() then begin
+                            REC."Nom planteur" := Planteur.Name;
+                            REC.Modify()
+                        end;
+
+
+
+                    end;
                 }
                 field("Nom planteur"; "Nom planteur")
                 {
@@ -579,7 +650,7 @@ page 70142 Creation_Ticket_Multipese
                                     ItemWeighBridgeMultiPese.TICKET += (ControlVariable - 1);
                                     ItemWeighBridgeMultiPese."Ticket Planteur" := IncStr(ItemWeighBridgeMultiPese."Ticket Planteur");
 
-                                    ItemWeighBridgeMultiPese."POIDS ENTREE" := 0;
+                                    ItemWeighBridgeMultiPese."POIDS ENTREE" := ItemWeighBridgeMultiPese."POIDS ENTREE";
                                     ItemWeighBridgeMultiPese.Insert();
                                     //********FnGeek 13_02_26
                                     Balances.SetRange(Code, ItemWeighBridgeMultiPese."Balance Code");
@@ -1278,10 +1349,12 @@ page 70142 Creation_Ticket_Multipese
     begin
         // if ((USERID <> 'DEKEL\ADMINISTRATEUR')) then
         //     ERROR('Vous n''etes pas autorisé à effectuer cette action');
+        /*****FnGeek A decommenter plus tard
         UserSetup.RESET;
         if UserSetup.GET(USERID) then
             if not (UserSetup."Administration ticket") then
                 ERROR('Vous n''êtes pas autorsé à éffectuer cette action');
+                */
     end;
 
     trigger OnDeleteRecord(): Boolean
