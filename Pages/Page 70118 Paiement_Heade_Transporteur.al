@@ -42,15 +42,15 @@ page 70118 Paiement_Header_Transporteur
                 field(Palanteur; Palanteur)
                 {
                     ApplicationArea = All;
-                    // TableRelation = "Item Weigh Bridge"."Code planteur";
+                    // TableRelation = Vendor;
                     trigger OnValidate()
                     var
                         myInt: Integer;
-                        ItemWeighBridge: Record "Item Weigh Bridge";
+                        ItemWeighBridge: Record Vendor;
                     begin
-                        ItemWeighBridge.SetRange("Code planteur", rec.Palanteur);
+                        ItemWeighBridge.SetRange("No.", rec.Palanteur);
                         if ItemWeighBridge.FindFirst() then begin
-                            rec.Nom_Planteur := ItemWeighBridge."Nom planteur";
+                            rec.Nom_Planteur := ItemWeighBridge.Name;
                             // rec.Modify();
                         end;
 
@@ -172,7 +172,8 @@ page 70118 Paiement_Header_Transporteur
             }
             part(Ligne_Paiement_Transporteur; Ligne_Paiement_Transporteur)
             {
-                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(false), valide = const(true), En_Attente_Paiement = const(false), "Type opération" = const('ACHAT DIRECT');
+                SubPageLink = "Code planteur" = field(Palanteur), "Statut paiement" = const(false), valide = const(true), En_Attente_Paiement = const(false), "Type opération" = const('ACHAT DIRECT'),TicketAnnule=const(false);
+;
 
             }
         }

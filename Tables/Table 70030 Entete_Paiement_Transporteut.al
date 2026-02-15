@@ -20,6 +20,9 @@ table 70030 Entete_Paiement_Transporteur
                 myInt: Integer;
                 Souche: Record Souche;
             begin
+                //*********
+                
+                //*********
                 AssistEdit_PointCaisse(xRec);
                 Souche.Reset();
                 Souche.Init();
