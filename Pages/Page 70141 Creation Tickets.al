@@ -584,6 +584,88 @@ page 70141 Creation_Ticket
                         //<<FnGeek 05_09_25
                     end;
                 }
+                //*****Multi-pesée
+                action("CreateNews")
+                {
+                    CaptionML = ENU = 'Create New T', FRA = 'Créer Multi nouveau ticket';
+                    Image = New;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
+
+                    trigger OnAction()
+                    var
+                        allRec: Record "Item Weigh Bridge";
+                        NewRec: Record "Item Weigh Bridge" temporary;
+
+                        balance: Record Balance;
+                        jObj: JsonObject;
+                        jTok: JsonToken;
+                        TicketBuffer: Integer;
+                        NombrePlanteursBuffer: Integer;
+                        ItemWeighBridgeMultiPese: Record "Item Weigh Bridge";
+                        ControlVariable: Integer;
+                        ItemWeighBridgeMultiPese2: Record "Item Weigh Bridge";
+                        ItemWeighBridgeMultiPese3: Record "Item Weigh Bridge";
+                        NoSeriesLine: Record "No. Series Line";
+                        Balances: Record Balance;
+                    begin
+                        // for ControlVariable := StartNumber to EndNumber do begin
+
+                        // end;
+                        Clear(TicketBuffer);
+                        Clear(NombrePlanteursBuffer);
+                        NewRec.Init();
+                        if allRec.FindLast() then
+                            NewRec.TICKET := allRec.TICKET + 1
+                        else
+                            NewRec.TICKET := 1;
+                        NewRec."Type of Transportation" := 'RECEPTION';
+                        NewRec."Process Ticket" := newRec."Process Ticket"::Create;
+                        NewRec.Insert(true);
+
+                        if page.RunModal(page::"New Ticket Multi Pese", NewRec) = action::LookupOK then begin
+                            Rec := NewRec;
+                            Rec.Insert();
+                            TicketBuffer := REC.TICKET;
+                            NombrePlanteursBuffer := rec."Nombre de planteurs";
+                            CurrPage.Update(false);
+                        end;
+                        //<<FnGeek 05_09_25
+                        ItemWeighBridgeMultiPese.SetRange(TICKET, TicketBuffer);
+                        if ItemWeighBridgeMultiPese.FindFirst() then begin
+                            if ItemWeighBridgeMultiPese.MultiPese = true then begin
+                                for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
+
+                                    ItemWeighBridgeMultiPese.TICKET += (ControlVariable - 1);
+                                    ItemWeighBridgeMultiPese."Ticket Planteur" := IncStr(ItemWeighBridgeMultiPese."Ticket Planteur");
+
+                                    ItemWeighBridgeMultiPese."POIDS ENTREE" := 0;//Fngeek has commented
+                                    ItemWeighBridgeMultiPese.Insert();
+                                    //********FnGeek 13_02_26
+                                    Balances.SetRange(Code, ItemWeighBridgeMultiPese."Balance Code");
+                                    if Balances.FindFirst() then begin
+                                        NoSeriesLine.SetRange("Series Code", Balances."Souche N°");
+                                        if NoSeriesLine.FindFirst() then begin
+                                            NoSeriesLine."Last No. Used" := ItemWeighBridgeMultiPese."Ticket Planteur";
+                                            NoSeriesLine.Modify();
+                                            // Message('aaa: %1', NoSeriesLine."Last No. Used");
+                                        end;
+                                    end;
+
+
+                                    //********FnGeek
+                                end;
+                                ItemWeighBridgeMultiPese3.SetFilter(CodeMultiPese, ItemWeighBridgeMultiPese.CodeMultiPese);
+                                if ItemWeighBridgeMultiPese3.FindSet() then begin
+                                    Page.Run(page::Creation_Ticket_Multipese, ItemWeighBridgeMultiPese3);
+                                end;
+                            end;
+                        end;
+                        //<<FnGeek 05_09_25
+                    end;
+                }
+                //**** Multi Pesée
                 action("updateWeight")
                 {
                     CaptionML = ENU = 'Update Out Weight', FRA = 'Enregistrer Sortie';
@@ -603,6 +685,7 @@ page 70141 Creation_Ticket
                         //08_09_25
                         ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
+                        rec.TestField(MultiPese, false);
                         Rec.TestField("Process Ticket", Rec."Process Ticket"::Create);
                         NewRec.TransferFields(rec);
                         NewRec."Process Ticket" := newRec."Process Ticket"::Update;
@@ -622,6 +705,47 @@ page 70141 Creation_Ticket
                         //08_09_25 FnGeek
                     end;
                 }
+                //*****MULTI Pésé
+                action("updateWeights")
+                {
+                    CaptionML = ENU = 'Update Out Weight', FRA = 'Enregistrer Sortie Multi-pesé';
+                    Image = OutboundEntry;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
+
+                    trigger OnAction()
+                    var
+                        allRec: Record "Item Weigh Bridge";
+                        NewRec: Record "Item Weigh Bridge" temporary;
+
+                        balance: Record Balance;
+                        jObj: JsonObject;
+                        jTok: JsonToken;
+                        //08_09_25
+                        ItemWeighBridge: Record "Item Weigh Bridge";
+                    begin
+                        Rec.TestField(MultiPese, true);
+                        Rec.TestField("Process Ticket", Rec."Process Ticket"::Create);
+                        NewRec.TransferFields(rec);
+                        NewRec."Process Ticket" := newRec."Process Ticket"::Update;
+                        NewRec.Insert(true);
+                        if page.RunModal(page::"New Ticket Multi Pese", NewRec) = action::LookupOK then begin
+                            Rec.TransferFields(NewRec);
+                            Rec.Modify();
+                            CurrPage.Update(false);
+                        end;
+                        //08_09_25 FnGeek
+                        if Rec.MultiPese = true then begin
+                            ItemWeighBridge.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
+                            if ItemWeighBridge.FindSet() then begin
+                                Page.Run(page::Creation_Ticket_Multipese, ItemWeighBridge);
+                            end;
+                        end;
+                        //08_09_25 FnGeek
+                    end;
+                }
+                //*****
                 // }
                 // group(ActionGroup1102152013)
                 // {

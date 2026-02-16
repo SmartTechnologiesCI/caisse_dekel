@@ -641,7 +641,7 @@ page 70142 Creation_Ticket_Multipese
                     Promoted = true;
                     PromotedCategory = Process;
                     PromotedIsBig = true;
-
+                    Visible = false;
                     trigger OnAction()
                     var
                         allRec: Record "Item Weigh Bridge";

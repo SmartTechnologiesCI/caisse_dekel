@@ -24,7 +24,7 @@ pageextension 70104 "Creation ticket" extends "Creation ticket"
 
             action("CreateNewMultiPese")
             {
-                // Visible = false;
+                Visible = false;
                 CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket Multipese';
                 Image = New;
                 
