@@ -48,13 +48,21 @@ page 70144 "Historique Ticket Annule"
                 // }
                 field(TICKET; TICKET)
                 {
+                    Visible = false;
                 }
                 field("Ticket Planteur"; "Ticket Planteur")
                 {
 
                 }
 
-
+                field(NumDocExten; rec.NumDocExten)
+                {
+                    ApplicationArea = All;
+                }
+                field(NumeroDocTransport; rec.NumeroDocTransport)
+                {
+                    ApplicationArea = All;
+                }
                 field("Type opération"; "Type opération")
                 {
 

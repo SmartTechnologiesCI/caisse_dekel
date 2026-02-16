@@ -154,6 +154,10 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             DataClassification = ToBeClassified;
             Caption = 'Ticket Payé Annulé';
         }
+        // field(55031; "Entry No."; Integer)
+        // {
+        //     // AutoIncrement = true;
+        // }
 
     }
 

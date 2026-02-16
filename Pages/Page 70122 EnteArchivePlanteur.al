@@ -208,6 +208,9 @@ page 70122 ArchiEntetePlanteur
 
                                 // Message('CCC: %1', ItemWeighBridgeCancel);
                                 //
+                                itemWeitg.TicketPayeAnnule := true;
+                                ItemWeighBridgeCancel.TransferFields(itemWeitg);
+                                ItemWeighBridgeCancel.Insert(true);
                                 itemWeitg."Statut paiement Planteur" := false;
                                 itemWeitg.Statut_Total_Paiement := false;
                                 itemWeitg.Ticket_Concerne := false;
@@ -226,8 +229,7 @@ page 70122 ArchiEntetePlanteur
                                 itemWeitg.TotalPlanteurTTc := 0;
                                 itemWeitg.Modify();
                                 //***Archivage
-                                ItemWeighBridgeCancel.TransferFields(itemWeitg);
-                                ItemWeighBridgeCancel.Insert(true);
+
                             end until itemWeitg.Next() = 0;
                         end;
 

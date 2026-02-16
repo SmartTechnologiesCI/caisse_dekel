@@ -10,7 +10,7 @@ table 70035 "Item Weigh Bridge Cancel"
     // ****************************************************************************************************************************************************************
     // 1.47     B2B    20-Apr-15    SatishKNV           New table is created for Item Weight Bridge Functionality related.
 
-    Captionml = FRA = 'Ticket pont bascule', ENU = 'Item Weight Bridge';
+    Captionml = FRA = 'Ticket pont bascule', ENU = 'Item Weight Bridge cancel';
     DrillDownPageID = "Item Weight Bridge";
     LookupPageID = "Item Weight Bridge";
 
@@ -228,7 +228,7 @@ table 70035 "Item Weigh Bridge Cancel"
         field(2503; RowID; Integer)
         {
             CaptionML = ENU = 'RowID', FRA = 'IDLine';
-            AutoIncrement = true;
+            // AutoIncrement = true;
         }
         field(2504; "Code Client"; Code[30])
         {
@@ -761,13 +761,16 @@ table 70035 "Item Weigh Bridge Cancel"
             Caption = 'Ticket Payé Annulé';
         }
 
-
+        field(55031; "Entry No."; Integer)
+        {
+            AutoIncrement = true;
+        }
 
     }
 
     keys
     {
-        key(Key1; TICKET, "Row No.", RowID)
+        key(Key1; TICKET, "Row No.", RowID,"Entry No.")
         {
             Clustered = true;
         }

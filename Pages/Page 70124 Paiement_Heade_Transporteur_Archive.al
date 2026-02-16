@@ -147,7 +147,7 @@ page 70124 PaiementHeaderTransport_Archiv
                     transaction: Record Transactions;
                     itemWeitg2: Record "Item Weigh Bridge";
                     UserSetup: Record "User Setup";
-
+                    ItemWeighBridgeCancel: Record "Item Weigh Bridge Cancel";
                 begin
                     UserSetup.SetRange("User ID", UserId);
                     if UserSetup.FindFirst() then begin
@@ -182,12 +182,15 @@ page 70124 PaiementHeaderTransport_Archiv
                         itemWeitg.SetFilter("Statut paiement", '=%1', true);
                         if itemWeitg.FindSet() then begin
                             repeat begin
+                                itemWeitg.TicketPayeAnnule := true;
+                                ItemWeighBridgeCancel.TransferFields(itemWeitg);
+                                ItemWeighBridgeCancel.Insert(true);
                                 itemWeitg."Statut paiement" := false;
                                 // itemWeitg."Statut paiement Planteur" := false;
                                 itemWeitg.Statut_Total_Paiement := false;
                                 itemWeitg.Ticket_Concerne_Transport := false;
                                 itemWeitg.Date_Paiement := 0D;
-
+                                itemWeitg.TicketPayeAnnule := true;
                                 //***F,gEEK
                                 itemWeitg.Beneficiaire := '';
                                 itemWeitg.NCNI := '';
@@ -199,6 +202,7 @@ page 70124 PaiementHeaderTransport_Archiv
                                 itemWeitg.TotalTransport := 0;
                                 itemWeitg.TotalTransPorteurTTC := 0;
                                 itemWeitg.Modify();
+
                             end until itemWeitg.Next() = 0;
                         end;
                         Message('Annulation effectué avec succès');
