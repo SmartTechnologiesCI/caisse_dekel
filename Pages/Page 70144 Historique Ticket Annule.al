@@ -205,1052 +205,1052 @@ page 70144 "Historique Ticket Annule"
     }
 
 
-    actions
-    {
-        area(processing)
-        {
-            group(Paiement)
-            {
-                // action(Paiement_Planteur)
-                // {
-                //     Caption = 'Payer le planteur';
-                //     Promoted = true;
-                //     PromotedCategory = Process;
-                //     ApplicationArea = All;
-
-                //     trigger OnAction()
-                //     begin
-                //         rec."Statut paiement Planteur" := true;
-                //         rec.Modify();
-                //         if rec."Statut paiement" = true then begin
-                //             Rec.Statut_Total_Paiement := true;
-                //             rec.Modify();
-                //         end;
-                //         if rec.Statut_Total_Paiement = true then begin
-                //             TransFertTicketFromItemWeigntToBridgeCaisse()
-                //         end;
-                //     end;
-
-                // }
-                // action(Paiement_Transpoteur)
-                // {
-                //     Caption = 'Payer le transporteur';
-                //     Promoted = true;
-                //     PromotedCategory = Process;
-                //     ApplicationArea = All;
-
-                //     trigger OnAction()
-                //     begin
-                //         rec."Statut paiement" := true;
-                //         rec.Modify();
-                //         if rec."Statut paiement Planteur" = true then begin
-                //             rec.Statut_Total_Paiement := true;
-                //             REC.Modify()
-                //         end;
-                //         if rec.Statut_Total_Paiement = true then begin
-                //             TransFertTicketFromItemWeigntToBridgeCaisse()
-                //         end;
-                //     end;
-
-                // }
-                // action(Paiement_Planteur_Fournissuer)
-                // {
-                //     Caption = 'Payer le planteur & le transporteur';
-                //     Promoted = true;
-                //     PromotedCategory = Process;
-                //     ApplicationArea = All;
-
-                //     trigger OnAction()
-                //     begin
-                //         rec."Statut paiement Planteur" := true;
-                //         rec."Statut paiement" := true;
-                //         REC.Statut_Total_Paiement := true;
-                //         rec.Modify();
-                //         if rec.Statut_Total_Paiement = true then begin
-                //             TransFertTicketFromItemWeigntToBridgeCaisse()
-                //         end;
-
-                //     end;
-
-                // }
-                //     action(Paiement) 
-                //     {
-                //         Caption = 'Payer le Transporteur';
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         ApplicationArea = All;
-                //         Image = Post;
-                //         Enabled = isTicketCreation;
-                //         trigger OnAction()
-                //         var
-                //             ItemWeight: Record "Item Weigh Bridge";
-                //             Payement: Codeunit Payement;
-                //         begin
-                //             ItemWeight.SetRange("Code planteur", rec."Code planteur");
-                //             ItemWeight.SetRange(TICKET, rec.TICKET);
-                //             ItemWeight.SetRange("Row No.", Rec."Row No.");
-                //             // ItemWeight.SetRange("Statut paiement", true);
-                //             if ItemWeight.FindFirst() then begin
-                //                 PlanterCodeunit.ValidationFactureTransportLot();
-                //             end else begin
-                //                 Message('Vérifiez les informations du ticket');
-                //             end;
-
-                //         end;
-                //     }
-                //     action(PaiementPlanteur)
-                //     {
-                //         Caption = 'Payer le planteur';
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         ApplicationArea = All;
-                //         Image = Post;
-                //         Enabled = isTicketCreation;
-                //         trigger OnAction()
-                //         var
-                //             ItemWeight: Record "Item Weigh Bridge";
-                //             Payement: Codeunit Payement;
-                //         begin
-                //             ItemWeight.SetRange("Code planteur", rec."Code planteur");
-                //             ItemWeight.SetRange(TICKET, rec.TICKET);
-                //             ItemWeight.SetRange("Row No.", Rec."Row No.");
-                //             // ItemWeight.SetRange("Statut paiement Planteur",true);
-                //             if ItemWeight.FindFirst() then begin
-                //                 PlanterCodeunit.ValidationFacturePlanteurLot();
-                //             end else begin
-                //                 Message('Vérifiez les informations du ticket');
-                //             end;
-
-                //         end;
-                //     }
-                //******Fonctionnalité d'annulation de ticket
-                action(Envoie)
-                {
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    ApplicationArea = All;
-                    Caption = 'Demander une annulation';
-                    Visible = FALSE;
-
-                    trigger OnAction()
-                    var
-                        UserSetep: Record "User Setup";
-                        UserSetep2: Record "User Setup";
-                    begin
-
-                    end;
-                }
-                action(AutorisationAnnulation)
-                {
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    ApplicationArea = All;
-                    Visible = FALSE;
-                    Caption = 'Autoriser l''annulation';
-                    trigger OnAction()
-                    begin
-
-                    end;
-                }
-                action(AnnulerTicket)
-                {
-                    Caption = 'Aannuler le ticket';
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    ApplicationArea = All;
-                    Visible = FALSE;
-                    trigger OnAction()
-                    begin
-
-                    end;
-                }
-                //*****
-                action(Impression)
-                {
-                    Caption = 'Imprimer multiple-Pesé';
-                    ApplicationArea = All;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    trigger OnAction()
-                    var
-                        ItemWeighBridge: Record "Item Weigh Bridge";
-                    begin
-                        ItemWeighBridge.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
-                        ItemWeighBridge.SetFilter(MultiPese, '=%1', true);
-                        if ItemWeighBridge.FindSet() then begin
-                            Report.Run(50566, true, false, ItemWeighBridge);
-                        end;
-                    end;
-                }
-                action(Validation)
-                {
-                    Caption = 'Valider le ticket';
-                    ApplicationArea = All;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    Image = Post;
-                    trigger OnAction()
-                    var
-                        ItemWeight2: Record "Item Weigh Bridge";
-                        ticket: Record "Item Weigh Bridge";
-                    begin
-                        TestField(valide, false);
-                        if ((rec."POIDS SORTIE" <= 0) or (rec."POIDS ENTREE" <= 0) or ((rec."POIDS SORTIE" <= 0) and (rec."POIDS ENTREE" <= 0))) then begin
-                            Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
-                        end else begin
-                            rec.TestField(valide, false);
-                            REC.valide := true;
-                            rec."Date validation" := WorkDate();
-                            rec.UserName := UserId;
-                            Rec.Modify();
-                            CurrPage.Update();
-                            Commit();
-                            // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
-                            Print();
-                            rec.imprime := true;
-                            REC.Modify()
-                        end;
-
-                    end;
-                }
-
-                action(Ticket_Pont_Bascule)
-                {
-                    Caption = 'Ticket Pont Bascule';
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    Visible = false;
-                    trigger OnAction()
-                    begin
-                        Report.Run(50500);
-                    end;
-                }
-                action(Rapport_Quotidien)
-                {
-                    Caption = 'Rapport Quotidien Client Fournisseur';
-                    ApplicationArea = All;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    trigger OnAction()
-                    begin
-                        Report.Run(70049);
-                    end;
-                }
-
-                //     action("TicketPontBASCULE")
-                //     {
-                //         Caption = 'Ticket pont bascule';
-                //         Image = Report;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-                //         trigger OnAction()
-                //         var
-                //             ticket: Record "Item Weigh Bridge";
-                //         begin
-                //             Ticket.SetRange(TICKET, rec.TICKET);
-                //             ticket.SetRange("Row No.", rec."Row No.");
-                //             ticket.SetRange(RowID, rec.RowID);
-                //             if ticket.FindFirst() then begin
-                //                 // RunModal(Report::"Ticket de caisse", ticket)
-                //                 Report.Run(Report::"Ticket de caisse", true, false, ticket);
-                //             end;
-
-                //         end;
-                //     }
-                //     action(Test)
-                //     {
-                //         Caption = 'Tester souche N°';
-                //         ApplicationArea = All;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         trigger OnAction()
-                //         var
-                //             Noseries: Record "No. Series";
-                //             GLSeptup: Record "General Ledger Setup";
-                //             GeneralLedgerSetup: Record "General Ledger Setup";
-                //             NoSeriesLine: Record "No. Series Line";
-                //         begin
-                //             GeneralLedgerSetup.Get();
-                //             // if GeneralLedgerSetup.FIND then begin
-                //             NoSeriesLine.SetRange("Series Code", GeneralLedgerSetup.NoSouche);
-                //             if NoSeriesLine.FindFirst() then begin
-                //                 NoSeriesLine.validate("Last No. Used", IncStr(NoSeriesLine.GetLastNoUsed()));
-                //                 NoSeriesLine.Modify();
-                //                 Message('N°: %1', NoSeriesLine."Last No. Used");
-                //                 // Message('N: %1 N2: %2', NoSeriesLine."Ending No.",NoSeriesLine.GetLastNoUsed());
-                //             end;
-                //         end;
-                //     }
-                action("CreateNewMultiPese")
-                {
-                    Visible = false;
-                    CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket Multipese';
-                    Image = New;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    PromotedIsBig = true;
-
-                    RunObject = page "Ticket Header";
-                    // RunPageLink=
-
-                    trigger OnAction()
-                    var
-                        allRec: Record "Item Weigh Bridge";
-                        NewRec: Record "Item Weigh Bridge" temporary;
-
-                        balance: Record Balance;
-                        jObj: JsonObject;
-                        jTok: JsonToken;
-                    begin
-                        // Run(PAGE::"Ticket Header");
-                        // NewRec.Init();
-                        // if allRec.FindLast() then
-                        //     NewRec.TICKET := allRec.TICKET + 1
-                        // else
-                        //     NewRec.TICKET := 1;
-                        // NewRec."Type of Transportation" := 'RECEPTION';
-                        // NewRec."Process Ticket" := newRec."Process Ticket"::Create;
-                        // NewRec.Insert(true);
-
-                        // if page.RunModal(page::"Ticket Header", NewRec) = action::LookupOK then begin
-                        //     Rec := NewRec;
-                        //     Rec.Insert();
-                        //     CurrPage.Update(false);
-                        // end;
-                        Page.Run(Page::"Ticket Header");
-                    end;
-                }
-                action("CreateNew")
-                {
-                    CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket';
-                    Image = New;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    PromotedIsBig = true;
-
-                    trigger OnAction()
-                    var
-                        allRec: Record "Item Weigh Bridge";
-                        NewRec: Record "Item Weigh Bridge Cancel" temporary;
-
-                        balance: Record Balance;
-                        jObj: JsonObject;
-                        jTok: JsonToken;
-                        TicketBuffer: Integer;
-                        NombrePlanteursBuffer: Integer;
-                        ItemWeighBridgeMultiPese: Record "Item Weigh Bridge";
-                        ControlVariable: Integer;
-                        ItemWeighBridgeMultiPese2: Record "Item Weigh Bridge";
-                        ItemWeighBridgeMultiPese3: Record "Item Weigh Bridge";
-                    begin
-                        // for ControlVariable := StartNumber to EndNumber do begin
-
-                        // end;
-                        Clear(TicketBuffer);
-                        Clear(NombrePlanteursBuffer);
-                        NewRec.Init();
-                        if allRec.FindLast() then
-                            NewRec.TICKET := allRec.TICKET + 1
-                        else
-                            NewRec.TICKET := 1;
-                        NewRec."Type of Transportation" := 'RECEPTION';
-                        NewRec."Process Ticket" := newRec."Process Ticket"::Create;
-                        NewRec.Insert(true);
-
-                        if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
-                            Rec := NewRec;
-                            Rec.Insert();
-                            TicketBuffer := REC.TICKET;
-                            NombrePlanteursBuffer := rec."Nombre de planteurs";
-                            CurrPage.Update(false);
-                        end;
-                        //<<FnGeek 05_09_25
-                        ItemWeighBridgeMultiPese.SetRange(TICKET, TicketBuffer);
-                        if ItemWeighBridgeMultiPese.FindFirst() then begin
-                            if ItemWeighBridgeMultiPese.MultiPese = true then begin
-                                for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
-                                    ItemWeighBridgeMultiPese2 := ItemWeighBridgeMultiPese;
-                                    ItemWeighBridgeMultiPese2.TICKET += (ControlVariable - 1);
-                                    ItemWeighBridgeMultiPese2."POIDS ENTREE" := 0;
-                                    ItemWeighBridgeMultiPese2.Insert();
-                                end;
-                                ItemWeighBridgeMultiPese3.SetFilter("Ticket Planteur", ItemWeighBridgeMultiPese."Ticket Planteur");
-                                if ItemWeighBridgeMultiPese3.FindSet() then begin
-                                    Page.Run(page::MultiPeseSubForm, ItemWeighBridgeMultiPese3);
-                                end;
-                            end;
-                        end;
-                        //<<FnGeek 05_09_25
-                    end;
-                }
-                action("updateWeight")
-                {
-                    CaptionML = ENU = 'Update Out Weight', FRA = 'Enregistrer Sortie';
-                    Image = OutboundEntry;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    PromotedIsBig = true;
-
-                    trigger OnAction()
-                    var
-                        allRec: Record "Item Weigh Bridge";
-                        NewRec: Record "Item Weigh Bridge" temporary;
-
-                        balance: Record Balance;
-                        jObj: JsonObject;
-                        jTok: JsonToken;
-                        //08_09_25
-                        ItemWeighBridge: Record "Item Weigh Bridge";
-                    begin
-                        Rec.TestField("Process Ticket", Rec."Process Ticket"::Create);
-                        NewRec.TransferFields(rec);
-                        NewRec."Process Ticket" := newRec."Process Ticket"::Update;
-                        NewRec.Insert(true);
-                        if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
-                            Rec.TransferFields(NewRec);
-                            Rec.Modify();
-                            CurrPage.Update(false);
-                        end;
-                        //08_09_25 FnGeek
-                        if Rec.MultiPese = true then begin
-                            ItemWeighBridge.SetFilter("Ticket Planteur", '=%1', rec."Ticket Planteur");
-                            if ItemWeighBridge.FindSet() then begin
-                                Page.Run(page::MultiPeseSubForm, ItemWeighBridge);
-                            end;
-                        end;
-                        //08_09_25 FnGeek
-                    end;
-                }
-                // }
-                // group(ActionGroup1102152013)
-                // {
-                //     action("Create PurchaseInvoice")
-                //     {
-                //         CaptionML = ENU = 'Create Purchase Invoice', FRA = 'Créer facture achat';
-                //         Image = Invoice;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-
-                //         trigger OnAction()
-                //         begin
-                //             TESTFIELD("Purchase invoice Created", false);
-                //             TESTFIELD("Ticket annule", false);
-                //             CLEAR(PlanterCodeunit);
-                //             PlanterCodeunit.CreateItemWgtInvoice(Rec);
-                //         end;
-                //     }
-                //     action("Create TransportInvoice")
-                //     {
-                //         CaptionML = ENU = 'Create Transport Invoice', FRA = 'Créer facture transport';
-                //         Image = Invoice;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-
-                //         trigger OnAction()
-                //         begin
-                //             TESTFIELD("Purchase invoice Tcreate", false);
-                //             TESTFIELD("Ticket annule", false);
-                //             TestField("Transporteur dekel", false);//<<Fabrice Smart 24_02_25
-                //             CLEAR(PlanterCodeunit);
-                //             PlanterCodeunit.CreateTranspWgtInvoice(Rec);
-                //         end;
-                //     }
-                //     action("Create InvoiceLot1")
-                //     {
-                //         CaptionML = ENU = 'Create Invoice by Lot', FRA = 'Créer facture achat régime par lot';
-                //         Image = Invoice;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-                //         Visible = false;
-
-                //         trigger OnAction()
-                //         var
-                //             ItemWei: Record "Item Weigh Bridge";
-                //         begin
-                //             TESTFIELD("Purchase invoice Created", false);
-                //             CLEAR(PlanterCodeunit);
-                //             ItemWei.RESET;
-                //             CurrPage.SETSELECTIONFILTER(ItemWei);
-
-                //             PlanterCodeunit.CreateItemWgtInvoiceLot(ItemWei);
-                //         end;
-                //     }
-                //     action("Create InvoiceLot2")
-                //     {
-                //         CaptionML = ENU = 'Create Invoice by Lot', FRA = 'Créer facture achat transport par lot';
-                //         Image = Invoice;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-                //         Visible = false;
-
-                //         trigger OnAction()
-                //         var
-                //             ItemWei: Record "Item Weigh Bridge";
-                //         begin
-                //             TESTFIELD("Purchase invoice Tcreate", false);
-                //             CLEAR(PlanterCodeunit);
-                //             ItemWei.RESET;
-                //             CurrPage.SETSELECTIONFILTER(ItemWei);
-                //             PlanterCodeunit.CreateItemWgtTransportLot(ItemWei);
-
-                //             //CreateTranspWgtInvoicelot(ItemWei);
-                //         end;
-                //     }
-                //     action("MajTicketOrigine")
-                //     {
-                //         CaptionML = FRA = 'Mettre à jour l''origine d''un ticket', ENU = 'Update the origin of a ticket';
-                //         Image = UpdateShipment;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         ToolTip = 'Bouton qui permet de mettre à jour l''origine d''un ticket non facturé';
-
-                //         trigger OnAction()
-                //         var
-                //             ChangeOrigin: Report "Origin ticket Update";
-                //         begin
-                //             ChangeOrigin.SetItemWeigh(Rec);
-                //             ChangeOrigin.RUNMODAL;
-                //             CurrPage.UPDATE;
-                //         end;
-                //     }
-                // }
-                // group("Validation automatique")
-                // {
-                //     CaptionML = FRA = 'Validation automatique', ENU = 'Automatic validation';
-                //     action(ValidationLotR)
-                //     {
-                //         CaptionML = ENU = 'Generate and post invoice', FRA = 'Generation et validation des factures regime';
-                //         Image = PostBatch;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-
-                //         trigger OnAction()
-                //         var
-                //             ItemWei: Record "Item Weigh Bridge";
-                //         begin
-                //             // PlanterCodeunit.ValidationFacturePlanteurLot;
-                //         end;
-                //     }
-                //     action(ValidationLotT)
-                //     {
-                //         CaptionML = ENU = 'Generate and post invoice transport', FRA = 'Generation et validation des factures transport';
-                //         Image = PostedServiceOrder;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-                //         Visible = false;
-
-                //         trigger OnAction()
-                //         var
-                //             ItemWei: Record "Item Weigh Bridge";
-                //         begin
-                //             // CurrPage.SetSelectionFilter(ItemWei);
-                //             PlanterCodeunit.ValidationFactureTransportLot();
-
-                //         end;
-                //     }
-                //     action("Validation des tickets")
-                //     {
-                //         CaptionML = FRA = 'Validation des tickets', ENU = 'Ticket validation';
-                //         Image = AutofillQtyToHandle;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-                //         RunObject = Codeunit "Planter's Post";
-                //     }
-                // }
-                // group(Documents)
-                // {
-                //     Caption = 'Documents';
-                //     Image = Documents;
-                //     action(Invoice)
-                //     {
-                //         CaptionML = ENU = 'Purchase Invoice', FRA = 'Factures achats régime';
-                //         Image = PostDocument;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-                //         RunObject = page "factures achats";
-                //         //RunPageLink = "No." = FIELD("Purchase Invoice No.");
-                //         RunPageView = WHERE("Buy-from Vendor No." = CONST('FAG*'));
-                //     }
-                //     action(Action1000000016)
-                //     {
-                //         CaptionML = ENU = 'Transport Purchase Invoice', FRA = 'Factures achats transport';
-                //         Image = PostDocument;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-                //         RunObject = page "factures achats";
-                //         //RunPageLink = "No." = FIELD("TPurchase Invoice No.");
-                //         RunPageView = WHERE("Buy-from Vendor No." = CONST('FTR*'));
-                //     }
-                // }
-                // group(Administration)
-                // {
-                //     Caption = 'Administration';
-                //     action("MAJ code transport")
-                //     {
-                //         CaptionML = ENU = 'Update transport code', FRA = 'MAJ code transport';
-                //         Image = UpdateXML;
-                //         Visible = true;
-
-                //         trigger OnAction()
-                //         var
-                //             tempTick: Record "Temp ticket";
-                //             ItemW: Record "Item Weigh Bridge";
-                //         begin
-                //             CheckAdminTicket; // vérification du droit Administrateur des tickets
-                //                               //factcr.RESET;
-                //                               //factcr.SETRANGE("Purchase invoice Created",FALSE);
-                //                               // factcr.MODIFYALL(factcr."Purchase invoice Created",TRUE);
-                //                               //Mise à jour du ticket à partir de la table 50143
-                //             MESSAGE('Debut');
-                //             tempTick.RESET;
-                //             if tempTick.FINDFIRST then
-                //                 repeat
-                //                     ItemW.RESET;
-                //                     if ItemW.GET(tempTick.TICKET, tempTick."Row No.", tempTick.RowID) then begin
-
-                //                         ItemW."Code Transporteur" := tempTick."Code Transporteur";
-                //                         ItemW.MODIFY;
-
-
-                //                     end;
-
-
-
-                //                 until tempTick.NEXT = 0;
-
-                //             MESSAGE('Opération terminée');
-                //         end;
-                //     }
-                //     action("Flush Facture Ticket")
-                //     {
-                //         CaptionML = ENU = 'Flush Facture Ticket', FRA = 'Flush Invoice Ticket';
-                //         Image = DeleteAllBreakpoints;
-                //         Visible = true;
-
-                //         trigger OnAction()
-                //         var
-                //             GL: Record "G/L Entry";
-                //             VAT: Record "VAT Entry";
-                //             FD: Record "Detailed Vendor Ledg. Entry";
-                //             Four: Record "Vendor Ledger Entry";
-                //             Valeur: Record "Value Entry";
-                //             FAE: Record "Purch. Inv. Header";
-                //             FAL: Record "Purch. Inv. Line";
-                //             Dossier: Code[10];
-                //             Tick: Record TIKECT;
-                //             MyDialog: Dialog;
-                //             TempFAE: Record "Purch. Inv. Header";
-                //             ItemW: Record "Item Weigh Bridge";
-                //             FAETemp: Record "Purch. Inv. Header";
-                //         begin
-
-                //             CheckAdminTicket; // vérification du droit Administrateur des tickets
-                //                               // vérification du droit Administrateur des tickets
-                //                               //CheckAdminTicket; // vérification du droit Administrateur des ticketsSuppression par table 50031 N° Ticket
-
-                //             if not CONFIRM('Action a risque voulez-vous continez?', true) then exit;
-
-                //             //Cas des facture comptabilisé
-                //             //    Traitement des tickets planteurs
-                //             MyDialog.OPEN(Text0001, FAE."No.");
-                //             Tick.RESET;
-                //             if Tick.FINDFIRST then
-                //                 repeat
-
-                //                     CLEAR(Dossier);
-
-                //                     Dossier := Tick.code;
-
-                //                     FAL.LOCKTABLE(true);
-                //                     GL.LOCKTABLE(true);
-                //                     VAT.LOCKTABLE(true);
-                //                     Four.LOCKTABLE(true);
-                //                     Valeur.LOCKTABLE(true);
-                //                     FD.LOCKTABLE(true);
-                //                     FAL.LOCKTABLE(true);
-                //                     FAE.LOCKTABLE(true);
-
-                //                     FAE.RESET;
-                //                     FAE.SETRANGE(FAE."Folder No.", Dossier);   //Par numero de dossier
-                //                                                                //FAE.SETRANGE(FAE."Posting Date",011122D,091122D);  //Par plage de date
-                //                     FAE.SETFILTER(FAE."Buy-from Vendor No.", '%1', 'FAG*');
-                //                     if FAE.FINDFIRST then
-                //                         repeat
-                //                             MyDialog.UPDATE();
-
-                //                             GL.RESET;
-                //                             GL.SETRANGE(GL."Document No.", FAE."No.");
-                //                             if GL.FINDFIRST then
-                //                                 GL.DELETEALL;
-
-                //                             VAT.RESET;
-                //                             VAT.SETRANGE(VAT."Document No.", FAE."No.");
-                //                             if VAT.FINDFIRST then
-                //                                 VAT.DELETEALL;
-
-                //                             FD.RESET;
-                //                             FD.SETRANGE(FD."Document No.", FAE."No.");
-                //                             if FD.FINDFIRST then
-                //                                 FD.DELETEALL;
-
-
-                //                             Four.RESET;
-                //                             Four.SETRANGE(Four."Document No.", FAE."No.");
-                //                             if Four.FINDFIRST then
-                //                                 Four.DELETEALL;
-
-
-                //                             Valeur.RESET;
-                //                             Valeur.SETRANGE(Valeur."Document No.", FAE."No.");
-                //                             if Valeur.FINDFIRST then
-                //                                 Valeur.DELETEALL;
-
-
-                //                             FAL.RESET;
-                //                             FAL.SETRANGE(FAL."Document No.", FAE."No.");
-                //                             if FAL.FINDFIRST then
-                //                                 FAL.DELETEALL;
-
-                //                             //Desactivation des lignes ticket
-                //                             ItemW.RESET;
-                //                             ItemW.SETRANGE(ItemW."Ticket Planteur", FAE."Folder No.");
-                //                             if ItemW.FINDFIRST then begin
-                //                                 ItemW."Purchase invoice Created" := false;
-                //                                 ItemW."Purchase Invoice No." := '';
-
-                //                                 ItemW.MODIFY;
-
-                //                             end;
-
-                //                             FAETemp.RESET;
-                //                             if FAETemp.GET(FAE."No.") then
-                //                                 FAETemp.DELETE;
-
-
-                //                         //FAE.DELETE;
-
-                //                         until FAE.NEXT = 0;
-
-
-                //                 until Tick.NEXT = 0;
-                //             MyDialog.CLOSE();
-                //             MESSAGE('Opération terminée');
-
-
-                //             // Traitement des tickets transport
-
-                //             CLEAR(Dossier);
-                //             MyDialog.OPEN(Text0001, Dossier);
-                //             //Dossier:=Tick.code;
-                //             MyDialog.UPDATE();
-                //             FAE.RESET;
-                //             FAE.SETRANGE(FAE."Folder No.", Dossier);
-                //             //FAE.SETRANGE(FAE."Posting Date",011122D,091122D);  //Par plage de date
-                //             FAE.SETFILTER(FAE."Buy-from Vendor No.", '%1', 'FTR*');
-                //             if FAE.FINDFIRST then
-                //                 repeat
-                //                     Dossier := FAE."Folder No.";
-                //                     MyDialog.UPDATE();
-
-
-                //                     GL.RESET;
-                //                     GL.SETRANGE(GL."Document No.", FAE."No.");
-                //                     if GL.FINDFIRST then
-                //                         GL.DELETEALL;
-
-                //                     VAT.RESET;
-                //                     VAT.SETRANGE(VAT."Document No.", FAE."No.");
-                //                     if VAT.FINDFIRST then
-                //                         VAT.DELETEALL;
-
-                //                     FD.RESET;
-                //                     FD.SETRANGE(FD."Document No.", FAE."No.");
-                //                     if FD.FINDFIRST then
-                //                         FD.DELETEALL;
-
-                //                     Four.RESET;
-                //                     Four.SETRANGE(Four."Document No.", FAE."No.");
-                //                     if Four.FINDFIRST then
-                //                         Four.DELETEALL;
-
-                //                     Valeur.RESET;
-                //                     Valeur.SETRANGE(Valeur."Document No.", FAE."No.");
-                //                     if Valeur.FINDFIRST then
-                //                         Valeur.DELETEALL;
-
-                //                     FAL.RESET;
-                //                     FAL.SETRANGE(FAL."Document No.", FAE."No.");
-                //                     if FAL.FINDFIRST then
-                //                         FAL.DELETEALL;
-
-                //                     //Desactivation des lignes ticket
-                //                     ItemW.RESET;
-                //                     ItemW.SETRANGE(ItemW."Ticket Planteur", FAE."Folder No.");
-                //                     if ItemW.FINDFIRST then begin
-                //                         ItemW."Purchase invoice Tcreate" := false;
-                //                         ItemW."TPurchase Invoice No." := '';
-                //                         ItemW.MODIFY;
-
-                //                     end;
-
-                //                     TempFAE.RESET;
-                //                     TempFAE.GET(FAE."No.");
-                //                     TempFAE.DELETE;
-
-                //                 until FAE.NEXT = 0;
-                //             MyDialog.CLOSE();
-                //             MESSAGE('Opération terminée');
-                //         end;
-                //     }
-                //     action("Flush Avoir transport")
-                //     {
-                //         CaptionML = ENU = 'Flush Avoir transport', FRA = 'Flush Avoir transport';
-                //         Image = DeleteQtyToHandle;
-                //         Visible = false;
-
-                //         trigger OnAction()
-                //         var
-                //             GL: Record "G/L Entry";
-                //             VAT: Record "VAT Entry";
-                //             FD: Record "Detailed Vendor Ledg. Entry";
-                //             Four: Record "Vendor Ledger Entry";
-                //             Valeur: Record "Value Entry";
-                //             FAE: Record "Purch. Cr. Memo Hdr.";
-                //             FAL: Record "Purch. Cr. Memo Line";
-                //             Dossier: Code[10];
-                //             Tick: Record TIKECT;
-                //             MyDialog: Dialog;
-                //         begin
-                //             CheckAdminTicket; // vérification du droit Administrateur des tickets
-                //             MyDialog.OPEN(Text0001, Dossier);
-                //             Tick.RESET;
-                //             if Tick.FINDFIRST then
-                //                 repeat
-
-                //                     CLEAR(Dossier);
-
-                //                     Dossier := Tick.code;
-                //                     MyDialog.UPDATE();
-                //                     FAE.RESET;
-                //                     FAE.SETRANGE(FAE."No.", Dossier);
-                //                     FAE.SETFILTER(FAE."Buy-from Vendor No.", '%1', 'FTR*');
-                //                     if FAE.FINDFIRST then begin
-
-                //                         GL.RESET;
-                //                         GL.SETRANGE(GL."Document No.", FAE."No.");
-                //                         if GL.FINDFIRST then
-                //                             GL.DELETEALL;
-
-                //                         VAT.RESET;
-                //                         VAT.SETRANGE(VAT."Document No.", FAE."No.");
-                //                         if VAT.FINDFIRST then
-                //                             VAT.DELETEALL;
-
-                //                         FD.RESET;
-                //                         FD.SETRANGE(FD."Document No.", FAE."No.");
-                //                         if FD.FINDFIRST then
-                //                             FD.DELETEALL;
-
-                //                         Four.RESET;
-                //                         Four.SETRANGE(Four."Document No.", FAE."No.");
-                //                         if Four.FINDFIRST then
-                //                             Four.DELETEALL;
-
-                //                         Valeur.RESET;
-                //                         Valeur.SETRANGE(Valeur."Document No.", FAE."No.");
-                //                         if Valeur.FINDFIRST then
-                //                             Valeur.DELETEALL;
-
-                //                         FAL.RESET;
-                //                         FAL.SETRANGE(FAL."Document No.", FAE."No.");
-                //                         if FAL.FINDFIRST then
-                //                             FAL.DELETEALL;
-
-
-                //                         FAE.DELETE;
-
-
-
-
-
-
-
-                //                     end;
-                //                 until Tick.NEXT = 0;
-                //             MyDialog.CLOSE();
-                //             MESSAGE('Opération terminée');
-                //         end;
-                //     }
-                //     action("Rechercher les doublons")
-                //     {
-                //         CaptionML = ENU = 'Check for duplicates', FRA = 'Rechercher les doublons';
-                //         Visible = true;
-
-                //         trigger OnAction()
-                //         var
-                //             Ticket: Record "Item Weigh Bridge";
-                //             Ticketemp: Record "Item Weigh Bridge";
-                //             Windows: Dialog;
-                //             Text1: Label 'Counting  #1';
-                //         begin
-                //             CheckAdminTicket; // vérification du droit Administrateur des tickets
-                //             Ticket.RESET;
-                //             Ticket.SETCURRENTKEY(RowID);
-                //             Ticket.SETRANGE("Weighing 1 Date", 20220201D, 20220228D);
-                //             Ticket.SETRANGE(Doublon, false);
-                //             Windows.OPEN(Text1, Ticket.RowID);
-                //             if Ticket.FINDFIRST then
-                //                 repeat
-                //                     Windows.UPDATE;
-                //                     Ticketemp.RESET;
-                //                     Ticketemp.SETCURRENTKEY(RowID);
-                //                     Ticketemp.SETRANGE(Ticketemp."Ticket Planteur", Ticket."Ticket Planteur");
-                //                     Ticketemp.SETFILTER(Ticketemp.RowID, '<>%1', Ticket.RowID);
-                //                     if Ticketemp.FINDFIRST then
-                //                         repeat
-                //                             Ticketemp.Doublon := true;
-                //                             Ticketemp.MODIFY;
-                //                         until Ticketemp.NEXT = 0;
-                //                 until Ticket.NEXT = 0;
-                //             Windows.CLOSE;
-                //         end;
-                //     }
-                //     action("Supprimer les doublons")
-                //     {
-                //         CaptionML = FRA = 'Supprimer les doublons', ENU = 'Remove duplicates';
-                //         Visible = false;
-
-                //         trigger OnAction()
-                //         var
-                //             Ticket: Record "Item Weigh Bridge";
-                //             Ticketemp: Record "Item Weigh Bridge";
-                //             Windows: Dialog;
-                //             Text1: Label 'Counting  #1';
-                //         begin
-                //             CheckAdminTicket; // vérification du droit Administrateur des tickets
-                //             Ticket.RESET;
-                //             Ticket.SETRANGE("Weighing 1 Date", 20220101D, 20220131D);
-                //             Ticket.SETRANGE(Doublon, true);
-                //             if Ticket.FINDFIRST then
-                //                 Ticket.DELETEALL;
-                //         end;
-                //     }
-                //     action(Reset)
-                //     {
-                //         Caption = 'Reset';
-                //         Visible = true;
-
-                //         trigger OnAction()
-                //         var
-                //             Ticket: Record "Item Weigh Bridge";
-                //             Ticketemp: Record "Item Weigh Bridge";
-                //             Windows: Dialog;
-                //             Text1: Label 'Traitement    #1';
-                //         begin
-                //             CheckAdminTicket; // vérification du droit Administrateur des tickets
-                //             Ticket.RESET;
-                //             Ticket.SETRANGE("Weighing 1 Date", 20220101D, 20220131D);
-                //             Ticket.SETRANGE("Type of Transportation", 'RECEPTION');
-                //             Ticket.SETFILTER("Type opération", '<>%1', 'PI');
-                //             Windows.OPEN(Text1, Ticket.RowID);
-                //             if Ticket.FINDFIRST then
-                //                 repeat
-                //                     Windows.UPDATE;
-                //                     Ticketemp.RESET;
-                //                     if Ticketemp.GET(Ticket.TICKET, Ticket."Row No.", Ticket.RowID) then begin
-                //                         //Ticketemp."Purchase invoice Created":=FALSE;
-                //                         //Ticketemp."Purchase Invoice No.":='';
-                //                         Ticketemp."Purchase invoice Tcreate" := false;
-                //                         Ticketemp."TPurchase Invoice No." := '';
-                //                         //Ticketemp."Traitement effectué":=FALSE;
-
-
-
-
-                //                         Ticketemp.MODIFY;
-                //                     end;
-
-
-
-                //                 until Ticket.NEXT = 0;
-                //             MESSAGE('Opération terminé');
-                //             Windows.CLOSE;
-                //         end;
-                //     }
-                //     action("Annulation Ticket")
-                //     {
-                //         CaptionML = ENU = 'Ticket Cancel', FRA = 'Annulation Ticket';
-
-                //         trigger OnAction()
-                //         begin
-                //             CheckAdminTicket; // vérification du droit Administrateur des tickets
-
-                //             if CONFIRM('­tes vous sûre de vouloir annuler ce ticket %1 ?', false, "Ticket Planteur") then begin
-                //                 "Ticket annule" := true;
-                //                 MODIFY;
-                //                 MESSAGE('Ticket %1 annulée avec succès', "Ticket Planteur");
-                //             end;
-                //         end;
-                //     }
-                //     action("Change Posting Date")
-                //     {
-                //         CaptionMl = ENU = 'Change Codes', FRA = 'Correction code Planteurs / Fournisseurs';
-                //         Image = UpdateShipment;
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         ToolTip = 'Bouton qui permet de mettre à jour l''origine d''un ticket non facturé';
-
-                //         trigger OnAction()
-                //         var
-                //             ChangeCode: Report "Code Fournisseur ticket Update";
-                //         begin
-                //             ChangeCode.SetItemWeigh(Rec);
-                //             ChangeCode.RUNMODAL;
-                //             CurrPage.UPDATE;
-                //         end;
-                //     }
-                // }
-
-                // group("Annulation_Tickets_Trans_et_Plan")
-                // {
-                //     captionML = FRA = 'Annulation Validation Tickets Transport et Planteur', ENU = 'Cancellation Validation Tickets Transport et Planteur';
-                //     action("Modèle importation tickets")
-                //     {
-                //         Promoted = true;
-                //         Image = ImportExport;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-                //         RunObject = Report "Modele Import ticket";
-                //     }
-                //     action("Importation des tickets")
-                //     {
-                //         Promoted = true;
-                //         Image = ImportExcel;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-                //         RunObject = Report "Importation des tickets";
-                //     }
-                //     action("Annuler Validation Tickets Transport/Planteur")
-                //     {
-                //         Promoted = true;
-                //         PromotedCategory = Process;
-                //         PromotedIsBig = true;
-                //         RunObject = Report "Annuler Validation tickets";
-
-                //     }
-            }
-        }
-    }
+    // actions
+    // {
+    //     area(processing)
+    //     {
+    //         group(Paiement)
+    //         {
+    //             // action(Paiement_Planteur)
+    //             // {
+    //             //     Caption = 'Payer le planteur';
+    //             //     Promoted = true;
+    //             //     PromotedCategory = Process;
+    //             //     ApplicationArea = All;
+
+    //             //     trigger OnAction()
+    //             //     begin
+    //             //         rec."Statut paiement Planteur" := true;
+    //             //         rec.Modify();
+    //             //         if rec."Statut paiement" = true then begin
+    //             //             Rec.Statut_Total_Paiement := true;
+    //             //             rec.Modify();
+    //             //         end;
+    //             //         if rec.Statut_Total_Paiement = true then begin
+    //             //             TransFertTicketFromItemWeigntToBridgeCaisse()
+    //             //         end;
+    //             //     end;
+
+    //             // }
+    //             // action(Paiement_Transpoteur)
+    //             // {
+    //             //     Caption = 'Payer le transporteur';
+    //             //     Promoted = true;
+    //             //     PromotedCategory = Process;
+    //             //     ApplicationArea = All;
+
+    //             //     trigger OnAction()
+    //             //     begin
+    //             //         rec."Statut paiement" := true;
+    //             //         rec.Modify();
+    //             //         if rec."Statut paiement Planteur" = true then begin
+    //             //             rec.Statut_Total_Paiement := true;
+    //             //             REC.Modify()
+    //             //         end;
+    //             //         if rec.Statut_Total_Paiement = true then begin
+    //             //             TransFertTicketFromItemWeigntToBridgeCaisse()
+    //             //         end;
+    //             //     end;
+
+    //             // }
+    //             // action(Paiement_Planteur_Fournissuer)
+    //             // {
+    //             //     Caption = 'Payer le planteur & le transporteur';
+    //             //     Promoted = true;
+    //             //     PromotedCategory = Process;
+    //             //     ApplicationArea = All;
+
+    //             //     trigger OnAction()
+    //             //     begin
+    //             //         rec."Statut paiement Planteur" := true;
+    //             //         rec."Statut paiement" := true;
+    //             //         REC.Statut_Total_Paiement := true;
+    //             //         rec.Modify();
+    //             //         if rec.Statut_Total_Paiement = true then begin
+    //             //             TransFertTicketFromItemWeigntToBridgeCaisse()
+    //             //         end;
+
+    //             //     end;
+
+    //             // }
+    //             //     action(Paiement) 
+    //             //     {
+    //             //         Caption = 'Payer le Transporteur';
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         ApplicationArea = All;
+    //             //         Image = Post;
+    //             //         Enabled = isTicketCreation;
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             ItemWeight: Record "Item Weigh Bridge";
+    //             //             Payement: Codeunit Payement;
+    //             //         begin
+    //             //             ItemWeight.SetRange("Code planteur", rec."Code planteur");
+    //             //             ItemWeight.SetRange(TICKET, rec.TICKET);
+    //             //             ItemWeight.SetRange("Row No.", Rec."Row No.");
+    //             //             // ItemWeight.SetRange("Statut paiement", true);
+    //             //             if ItemWeight.FindFirst() then begin
+    //             //                 PlanterCodeunit.ValidationFactureTransportLot();
+    //             //             end else begin
+    //             //                 Message('Vérifiez les informations du ticket');
+    //             //             end;
+
+    //             //         end;
+    //             //     }
+    //             //     action(PaiementPlanteur)
+    //             //     {
+    //             //         Caption = 'Payer le planteur';
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         ApplicationArea = All;
+    //             //         Image = Post;
+    //             //         Enabled = isTicketCreation;
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             ItemWeight: Record "Item Weigh Bridge";
+    //             //             Payement: Codeunit Payement;
+    //             //         begin
+    //             //             ItemWeight.SetRange("Code planteur", rec."Code planteur");
+    //             //             ItemWeight.SetRange(TICKET, rec.TICKET);
+    //             //             ItemWeight.SetRange("Row No.", Rec."Row No.");
+    //             //             // ItemWeight.SetRange("Statut paiement Planteur",true);
+    //             //             if ItemWeight.FindFirst() then begin
+    //             //                 PlanterCodeunit.ValidationFacturePlanteurLot();
+    //             //             end else begin
+    //             //                 Message('Vérifiez les informations du ticket');
+    //             //             end;
+
+    //             //         end;
+    //             //     }
+    //             //******Fonctionnalité d'annulation de ticket
+    //             action(Envoie)
+    //             {
+    //                 Promoted = true;
+    //                 PromotedCategory = Process;
+    //                 ApplicationArea = All;
+    //                 Caption = 'Demander une annulation';
+    //                 Visible = FALSE;
+
+    //                 trigger OnAction()
+    //                 var
+    //                     UserSetep: Record "User Setup";
+    //                     UserSetep2: Record "User Setup";
+    //                 begin
+
+    //                 end;
+    //             }
+    //             action(AutorisationAnnulation)
+    //             {
+    //                 Promoted = true;
+    //                 PromotedCategory = Process;
+    //                 ApplicationArea = All;
+    //                 Visible = FALSE;
+    //                 Caption = 'Autoriser l''annulation';
+    //                 trigger OnAction()
+    //                 begin
+
+    //                 end;
+    //             }
+    //             action(AnnulerTicket)
+    //             {
+    //                 Caption = 'Aannuler le ticket';
+    //                 Promoted = true;
+    //                 PromotedCategory = Process;
+    //                 ApplicationArea = All;
+    //                 Visible = FALSE;
+    //                 trigger OnAction()
+    //                 begin
+
+    //                 end;
+    //             }
+    //             //*****
+    //             action(Impression)
+    //             {
+    //                 Caption = 'Imprimer multiple-Pesé';
+    //                 ApplicationArea = All;
+    //                 Promoted = true;
+    //                 PromotedCategory = Process;
+    //                 trigger OnAction()
+    //                 var
+    //                     ItemWeighBridge: Record "Item Weigh Bridge";
+    //                 begin
+    //                     ItemWeighBridge.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
+    //                     ItemWeighBridge.SetFilter(MultiPese, '=%1', true);
+    //                     if ItemWeighBridge.FindSet() then begin
+    //                         Report.Run(50566, true, false, ItemWeighBridge);
+    //                     end;
+    //                 end;
+    //             }
+    //             action(Validation)
+    //             {
+    //                 Caption = 'Valider le ticket';
+    //                 ApplicationArea = All;
+    //                 Promoted = true;
+    //                 PromotedCategory = Process;
+    //                 Image = Post;
+    //                 trigger OnAction()
+    //                 var
+    //                     ItemWeight2: Record "Item Weigh Bridge";
+    //                     ticket: Record "Item Weigh Bridge";
+    //                 begin
+    //                     TestField(valide, false);
+    //                     if ((rec."POIDS SORTIE" <= 0) or (rec."POIDS ENTREE" <= 0) or ((rec."POIDS SORTIE" <= 0) and (rec."POIDS ENTREE" <= 0))) then begin
+    //                         Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
+    //                     end else begin
+    //                         rec.TestField(valide, false);
+    //                         REC.valide := true;
+    //                         rec."Date validation" := WorkDate();
+    //                         rec.UserName := UserId;
+    //                         Rec.Modify();
+    //                         CurrPage.Update();
+    //                         Commit();
+    //                         // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
+    //                         Print();
+    //                         rec.imprime := true;
+    //                         REC.Modify()
+    //                     end;
+
+    //                 end;
+    //             }
+
+    //             action(Ticket_Pont_Bascule)
+    //             {
+    //                 Caption = 'Ticket Pont Bascule';
+    //                 Promoted = true;
+    //                 PromotedCategory = Process;
+    //                 Visible = false;
+    //                 trigger OnAction()
+    //                 begin
+    //                     Report.Run(50500);
+    //                 end;
+    //             }
+    //             action(Rapport_Quotidien)
+    //             {
+    //                 Caption = 'Rapport Quotidien Client Fournisseur';
+    //                 ApplicationArea = All;
+    //                 Promoted = true;
+    //                 PromotedCategory = Process;
+    //                 trigger OnAction()
+    //                 begin
+    //                     Report.Run(70049);
+    //                 end;
+    //             }
+
+    //             //     action("TicketPontBASCULE")
+    //             //     {
+    //             //         Caption = 'Ticket pont bascule';
+    //             //         Image = Report;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             ticket: Record "Item Weigh Bridge";
+    //             //         begin
+    //             //             Ticket.SetRange(TICKET, rec.TICKET);
+    //             //             ticket.SetRange("Row No.", rec."Row No.");
+    //             //             ticket.SetRange(RowID, rec.RowID);
+    //             //             if ticket.FindFirst() then begin
+    //             //                 // RunModal(Report::"Ticket de caisse", ticket)
+    //             //                 Report.Run(Report::"Ticket de caisse", true, false, ticket);
+    //             //             end;
+
+    //             //         end;
+    //             //     }
+    //             //     action(Test)
+    //             //     {
+    //             //         Caption = 'Tester souche N°';
+    //             //         ApplicationArea = All;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             Noseries: Record "No. Series";
+    //             //             GLSeptup: Record "General Ledger Setup";
+    //             //             GeneralLedgerSetup: Record "General Ledger Setup";
+    //             //             NoSeriesLine: Record "No. Series Line";
+    //             //         begin
+    //             //             GeneralLedgerSetup.Get();
+    //             //             // if GeneralLedgerSetup.FIND then begin
+    //             //             NoSeriesLine.SetRange("Series Code", GeneralLedgerSetup.NoSouche);
+    //             //             if NoSeriesLine.FindFirst() then begin
+    //             //                 NoSeriesLine.validate("Last No. Used", IncStr(NoSeriesLine.GetLastNoUsed()));
+    //             //                 NoSeriesLine.Modify();
+    //             //                 Message('N°: %1', NoSeriesLine."Last No. Used");
+    //             //                 // Message('N: %1 N2: %2', NoSeriesLine."Ending No.",NoSeriesLine.GetLastNoUsed());
+    //             //             end;
+    //             //         end;
+    //             //     }
+    //             action("CreateNewMultiPese")
+    //             {
+    //                 Visible = false;
+    //                 CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket Multipese';
+    //                 Image = New;
+    //                 Promoted = true;
+    //                 PromotedCategory = Process;
+    //                 PromotedIsBig = true;
+
+    //                 RunObject = page "Ticket Header";
+    //                 // RunPageLink=
+
+    //                 trigger OnAction()
+    //                 var
+    //                     allRec: Record "Item Weigh Bridge";
+    //                     NewRec: Record "Item Weigh Bridge" temporary;
+
+    //                     balance: Record Balance;
+    //                     jObj: JsonObject;
+    //                     jTok: JsonToken;
+    //                 begin
+    //                     // Run(PAGE::"Ticket Header");
+    //                     // NewRec.Init();
+    //                     // if allRec.FindLast() then
+    //                     //     NewRec.TICKET := allRec.TICKET + 1
+    //                     // else
+    //                     //     NewRec.TICKET := 1;
+    //                     // NewRec."Type of Transportation" := 'RECEPTION';
+    //                     // NewRec."Process Ticket" := newRec."Process Ticket"::Create;
+    //                     // NewRec.Insert(true);
+
+    //                     // if page.RunModal(page::"Ticket Header", NewRec) = action::LookupOK then begin
+    //                     //     Rec := NewRec;
+    //                     //     Rec.Insert();
+    //                     //     CurrPage.Update(false);
+    //                     // end;
+    //                     Page.Run(Page::"Ticket Header");
+    //                 end;
+    //             }
+    //             action("CreateNew")
+    //             {
+    //                 CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket';
+    //                 Image = New;
+    //                 Promoted = true;
+    //                 PromotedCategory = Process;
+    //                 PromotedIsBig = true;
+
+    //                 trigger OnAction()
+    //                 var
+    //                     allRec: Record "Item Weigh Bridge";
+    //                     NewRec: Record "Item Weigh Bridge Cancel" temporary;
+
+    //                     balance: Record Balance;
+    //                     jObj: JsonObject;
+    //                     jTok: JsonToken;
+    //                     TicketBuffer: Integer;
+    //                     NombrePlanteursBuffer: Integer;
+    //                     ItemWeighBridgeMultiPese: Record "Item Weigh Bridge";
+    //                     ControlVariable: Integer;
+    //                     ItemWeighBridgeMultiPese2: Record "Item Weigh Bridge";
+    //                     ItemWeighBridgeMultiPese3: Record "Item Weigh Bridge";
+    //                 begin
+    //                     // for ControlVariable := StartNumber to EndNumber do begin
+
+    //                     // end;
+    //                     Clear(TicketBuffer);
+    //                     Clear(NombrePlanteursBuffer);
+    //                     NewRec.Init();
+    //                     if allRec.FindLast() then
+    //                         NewRec.TICKET := allRec.TICKET + 1
+    //                     else
+    //                         NewRec.TICKET := 1;
+    //                     NewRec."Type of Transportation" := 'RECEPTION';
+    //                     NewRec."Process Ticket" := newRec."Process Ticket"::Create;
+    //                     NewRec.Insert(true);
+
+    //                     if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
+    //                         Rec := NewRec;
+    //                         Rec.Insert();
+    //                         TicketBuffer := REC.TICKET;
+    //                         NombrePlanteursBuffer := rec."Nombre de planteurs";
+    //                         CurrPage.Update(false);
+    //                     end;
+    //                     //<<FnGeek 05_09_25
+    //                     ItemWeighBridgeMultiPese.SetRange(TICKET, TicketBuffer);
+    //                     if ItemWeighBridgeMultiPese.FindFirst() then begin
+    //                         if ItemWeighBridgeMultiPese.MultiPese = true then begin
+    //                             for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
+    //                                 ItemWeighBridgeMultiPese2 := ItemWeighBridgeMultiPese;
+    //                                 ItemWeighBridgeMultiPese2.TICKET += (ControlVariable - 1);
+    //                                 ItemWeighBridgeMultiPese2."POIDS ENTREE" := 0;
+    //                                 ItemWeighBridgeMultiPese2.Insert();
+    //                             end;
+    //                             ItemWeighBridgeMultiPese3.SetFilter("Ticket Planteur", ItemWeighBridgeMultiPese."Ticket Planteur");
+    //                             if ItemWeighBridgeMultiPese3.FindSet() then begin
+    //                                 Page.Run(page::MultiPeseSubForm, ItemWeighBridgeMultiPese3);
+    //                             end;
+    //                         end;
+    //                     end;
+    //                     //<<FnGeek 05_09_25
+    //                 end;
+    //             }
+    //             action("updateWeight")
+    //             {
+    //                 CaptionML = ENU = 'Update Out Weight', FRA = 'Enregistrer Sortie';
+    //                 Image = OutboundEntry;
+    //                 Promoted = true;
+    //                 PromotedCategory = Process;
+    //                 PromotedIsBig = true;
+
+    //                 trigger OnAction()
+    //                 var
+    //                     allRec: Record "Item Weigh Bridge";
+    //                     NewRec: Record "Item Weigh Bridge" temporary;
+
+    //                     balance: Record Balance;
+    //                     jObj: JsonObject;
+    //                     jTok: JsonToken;
+    //                     //08_09_25
+    //                     ItemWeighBridge: Record "Item Weigh Bridge";
+    //                 begin
+    //                     Rec.TestField("Process Ticket", Rec."Process Ticket"::Create);
+    //                     NewRec.TransferFields(rec);
+    //                     NewRec."Process Ticket" := newRec."Process Ticket"::Update;
+    //                     NewRec.Insert(true);
+    //                     if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
+    //                         Rec.TransferFields(NewRec);
+    //                         Rec.Modify();
+    //                         CurrPage.Update(false);
+    //                     end;
+    //                     //08_09_25 FnGeek
+    //                     if Rec.MultiPese = true then begin
+    //                         ItemWeighBridge.SetFilter("Ticket Planteur", '=%1', rec."Ticket Planteur");
+    //                         if ItemWeighBridge.FindSet() then begin
+    //                             Page.Run(page::MultiPeseSubForm, ItemWeighBridge);
+    //                         end;
+    //                     end;
+    //                     //08_09_25 FnGeek
+    //                 end;
+    //             }
+    //             // }
+    //             // group(ActionGroup1102152013)
+    //             // {
+    //             //     action("Create PurchaseInvoice")
+    //             //     {
+    //             //         CaptionML = ENU = 'Create Purchase Invoice', FRA = 'Créer facture achat';
+    //             //         Image = Invoice;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+
+    //             //         trigger OnAction()
+    //             //         begin
+    //             //             TESTFIELD("Purchase invoice Created", false);
+    //             //             TESTFIELD("Ticket annule", false);
+    //             //             CLEAR(PlanterCodeunit);
+    //             //             PlanterCodeunit.CreateItemWgtInvoice(Rec);
+    //             //         end;
+    //             //     }
+    //             //     action("Create TransportInvoice")
+    //             //     {
+    //             //         CaptionML = ENU = 'Create Transport Invoice', FRA = 'Créer facture transport';
+    //             //         Image = Invoice;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+
+    //             //         trigger OnAction()
+    //             //         begin
+    //             //             TESTFIELD("Purchase invoice Tcreate", false);
+    //             //             TESTFIELD("Ticket annule", false);
+    //             //             TestField("Transporteur dekel", false);//<<Fabrice Smart 24_02_25
+    //             //             CLEAR(PlanterCodeunit);
+    //             //             PlanterCodeunit.CreateTranspWgtInvoice(Rec);
+    //             //         end;
+    //             //     }
+    //             //     action("Create InvoiceLot1")
+    //             //     {
+    //             //         CaptionML = ENU = 'Create Invoice by Lot', FRA = 'Créer facture achat régime par lot';
+    //             //         Image = Invoice;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+    //             //         Visible = false;
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             ItemWei: Record "Item Weigh Bridge";
+    //             //         begin
+    //             //             TESTFIELD("Purchase invoice Created", false);
+    //             //             CLEAR(PlanterCodeunit);
+    //             //             ItemWei.RESET;
+    //             //             CurrPage.SETSELECTIONFILTER(ItemWei);
+
+    //             //             PlanterCodeunit.CreateItemWgtInvoiceLot(ItemWei);
+    //             //         end;
+    //             //     }
+    //             //     action("Create InvoiceLot2")
+    //             //     {
+    //             //         CaptionML = ENU = 'Create Invoice by Lot', FRA = 'Créer facture achat transport par lot';
+    //             //         Image = Invoice;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+    //             //         Visible = false;
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             ItemWei: Record "Item Weigh Bridge";
+    //             //         begin
+    //             //             TESTFIELD("Purchase invoice Tcreate", false);
+    //             //             CLEAR(PlanterCodeunit);
+    //             //             ItemWei.RESET;
+    //             //             CurrPage.SETSELECTIONFILTER(ItemWei);
+    //             //             PlanterCodeunit.CreateItemWgtTransportLot(ItemWei);
+
+    //             //             //CreateTranspWgtInvoicelot(ItemWei);
+    //             //         end;
+    //             //     }
+    //             //     action("MajTicketOrigine")
+    //             //     {
+    //             //         CaptionML = FRA = 'Mettre à jour l''origine d''un ticket', ENU = 'Update the origin of a ticket';
+    //             //         Image = UpdateShipment;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         ToolTip = 'Bouton qui permet de mettre à jour l''origine d''un ticket non facturé';
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             ChangeOrigin: Report "Origin ticket Update";
+    //             //         begin
+    //             //             ChangeOrigin.SetItemWeigh(Rec);
+    //             //             ChangeOrigin.RUNMODAL;
+    //             //             CurrPage.UPDATE;
+    //             //         end;
+    //             //     }
+    //             // }
+    //             // group("Validation automatique")
+    //             // {
+    //             //     CaptionML = FRA = 'Validation automatique', ENU = 'Automatic validation';
+    //             //     action(ValidationLotR)
+    //             //     {
+    //             //         CaptionML = ENU = 'Generate and post invoice', FRA = 'Generation et validation des factures regime';
+    //             //         Image = PostBatch;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             ItemWei: Record "Item Weigh Bridge";
+    //             //         begin
+    //             //             // PlanterCodeunit.ValidationFacturePlanteurLot;
+    //             //         end;
+    //             //     }
+    //             //     action(ValidationLotT)
+    //             //     {
+    //             //         CaptionML = ENU = 'Generate and post invoice transport', FRA = 'Generation et validation des factures transport';
+    //             //         Image = PostedServiceOrder;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+    //             //         Visible = false;
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             ItemWei: Record "Item Weigh Bridge";
+    //             //         begin
+    //             //             // CurrPage.SetSelectionFilter(ItemWei);
+    //             //             PlanterCodeunit.ValidationFactureTransportLot();
+
+    //             //         end;
+    //             //     }
+    //             //     action("Validation des tickets")
+    //             //     {
+    //             //         CaptionML = FRA = 'Validation des tickets', ENU = 'Ticket validation';
+    //             //         Image = AutofillQtyToHandle;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+    //             //         RunObject = Codeunit "Planter's Post";
+    //             //     }
+    //             // }
+    //             // group(Documents)
+    //             // {
+    //             //     Caption = 'Documents';
+    //             //     Image = Documents;
+    //             //     action(Invoice)
+    //             //     {
+    //             //         CaptionML = ENU = 'Purchase Invoice', FRA = 'Factures achats régime';
+    //             //         Image = PostDocument;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+    //             //         RunObject = page "factures achats";
+    //             //         //RunPageLink = "No." = FIELD("Purchase Invoice No.");
+    //             //         RunPageView = WHERE("Buy-from Vendor No." = CONST('FAG*'));
+    //             //     }
+    //             //     action(Action1000000016)
+    //             //     {
+    //             //         CaptionML = ENU = 'Transport Purchase Invoice', FRA = 'Factures achats transport';
+    //             //         Image = PostDocument;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+    //             //         RunObject = page "factures achats";
+    //             //         //RunPageLink = "No." = FIELD("TPurchase Invoice No.");
+    //             //         RunPageView = WHERE("Buy-from Vendor No." = CONST('FTR*'));
+    //             //     }
+    //             // }
+    //             // group(Administration)
+    //             // {
+    //             //     Caption = 'Administration';
+    //             //     action("MAJ code transport")
+    //             //     {
+    //             //         CaptionML = ENU = 'Update transport code', FRA = 'MAJ code transport';
+    //             //         Image = UpdateXML;
+    //             //         Visible = true;
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             tempTick: Record "Temp ticket";
+    //             //             ItemW: Record "Item Weigh Bridge";
+    //             //         begin
+    //             //             CheckAdminTicket; // vérification du droit Administrateur des tickets
+    //             //                               //factcr.RESET;
+    //             //                               //factcr.SETRANGE("Purchase invoice Created",FALSE);
+    //             //                               // factcr.MODIFYALL(factcr."Purchase invoice Created",TRUE);
+    //             //                               //Mise à jour du ticket à partir de la table 50143
+    //             //             MESSAGE('Debut');
+    //             //             tempTick.RESET;
+    //             //             if tempTick.FINDFIRST then
+    //             //                 repeat
+    //             //                     ItemW.RESET;
+    //             //                     if ItemW.GET(tempTick.TICKET, tempTick."Row No.", tempTick.RowID) then begin
+
+    //             //                         ItemW."Code Transporteur" := tempTick."Code Transporteur";
+    //             //                         ItemW.MODIFY;
+
+
+    //             //                     end;
+
+
+
+    //             //                 until tempTick.NEXT = 0;
+
+    //             //             MESSAGE('Opération terminée');
+    //             //         end;
+    //             //     }
+    //             //     action("Flush Facture Ticket")
+    //             //     {
+    //             //         CaptionML = ENU = 'Flush Facture Ticket', FRA = 'Flush Invoice Ticket';
+    //             //         Image = DeleteAllBreakpoints;
+    //             //         Visible = true;
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             GL: Record "G/L Entry";
+    //             //             VAT: Record "VAT Entry";
+    //             //             FD: Record "Detailed Vendor Ledg. Entry";
+    //             //             Four: Record "Vendor Ledger Entry";
+    //             //             Valeur: Record "Value Entry";
+    //             //             FAE: Record "Purch. Inv. Header";
+    //             //             FAL: Record "Purch. Inv. Line";
+    //             //             Dossier: Code[10];
+    //             //             Tick: Record TIKECT;
+    //             //             MyDialog: Dialog;
+    //             //             TempFAE: Record "Purch. Inv. Header";
+    //             //             ItemW: Record "Item Weigh Bridge";
+    //             //             FAETemp: Record "Purch. Inv. Header";
+    //             //         begin
+
+    //             //             CheckAdminTicket; // vérification du droit Administrateur des tickets
+    //             //                               // vérification du droit Administrateur des tickets
+    //             //                               //CheckAdminTicket; // vérification du droit Administrateur des ticketsSuppression par table 50031 N° Ticket
+
+    //             //             if not CONFIRM('Action a risque voulez-vous continez?', true) then exit;
+
+    //             //             //Cas des facture comptabilisé
+    //             //             //    Traitement des tickets planteurs
+    //             //             MyDialog.OPEN(Text0001, FAE."No.");
+    //             //             Tick.RESET;
+    //             //             if Tick.FINDFIRST then
+    //             //                 repeat
+
+    //             //                     CLEAR(Dossier);
+
+    //             //                     Dossier := Tick.code;
+
+    //             //                     FAL.LOCKTABLE(true);
+    //             //                     GL.LOCKTABLE(true);
+    //             //                     VAT.LOCKTABLE(true);
+    //             //                     Four.LOCKTABLE(true);
+    //             //                     Valeur.LOCKTABLE(true);
+    //             //                     FD.LOCKTABLE(true);
+    //             //                     FAL.LOCKTABLE(true);
+    //             //                     FAE.LOCKTABLE(true);
+
+    //             //                     FAE.RESET;
+    //             //                     FAE.SETRANGE(FAE."Folder No.", Dossier);   //Par numero de dossier
+    //             //                                                                //FAE.SETRANGE(FAE."Posting Date",011122D,091122D);  //Par plage de date
+    //             //                     FAE.SETFILTER(FAE."Buy-from Vendor No.", '%1', 'FAG*');
+    //             //                     if FAE.FINDFIRST then
+    //             //                         repeat
+    //             //                             MyDialog.UPDATE();
+
+    //             //                             GL.RESET;
+    //             //                             GL.SETRANGE(GL."Document No.", FAE."No.");
+    //             //                             if GL.FINDFIRST then
+    //             //                                 GL.DELETEALL;
+
+    //             //                             VAT.RESET;
+    //             //                             VAT.SETRANGE(VAT."Document No.", FAE."No.");
+    //             //                             if VAT.FINDFIRST then
+    //             //                                 VAT.DELETEALL;
+
+    //             //                             FD.RESET;
+    //             //                             FD.SETRANGE(FD."Document No.", FAE."No.");
+    //             //                             if FD.FINDFIRST then
+    //             //                                 FD.DELETEALL;
+
+
+    //             //                             Four.RESET;
+    //             //                             Four.SETRANGE(Four."Document No.", FAE."No.");
+    //             //                             if Four.FINDFIRST then
+    //             //                                 Four.DELETEALL;
+
+
+    //             //                             Valeur.RESET;
+    //             //                             Valeur.SETRANGE(Valeur."Document No.", FAE."No.");
+    //             //                             if Valeur.FINDFIRST then
+    //             //                                 Valeur.DELETEALL;
+
+
+    //             //                             FAL.RESET;
+    //             //                             FAL.SETRANGE(FAL."Document No.", FAE."No.");
+    //             //                             if FAL.FINDFIRST then
+    //             //                                 FAL.DELETEALL;
+
+    //             //                             //Desactivation des lignes ticket
+    //             //                             ItemW.RESET;
+    //             //                             ItemW.SETRANGE(ItemW."Ticket Planteur", FAE."Folder No.");
+    //             //                             if ItemW.FINDFIRST then begin
+    //             //                                 ItemW."Purchase invoice Created" := false;
+    //             //                                 ItemW."Purchase Invoice No." := '';
+
+    //             //                                 ItemW.MODIFY;
+
+    //             //                             end;
+
+    //             //                             FAETemp.RESET;
+    //             //                             if FAETemp.GET(FAE."No.") then
+    //             //                                 FAETemp.DELETE;
+
+
+    //             //                         //FAE.DELETE;
+
+    //             //                         until FAE.NEXT = 0;
+
+
+    //             //                 until Tick.NEXT = 0;
+    //             //             MyDialog.CLOSE();
+    //             //             MESSAGE('Opération terminée');
+
+
+    //             //             // Traitement des tickets transport
+
+    //             //             CLEAR(Dossier);
+    //             //             MyDialog.OPEN(Text0001, Dossier);
+    //             //             //Dossier:=Tick.code;
+    //             //             MyDialog.UPDATE();
+    //             //             FAE.RESET;
+    //             //             FAE.SETRANGE(FAE."Folder No.", Dossier);
+    //             //             //FAE.SETRANGE(FAE."Posting Date",011122D,091122D);  //Par plage de date
+    //             //             FAE.SETFILTER(FAE."Buy-from Vendor No.", '%1', 'FTR*');
+    //             //             if FAE.FINDFIRST then
+    //             //                 repeat
+    //             //                     Dossier := FAE."Folder No.";
+    //             //                     MyDialog.UPDATE();
+
+
+    //             //                     GL.RESET;
+    //             //                     GL.SETRANGE(GL."Document No.", FAE."No.");
+    //             //                     if GL.FINDFIRST then
+    //             //                         GL.DELETEALL;
+
+    //             //                     VAT.RESET;
+    //             //                     VAT.SETRANGE(VAT."Document No.", FAE."No.");
+    //             //                     if VAT.FINDFIRST then
+    //             //                         VAT.DELETEALL;
+
+    //             //                     FD.RESET;
+    //             //                     FD.SETRANGE(FD."Document No.", FAE."No.");
+    //             //                     if FD.FINDFIRST then
+    //             //                         FD.DELETEALL;
+
+    //             //                     Four.RESET;
+    //             //                     Four.SETRANGE(Four."Document No.", FAE."No.");
+    //             //                     if Four.FINDFIRST then
+    //             //                         Four.DELETEALL;
+
+    //             //                     Valeur.RESET;
+    //             //                     Valeur.SETRANGE(Valeur."Document No.", FAE."No.");
+    //             //                     if Valeur.FINDFIRST then
+    //             //                         Valeur.DELETEALL;
+
+    //             //                     FAL.RESET;
+    //             //                     FAL.SETRANGE(FAL."Document No.", FAE."No.");
+    //             //                     if FAL.FINDFIRST then
+    //             //                         FAL.DELETEALL;
+
+    //             //                     //Desactivation des lignes ticket
+    //             //                     ItemW.RESET;
+    //             //                     ItemW.SETRANGE(ItemW."Ticket Planteur", FAE."Folder No.");
+    //             //                     if ItemW.FINDFIRST then begin
+    //             //                         ItemW."Purchase invoice Tcreate" := false;
+    //             //                         ItemW."TPurchase Invoice No." := '';
+    //             //                         ItemW.MODIFY;
+
+    //             //                     end;
+
+    //             //                     TempFAE.RESET;
+    //             //                     TempFAE.GET(FAE."No.");
+    //             //                     TempFAE.DELETE;
+
+    //             //                 until FAE.NEXT = 0;
+    //             //             MyDialog.CLOSE();
+    //             //             MESSAGE('Opération terminée');
+    //             //         end;
+    //             //     }
+    //             //     action("Flush Avoir transport")
+    //             //     {
+    //             //         CaptionML = ENU = 'Flush Avoir transport', FRA = 'Flush Avoir transport';
+    //             //         Image = DeleteQtyToHandle;
+    //             //         Visible = false;
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             GL: Record "G/L Entry";
+    //             //             VAT: Record "VAT Entry";
+    //             //             FD: Record "Detailed Vendor Ledg. Entry";
+    //             //             Four: Record "Vendor Ledger Entry";
+    //             //             Valeur: Record "Value Entry";
+    //             //             FAE: Record "Purch. Cr. Memo Hdr.";
+    //             //             FAL: Record "Purch. Cr. Memo Line";
+    //             //             Dossier: Code[10];
+    //             //             Tick: Record TIKECT;
+    //             //             MyDialog: Dialog;
+    //             //         begin
+    //             //             CheckAdminTicket; // vérification du droit Administrateur des tickets
+    //             //             MyDialog.OPEN(Text0001, Dossier);
+    //             //             Tick.RESET;
+    //             //             if Tick.FINDFIRST then
+    //             //                 repeat
+
+    //             //                     CLEAR(Dossier);
+
+    //             //                     Dossier := Tick.code;
+    //             //                     MyDialog.UPDATE();
+    //             //                     FAE.RESET;
+    //             //                     FAE.SETRANGE(FAE."No.", Dossier);
+    //             //                     FAE.SETFILTER(FAE."Buy-from Vendor No.", '%1', 'FTR*');
+    //             //                     if FAE.FINDFIRST then begin
+
+    //             //                         GL.RESET;
+    //             //                         GL.SETRANGE(GL."Document No.", FAE."No.");
+    //             //                         if GL.FINDFIRST then
+    //             //                             GL.DELETEALL;
+
+    //             //                         VAT.RESET;
+    //             //                         VAT.SETRANGE(VAT."Document No.", FAE."No.");
+    //             //                         if VAT.FINDFIRST then
+    //             //                             VAT.DELETEALL;
+
+    //             //                         FD.RESET;
+    //             //                         FD.SETRANGE(FD."Document No.", FAE."No.");
+    //             //                         if FD.FINDFIRST then
+    //             //                             FD.DELETEALL;
+
+    //             //                         Four.RESET;
+    //             //                         Four.SETRANGE(Four."Document No.", FAE."No.");
+    //             //                         if Four.FINDFIRST then
+    //             //                             Four.DELETEALL;
+
+    //             //                         Valeur.RESET;
+    //             //                         Valeur.SETRANGE(Valeur."Document No.", FAE."No.");
+    //             //                         if Valeur.FINDFIRST then
+    //             //                             Valeur.DELETEALL;
+
+    //             //                         FAL.RESET;
+    //             //                         FAL.SETRANGE(FAL."Document No.", FAE."No.");
+    //             //                         if FAL.FINDFIRST then
+    //             //                             FAL.DELETEALL;
+
+
+    //             //                         FAE.DELETE;
+
+
+
+
+
+
+
+    //             //                     end;
+    //             //                 until Tick.NEXT = 0;
+    //             //             MyDialog.CLOSE();
+    //             //             MESSAGE('Opération terminée');
+    //             //         end;
+    //             //     }
+    //             //     action("Rechercher les doublons")
+    //             //     {
+    //             //         CaptionML = ENU = 'Check for duplicates', FRA = 'Rechercher les doublons';
+    //             //         Visible = true;
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             Ticket: Record "Item Weigh Bridge";
+    //             //             Ticketemp: Record "Item Weigh Bridge";
+    //             //             Windows: Dialog;
+    //             //             Text1: Label 'Counting  #1';
+    //             //         begin
+    //             //             CheckAdminTicket; // vérification du droit Administrateur des tickets
+    //             //             Ticket.RESET;
+    //             //             Ticket.SETCURRENTKEY(RowID);
+    //             //             Ticket.SETRANGE("Weighing 1 Date", 20220201D, 20220228D);
+    //             //             Ticket.SETRANGE(Doublon, false);
+    //             //             Windows.OPEN(Text1, Ticket.RowID);
+    //             //             if Ticket.FINDFIRST then
+    //             //                 repeat
+    //             //                     Windows.UPDATE;
+    //             //                     Ticketemp.RESET;
+    //             //                     Ticketemp.SETCURRENTKEY(RowID);
+    //             //                     Ticketemp.SETRANGE(Ticketemp."Ticket Planteur", Ticket."Ticket Planteur");
+    //             //                     Ticketemp.SETFILTER(Ticketemp.RowID, '<>%1', Ticket.RowID);
+    //             //                     if Ticketemp.FINDFIRST then
+    //             //                         repeat
+    //             //                             Ticketemp.Doublon := true;
+    //             //                             Ticketemp.MODIFY;
+    //             //                         until Ticketemp.NEXT = 0;
+    //             //                 until Ticket.NEXT = 0;
+    //             //             Windows.CLOSE;
+    //             //         end;
+    //             //     }
+    //             //     action("Supprimer les doublons")
+    //             //     {
+    //             //         CaptionML = FRA = 'Supprimer les doublons', ENU = 'Remove duplicates';
+    //             //         Visible = false;
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             Ticket: Record "Item Weigh Bridge";
+    //             //             Ticketemp: Record "Item Weigh Bridge";
+    //             //             Windows: Dialog;
+    //             //             Text1: Label 'Counting  #1';
+    //             //         begin
+    //             //             CheckAdminTicket; // vérification du droit Administrateur des tickets
+    //             //             Ticket.RESET;
+    //             //             Ticket.SETRANGE("Weighing 1 Date", 20220101D, 20220131D);
+    //             //             Ticket.SETRANGE(Doublon, true);
+    //             //             if Ticket.FINDFIRST then
+    //             //                 Ticket.DELETEALL;
+    //             //         end;
+    //             //     }
+    //             //     action(Reset)
+    //             //     {
+    //             //         Caption = 'Reset';
+    //             //         Visible = true;
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             Ticket: Record "Item Weigh Bridge";
+    //             //             Ticketemp: Record "Item Weigh Bridge";
+    //             //             Windows: Dialog;
+    //             //             Text1: Label 'Traitement    #1';
+    //             //         begin
+    //             //             CheckAdminTicket; // vérification du droit Administrateur des tickets
+    //             //             Ticket.RESET;
+    //             //             Ticket.SETRANGE("Weighing 1 Date", 20220101D, 20220131D);
+    //             //             Ticket.SETRANGE("Type of Transportation", 'RECEPTION');
+    //             //             Ticket.SETFILTER("Type opération", '<>%1', 'PI');
+    //             //             Windows.OPEN(Text1, Ticket.RowID);
+    //             //             if Ticket.FINDFIRST then
+    //             //                 repeat
+    //             //                     Windows.UPDATE;
+    //             //                     Ticketemp.RESET;
+    //             //                     if Ticketemp.GET(Ticket.TICKET, Ticket."Row No.", Ticket.RowID) then begin
+    //             //                         //Ticketemp."Purchase invoice Created":=FALSE;
+    //             //                         //Ticketemp."Purchase Invoice No.":='';
+    //             //                         Ticketemp."Purchase invoice Tcreate" := false;
+    //             //                         Ticketemp."TPurchase Invoice No." := '';
+    //             //                         //Ticketemp."Traitement effectué":=FALSE;
+
+
+
+
+    //             //                         Ticketemp.MODIFY;
+    //             //                     end;
+
+
+
+    //             //                 until Ticket.NEXT = 0;
+    //             //             MESSAGE('Opération terminé');
+    //             //             Windows.CLOSE;
+    //             //         end;
+    //             //     }
+    //             //     action("Annulation Ticket")
+    //             //     {
+    //             //         CaptionML = ENU = 'Ticket Cancel', FRA = 'Annulation Ticket';
+
+    //             //         trigger OnAction()
+    //             //         begin
+    //             //             CheckAdminTicket; // vérification du droit Administrateur des tickets
+
+    //             //             if CONFIRM('­tes vous sûre de vouloir annuler ce ticket %1 ?', false, "Ticket Planteur") then begin
+    //             //                 "Ticket annule" := true;
+    //             //                 MODIFY;
+    //             //                 MESSAGE('Ticket %1 annulée avec succès', "Ticket Planteur");
+    //             //             end;
+    //             //         end;
+    //             //     }
+    //             //     action("Change Posting Date")
+    //             //     {
+    //             //         CaptionMl = ENU = 'Change Codes', FRA = 'Correction code Planteurs / Fournisseurs';
+    //             //         Image = UpdateShipment;
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         ToolTip = 'Bouton qui permet de mettre à jour l''origine d''un ticket non facturé';
+
+    //             //         trigger OnAction()
+    //             //         var
+    //             //             ChangeCode: Report "Code Fournisseur ticket Update";
+    //             //         begin
+    //             //             ChangeCode.SetItemWeigh(Rec);
+    //             //             ChangeCode.RUNMODAL;
+    //             //             CurrPage.UPDATE;
+    //             //         end;
+    //             //     }
+    //             // }
+
+    //             // group("Annulation_Tickets_Trans_et_Plan")
+    //             // {
+    //             //     captionML = FRA = 'Annulation Validation Tickets Transport et Planteur', ENU = 'Cancellation Validation Tickets Transport et Planteur';
+    //             //     action("Modèle importation tickets")
+    //             //     {
+    //             //         Promoted = true;
+    //             //         Image = ImportExport;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+    //             //         RunObject = Report "Modele Import ticket";
+    //             //     }
+    //             //     action("Importation des tickets")
+    //             //     {
+    //             //         Promoted = true;
+    //             //         Image = ImportExcel;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+    //             //         RunObject = Report "Importation des tickets";
+    //             //     }
+    //             //     action("Annuler Validation Tickets Transport/Planteur")
+    //             //     {
+    //             //         Promoted = true;
+    //             //         PromotedCategory = Process;
+    //             //         PromotedIsBig = true;
+    //             //         RunObject = Report "Annuler Validation tickets";
+
+    //             //     }
+    //         }
+    //     }
+    // }
 
     trigger OnModifyRecord(): Boolean
     var
