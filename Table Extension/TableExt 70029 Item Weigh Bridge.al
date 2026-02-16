@@ -149,7 +149,11 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
             DataClassification = ToBeClassified;
             Caption = 'N° Paiement Transport';
         }
-
+        field(55030; TicketPayeAnnule; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Ticket Payé Annulé';
+        }
 
     }
 

@@ -21,8 +21,8 @@ page 70144 "Historique Ticket Annule"
     PageType = List;
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge Cancel";
-    SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(Descending) where("Balance Code" = filter('AY*'), valide = CONST(false));
+    // SourceTableView = SORTING(TICKET, "Row No.")
+    //   ORDER(Descending) where("Balance Code" = filter('AY*'), valide = CONST(false));
     //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
@@ -64,6 +64,10 @@ page 70144 "Historique Ticket Annule"
                     ApplicationArea = All;
                 }
                 field(MultiPese; rec.MultiPese)
+                {
+                    ApplicationArea = All;
+                }
+                field(TicketPayeAnnule; rec.TicketPayeAnnule)
                 {
                     ApplicationArea = All;
                 }

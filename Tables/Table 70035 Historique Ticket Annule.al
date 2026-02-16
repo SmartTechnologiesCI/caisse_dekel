@@ -13,7 +13,7 @@ table 70035 "Item Weigh Bridge Cancel"
     Captionml = FRA = 'Ticket pont bascule', ENU = 'Item Weight Bridge';
     DrillDownPageID = "Item Weight Bridge";
     LookupPageID = "Item Weight Bridge";
-    
+
     fields
     {
         field(1; TICKET; Integer)
@@ -755,6 +755,11 @@ table 70035 "Item Weigh Bridge Cancel"
             DataClassification = ToBeClassified;
             Caption = 'N° Paiement Transport';
         }
+        field(55030; TicketPayeAnnule; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Ticket Payé Annulé';
+        }
 
 
 
@@ -892,7 +897,7 @@ table 70035 "Item Weigh Bridge Cancel"
         // Rec.TestField("Balance Code");
         // Balance.SetRange(Code, Rec."Balance Code");
         ParaTicket.Get(1);
-        Message('SSS:%1',ParaTicket.SoucheMultiPese);
+        Message('SSS:%1', ParaTicket.SoucheMultiPese);
         if not Balance.FindFirst() then
             Error('La balance avec le code %1 est introuvable.', Rec."Balance Code");
         if NoSeriesMgt.SelectSeries(ParaTicket.SoucheMultiPese, OldPoint."No. Series", Rec."No. Series") then begin

@@ -150,7 +150,7 @@ page 70122 ArchiEntetePlanteur
                         // repeat begin
                         //      Message('NPC: %1 Ticket: %2', itemWigIfbhhf.NumDocExten, itemWigIfbhhf."Ticket Planteur"); 
                         // end until itemWigIfbhhf.Next()=0;
-                      
+
                         Report.Run(70050, true, false, itemWigIfbhhf);
                     end;
                 end;
@@ -167,6 +167,7 @@ page 70122 ArchiEntetePlanteur
                     transaction: Record Transactions;
                     itemWeitg2: Record "Item Weigh Bridge";
                     UserSetup: Record "User Setup";
+                    ItemWeighBridgeCancel: Record "Item Weigh Bridge Cancel";
                 begin
                     UserSetup.SetRange("User ID", UserId);
                     if UserSetup.FindFirst() then begin
@@ -202,6 +203,11 @@ page 70122 ArchiEntetePlanteur
                         if itemWeitg.FindSet() then begin
                             repeat begin
                                 // itemWeitg."Statut paiement" := false;
+                                //***Archivages
+                                // Message('aaa: %1', itemWeitg);
+
+                                // Message('CCC: %1', ItemWeighBridgeCancel);
+                                //
                                 itemWeitg."Statut paiement Planteur" := false;
                                 itemWeitg.Statut_Total_Paiement := false;
                                 itemWeitg.Ticket_Concerne := false;
@@ -219,8 +225,13 @@ page 70122 ArchiEntetePlanteur
                                 itemWeitg.Impot := 0;
                                 itemWeitg.TotalPlanteurTTc := 0;
                                 itemWeitg.Modify();
+                                //***Archivage
+                                ItemWeighBridgeCancel.TransferFields(itemWeitg);
+                                ItemWeighBridgeCancel.Insert(true);
                             end until itemWeitg.Next() = 0;
                         end;
+
+
                         Message('Annulation effectué avec succès');
                     end else begin
                         exit
