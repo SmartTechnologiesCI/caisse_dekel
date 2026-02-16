@@ -22,7 +22,7 @@ page 70142 Creation_Ticket_Multipese
     CardPageId = "New Ticket Multi Pese";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(Descending) where("Balance Code" = filter('AY*'), valide = CONST(false), MultiPese = const(true));
+                      ORDER(descending) where("Balance Code" = filter('AY*'), valide = CONST(false), MultiPese = const(true));
     //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
@@ -94,6 +94,25 @@ page 70142 Creation_Ticket_Multipese
 
                 field("Code Transporteur"; "Code Transporteur")
                 {
+                    TableRelation = Vendor;
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+
+                        Planteur: Record Vendor;
+                    begin
+                        if Rec.AssistEdit_PointCaisse(xRec) then
+                            CurrPage.Update();
+
+                        Planteur.SetRange("No.", rec."Code planteur");
+                        if Planteur.FindFirst() then begin
+                            REC."Nom Transporteur" := Planteur.Name;
+                            REC.Modify()
+                        end;
+
+
+
+                    end;
                 }
                 field("Nom Transporteur"; "Nom Transporteur")
                 {
@@ -153,7 +172,16 @@ page 70142 Creation_Ticket_Multipese
                                 REC."POIDS SORTIE" := rec."POIDS ENTREE" - rec."POIDS NET";
                                 rec."Process Ticket" := rec."Process Ticket"::Validated;
                                 rec.Modify();
-                                ItemWeightBridge.SetRange(TICKET, (rec.TICKET + 1));
+                                //*****FnGeek 16_02_26
+                                // ItemWeightBridge.SetFilter(CodeMultiPese, rec.CodeMultiPese);
+                                // // ItemWeightBridge.SetLoadFields(POID)
+                                // if ItemWeightBridge.FindSet() then begin
+                                //     repeat begin
+
+                                //     end until ItemWeightBridge.Next() = 0;
+                                // end;
+                                //*****FnGeek 16_02_26
+                                ItemWeightBridge.SetRange("Ticket Planteur", (IncStr(rec."Ticket Planteur")));
                                 if ItemWeightBridge.FindFirst() then begin
                                     ItemWeightBridge.VALIDATE("POIDS ENTREE", rec."POIDS SORTIE");
                                     ItemWeightBridge.Modify();
@@ -239,6 +267,17 @@ page 70142 Creation_Ticket_Multipese
 
                 field("Code article"; "Code article")
                 {
+                    TableRelation = item;
+                    trigger OnValidate()
+                    var
+                        Item: Record Item;
+                    begin
+                        Item.SetRange("No.", REC."Code article");
+                        if Item.FindFirst() then begin
+                            rec."Désignation article" := Item.Description;
+                            REC.Modify();
+                        end;
+                    end;
                 }
                 field("Désignation article"; "Désignation article")
                 {
