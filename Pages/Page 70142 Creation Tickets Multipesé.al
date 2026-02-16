@@ -650,7 +650,7 @@ page 70142 Creation_Ticket_Multipese
                                     ItemWeighBridgeMultiPese.TICKET += (ControlVariable - 1);
                                     ItemWeighBridgeMultiPese."Ticket Planteur" := IncStr(ItemWeighBridgeMultiPese."Ticket Planteur");
 
-                                    ItemWeighBridgeMultiPese."POIDS ENTREE" := ItemWeighBridgeMultiPese."POIDS ENTREE";
+                                    ItemWeighBridgeMultiPese."POIDS ENTREE" := 0;//Fngeek has commented
                                     ItemWeighBridgeMultiPese.Insert();
                                     //********FnGeek 13_02_26
                                     Balances.SetRange(Code, ItemWeighBridgeMultiPese."Balance Code");
