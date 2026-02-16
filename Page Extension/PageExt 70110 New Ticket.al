@@ -55,21 +55,25 @@ pageextension 70110 "New Ticket" extends "New Ticket"
             }
             action(AnnulerTicket)
             {
-                Caption = 'Aannuler le ticket(Non Payé)';
+                Caption = 'Annuler le ticket(Non Payé)';
                 Promoted = true;
                 PromotedCategory = Process;
                 ApplicationArea = All;
                 Visible = AnnulationAnnuler;
                 trigger OnAction()
+                var
+                    ItemWeighBridgeCancel: Record "Item Weigh Bridge Cancel";
                 begin
                     rec.TestField(Annule, rec.Annule::"Autorisé à être annulé");
                     rec.Annule := rec.Annule::"Annulé";
                     rec.TicketAnnule := true;
                     rec.Modify();
+                    ItemWeighBridgeCancel.TransferFields(Rec);
+                    ItemWeighBridgeCancel.Insert();
                     Message('Annulation effectuée avec succès');
                 end;
             }
-            
+
         }
 
     }
