@@ -188,6 +188,8 @@ page 70142 Creation_Ticket_Multipese
                             if rec."POIDS ENTREE" <> 0 then begin
                                 REC."POIDS SORTIE" := rec."POIDS ENTREE" - rec."POIDS NET";
                                 rec."Process Ticket" := rec."Process Ticket"::Validated;
+                                rec."Weighing 2 Date" := WorkDate();
+                                REC."Weighing 2 Hour" := Time;
                                 rec.Modify();
                                 //*****FnGeek 16_02_26
                                 // ItemWeightBridge.SetFilter(CodeMultiPese, rec.CodeMultiPese);
@@ -256,7 +258,21 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("Type of Transportation"; "Type of Transportation")
                 {
-                    Editable = false;
+                    ToolTip = 'Specifies the value of the Type opération field.', Comment = '%';
+                    TableRelation = "Type operation"."Type Operation";
+                    // Enabled = not rec.MultiPese;
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+                        TypeOperation: Record "Type operation";
+                    begin
+                        TypeOperation.SetRange("Type Operation", rec."Type opération");
+                        if TypeOperation.FindFirst() then begin
+                            // rec."Type of Transportation" := 'RECEPTION';
+                            rec."Type of Transportation" := TypeOperation.Mouvement;
+                            REC.Modify();
+                        end;
+                    end;
 
                 }
                 // field("Type opération"; "Type opération")
