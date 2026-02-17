@@ -188,6 +188,8 @@ page 70142 Creation_Ticket_Multipese
                             if rec."POIDS ENTREE" <> 0 then begin
                                 REC."POIDS SORTIE" := rec."POIDS ENTREE" - rec."POIDS NET";
                                 rec."Process Ticket" := rec."Process Ticket"::Validated;
+                                rec."Weighing 2 Date" := WorkDate();
+                                REC."Weighing 2 Hour" := Time;
                                 rec.Modify();
                                 //*****FnGeek 16_02_26
                                 // ItemWeightBridge.SetFilter(CodeMultiPese, rec.CodeMultiPese);
