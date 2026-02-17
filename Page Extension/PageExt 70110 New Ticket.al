@@ -31,6 +31,9 @@ pageextension 70110 "New Ticket" extends "New Ticket"
                     UserSetep2: Record "User Setup";
                 begin
                     rec.TestField(Annule, Rec.Annule::" ");
+                    REC.TestField("Statut paiement", false);
+                    rec.TestField("Statut paiement Planteur", false);
+                    rec.TestField(Statut_Total_Paiement, false);
                     REC.Annule := rec.Annule::"Envoyé en annulation";
                     rec."Envoyé en annulation" := true;
                     rec.Modify();
@@ -47,6 +50,9 @@ pageextension 70110 "New Ticket" extends "New Ticket"
                 trigger OnAction()
                 begin
                     REC.TestField(Annule, rec.Annule::"Envoyé en annulation");
+                    REC.TestField("Statut paiement", false);
+                    rec.TestField("Statut paiement Planteur", false);
+                    rec.TestField(Statut_Total_Paiement, false);
                     REC.Annule := rec.Annule::"Autorisé à être annulé";
                     REC."Autorisé à être annulé" := true;
                     rec.Modify();
@@ -65,6 +71,9 @@ pageextension 70110 "New Ticket" extends "New Ticket"
                     ItemWeighBridgeCancel: Record "Item Weigh Bridge Cancel";
                 begin
                     rec.TestField(Annule, rec.Annule::"Autorisé à être annulé");
+                    REC.TestField("Statut paiement", false);
+                    rec.TestField("Statut paiement Planteur", false);
+                    rec.TestField(Statut_Total_Paiement, false);
                     rec.Annule := rec.Annule::"Annulé";
                     rec.TicketAnnule := true;
                     rec.Modify();
