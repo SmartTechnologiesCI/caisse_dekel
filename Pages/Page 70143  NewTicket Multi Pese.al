@@ -463,7 +463,7 @@ page 70143 "New Ticket Multi Pese"
                                 //******Gestion de la source de numero
                                 if rec.CodeMultiPese = '' then begin
                                     if Rec.AssistEdit_PointCaisses(xRec) then
-                                        rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
+                                        // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
                                     CurrPage.Update();
                                 end;
 
@@ -476,7 +476,7 @@ page 70143 "New Ticket Multi Pese"
                                 // end;
                                 if rec."Ticket Planteur" = '' then begin
                                     if Rec.AssistEdit_PointCaisse(xRec) then
-                                        rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
+                                        // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
                                     CurrPage.Update();
                                 end;
 
