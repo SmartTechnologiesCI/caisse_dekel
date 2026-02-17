@@ -48,12 +48,16 @@ page 70141 Creation_Ticket
                 // }
                 field(TICKET; TICKET)
                 {
+                    Visible = false;
                 }
                 field("Ticket Planteur"; "Ticket Planteur")
                 {
 
                 }
-
+                field(CodeMultiPese; rec.CodeMultiPese)
+                {
+                    ApplicationArea = All;
+                }
 
                 field("Type opération"; "Type opération")
                 {
@@ -67,10 +71,7 @@ page 70141 Creation_Ticket
                 {
                     ApplicationArea = All;
                 }
-                field(CodeMultiPese; rec.CodeMultiPese)
-                {
-                    ApplicationArea = All;
-                }
+
                 field("Code Transporteur"; "Code Transporteur")
                 {
                 }
@@ -435,6 +436,14 @@ page 70141 Creation_Ticket
                     begin
                         Report.Run(70049);
                     end;
+                }
+                action(Liste_Multi_Pesé)
+                {
+                     ApplicationArea = All;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    Caption = 'Liste tickets multi-pesé';
+                    RunObject = page 70142;
                 }
 
                 //     action("TicketPontBASCULE")

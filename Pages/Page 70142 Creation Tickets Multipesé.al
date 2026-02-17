@@ -22,7 +22,7 @@ page 70142 Creation_Ticket_Multipese
     CardPageId = "New Ticket Multi Pese";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(descending) where("Balance Code" = filter('AY*'), valide = CONST(false), MultiPese = const(true));
+                      ORDER(descending) where("Balance Code" = filter('AY*'), MultiPese = const(true));
     //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
@@ -58,12 +58,14 @@ page 70142 Creation_Ticket_Multipese
                 {
                     ApplicationArea = All;
                     Caption = 'Code Multi pesé';
+                    Editable = false;
                 }
 
 
                 field("Type opération"; "Type opération")
                 {
                     TableRelation = "Type operation"."Type Operation";
+                    Editable = false;
                     trigger OnValidate()
                     var
                         myInt: Integer;
@@ -86,10 +88,12 @@ page 70142 Creation_Ticket_Multipese
                 field("Balance Code"; rec."Balance Code")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field(MultiPese; rec.MultiPese)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
 
                 field("Code Transporteur"; "Code Transporteur")
@@ -116,35 +120,48 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("Nom Transporteur"; "Nom Transporteur")
                 {
+                    Editable = false;
                 }
 
                 //<<Fab Smartech 24_04_25
                 field(valide; REC.valide)
                 {
+                    Editable = false;
+                    ApplicationArea = All;
+                }
+                field(imprime; imprime)
+                {
+                    Editable = false;
                     ApplicationArea = All;
                 }
                 field(Annule; REC.Annule)
                 {
+                    Editable = false;
                     ApplicationArea = All;
                 }
                 field("Date validation"; rec."Date validation")
                 {
+                    Editable = false;
                     ApplicationArea = All;
                 }
                 field("Statut paiement"; rec."Statut paiement")
                 {
+                    Editable = false;
                     ApplicationArea = All;
                 }
                 field("Statut paiement Planteur"; rec."Statut paiement Planteur")
                 {
+                    Editable = false;
                     ApplicationArea = All;
                 }
                 field(Statut_Total_Paiement; REC.Statut_Total_Paiement)
                 {
+                    Editable = false;
                     ApplicationArea = All;
                 }
                 field("Nom Client"; "Nom Client")
                 {
+                    Editable = false;
                     ApplicationArea = All;
                 }
                 //<<Fab Smartech 24_04_25
@@ -207,6 +224,7 @@ page 70142 Creation_Ticket_Multipese
                 field("Item Origin"; "Item Origin")
                 {
                     CaptionML = FRA = 'Origine produit', ENU = 'Origin product';
+                    TableRelation = Origine.Origine;
                 }
                 field("Row No."; "Row No.")
                 {
@@ -214,24 +232,31 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("Weighing 2 Date"; "Weighing 2 Date")
                 {
+                    Editable = false;
                 }
                 field("Weighing 1 Date"; "Weighing 1 Date")
                 {
+                    Editable = false;
                 }
                 field("Weighing 1 Hour"; "Weighing 1 Hour")
                 {
+                    Editable = false;
                 }
                 field("Weighing 2 Hour"; "Weighing 2 Hour")
                 {
+                    Editable = false;
                 }
                 field("Driver Name"; "Driver Name")
                 {
+                    Editable = false;
                 }
                 field("Vehicle Registration No."; "Vehicle Registration No.")
                 {
+                    Editable = false;
                 }
                 field("Type of Transportation"; "Type of Transportation")
                 {
+                    Editable = false;
 
                 }
                 // field("Type opération"; "Type opération")
@@ -262,6 +287,7 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("Nom planteur"; "Nom planteur")
                 {
+                    Editable = false;
                 }
 
 
@@ -281,9 +307,11 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("Désignation article"; "Désignation article")
                 {
+                    Editable = false;
                 }
                 field("Purchase Invoice No."; "Purchase Invoice No.")
                 {
+                    Editable = false;
                 }
                 field("Purchase invoice Created"; "Purchase invoice Created")
                 {
@@ -295,12 +323,15 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("TPurchase Invoice No."; "TPurchase Invoice No.")
                 {
+                    Editable = false;
                 }
                 field(Commentaire; Commentaire)
                 {
+                    Editable = false;
                 }
                 field(CommentaireT; CommentaireT)
                 {
+                    Editable = false;
                 }
                 field("Traitement effectué"; "Traitement effectué")
                 {
@@ -308,10 +339,22 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("Ticket annule"; "Ticket annule")
                 {
+                    Editable = false;
                 }
-                field("Purchase Order Created"; "Purchase Order Created") { ApplicationArea = all; }
-                field("Sales invoice Created"; "Sales invoice Created") { ApplicationArea = all; }
-                field("N° Commande PIC"; "N° Commande PIC") { ApplicationArea = all; }
+                field("Purchase Order Created"; "Purchase Order Created")
+                {
+                    ApplicationArea = all;
+                }
+                field("Sales invoice Created"; "Sales invoice Created")
+                {
+                    ApplicationArea = all;
+                    Editable = false;
+                }
+                field("N° Commande PIC"; "N° Commande PIC")
+                {
+                    ApplicationArea = all;
+                    Editable = false;
+                }
             }
         }
 
@@ -488,11 +531,16 @@ page 70142 Creation_Ticket_Multipese
                     var
                         ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
-                        ItemWeighBridge.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
-                        ItemWeighBridge.SetFilter(MultiPese, '=%1', true);
-                        if ItemWeighBridge.FindSet() then begin
-                            Report.Run(50566, true, false, ItemWeighBridge);
-                        end;
+                        // ItemWeighBridge.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
+                        // ItemWeighBridge.SetFilter(MultiPese, '=%1', true);
+                        // if ItemWeighBridge.FindSet() then begin
+                        //     Report.Run(50566, true, false, ItemWeighBridge);
+                        // end;
+                        ItemWeighBridge.Reset();
+                        ItemWeighBridge.SetRange("Ticket Planteur", Rec."Ticket Planteur");
+                        ItemWeighBridge.SetRange(MultiPese, true);
+
+                        Report.Run(50566, true, false, ItemWeighBridge);
                     end;
                 }
                 action(Validation)
@@ -506,24 +554,40 @@ page 70142 Creation_Ticket_Multipese
                     var
                         ItemWeight2: Record "Item Weigh Bridge";
                         ticket: Record "Item Weigh Bridge";
+                        TicketMulti: Record "Item Weigh Bridge";
                     begin
                         TestField(valide, false);
                         if ((rec."POIDS SORTIE" <= 0) or (rec."POIDS ENTREE" <= 0) or ((rec."POIDS SORTIE" <= 0) and (rec."POIDS ENTREE" <= 0))) then begin
                             Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
                         end else begin
                             rec.TestField(valide, false);
-                            REC.valide := true;
-                            rec."Date validation" := WorkDate();
-                            rec.UserName := UserId;
-                            Rec.Modify();
-                            CurrPage.Update();
-                            Commit();
-                            // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
-                            Print();
-                            rec.imprime := true;
-                            REC.Modify()
-                        end;
+                            TicketMulti.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
+                            if TicketMulti.FindSet() then begin
+                                repeat begin
+                                    TicketMulti.valide := true;
+                                    TicketMulti."Date validation" := WorkDate();
+                                    TicketMulti.UserName := UserId;
+                                    TicketMulti.imprime := true;
+                                    TicketMulti.Modify();
+                                end until TicketMulti.Next() = 0;
+                                // Commit();
+                                // CurrPage.Update();
+                                // // Print();
+                                // rec.imprime := true;
+                                // REC.Modify()
+                            end;
 
+                            // CurrPage.Update();
+                            // Commit();
+                            // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
+                            // Print();
+                            // rec.imprime := true;
+                            // REC.Modify()
+                        end;
+                        CurrPage.Update();
+                        Message('Validation effectuée avec succès');
+                        // Print();
+                        // CurrPage.Update();
                     end;
                 }
 
@@ -1638,22 +1702,41 @@ page 70142 Creation_Ticket_Multipese
         ItemWeighBridgecaisse.Insert()
     end;
 
+    // procedure Print()
+    // var
+    //     myInt: Integer;
+    //     ticket: Record "Item Weigh Bridge";
+    //     ticket2: Record "Item Weigh Bridge";
+    // begin
+    //     // ticket2.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
+    //     // if ticket2.FindSet() then begin
+    //     //     repeat begin
+    //     //         ticket2.imprime := true;
+    //     //         ticket2.Modify()
+    //     //     end until ticket2.Next() = 0;
+    //     // end;
+    //     ticket.Reset();
+    //     Ticket.SetRange(CodeMultiPese, rec.CodeMultiPese);
+    //     // ticket.SetRange("Row No.", rec."Row No.");
+    //     // ticket.SetRange("Ticket Planteur", rec."Ticket Planteur");
+    //     // ticket.SetRange(RowID, rec.RowID);
+    //     if ticket.FindFirst() then begin
+    //         // RunModal(Report::"Ticket de caisse", ticket)
+    //         Report.Run(50500, true, false, ticket);
+    //     end;
+
+
+    // end;
     procedure Print()
     var
-        myInt: Integer;
-        ticket: Record "Item Weigh Bridge";
+        Ticket: Record "Item Weigh Bridge";
     begin
-        ticket.Reset();
-        Ticket.SetRange(TICKET, rec.TICKET);
-        ticket.SetRange("Row No.", rec."Row No.");
-        ticket.SetRange("Ticket Planteur", rec."Ticket Planteur");
-        ticket.SetRange(RowID, rec.RowID);
-        if ticket.FindFirst() then begin
-            // RunModal(Report::"Ticket de caisse", ticket)
-            Report.Run(50500, true, false, ticket);
-        end;
+        Ticket.Reset();
+        Ticket.SetRange(CodeMultiPese, Rec.CodeMultiPese);
 
-
+        if Ticket.FindSet() then
+            Report.Run(50500, true, false, Ticket);
     end;
+
 }
 
