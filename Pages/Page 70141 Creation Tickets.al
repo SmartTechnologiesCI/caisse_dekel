@@ -439,7 +439,7 @@ page 70141 Creation_Ticket
                 }
                 action(Liste_Multi_Pesé)
                 {
-                     ApplicationArea = All;
+                    ApplicationArea = All;
                     Promoted = true;
                     PromotedCategory = Process;
                     Caption = 'Liste tickets multi-pesé';
@@ -632,8 +632,13 @@ page 70141 Creation_Ticket
                         NewRec."Type of Transportation" := 'RECEPTION';
                         NewRec."Process Ticket" := newRec."Process Ticket"::Create;
                         NewRec.Insert(true);
+                        if rec."Ticket Planteur"<>'' then begin
 
+                        end else begin
+
+                        end;
                         if page.RunModal(page::"New Ticket Multi Pese", NewRec) = action::LookupOK then begin
+                            NewRec.TestField("Ticket Planteur");
                             Rec := NewRec;
                             Rec.Insert();
                             TicketBuffer := REC.TICKET;

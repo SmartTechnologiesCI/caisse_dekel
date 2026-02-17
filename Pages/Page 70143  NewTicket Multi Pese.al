@@ -446,18 +446,19 @@ page 70143 "New Ticket Multi Pese"
                     jObj: JsonObject;
                     jTok: JsonToken;
                 begin
-                    
+                   /* 
                     rec.TestField("Client/Fournisseur");
                     balance.get(Rec."Balance Code");
                     jObj.ReadFrom(balance.PostJsonUsingSend());
-                    jObj.Get('weight', jTok);
+                    jObj.Get('weight', jTok);*/
                     case Rec."Process Ticket" of
                         Rec."Process Ticket"::Create:
                             begin
-                                
+                                /*
                                 evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText());
                                 Rec."Weighing 1 Date" := today();
                                 Rec."Weighing 1 Hour" := Time();
+                                */
         
                                 //******Gestion de la source de numero
                                 if rec.CodeMultiPese = '' then begin
