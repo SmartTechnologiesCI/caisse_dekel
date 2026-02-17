@@ -256,7 +256,21 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("Type of Transportation"; "Type of Transportation")
                 {
-                    Editable = false;
+                    ToolTip = 'Specifies the value of the Type opération field.', Comment = '%';
+                    TableRelation = "Type operation"."Type Operation";
+                    // Enabled = not rec.MultiPese;
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+                        TypeOperation: Record "Type operation";
+                    begin
+                        TypeOperation.SetRange("Type Operation", rec."Type opération");
+                        if TypeOperation.FindFirst() then begin
+                            // rec."Type of Transportation" := 'RECEPTION';
+                            rec."Type of Transportation" := TypeOperation.Mouvement;
+                            REC.Modify();
+                        end;
+                    end;
 
                 }
                 // field("Type opération"; "Type opération")
