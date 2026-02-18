@@ -13,8 +13,8 @@ report 70055 "Etat Bons Paiement Transport"
         dataitem(ItemWeighBridge; "Item Weigh Bridge")
 
         {
-           // RequestFilterFields = TICKET, "Code Transporteur";
-           
+            // RequestFilterFields = TICKET, "Code Transporteur";
+
 
             column(Text001; Text001) { }
             column(CompanyInfoPicture; CompanyInfo.Picture)
@@ -24,7 +24,7 @@ report 70055 "Etat Bons Paiement Transport"
             column(Tex003; Tex003) { }
             column(dateD; dateD) { }
             column(DateF; DateF) { }
-            column(NumDocExten;NumDocExten) { }
+            column(NumDocExten; NumDocExten) { }
             column(Type_Operation_Options; Type_Operation_Options) { }
             column(Operation; Operation) { }
             column(TICKET; TICKET) { }
@@ -78,6 +78,7 @@ report 70055 "Etat Bons Paiement Transport"
             {
 
             }
+            column(NumeroDocTransport; NumeroDocTransport) { }
 
 
             trigger OnPreDataItem()

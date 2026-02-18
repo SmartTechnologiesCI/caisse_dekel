@@ -12,6 +12,10 @@ pageextension 70109 "Item Weight Bridge" extends "Item Weight Bridge"
             {
                 ApplicationArea = All;
             }
+            field(NumeroDocTransport; NumeroDocTransport)
+            {
+
+            }
         }
         addafter(valide)
         {
