@@ -186,6 +186,9 @@ page 70129 TicketsPayes
                 field("Purchase Order Created"; "Purchase Order Created") { ApplicationArea = all; }
                 field("Sales invoice Created"; "Sales invoice Created") { ApplicationArea = all; }
                 field("N° Commande PIC"; "N° Commande PIC") { ApplicationArea = all; }
+                field(NumeroDocTransport;NumeroDocTransport){
+                    ApplicationArea=all;
+                }
             }
         }
 
