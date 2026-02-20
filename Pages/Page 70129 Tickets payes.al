@@ -189,6 +189,7 @@ page 70129 TicketsPayes
                 field(NumeroDocTransport;NumeroDocTransport){
                     ApplicationArea=all;
                 }
+                field(NumDocExten; NumDocExten) { ApplicationArea = all; }
             }
         }
 
