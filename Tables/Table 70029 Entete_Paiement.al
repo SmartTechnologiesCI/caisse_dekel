@@ -72,7 +72,8 @@ table 70029 Entete_Paiement
         {
             Caption = 'Mode Paiement';
             DataClassification = ToBeClassified;
-            OptionMembers = " ",ESPECE,WAVE,OM,"MTN Money","MOOV Money",CHEQUE;
+            // OptionMembers = " ",ESPECE,WAVE,OM,"MTN Money","MOOV Money",CHEQUE;
+            OptionMembers =" ", ESPECE,WAVE,OM,"MTN Money","MOOV Money",CHEQUE,Push,Virement;
         }
         field(50031; Observation; Text[250])
         {
