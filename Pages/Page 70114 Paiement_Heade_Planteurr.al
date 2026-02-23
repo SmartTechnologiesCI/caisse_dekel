@@ -76,7 +76,7 @@ page 70114 Paiement_Header
                 {
                     ApplicationArea = All;
                 }
-                field(Mode_Paiement; Mode_Paiement)
+                field(Mode_Paiement; REC.Mode_Paiement)
                 {
                     ApplicationArea = All;
                 }

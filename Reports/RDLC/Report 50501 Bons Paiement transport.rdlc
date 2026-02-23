@@ -10,145 +10,6 @@
       <rd:DataSourceID>a65ac0b3-3978-4103-9b89-837ead43b255</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Text001">
-          <DataField>Text001</DataField>
-        </Field>
-        <Field Name="CompanyInfoPicture">
-          <DataField>CompanyInfoPicture</DataField>
-        </Field>
-        <Field Name="Text004">
-          <DataField>Text004</DataField>
-        </Field>
-        <Field Name="Tex003">
-          <DataField>Tex003</DataField>
-        </Field>
-        <Field Name="dateD">
-          <DataField>dateD</DataField>
-        </Field>
-        <Field Name="DateF">
-          <DataField>DateF</DataField>
-        </Field>
-        <Field Name="NumDocExten">
-          <DataField>NumDocExten</DataField>
-        </Field>
-        <Field Name="Type_Operation_Options">
-          <DataField>Type_Operation_Options</DataField>
-        </Field>
-        <Field Name="Operation">
-          <DataField>Operation</DataField>
-        </Field>
-        <Field Name="TICKET">
-          <DataField>TICKET</DataField>
-        </Field>
-        <Field Name="Date_Paiement">
-          <DataField>Date_Paiement</DataField>
-        </Field>
-        <Field Name="Driver_Name">
-          <DataField>Driver_Name</DataField>
-        </Field>
-        <Field Name="TicketPlanteur">
-          <DataField>TicketPlanteur</DataField>
-        </Field>
-        <Field Name="Text002">
-          <DataField>Text002</DataField>
-        </Field>
-        <Field Name="POIDS_ENTREE">
-          <DataField>POIDS_ENTREE</DataField>
-        </Field>
-        <Field Name="POIDS_ENTREEFormat">
-          <DataField>POIDS_ENTREEFormat</DataField>
-        </Field>
-        <Field Name="Item_Origin">
-          <DataField>Item_Origin</DataField>
-        </Field>
-        <Field Name="POIDS_NET">
-          <DataField>POIDS_NET</DataField>
-        </Field>
-        <Field Name="POIDS_NETFormat">
-          <DataField>POIDS_NETFormat</DataField>
-        </Field>
-        <Field Name="POIDS_SORTIE">
-          <DataField>POIDS_SORTIE</DataField>
-        </Field>
-        <Field Name="POIDS_SORTIEFormat">
-          <DataField>POIDS_SORTIEFormat</DataField>
-        </Field>
-        <Field Name="Code_Transporteur">
-          <DataField>Code_Transporteur</DataField>
-        </Field>
-        <Field Name="Nom_Transporteur">
-          <DataField>Nom_Transporteur</DataField>
-        </Field>
-        <Field Name="Nom_planteur">
-          <DataField>Nom_planteur</DataField>
-        </Field>
-        <Field Name="Weighing_1_Hour">
-          <DataField>Weighing_1_Hour</DataField>
-        </Field>
-        <Field Name="Weighing_2_Hour">
-          <DataField>Weighing_2_Hour</DataField>
-        </Field>
-        <Field Name="Type_opération">
-          <DataField>Type_opération</DataField>
-        </Field>
-        <Field Name="Code_planteur">
-          <DataField>Code_planteur</DataField>
-        </Field>
-        <Field Name="N_Commande_PIC">
-          <DataField>N_Commande_PIC</DataField>
-        </Field>
-        <Field Name="Vehicle_Registration_No">
-          <DataField>Vehicle_Registration_No</DataField>
-        </Field>
-        <Field Name="Type_of_Transportation">
-          <DataField>Type_of_Transportation</DataField>
-        </Field>
-        <Field Name="Beneficiaire">
-          <DataField>Beneficiaire</DataField>
-        </Field>
-        <Field Name="Désignation_article">
-          <DataField>Désignation_article</DataField>
-        </Field>
-        <Field Name="Weighing_1_Date">
-          <DataField>Weighing_1_Date</DataField>
-        </Field>
-        <Field Name="Weighing_2_Date">
-          <DataField>Weighing_2_Date</DataField>
-        </Field>
-        <Field Name="Utilisateur">
-          <DataField>Utilisateur</DataField>
-        </Field>
-        <Field Name="Type_Vehicule">
-          <DataField>Type_Vehicule</DataField>
-        </Field>
-        <Field Name="DescriptionVehicule">
-          <DataField>DescriptionVehicule</DataField>
-        </Field>
-        <Field Name="Matricule_Autre">
-          <DataField>Matricule_Autre</DataField>
-        </Field>
-        <Field Name="NumVehicule">
-          <DataField>NumVehicule</DataField>
-        </Field>
-        <Field Name="Prix">
-          <DataField>Prix</DataField>
-        </Field>
-        <Field Name="PrixFormat">
-          <DataField>PrixFormat</DataField>
-        </Field>
-        <Field Name="NumeroDocTransport">
-          <DataField>NumeroDocTransport</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1685,12 +1546,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1782,4 +1637,143 @@ ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFF
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Text001">
+          <DataField>Text001</DataField>
+        </Field>
+        <Field Name="CompanyInfoPicture">
+          <DataField>CompanyInfoPicture</DataField>
+        </Field>
+        <Field Name="Text004">
+          <DataField>Text004</DataField>
+        </Field>
+        <Field Name="Tex003">
+          <DataField>Tex003</DataField>
+        </Field>
+        <Field Name="dateD">
+          <DataField>dateD</DataField>
+        </Field>
+        <Field Name="DateF">
+          <DataField>DateF</DataField>
+        </Field>
+        <Field Name="NumDocExten">
+          <DataField>NumDocExten</DataField>
+        </Field>
+        <Field Name="Type_Operation_Options">
+          <DataField>Type_Operation_Options</DataField>
+        </Field>
+        <Field Name="Operation">
+          <DataField>Operation</DataField>
+        </Field>
+        <Field Name="TICKET">
+          <DataField>TICKET</DataField>
+        </Field>
+        <Field Name="Date_Paiement">
+          <DataField>Date_Paiement</DataField>
+        </Field>
+        <Field Name="Driver_Name">
+          <DataField>Driver_Name</DataField>
+        </Field>
+        <Field Name="TicketPlanteur">
+          <DataField>TicketPlanteur</DataField>
+        </Field>
+        <Field Name="Text002">
+          <DataField>Text002</DataField>
+        </Field>
+        <Field Name="POIDS_ENTREE">
+          <DataField>POIDS_ENTREE</DataField>
+        </Field>
+        <Field Name="POIDS_ENTREEFormat">
+          <DataField>POIDS_ENTREEFormat</DataField>
+        </Field>
+        <Field Name="Item_Origin">
+          <DataField>Item_Origin</DataField>
+        </Field>
+        <Field Name="POIDS_NET">
+          <DataField>POIDS_NET</DataField>
+        </Field>
+        <Field Name="POIDS_NETFormat">
+          <DataField>POIDS_NETFormat</DataField>
+        </Field>
+        <Field Name="POIDS_SORTIE">
+          <DataField>POIDS_SORTIE</DataField>
+        </Field>
+        <Field Name="POIDS_SORTIEFormat">
+          <DataField>POIDS_SORTIEFormat</DataField>
+        </Field>
+        <Field Name="Code_Transporteur">
+          <DataField>Code_Transporteur</DataField>
+        </Field>
+        <Field Name="Nom_Transporteur">
+          <DataField>Nom_Transporteur</DataField>
+        </Field>
+        <Field Name="Nom_planteur">
+          <DataField>Nom_planteur</DataField>
+        </Field>
+        <Field Name="Weighing_1_Hour">
+          <DataField>Weighing_1_Hour</DataField>
+        </Field>
+        <Field Name="Weighing_2_Hour">
+          <DataField>Weighing_2_Hour</DataField>
+        </Field>
+        <Field Name="Type_opération">
+          <DataField>Type_opération</DataField>
+        </Field>
+        <Field Name="Code_planteur">
+          <DataField>Code_planteur</DataField>
+        </Field>
+        <Field Name="N_Commande_PIC">
+          <DataField>N_Commande_PIC</DataField>
+        </Field>
+        <Field Name="Vehicle_Registration_No">
+          <DataField>Vehicle_Registration_No</DataField>
+        </Field>
+        <Field Name="Type_of_Transportation">
+          <DataField>Type_of_Transportation</DataField>
+        </Field>
+        <Field Name="Beneficiaire">
+          <DataField>Beneficiaire</DataField>
+        </Field>
+        <Field Name="Désignation_article">
+          <DataField>Désignation_article</DataField>
+        </Field>
+        <Field Name="Weighing_1_Date">
+          <DataField>Weighing_1_Date</DataField>
+        </Field>
+        <Field Name="Weighing_2_Date">
+          <DataField>Weighing_2_Date</DataField>
+        </Field>
+        <Field Name="Utilisateur">
+          <DataField>Utilisateur</DataField>
+        </Field>
+        <Field Name="Type_Vehicule">
+          <DataField>Type_Vehicule</DataField>
+        </Field>
+        <Field Name="DescriptionVehicule">
+          <DataField>DescriptionVehicule</DataField>
+        </Field>
+        <Field Name="Matricule_Autre">
+          <DataField>Matricule_Autre</DataField>
+        </Field>
+        <Field Name="NumVehicule">
+          <DataField>NumVehicule</DataField>
+        </Field>
+        <Field Name="Prix">
+          <DataField>Prix</DataField>
+        </Field>
+        <Field Name="PrixFormat">
+          <DataField>PrixFormat</DataField>
+        </Field>
+        <Field Name="NumeroDocTransport">
+          <DataField>NumeroDocTransport</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>
