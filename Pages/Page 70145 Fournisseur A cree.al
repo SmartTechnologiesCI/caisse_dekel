@@ -1,10 +1,14 @@
 page 70145 "Fournisseur A cree"
 {
-    PageType = Card;
+    PageType = List;
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = "Item Weigh Bridge";
     Caption = 'Fournisseur à créer';
+    InsertAllowed = false;
+    ModifyAllowed = false;
+    DeleteAllowed = false;
+    // SourceTableView=where("Code planteur"=filter())
 
     layout
     {
@@ -39,9 +43,16 @@ page 70145 "Fournisseur A cree"
         myInt: Integer;
         vendor: Record Vendor;
     begin
-        if vendor.FindSet() then begin
-            rec.SetFilter("Code planteur", '<>%1', vendor."No.");
+        if vendor.FindFirst() then begin
+            rec.SetRange("Code planteur", '<>%1', vendor."No.");
+            // if REC.FindFirst() then begin
+                // repeat begin
+                // Message('aaa: %1', rec."Code planteur");
+                // end until REC.Next() = 0;
+            // end;
+
         end;
+        // end;
     end;
 
     var
