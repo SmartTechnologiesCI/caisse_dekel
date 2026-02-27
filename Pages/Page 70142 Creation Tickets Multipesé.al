@@ -65,7 +65,7 @@ page 70142 Creation_Ticket_Multipese
                 field("Type opération"; "Type opération")
                 {
                     TableRelation = "Type operation"."Type Operation";
-                    Editable = false;
+                    // Editable = false;
                     trigger OnValidate()
                     var
                         myInt: Integer;
