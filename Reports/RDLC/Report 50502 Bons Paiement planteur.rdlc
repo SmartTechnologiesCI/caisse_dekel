@@ -18,7 +18,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>25.62014cm</Width>
+                  <Width>19.79931cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -31,28 +31,28 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>1.93829cm</Width>
+                                <Width>1.29153cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>2.40395cm</Width>
+                                <Width>1.75719cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>2.57329cm</Width>
+                                <Width>1.92653cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>3.10243cm</Width>
+                                <Width>2.45567cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>3.65514cm</Width>
+                                <Width>3.00838cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>2.08646cm</Width>
+                                <Width>1.4397cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>2.54918cm</Width>
+                                <Width>1.90242cm</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>3.65572cm</Width>
+                                <Width>3.00896cm</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -71,7 +71,7 @@
                                                 <Value>N° Bon</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -126,7 +126,7 @@
                                                 <Value>N° Ticket</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -181,7 +181,7 @@
                                                 <Value>Date Paie</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -236,7 +236,7 @@
                                                 <Value>Nom Planteur</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -291,7 +291,7 @@
                                                 <Value>Beneficiaire</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -346,7 +346,7 @@
                                                 <Value>Opération</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -401,7 +401,7 @@
                                                 <Value>Poids(Kg)</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -456,7 +456,7 @@
                                                 <Value>Montant (f cfa)</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -516,7 +516,7 @@
                                                 <Value>=Fields!TICKET.Value</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -570,7 +570,7 @@
                                                 <Value>=Fields!TicketPlanteur.Value</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -624,7 +624,7 @@
                                                 <Value>=Fields!Date_Paiement.Value</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <Format>d</Format>
                                                 </Style>
                                               </TextRun>
@@ -679,7 +679,7 @@
                                                 <Value>=Fields!Nom_planteur.Value</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -733,7 +733,7 @@
                                                 <Value>=Fields!Beneficiaire.Value</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -787,7 +787,7 @@
                                                 <Value>=Fields!Type_opération.Value</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -841,7 +841,7 @@
                                                 <Value>=Fields!POIDS_NET.Value</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <Format>#,0</Format>
                                                 </Style>
                                               </TextRun>
@@ -896,7 +896,7 @@
                                                 <Value>=Fields!Prix.Value*Fields!POIDS_NET.Value</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <Format>#,0</Format>
                                                 </Style>
                                               </TextRun>
@@ -956,7 +956,7 @@
                                                 <Value>TOTAL</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -996,7 +996,7 @@
                                                 <Value>=Sum(Fields!POIDS_NET.Value)</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <Format>#,0</Format>
                                                 </Style>
                                               </TextRun>
@@ -1004,7 +1004,7 @@
                                                 <Value xml:space="preserve"> </Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <Format>#,0</Format>
                                                 </Style>
                                               </TextRun>
@@ -1039,7 +1039,7 @@
                                                 <Value>=Sum(Fields!Prix.Value*Fields!POIDS_NET.Value)</Value>
                                                 <Style>
                                                   <FontFamily>times New Roman</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <Format>#,0</Format>
                                                 </Style>
                                               </TextRun>
@@ -1082,7 +1082,7 @@
                             <TablixMembers>
                               <TablixMember>
                                 <TablixHeader>
-                                  <Size>3.65572cm</Size>
+                                  <Size>3.00896cm</Size>
                                   <CellContents>
                                     <Textbox Name="Textbox5">
                                       <CanGrow>true</CanGrow>
@@ -1094,7 +1094,7 @@
                                               <Value>Num Doc Exten</Value>
                                               <Style>
                                                 <FontFamily>times New Roman</FontFamily>
-                                                <FontSize>9pt</FontSize>
+                                                <FontSize>8pt</FontSize>
                                                 <FontWeight>Bold</FontWeight>
                                               </Style>
                                             </TextRun>
@@ -1154,7 +1154,7 @@
                                   </SortExpression>
                                 </SortExpressions>
                                 <TablixHeader>
-                                  <Size>3.65572cm</Size>
+                                  <Size>3.00896cm</Size>
                                   <CellContents>
                                     <Textbox Name="NumDocExten">
                                       <CanGrow>true</CanGrow>
@@ -1166,7 +1166,7 @@
                                               <Value>=Fields!NumDocExten.Value</Value>
                                               <Style>
                                                 <FontFamily>times New Roman</FontFamily>
-                                                <FontSize>9pt</FontSize>
+                                                <FontSize>8pt</FontSize>
                                               </Style>
                                             </TextRun>
                                           </TextRuns>
@@ -1219,7 +1219,7 @@
                               </TablixMember>
                               <TablixMember>
                                 <TablixHeader>
-                                  <Size>3.65572cm</Size>
+                                  <Size>3.00896cm</Size>
                                   <CellContents>
                                     <Textbox Name="Textbox8">
                                       <CanGrow>true</CanGrow>
@@ -1231,7 +1231,7 @@
                                               <Value />
                                               <Style>
                                                 <FontFamily>times New Roman</FontFamily>
-                                                <FontSize>9pt</FontSize>
+                                                <FontSize>8pt</FontSize>
                                               </Style>
                                             </TextRun>
                                           </TextRuns>
@@ -1284,6 +1284,7 @@
                                 <TextRun>
                                   <Value>POIDS GENERAL :         </Value>
                                   <Style>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1297,7 +1298,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>                                               MONTANT GENERAL  :                                                          </Value>
+                                  <Value>                                               MONTANT GENERAL  :                                           </Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1315,7 +1316,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox2</rd:DefaultName>
@@ -1375,10 +1378,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <RepeatRowHeaders>true</RepeatRowHeaders>
-            <Top>0.07056cm</Top>
-            <Left>1.17992cm</Left>
+            <Top>0.03528cm</Top>
+            <Left>0.0194cm</Left>
             <Height>3.57066cm</Height>
-            <Width>25.62014cm</Width>
+            <Width>19.79931cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1389,7 +1392,7 @@
         <Height>3.75681cm</Height>
         <Style />
       </Body>
-      <Width>28.19401cm</Width>
+      <Width>19.81871cm</Width>
       <Page>
         <PageHeader>
           <Height>2.63321cm</Height>
@@ -1405,18 +1408,20 @@
                     <TextRun>
                       <Value>ETAT DES BONS DE PAIEMENT PLANTEUR</Value>
                       <Style>
-                        <FontSize>16pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>15.31621cm</Left>
-              <Height>0.89633cm</Height>
-              <Width>12.8778cm</Width>
+              <Left>9.31157cm</Left>
+              <Height>0.6635cm</Height>
+              <Width>10.50713cm</Width>
               <Style>
                 <Border>
                   <Style>Solid</Style>
@@ -1469,7 +1474,7 @@
               <Top>0.52293in</Top>
               <Left>0.00001cm</Left>
               <Height>0.222in</Height>
-              <Width>3.61333in</Width>
+              <Width>2.61333in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1503,7 +1508,7 @@
               <Top>0.75881in</Top>
               <Left>0.00001cm</Left>
               <Height>0.23622in</Height>
-              <Width>3.61333in</Width>
+              <Width>2.61333in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -1534,8 +1539,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox9</rd:DefaultName>
-              <Top>1.00217cm</Top>
-              <Left>20.35388cm</Left>
+              <Top>0.69877cm</Top>
+              <Left>13.06092cm</Left>
               <Height>0.6cm</Height>
               <Width>3.74883cm</Width>
               <ZIndex>3</ZIndex>
@@ -1582,10 +1587,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox13</rd:DefaultName>
-              <Top>1.79917cm</Top>
-              <Left>17.34822cm</Left>
+              <Top>1.36933cm</Top>
+              <Left>9.61404cm</Left>
               <Height>0.6cm</Height>
-              <Width>10.20467cm</Width>
+              <Width>9.88717cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -1604,7 +1609,7 @@
               <Sizing>FitProportional</Sizing>
               <Top>0.03074cm</Top>
               <Height>1.22695cm</Height>
-              <Width>9.17787cm</Width>
+              <Width>6.63787cm</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -1619,8 +1624,8 @@
             </Border>
           </Style>
         </PageHeader>
-        <PageHeight>21cm</PageHeight>
-        <PageWidth>29.7cm</PageWidth>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
         <LeftMargin>0cm</LeftMargin>
         <RightMargin>0cm</RightMargin>
         <TopMargin>0cm</TopMargin>

@@ -12,11 +12,15 @@ pageextension 70106 "User Setup" extends "User Setup"
             {
                 ApplicationArea = All;
             }
+            field(CL; REC.CL)
+            {
+                ApplicationArea = All;
+            }
             field(Annule; REC.Annule)
             {
                 ApplicationArea = All;
             }
-           
+
         }
     }
 

@@ -21,7 +21,12 @@ tableextension 70031 "User Setup" extends "User Setup"
 
             // Caption = 'Annulé';
         }
-        
+        field(55024; CL; code[50])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = MagasinCentreLogistique.Prefixe;
+        }
+
     }
 
     keys

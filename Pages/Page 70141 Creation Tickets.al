@@ -22,7 +22,7 @@ page 70141 Creation_Ticket
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(Descending) where("Balance Code" = filter('AY*|ET*'), valide = CONST(false), TicketAnnule = const(false));
+                      ORDER(Descending) where(valide = CONST(false), TicketAnnule = const(false));
     //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
@@ -1417,7 +1417,20 @@ page 70141 Creation_Ticket
     trigger OnOpenPage()
     var
         UserSetep: Record "User Setup";
+        UserSetep2: Record "User Setup";
+        MagasinCentreLogistique: Record MagasinCentreLogistique;
     begin
+        UserSetep2.SetRange("User ID", UserId);
+        if UserSetep2.FindFirst() then begin
+            MagasinCentreLogistique.SetRange(Prefixe, UserSetep2.CL);
+            if MagasinCentreLogistique.FindFirst() then begin
+                SetFilter(ORIGINE, '=%1', MagasinCentreLogistique.Description);
+            end;
+
+        end else begin
+            Error('Vous n''êtes pas connecté à un centre logisitque');
+        end;
+
 
         AnnuleFacture := FALSE;
         UserSetup2.RESET;
