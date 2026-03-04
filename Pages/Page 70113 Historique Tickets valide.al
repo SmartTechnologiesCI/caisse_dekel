@@ -1223,8 +1223,7 @@ page 70113 "Historique Tickets valide"
                 SetFilter(ORIGINE, '=%1', MagasinCentreLogistique.Description);
             end;
 
-        end else begin
-            Error('Vous n''êtes pas connecté à un centre logisitque');
+
         end;
 
         AnnuleFacture := FALSE;
