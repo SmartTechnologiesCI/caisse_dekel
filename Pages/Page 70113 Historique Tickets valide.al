@@ -1222,8 +1222,6 @@ page 70113 "Historique Tickets valide"
             if MagasinCentreLogistique.FindFirst() then begin
                 SetFilter(ORIGINE, '=%1', MagasinCentreLogistique.Description);
             end;
-
-
         end;
 
         AnnuleFacture := FALSE;
