@@ -22,7 +22,7 @@ page 70142 Creation_Ticket_Multipese
     CardPageId = "New Ticket Multi Pese";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
-                      ORDER(descending) where("Balance Code" = filter('AY*'), MultiPese = const(true));
+                      ORDER(descending) where(MultiPese = const(true));
     //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
@@ -1491,7 +1491,16 @@ page 70142 Creation_Ticket_Multipese
     trigger OnOpenPage()
     var
         UserSetep: Record "User Setup";
+        UserSetep2: Record "User Setup";
+        MagasinCentreLogistique: Record MagasinCentreLogistique;
     begin
+        UserSetep2.SetRange("User ID", UserId);
+        if UserSetep2.FindFirst() then begin
+            MagasinCentreLogistique.SetRange(Prefixe, UserSetep2.CL);
+            if MagasinCentreLogistique.FindFirst() then begin
+                SetFilter(ORIGINE, '=%1', MagasinCentreLogistique.Description);
+            end;
+        end;
 
         AnnuleFacture := FALSE;
         UserSetup2.RESET;
