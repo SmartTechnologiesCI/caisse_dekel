@@ -443,10 +443,14 @@ page 70143 "New Ticket Multi Pese"
                 trigger OnAction()
                 var
                     balance: Record Balance;
+                    balance2: Record Balance;
                     jObj: JsonObject;
                     jTok: JsonToken;
                 begin
-              
+                    Balance2.SetRange(Code, rec."Balance Code");
+                    if Balance2.FindFirst() then begin
+                        rec.ORIGINE := Balance2."Description Origine";
+                    end;
                     rec.TestField("Client/Fournisseur");
                     balance.get(Rec."Balance Code");
                     jObj.ReadFrom(balance.PostJsonUsingSend());
@@ -454,12 +458,12 @@ page 70143 "New Ticket Multi Pese"
                     case Rec."Process Ticket" of
                         Rec."Process Ticket"::Create:
                             begin
-                          
+
                                 evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText());
                                 Rec."Weighing 1 Date" := today();
                                 Rec."Weighing 1 Hour" := Time();
-                            
-        
+
+
                                 //******Gestion de la source de numero
                                 if rec.CodeMultiPese = '' then begin
                                     if Rec.AssistEdit_PointCaisses(xRec) then
@@ -556,7 +560,7 @@ page 70143 "New Ticket Multi Pese"
         myInt: Integer;
     begin
         rec.MultiPese := true;
-        
+
     end;
 
     var
