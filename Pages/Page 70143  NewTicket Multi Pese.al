@@ -16,6 +16,7 @@ page 70143 "New Ticket Multi Pese"
                 field(MultiPese; rec.MultiPese)
                 {
                     ApplicationArea = All;
+                    Visible = false;
                     trigger OnValidate()
                     var
                         myInt: Integer;
@@ -107,7 +108,7 @@ page 70143 "New Ticket Multi Pese"
                 }
                 field(ORIGINE; rec.ORIGINE)
                 {
-                    Enabled = NOT REC.MultiPese;
+                    // Enabled = NOT REC.MultiPese;
                     ApplicationArea = All;
                     TableRelation = Origine.Origine;
                     trigger OnValidate()
@@ -243,7 +244,7 @@ page 70143 "New Ticket Multi Pese"
 
                     ToolTip = 'Specifies the value of the Type opération field.', Comment = '%';
                     TableRelation = "Type operation"."Type Operation";
-                    Enabled = not rec.MultiPese;
+                    // Enabled = not rec.MultiPese;
                     trigger OnValidate()
                     var
                         myInt: Integer;
@@ -265,7 +266,7 @@ page 70143 "New Ticket Multi Pese"
                 {
                     ApplicationArea = All;
                     TableRelation = Vendor where("No." = const('FAG*'));
-                    Enabled = not REC.MultiPese;
+                    // Enabled = not REC.MultiPese;
                     //         TableRelation = if ("Client/Fournisseur" = const("Client/Fournisseur"::" ")) Table_Vide
                     //         else
                     //         if
@@ -452,6 +453,11 @@ page 70143 "New Ticket Multi Pese"
                         rec.ORIGINE := Balance2."Description Origine";
                     end;
                     rec.TestField("Client/Fournisseur");
+                    rec.TestField("Type of Transportation");
+                    rec.TestField("Type opération");
+                    rec.TestField("Item Origin");
+                    rec.TestField("Code article");
+                    Rec.TestField("Balance Code");
                     balance.get(Rec."Balance Code");
                     jObj.ReadFrom(balance.PostJsonUsingSend());
                     jObj.Get('weight', jTok);
@@ -462,7 +468,7 @@ page 70143 "New Ticket Multi Pese"
                                 evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText());
                                 Rec."Weighing 1 Date" := today();
                                 Rec."Weighing 1 Hour" := Time();
-
+                                rec.MultiPese := true;
 
                                 //******Gestion de la source de numero
                                 if rec.CodeMultiPese = '' then begin

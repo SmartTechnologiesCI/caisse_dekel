@@ -1426,6 +1426,7 @@ page 70141 Creation_Ticket
             if MagasinCentreLogistique.FindFirst() then begin
                 SetFilter(ORIGINE, '=%1', MagasinCentreLogistique.Description);
             end;
+
         end;
 
 
