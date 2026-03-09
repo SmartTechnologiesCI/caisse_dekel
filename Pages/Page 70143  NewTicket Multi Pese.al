@@ -33,24 +33,28 @@ page 70143 "New Ticket Multi Pese"
                 field("Balance Code"; Rec."Balance Code")
                 {
                     ToolTip = 'Specifies the value of the Balance Code field.', Comment = '%';
-                    TableRelation = Balance.Code;
-                    trigger OnValidate()
+                    // TableRelation = Balance.Code;
+                    trigger OnLookup(var Text: Text): Boolean
                     var
-                        myInt: Integer;
+                        Bal: Record Balance;
+                        useSetup: Record "User Setup";
                     begin
-                        // if rec.MultiPese=false then begin
-
-                        // // end;
-                        // if rec.MultiPese = true then begin
-                        //     if Rec.AssistEdit_PointCaisses(xRec) then
-                        //         CurrPage.Update();
-                        // end else begin
-                        //     if Rec.AssistEdit_PointCaisse(xRec) then
-                        //         CurrPage.Update();
-                        // end;
-
-
+                        useSetup.SetRange("User ID", UserId);
+                        if useSetup.FindFirst() then begin
+                            Bal.SetRange("Description Origine", useSetup.DescriotionCL);
+                            if Bal.FindFirst() then begin
+                                if Page.RunModal(Page::Balances, Bal) = Action::LookupOK then begin
+                                    Rec."Balance Code" := Bal.Code;
+                                end;
+                                exit(true);
+                            end else begin
+                                Error('Aucun CL n''est affecté à l''utilisateur: %1 ou Le CL n''est pas configuré sur la balance', UserId);
+                            end;
+                        end else begin
+                            Error('Aucun CL n''est affecté à l''utilisateur: %1 ou Le CL n''est pas configuré sur la balance', UserId);
+                        end;
                     end;
+
 
 
                 }
