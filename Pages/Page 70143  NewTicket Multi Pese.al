@@ -455,6 +455,7 @@ page 70143 "New Ticket Multi Pese"
                     Balance2.SetRange(Code, rec."Balance Code");
                     if Balance2.FindFirst() then begin
                         rec.ORIGINE := Balance2."Description Origine";
+                        rec."Code magasin" := balance2.Magasin;
                     end;
 
                     rec.TestField("Client/Fournisseur");
