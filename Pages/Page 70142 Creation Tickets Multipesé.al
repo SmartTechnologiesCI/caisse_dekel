@@ -563,6 +563,20 @@ page 70142 Creation_Ticket_Multipese
 
                     end;
                 }
+                action(Sortir)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Sortir de la fiche';
+                    // RunObject = page Creation_Ticket;
+                    Promoted = true;
+                    PromotedCategory = Process;
+
+                    trigger OnAction()
+                    begin
+                        CurrPage.Close();
+                        Page.Run(Page::Creation_Ticket);
+                    end;
+                }
                 action(Validation)
                 {
                     Caption = 'Valider le ticket';
@@ -1780,6 +1794,8 @@ page 70142 Creation_Ticket_Multipese
         if Ticket.FindSet() then
             Report.Run(50500, true, false, Ticket);
     end;
+
+
 
 }
 
