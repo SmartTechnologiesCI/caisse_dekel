@@ -45,8 +45,10 @@ page 70143 "New Ticket Multi Pese"
                             if Bal.FindFirst() then begin
                                 if Page.RunModal(Page::Balances, Bal) = Action::LookupOK then begin
                                     Rec."Balance Code" := Bal.Code;
+                                    rec.ORIGINE := Bal."Description Origine";
+                                    rec."Code magasin" := Bal.Magasin;
                                 end;
-                                exit(true);
+
                             end else begin
                                 Error('Aucun CL n''est affecté à l''utilisateur: %1 ou Le CL n''est pas configuré sur la balance', UserId);
                             end;
@@ -322,7 +324,7 @@ page 70143 "New Ticket Multi Pese"
                 field("Item Origin"; Rec."Item Origin")
                 {
                     ToolTip = 'Specifies the value of the Item Origin field.', Comment = '%';
-                    Editable = false;
+                    TableRelation = Origine.Origine;
                 }
                 field(BonEnlevement; REC.BonEnlevement)
                 {
@@ -452,11 +454,11 @@ page 70143 "New Ticket Multi Pese"
                     jObj: JsonObject;
                     jTok: JsonToken;
                 begin
-                    Balance2.SetRange(Code, rec."Balance Code");
-                    if Balance2.FindFirst() then begin
-                        rec.ORIGINE := Balance2."Description Origine";
-                        rec."Code magasin" := balance2.Magasin;
-                    end;
+                    // Balance2.SetRange(Code, rec."Balance Code");
+                    // if Balance2.FindFirst() then begin
+                    //     rec.ORIGINE := Balance2."Description Origine";
+                    //     rec."Code magasin" := balance2.Magasin;
+                    // end;
 
                     rec.TestField("Client/Fournisseur");
                     rec.TestField("Type of Transportation");
