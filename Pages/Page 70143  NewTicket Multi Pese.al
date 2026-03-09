@@ -471,6 +471,7 @@ page 70143 "New Ticket Multi Pese"
                                 Rec."Weighing 1 Date" := today();
                                 Rec."Weighing 1 Hour" := Time();
                                 rec.MultiPese := true;
+                                rec.Transit := true;
                                 //******Gestion de la source de numero
                                 if rec.CodeMultiPese = '' then begin
                                     if Rec.AssistEdit_PointCaisses(xRec) then
@@ -500,6 +501,7 @@ page 70143 "New Ticket Multi Pese"
                                 Rec."Weighing 2 Hour" := Time();
                                 // Rec."POIDS NET" := Rec."POIDS SORTIE" - Rec."POIDS ENTREE";
                                 Rec."POIDS NET" := Abs(Rec."POIDS ENTREE" - Rec."POIDS SORTIE");
+                                rec.Transit := false;
                             end;
                     end;
                     Rec.Modify();
