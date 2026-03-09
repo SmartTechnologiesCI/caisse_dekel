@@ -376,7 +376,7 @@ page 70143 "New Ticket Multi Pese"
                 field("POIDS SORTIE"; Rec."POIDS SORTIE")
                 {
                     ToolTip = 'Specifies the value of the POIDS SORTIE field.', Comment = '%';
-                     Editable = false;
+                    Editable = false;
                     // Editable = false;
                 }
                 //<<Fabrice Smart 05_03_25
@@ -461,15 +461,15 @@ page 70143 "New Ticket Multi Pese"
                     Rec.TestField("Balance Code");
                     REC.TestField("Nombre de planteurs");
                     balance.get(Rec."Balance Code");
-                   /* jObj.ReadFrom(balance.PostJsonUsingSend());
-                    jObj.Get('weight', jTok);*/
+                    jObj.ReadFrom(balance.PostJsonUsingSend());
+                    jObj.Get('weight', jTok);
                     case Rec."Process Ticket" of
                         Rec."Process Ticket"::Create:
                             begin
 
-                              /*  evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText());
+                                evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText());
                                 Rec."Weighing 1 Date" := today();
-                                Rec."Weighing 1 Hour" := Time();*/
+                                Rec."Weighing 1 Hour" := Time();
                                 rec.MultiPese := true;
 
                                 //******Gestion de la source de numero

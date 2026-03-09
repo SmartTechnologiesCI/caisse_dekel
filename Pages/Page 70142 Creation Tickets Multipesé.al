@@ -552,11 +552,15 @@ page 70142 Creation_Ticket_Multipese
                         // if ItemWeighBridge.FindSet() then begin
                         //     Report.Run(50566, true, false, ItemWeighBridge);
                         // end;
+                        rec.TestField(valide);
                         ItemWeighBridge.Reset();
                         ItemWeighBridge.SetRange("Ticket Planteur", Rec."Ticket Planteur");
+                        ItemWeighBridge.SetRange(CodeMultiPese, rec.CodeMultiPese);
                         ItemWeighBridge.SetRange(MultiPese, true);
+                        if ItemWeighBridge.FindFirst() then begin
+                            Report.Run(50566, true, false, ItemWeighBridge);
+                        end;
 
-                        Report.Run(50566, true, false, ItemWeighBridge);
                     end;
                 }
                 action(Validation)
@@ -565,41 +569,53 @@ page 70142 Creation_Ticket_Multipese
                     ApplicationArea = All;
                     Promoted = true;
                     PromotedCategory = Process;
+                    Visible = false;
                     Image = Post;
                     trigger OnAction()
                     var
                         ItemWeight2: Record "Item Weigh Bridge";
                         ticket: Record "Item Weigh Bridge";
                         TicketMulti: Record "Item Weigh Bridge";
+                        ItemWeighBridge: Record "Item Weigh Bridge";
                     begin
-                        TestField(valide, false);
-                        if ((rec."POIDS SORTIE" <= 0) or (rec."POIDS ENTREE" <= 0) or ((rec."POIDS SORTIE" <= 0) and (rec."POIDS ENTREE" <= 0))) then begin
-                            Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
-                        end else begin
-                            rec.TestField(valide, false);
-                            TicketMulti.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
-                            if TicketMulti.FindSet() then begin
-                                repeat begin
-                                    TicketMulti.valide := true;
-                                    TicketMulti."Date validation" := WorkDate();
-                                    TicketMulti.UserName := UserId;
-                                    TicketMulti.imprime := true;
-                                    TicketMulti.Modify();
-                                end until TicketMulti.Next() = 0;
-                                // Commit();
-                                // CurrPage.Update();
-                                // // Print();
-                                // rec.imprime := true;
-                                // REC.Modify()
-                            end;
 
-                            // CurrPage.Update();
+                        TestField(valide, false);
+                        /*
+                                                if ((rec."POIDS SORTIE" <= 0) or (rec."POIDS ENTREE" <= 0) or ((rec."POIDS SORTIE" <= 0) and (rec."POIDS ENTREE" <= 0))) then begin
+                                                    Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
+                                                end else begin*/
+                        rec.TestField(valide, false);
+                        ItemWeighBridge.Reset();
+                        ItemWeighBridge.SetRange("Ticket Planteur", Rec."Ticket Planteur");
+                        ItemWeighBridge.SetRange(CodeMultiPese, rec.CodeMultiPese);
+                        ItemWeighBridge.SetRange(MultiPese, true);
+                        if ItemWeighBridge.FindFirst() then begin
+                            Report.Run(50566, true, false, ItemWeighBridge);
+                        end;
+
+                        TicketMulti.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
+                        if TicketMulti.FindSet() then begin
+                            repeat begin
+                                TicketMulti.valide := true;
+                                TicketMulti."Date validation" := WorkDate();
+                                TicketMulti.UserName := UserId;
+                                TicketMulti.imprime := true;
+                                TicketMulti.Modify();
+                            end until TicketMulti.Next() = 0;
                             // Commit();
-                            // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
-                            // Print();
+                            // CurrPage.Update();
+                            // // Print();
                             // rec.imprime := true;
                             // REC.Modify()
                         end;
+
+                        // CurrPage.Update();
+                        // Commit();
+                        // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
+                        // Print();
+                        // rec.imprime := true;
+                        // REC.Modify()
+                        /*end;*/
                         CurrPage.Update();
                         Message('Validation effectuée avec succès');
                         // Print();
@@ -624,6 +640,7 @@ page 70142 Creation_Ticket_Multipese
                     ApplicationArea = All;
                     Promoted = true;
                     PromotedCategory = Process;
+                    Visible = false;
                     trigger OnAction()
                     begin
                         Report.Run(70049);
@@ -801,6 +818,7 @@ page 70142 Creation_Ticket_Multipese
                     Promoted = true;
                     PromotedCategory = Process;
                     PromotedIsBig = true;
+                    Visible = false;
 
                     trigger OnAction()
                     var

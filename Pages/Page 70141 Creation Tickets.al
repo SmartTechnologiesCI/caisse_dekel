@@ -372,6 +372,7 @@ page 70141 Creation_Ticket
                     ApplicationArea = All;
                     Promoted = true;
                     PromotedCategory = Process;
+                    Visible = false;
                     trigger OnAction()
                     var
                         ItemWeighBridge: Record "Item Weigh Bridge";
@@ -395,7 +396,8 @@ page 70141 Creation_Ticket
                         ItemWeight2: Record "Item Weigh Bridge";
                         ticket: Record "Item Weigh Bridge";
                     begin
-                        TestField(valide, false);
+                        rec.TestField(valide, false);
+                        rec.TestField(MultiPese, false);
                         if ((rec."POIDS SORTIE" <= 0) or (rec."POIDS ENTREE" <= 0) or ((rec."POIDS SORTIE" <= 0) and (rec."POIDS ENTREE" <= 0))) then begin
                             Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
                         end else begin
@@ -415,6 +417,78 @@ page 70141 Creation_Ticket
                     end;
                 }
 
+                //***FnGeek
+                action(ValidationM)
+                {
+                    Caption = 'Valider le ticket Multi-pesé';
+                    ApplicationArea = All;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    Image = Post;
+                    trigger OnAction()
+                    var
+                        ItemWeight2: Record "Item Weigh Bridge";
+                        ticket: Record "Item Weigh Bridge";
+                        TicketMulti: Record "Item Weigh Bridge";
+                        ItemWeighBridge: Record "Item Weigh Bridge";
+                    begin
+                        rec.TestField(MultiPese, true);
+                        rec.TestField(valide, false);
+
+                        if ((rec."POIDS SORTIE" <= 0) or (rec."POIDS ENTREE" <= 0) or ((rec."POIDS SORTIE" <= 0) and (rec."POIDS ENTREE" <= 0))) then begin
+                            Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
+                        end else begin
+                            rec.TestField(valide, false);
+                            ItemWeighBridge.Reset();
+                            ItemWeighBridge.SetRange("Ticket Planteur", Rec."Ticket Planteur");
+                            ItemWeighBridge.SetRange(CodeMultiPese, rec.CodeMultiPese);
+                            ItemWeighBridge.SetRange(MultiPese, true);
+                            if ItemWeighBridge.FindFirst() then begin
+                                Report.Run(50566, true, false, ItemWeighBridge);
+                            end;
+
+                            // TicketMulti.SetRange(CodeMultiPese, rec.CodeMultiPese);
+                            // if TicketMulti.FindSet() then begin
+                            //     repeat begin
+                            TicketMulti.Reset();
+                            TicketMulti.SetRange("Ticket Planteur", Rec."Ticket Planteur");
+                            TicketMulti.SetRange(CodeMultiPese, rec.CodeMultiPese);
+                            TicketMulti.SetRange(MultiPese, true);
+                            if TicketMulti.FindFirst() then begin
+                                TicketMulti.valide := true;
+                                TicketMulti."Date validation" := WorkDate();
+                                TicketMulti.UserName := UserId;
+                                TicketMulti.imprime := true;
+                                TicketMulti.Modify();
+                            end;
+
+                            //     TicketMulti.valide := true;
+                            //     TicketMulti."Date validation" := WorkDate();
+                            //     TicketMulti.UserName := UserId;
+                            //     TicketMulti.imprime := true;
+                            //     TicketMulti.Modify();
+                            // end until TicketMulti.Next() = 0;
+                            // Commit();
+                            // CurrPage.Update();
+                            // // Print();
+                            // rec.imprime := true;
+                            // REC.Modify()
+                            // end;
+
+                            // CurrPage.Update();
+                            // Commit();
+                            // Message('Le ticket %1 créée le %2 a été validé avec succès', rec."Ticket Planteur", rec."Weighing 1 Date");//***FnGeek
+                            // Print();
+                            // rec.imprime := true;
+                            // REC.Modify()
+                        end;
+                        CurrPage.Update();
+                        Message('Validation effectuée avec succès');
+                        // Print();
+                        // CurrPage.Update();
+                    end;
+                }
+                //
                 action(Ticket_Pont_Bascule)
                 {
                     Caption = 'Ticket Pont Bascule';
