@@ -471,7 +471,6 @@ page 70143 "New Ticket Multi Pese"
                                 Rec."Weighing 1 Date" := today();
                                 Rec."Weighing 1 Hour" := Time();
                                 rec.MultiPese := true;
-
                                 //******Gestion de la source de numero
                                 if rec.CodeMultiPese = '' then begin
                                     if Rec.AssistEdit_PointCaisses(xRec) then
