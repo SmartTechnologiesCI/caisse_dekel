@@ -71,7 +71,18 @@ page 70141 Creation_Ticket
                 {
                     ApplicationArea = All;
                 }
-
+                field(Transit; rec.Transit)
+                {
+                    ApplicationArea = All;
+                }
+                field("Process Ticket"; rec."Process Ticket")
+                {
+                    ApplicationArea = All;
+                }
+                field(ORIGINE; rec.ORIGINE)
+                {
+                    ApplicationArea = All;
+                }
                 field("Code Transporteur"; "Code Transporteur")
                 {
                 }
