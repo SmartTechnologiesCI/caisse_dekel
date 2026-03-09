@@ -15,6 +15,26 @@ pageextension 70106 "User Setup" extends "User Setup"
             field(CL; REC.CL)
             {
                 ApplicationArea = All;
+                trigger OnValidate()
+                var
+                    myInt: Integer;
+                    MagasinCentreLogistique: Record MagasinCentreLogistique;
+                begin
+                    MagasinCentreLogistique.SetRange(Prefixe, rec.CL);
+                    if MagasinCentreLogistique.FindFirst() then begin
+                        rec.DescriotionCL := MagasinCentreLogistique.Description;
+                        rec.Modify();
+                    end else begin
+                        rec.DescriotionCL := '';
+                        rec.Modify();
+                    end;
+
+                end;
+
+            }
+            field(DescriotionCL; rec.DescriotionCL)
+            {
+                ApplicationArea = All;
             }
             field(Annule; REC.Annule)
             {

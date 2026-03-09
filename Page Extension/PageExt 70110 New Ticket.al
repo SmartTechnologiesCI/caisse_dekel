@@ -9,7 +9,11 @@ pageextension 70110 "New Ticket" extends "New Ticket"
                 ApplicationArea = All;
                 Editable = false;
             }
+            
         }
+        // modify("Balance Code"){
+        //     // TableRelation = Balance.Code;
+        // }
     }
 
     actions
@@ -90,6 +94,7 @@ pageextension 70110 "New Ticket" extends "New Ticket"
     var
         myInt: Integer;
         UserSetep: Record "User Setup";
+        UserSetup: Record "User Setup";
     begin
         Clear(AnnulationAnnuler);
         Clear(AnnuleDemande);
@@ -109,6 +114,11 @@ pageextension 70110 "New Ticket" extends "New Ticket"
 
             end;
         end;
+        // Clear(CLogistique);
+        // UserSetup.SetRange("User ID", UserId);
+        // if UserSetup.FindFirst() then begin
+        //     CLogistique := UserSetup.CL;
+        // end;
     end;
 
     trigger OnQueryClosePage(CloseAction: Action): Boolean
@@ -146,4 +156,5 @@ pageextension 70110 "New Ticket" extends "New Ticket"
         AnnuleDemande: Boolean;
         AnnuleAutorisation: Boolean;
         AnnulationAnnuler: Boolean;
+        // CLogistique: Text[250];
 }
