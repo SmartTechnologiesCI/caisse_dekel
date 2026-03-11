@@ -474,11 +474,16 @@ page 70143 "New Ticket Multi Pese"
                         Rec."Process Ticket"::Create:
                             begin
 
-                                evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText());
-                                Rec."Weighing 1 Date" := today();
-                                Rec."Weighing 1 Hour" := Time();
-                                rec.MultiPese := true;
-                                rec.Transit := true;
+                                if (((rec.Transit = false) and (rec."POIDS ENTREE" = 0))) then begin
+                                    evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText());
+                                    Rec."Weighing 1 Date" := today();
+                                    Rec."Weighing 1 Hour" := Time();
+                                    rec.MultiPese := true;
+                                    rec.Transit := true;
+                                end else begin
+
+                                    Error('veuillez sortir de la fiche et cliquer sur « Enregistrer sortie » ou « Enregistrer Sortie Multi-pesé » selon le type de ticket dans la liste');
+                                end;
                                 //******Gestion de la source de numero
                                 if rec.CodeMultiPese = '' then begin
                                     if Rec.AssistEdit_PointCaisses(xRec) then
@@ -503,12 +508,16 @@ page 70143 "New Ticket Multi Pese"
                             end;
                         Rec."Process Ticket"::Update:
                             begin
-                                evaluate(Rec."POIDS SORTIE", jTok.AsValue().AsText());
-                                Rec."Weighing 2 Date" := today();
-                                Rec."Weighing 2 Hour" := Time();
-                                // Rec."POIDS NET" := Rec."POIDS SORTIE" - Rec."POIDS ENTREE";
-                                Rec."POIDS NET" := Abs(Rec."POIDS ENTREE" - Rec."POIDS SORTIE");
-                                rec.Transit := false;
+                                if (((rec.Transit = true) and (rec."POIDS SORTIE" = 0))) then begin
+                                    evaluate(Rec."POIDS SORTIE", jTok.AsValue().AsText());
+                                    Rec."Weighing 2 Date" := today();
+                                    Rec."Weighing 2 Hour" := Time();
+                                    // Rec."POIDS NET" := Rec."POIDS SORTIE" - Rec."POIDS ENTREE";
+                                    Rec."POIDS NET" := Abs(Rec."POIDS ENTREE" - Rec."POIDS SORTIE");
+                                    rec.Transit := false;
+                                end else begin
+                                    Error('Le ticket ne respecte pas les conditions pour faire la sortie (Soit le ticket n''est pas en transit soit le poids de sortie n''est pas vide)');
+                                end;
                             end;
                     end;
                     Rec.Modify();
