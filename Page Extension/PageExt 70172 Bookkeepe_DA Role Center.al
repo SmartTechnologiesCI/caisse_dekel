@@ -1,15 +1,15 @@
-pageextension 70172 "Bookkeepe_DA Role Center" extends "Bookkeepe_DA Role Center"
-{
-    layout
-    {
-        // Add changes to page layout here
-    }
+// pageextension 70172 "Item Card" extends "Item Card"
+// {
+//     layout
+//     {
+//         // Add changes to page layout here
+//     }
     
-    actions
-    {
-        // Add changes to page actions here
-    }
+//     actions
+//     {
+//         // Add changes to page actions here
+//     }
     
-    var
-        myInt: Integer;
-}
+//     var
+//         myInt: Integer;
+// }

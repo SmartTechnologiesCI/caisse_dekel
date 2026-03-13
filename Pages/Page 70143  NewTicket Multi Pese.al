@@ -469,19 +469,19 @@ page 70143 "New Ticket Multi Pese"
                     Rec.TestField("Balance Code");
                     REC.TestField("Nombre de planteurs");
                     rec.TestField("Code Transporteur");
-                    /*   balance.get(Rec."Balance Code");
-                      jObj.ReadFrom(balance.PostJsonUsingSend());
-                      jObj.Get('weight', jTok); */
+                    balance.get(Rec."Balance Code");
+                    jObj.ReadFrom(balance.PostJsonUsingSend());
+                    jObj.Get('weight', jTok);
                     case Rec."Process Ticket" of
                         Rec."Process Ticket"::Create:
                             begin
 
                                 if (((rec.Transit = false) and (rec."POIDS ENTREE" = 0))) then begin
-                                    /*   evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText()); */
-                                      Rec."Weighing 1 Date" := today();
-                                      Rec."Weighing 1 Hour" := Time();
-                                      rec.MultiPese := true;
-                                      rec.Transit := true;
+                                    evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText());
+                                    Rec."Weighing 1 Date" := today();
+                                    Rec."Weighing 1 Hour" := Time();
+                                    rec.MultiPese := true;
+                                    rec.Transit := true;
                                 end else begin
 
                                     Error('veuillez sortir de la fiche et cliquer sur « Enregistrer sortie » ou « Enregistrer Sortie Multi-pesé » selon le type de ticket dans la liste');

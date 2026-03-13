@@ -20,16 +20,16 @@ tableextension 70003 "Item" extends Item
             FieldClass = FlowField;
             //CalcFormula = sum(Pesse.nombre where("No." = field("No."), Valid = const(true)));
             // CalcFormula = Sum("Item Ledger Entry".Quantity WHERE("Item No." = FIELD("No."),
-                                                                //   "Global Dimension 1 Code" = FIELD("Global Dimension 1 Filter"),
-                                                                //   "Global Dimension 2 Code" = FIELD("Global Dimension 2 Filter"),
-                                                                //   "Location Code" = FIELD("Location Filter"),
-                                                                //   "Drop Shipment" = FIELD("Drop Shipment Filter"),
-                                                                //   "Variant Code" = FIELD("Variant Filter"),
-                                                                //   "Lot No." = FIELD("Lot No. Filter"),
-                                                                //   "Serial No." = FIELD("Serial No. Filter"),
-                                                                //   "Unit of Measure Code" = FIELD("Unit of Measure Filter"),
-                                                                //   "Posting Date" = field(DateFilter)
-                                                                //   )
+            //   "Global Dimension 1 Code" = FIELD("Global Dimension 1 Filter"),
+            //   "Global Dimension 2 Code" = FIELD("Global Dimension 2 Filter"),
+            //   "Location Code" = FIELD("Location Filter"),
+            //   "Drop Shipment" = FIELD("Drop Shipment Filter"),
+            //   "Variant Code" = FIELD("Variant Filter"),
+            //   "Lot No." = FIELD("Lot No. Filter"),
+            //   "Serial No." = FIELD("Serial No. Filter"),
+            //   "Unit of Measure Code" = FIELD("Unit of Measure Filter"),
+            //   "Posting Date" = field(DateFilter)
+            //   )
 
         }
 
@@ -46,7 +46,7 @@ tableextension 70003 "Item" extends Item
         {
             FieldClass = FlowField;
             // silue samuel 07/03/2025 CalcFormula = sum("Sales Invoice Line"."Carton effectif" where("No." = field("No."), "Posting Date" = filter('>01/07/2021')));
-                        // CalcFormula = sum("Sales Invoice Line"."Carton effectif" where("No." = field("No."), "Posting Date" = filter('>01/07/2021')));
+            // CalcFormula = sum("Sales Invoice Line"."Carton effectif" where("No." = field("No."), "Posting Date" = filter('>01/07/2021')));
 
         }
         field(70002; "Carton livre"; Integer)
@@ -73,6 +73,11 @@ tableextension 70003 "Item" extends Item
                      end;
                  } */
 
+        }
+        field(70008; CL; code[250])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = MagasinCentreLogistique.Prefixe;
         }
 
 
