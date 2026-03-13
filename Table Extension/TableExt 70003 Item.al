@@ -79,6 +79,7 @@ tableextension 70003 "Item" extends Item
             DataClassification = ToBeClassified;
             TableRelation = MagasinCentreLogistique.Prefixe;
         }
+       
 
 
     }

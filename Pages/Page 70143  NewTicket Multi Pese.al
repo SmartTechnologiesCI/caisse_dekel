@@ -114,6 +114,7 @@ page 70143 "New Ticket Multi Pese"
                 }
                 field(ORIGINE; rec.ORIGINE)
                 {
+                    Editable = false;
                     // Enabled = NOT REC.MultiPese;
                     ApplicationArea = All;
                     TableRelation = Origine.Origine;

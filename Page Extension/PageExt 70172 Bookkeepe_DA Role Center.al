@@ -14,15 +14,16 @@ pageextension 70172 "Item Lookup" extends "Item Lookup"
         myInt: Integer;
         UserSetup: Record "User Setup";
     begin
-        UserSetup.SetRange("User ID", UserId);
-        if UserSetup.FindFirst() then begin
-            if UserSetup.DescriotionCL = '' then begin
-                Rec.SetFilter(CL, '=%1', '');
-            end;
-        end;
-        REC.FILTERGROUP(2);
-        REC.SetFilter(CL, ReturnUserGroupCode());
-        REC.FILTERGROUP(0);
+        SetFilter("Pesé", '=%1', true);
+        // UserSetup.SetRange("User ID", UserId);
+        // if UserSetup.FindFirst() then begin
+        //     if UserSetup.DescriotionCL = '' then begin
+        //         Rec.SetFilter(CL, '=%1', '');
+        //     end;
+        // end;
+        // REC.FILTERGROUP(2);
+        // REC.SetFilter(CL, ReturnUserGroupCode());
+        // REC.FILTERGROUP(0);
     end;
 
     procedure ReturnUserGroupCode(): Text[250]

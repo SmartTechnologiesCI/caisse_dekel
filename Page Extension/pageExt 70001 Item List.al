@@ -38,7 +38,7 @@ pageextension 70001 "Item List" extends "Item List"
         {
             Visible = false;
         }
-        
+
         /* modify(InventoryField)
          {
            //  Visible = false;
@@ -65,6 +65,13 @@ pageextension 70001 "Item List" extends "Item List"
             // {
             //     caption = 'Nombre de carton';
             // }
+        }
+        addafter(Type)
+        {
+            field("Pesé"; rec."Pesé")
+            {
+                ApplicationArea = All;
+            }
         }
 
     }
@@ -104,9 +111,9 @@ pageextension 70001 "Item List" extends "Item List"
                     StockPar.GET;
                     if xAjustement.FindLast() then
                         // NoSeriesMgt.InitSeries(StockPar."N° Ajustement", xAjustement."No. Series", 0D, Ajustement."No.", Ajustement."No. Series")
-                    // else
+                        // else
                         // NoSeriesMgt.InitSeries(StockPar."N° Ajustement", Ajustement."No. Series", 0D, Ajustement."No.", Ajustement."No. Series");
-                    Ajustement."Document Date" := WorkDate();
+                        Ajustement."Document Date" := WorkDate();
                     Ajustement."Item No." := rec."No.";
                     Ajustement.Description := rec.Description;
                     // rec.CalcFields("Cartons Solde");
@@ -138,7 +145,7 @@ pageextension 70001 "Item List" extends "Item List"
                     "ItemJournal": record 83;
                     i: integer;
                     J: integer;
-                    //silue samuel 07/03/2025 articl: Record Item;
+                //silue samuel 07/03/2025 articl: Record Item;
                 begin
                     // article.Reset();
                     // article.CalcFields(Inventory);
@@ -278,7 +285,7 @@ pageextension 70001 "Item List" extends "Item List"
     var
         //silue samuel 07/03/2025 article: record Item;
         userPerso: record "User Personalization";
-        //silue samuel 07/03/2025 articl: record Item;
+    //silue samuel 07/03/2025 articl: record Item;
     begin
         rec.SetRange(Blocked, false);
         rec.SetCurrentKey(Description);
@@ -371,7 +378,7 @@ pageextension 70001 "Item List" extends "Item List"
         "ItemJournal": record 83;
         i: integer;
         J: integer;
-        // articl: record Item;
+    // articl: record Item;
     begin
         //rec.SetCurrentKey(Description);
         i := 10000;
