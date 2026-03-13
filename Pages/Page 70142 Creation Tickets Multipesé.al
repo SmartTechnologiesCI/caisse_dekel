@@ -288,8 +288,8 @@ page 70142 Creation_Ticket_Multipese
 
                         Planteur: Record Vendor;
                     begin
-                        if Rec.AssistEdit_PointCaisse(xRec) then
-                            CurrPage.Update();
+                        // if Rec.AssistEdit_PointCaisse(xRec) then
+                        //     CurrPage.Update();
 
                         Planteur.SetRange("No.", rec."Code planteur");
                         if Planteur.FindFirst() then begin
