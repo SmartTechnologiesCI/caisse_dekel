@@ -183,6 +183,7 @@ page 70143 "New Ticket Multi Pese"
                 }
                 field("Code Client"; REC."Code Client")
                 {
+                    Enabled = EnableMouv;
                     TableRelation = customer;
                     //         ApplicationArea = All;
                     //         TableRelation = if ("Client/Fournisseur" = const("Client/Fournisseur"::" ")) Table_Vide
@@ -210,6 +211,7 @@ page 70143 "New Ticket Multi Pese"
                 }
                 field("Nom Client"; "Nom Client")
                 {
+                    Enabled = EnableMouv;
                     ApplicationArea = All;
                 }
                 field("Centre Logistique"; "Centre Logistique")
@@ -256,11 +258,21 @@ page 70143 "New Ticket Multi Pese"
                         myInt: Integer;
                         TypeOperation: Record "Type operation";
                     begin
+                        Clear(EnableMouv);
+                        Clear(EnableMouv2);
+                        EnableMouv := true;
+                        EnableMouv2 := true;
                         TypeOperation.SetRange("Type Operation", rec."Type opération");
                         if TypeOperation.FindFirst() then begin
                             // rec."Type of Transportation" := 'RECEPTION';
                             rec."Type of Transportation" := TypeOperation.Mouvement;
                             REC.Modify();
+                        end;
+                        if rec."Type of Transportation" = 'RECEPTION' then begin
+                            EnableMouv := false;
+                        end;
+                        if rec."Type of Transportation" = 'EXPEDITION' then begin
+                            EnableMouv2 := false;
                         end;
                     end;
                 }
@@ -270,6 +282,7 @@ page 70143 "New Ticket Multi Pese"
                 }
                 field("Code planteur"; "Code planteur")
                 {
+                    Enabled = EnableMouv2;
                     ApplicationArea = All;
                     TableRelation = Vendor where("No." = const('FAG*'));
                     // Enabled = not REC.MultiPese;
@@ -303,7 +316,7 @@ page 70143 "New Ticket Multi Pese"
                 {
                     ToolTip = 'Specifies the value of the Nom planteur field.', Comment = '%';
                     ApplicationArea = All;
-                    Editable = false;
+                    Enabled = EnableMouv2;
                 }
                 field("Code magasin"; "Code magasin")
                 {
@@ -330,6 +343,7 @@ page 70143 "New Ticket Multi Pese"
                 field(BonEnlevement; REC.BonEnlevement)
                 {
                     ApplicationArea = All;
+                    Enabled = EnableMouv;
                 }
                 field("N° Commande PIC"; "N° Commande PIC")
                 {
@@ -594,4 +608,6 @@ page 70143 "New Ticket Multi Pese"
 
     var
         PlanterCodeunit: Codeunit "Planter's Post";
+        EnableMouv: Boolean;
+        EnableMouv2: Boolean;
 }

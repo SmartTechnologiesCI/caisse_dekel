@@ -874,6 +874,8 @@ page 70141 Creation_Ticket
     begin
         // if ((USERID <> 'DEKEL\ADMINISTRATEUR')) then
         //     ERROR('Vous n''etes pas autorisé à effectuer cette action');
+        REC.TestField(Transit, false);
+        rec.TestField(valide,false);
         UserSetup.RESET;
         if UserSetup.GET(USERID) then
             if not (UserSetup."Administration ticket") then

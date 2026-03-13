@@ -198,6 +198,14 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         // end;
     end;
 
+    trigger OnDelete()
+    var
+        myInt: Integer;
+    begin
+        REC.TestField(Transit, false);
+        rec.TestField(valide, false);
+    end;
+
     trigger OnInsert()
     var
         myInt: Integer;
