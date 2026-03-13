@@ -337,7 +337,7 @@ page 70143 "New Ticket Multi Pese"
                 }
                 field("Process Ticket"; rec."Process Ticket")
                 {
-                    Editable = false;
+                    // Editable = false;
                 }
                 // field("Code planteur"; Rec."Code planteur")
                 // {

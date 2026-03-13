@@ -212,7 +212,7 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("Nom Transporteur"; "Nom Transporteur")
                 {
-                    Editable = false;
+                    // Editable = false;
                 }
 
                 //<<Fab Smartech 24_04_25
