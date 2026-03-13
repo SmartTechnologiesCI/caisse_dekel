@@ -655,10 +655,18 @@ page 70141 Creation_Ticket
                             NewRec.TICKET := 1;
                         NewRec."Type of Transportation" := 'RECEPTION';
                         NewRec."Process Ticket" := newRec."Process Ticket"::Create;
+
                         NewRec.Insert(true);
 
                         if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
                             Rec := NewRec;
+                            //*****
+                            if rec."Ticket Planteur" = '' then begin
+                                if Rec.AssistEdit_PointCaisse(xRec) then
+                                    // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
+                                    CurrPage.Update(false);
+                            end;
+                            //*****
                             Rec.Insert();
                             TicketBuffer := REC.TICKET;
                             NombrePlanteursBuffer := rec."Nombre de planteurs";
@@ -729,8 +737,20 @@ page 70141 Creation_Ticket
 
                         // end;
                         if page.RunModal(page::"New Ticket Multi Pese", NewRec) = action::LookupOK then begin
-                            NewRec.TestField("Ticket Planteur");
+                            // NewRec.TestField("Ticket Planteur");
                             Rec := NewRec;
+                            //********
+                            if rec.CodeMultiPese = '' then begin
+                                if Rec.AssistEdit_PointCaisses(xRec) then
+                                    // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
+                                    CurrPage.Update(false);
+                            end;
+                            if rec."Ticket Planteur" = '' then begin
+                                if Rec.AssistEdit_PointCaisse(xRec) then
+                                    // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
+                                    CurrPage.Update(false);
+                            end;
+                            //******
                             Rec.Insert();
                             TicketBuffer := REC.TICKET;
                             NombrePlanteursBuffer := rec."Nombre de planteurs";
@@ -875,7 +895,7 @@ page 70141 Creation_Ticket
         // if ((USERID <> 'DEKEL\ADMINISTRATEUR')) then
         //     ERROR('Vous n''etes pas autorisé à effectuer cette action');
         REC.TestField(Transit, false);
-        rec.TestField(valide,false);
+        rec.TestField(valide, false);
         UserSetup.RESET;
         if UserSetup.GET(USERID) then
             if not (UserSetup."Administration ticket") then

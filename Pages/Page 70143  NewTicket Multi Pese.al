@@ -504,24 +504,18 @@ page 70143 "New Ticket Multi Pese"
                                     Error('veuillez sortir de la fiche et cliquer sur « Enregistrer sortie » ou « Enregistrer Sortie Multi-pesé » selon le type de ticket dans la liste');
                                 end;
                                 //******Gestion de la source de numero
-                                if rec.CodeMultiPese = '' then begin
+                               /*  if rec.CodeMultiPese = '' then begin
                                     if Rec.AssistEdit_PointCaisses(xRec) then
                                         // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
                                     CurrPage.Update();
                                 end;
 
-                                // end else begin
-                                //     if rec."Ticket Planteur" = '' then begin
-                                //         if Rec.AssistEdit_PointCaisse(xRec) then
-                                //             rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
-                                //         CurrPage.Update();
-                                //     end;
-                                // end;
+                               
                                 if rec."Ticket Planteur" = '' then begin
                                     if Rec.AssistEdit_PointCaisse(xRec) then
                                         // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
                                     CurrPage.Update();
-                                end;
+                                end; */
 
                                 //******Gestion de la source de numéro
                             end;
