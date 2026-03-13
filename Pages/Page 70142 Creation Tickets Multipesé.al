@@ -110,7 +110,7 @@ page 70142 Creation_Ticket_Multipese
                 }
                 field("Nom planteur"; "Nom planteur")
                 {
-                    Editable = false;
+                    // Editable = false;
                 }
 
                 field("POIDS ENTREE"; "POIDS ENTREE")
