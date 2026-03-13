@@ -468,6 +468,7 @@ page 70143 "New Ticket Multi Pese"
                     rec.TestField("Code article");
                     Rec.TestField("Balance Code");
                     REC.TestField("Nombre de planteurs");
+                    rec.TestField("Code Transporteur");
                     /*   balance.get(Rec."Balance Code");
                       jObj.ReadFrom(balance.PostJsonUsingSend());
                       jObj.Get('weight', jTok); */

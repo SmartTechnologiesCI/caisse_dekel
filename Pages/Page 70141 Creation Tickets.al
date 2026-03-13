@@ -54,6 +54,10 @@ page 70141 Creation_Ticket
                 {
 
                 }
+                field("Vehicle Registration No."; "Vehicle Registration No.")
+                {
+                    ApplicationArea = all;
+                }
                 field(CodeMultiPese; rec.CodeMultiPese)
                 {
                     ApplicationArea = All;
@@ -82,6 +86,12 @@ page 70141 Creation_Ticket
                 field(ORIGINE; rec.ORIGINE)
                 {
                     ApplicationArea = All;
+                }
+                field("Code planteur"; "Code planteur")
+                {
+                }
+                field("Nom planteur"; "Nom planteur")
+                {
                 }
                 field("Code Transporteur"; "Code Transporteur")
                 {
@@ -156,9 +166,9 @@ page 70141 Creation_Ticket
                 field("Driver Name"; "Driver Name")
                 {
                 }
-                field("Vehicle Registration No."; "Vehicle Registration No.")
-                {
-                }
+                // field("Vehicle Registration No."; "Vehicle Registration No.")
+                // {
+                // }
                 field("Type of Transportation"; "Type of Transportation")
                 {
 
@@ -167,12 +177,7 @@ page 70141 Creation_Ticket
                 // {
 
                 // }
-                field("Code planteur"; "Code planteur")
-                {
-                }
-                field("Nom planteur"; "Nom planteur")
-                {
-                }
+
 
 
                 field("Code article"; "Code article")

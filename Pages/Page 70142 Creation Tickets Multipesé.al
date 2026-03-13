@@ -84,11 +84,102 @@ page 70142 Creation_Ticket_Multipese
                 {
                     ApplicationArea = All;
                     TableRelation = MagasinCentreLogistique.Description;
+                    Visible=false;
+                }
+                field("Code planteur"; "Code planteur")
+                {
+                    TableRelation = Vendor;
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+
+                        Planteur: Record Vendor;
+                    begin
+                        // if Rec.AssistEdit_PointCaisse(xRec) then
+                        //     CurrPage.Update();
+
+                        Planteur.SetRange("No.", rec."Code planteur");
+                        if Planteur.FindFirst() then begin
+                            REC."Nom planteur" := Planteur.Name;
+                            REC.Modify()
+                        end;
+
+
+
+                    end;
+                }
+                field("Nom planteur"; "Nom planteur")
+                {
+                    Editable = false;
+                }
+                
+                field("POIDS ENTREE"; "POIDS ENTREE")
+                {
+                    // Editable = false;
+                    Visible = true;
+                }
+                field("POIDS SORTIE"; "POIDS SORTIE")
+                {
+                    Editable = false;
+                }
+                field("POIDS NET"; "POIDS NET")
+                {
+                    // Editable = false;
+                    trigger OnValidate()
+
+                    var
+                        ItemWeightBridge: Record "Item Weigh Bridge";
+                        ItemWeightBridge2: Record "Item Weigh Bridge";
+                    begin
+                        //FnGeek 08_09_25
+                        if rec.MultiPese = true then begin
+                            if rec."POIDS ENTREE" <> 0 then begin
+                                REC."POIDS SORTIE" := rec."POIDS ENTREE" - rec."POIDS NET";
+                                rec."Process Ticket" := rec."Process Ticket"::Validated;
+                                rec."Weighing 2 Date" := WorkDate();
+                                REC."Weighing 2 Hour" := Time;
+                                rec.Modify();
+                                //*****FnGeek 16_02_26
+                                // ItemWeightBridge.SetFilter(CodeMultiPese, rec.CodeMultiPese);
+                                // // ItemWeightBridge.SetLoadFields(POID)
+                                // if ItemWeightBridge.FindSet() then begin
+                                //     repeat begin
+
+                                //     end until ItemWeightBridge.Next() = 0;
+                                // end;
+                                //*****FnGeek 16_02_26
+                                ItemWeightBridge.SetRange("Ticket Planteur", (IncStr(rec."Ticket Planteur")));
+                                if ItemWeightBridge.FindFirst() then begin
+                                    ItemWeightBridge.VALIDATE("POIDS ENTREE", rec."POIDS SORTIE");
+                                    ItemWeightBridge.Modify();
+                                    ItemWeightBridge2.SetRange(TICKET, ItemWeightBridge.TICKET);
+                                    if ItemWeightBridge2.FindFirst() then begin
+                                        if ItemWeightBridge2."POIDS SORTIE" <> 0 then begin
+                                            // if ItemWeightBridge2."POIDS NET" = 0 then begin
+                                            if ItemWeightBridge2."POIDS ENTREE" <> 0 then begin
+                                                ItemWeightBridge2."POIDS NET" := ItemWeightBridge2."POIDS ENTREE" - ItemWeightBridge2."POIDS SORTIE";
+                                                ItemWeightBridge2."Process Ticket" := ItemWeightBridge2."Process Ticket"::Validated;
+                                                ItemWeightBridge2.Modify();
+                                            end;
+                                            // end;
+                                        end;
+                                    end;
+                                end;
+                            end;
+                        end;
+
+                        //FnGeek 08_09_25
+                    end;
                 }
                 field("Balance Code"; rec."Balance Code")
                 {
                     ApplicationArea = All;
                     Editable = false;
+                }
+                field("Item Origin"; "Item Origin")
+                {
+                    CaptionML = FRA = 'Origine produit', ENU = 'Origin product';
+                    TableRelation = Origine.Origine;
                 }
                 field(MultiPese; rec.MultiPese)
                 {
@@ -165,69 +256,6 @@ page 70142 Creation_Ticket_Multipese
                     ApplicationArea = All;
                 }
                 //<<Fab Smartech 24_04_25
-                field("POIDS ENTREE"; "POIDS ENTREE")
-                {
-                    // Editable = false;
-                    Visible = true;
-                }
-                field("POIDS SORTIE"; "POIDS SORTIE")
-                {
-                    Editable = false;
-                }
-                field("POIDS NET"; "POIDS NET")
-                {
-                    // Editable = false;
-                    trigger OnValidate()
-
-                    var
-                        ItemWeightBridge: Record "Item Weigh Bridge";
-                        ItemWeightBridge2: Record "Item Weigh Bridge";
-                    begin
-                        //FnGeek 08_09_25
-                        if rec.MultiPese = true then begin
-                            if rec."POIDS ENTREE" <> 0 then begin
-                                REC."POIDS SORTIE" := rec."POIDS ENTREE" - rec."POIDS NET";
-                                rec."Process Ticket" := rec."Process Ticket"::Validated;
-                                rec."Weighing 2 Date" := WorkDate();
-                                REC."Weighing 2 Hour" := Time;
-                                rec.Modify();
-                                //*****FnGeek 16_02_26
-                                // ItemWeightBridge.SetFilter(CodeMultiPese, rec.CodeMultiPese);
-                                // // ItemWeightBridge.SetLoadFields(POID)
-                                // if ItemWeightBridge.FindSet() then begin
-                                //     repeat begin
-
-                                //     end until ItemWeightBridge.Next() = 0;
-                                // end;
-                                //*****FnGeek 16_02_26
-                                ItemWeightBridge.SetRange("Ticket Planteur", (IncStr(rec."Ticket Planteur")));
-                                if ItemWeightBridge.FindFirst() then begin
-                                    ItemWeightBridge.VALIDATE("POIDS ENTREE", rec."POIDS SORTIE");
-                                    ItemWeightBridge.Modify();
-                                    ItemWeightBridge2.SetRange(TICKET, ItemWeightBridge.TICKET);
-                                    if ItemWeightBridge2.FindFirst() then begin
-                                        if ItemWeightBridge2."POIDS SORTIE" <> 0 then begin
-                                            // if ItemWeightBridge2."POIDS NET" = 0 then begin
-                                            if ItemWeightBridge2."POIDS ENTREE" <> 0 then begin
-                                                ItemWeightBridge2."POIDS NET" := ItemWeightBridge2."POIDS ENTREE" - ItemWeightBridge2."POIDS SORTIE";
-                                                ItemWeightBridge2."Process Ticket" := ItemWeightBridge2."Process Ticket"::Validated;
-                                                ItemWeightBridge2.Modify();
-                                            end;
-                                            // end;
-                                        end;
-                                    end;
-                                end;
-                            end;
-                        end;
-
-                        //FnGeek 08_09_25
-                    end;
-                }
-                field("Item Origin"; "Item Origin")
-                {
-                    CaptionML = FRA = 'Origine produit', ENU = 'Origin product';
-                    TableRelation = Origine.Origine;
-                }
                 field("Row No."; "Row No.")
                 {
                     Visible = false;
@@ -279,32 +307,7 @@ page 70142 Creation_Ticket_Multipese
                 // {
 
                 // }
-                field("Code planteur"; "Code planteur")
-                {
-                    TableRelation = Vendor;
-                    trigger OnValidate()
-                    var
-                        myInt: Integer;
 
-                        Planteur: Record Vendor;
-                    begin
-                        // if Rec.AssistEdit_PointCaisse(xRec) then
-                        //     CurrPage.Update();
-
-                        Planteur.SetRange("No.", rec."Code planteur");
-                        if Planteur.FindFirst() then begin
-                            REC."Nom planteur" := Planteur.Name;
-                            REC.Modify()
-                        end;
-
-
-
-                    end;
-                }
-                field("Nom planteur"; "Nom planteur")
-                {
-                    Editable = false;
-                }
 
 
                 field("Code article"; "Code article")
