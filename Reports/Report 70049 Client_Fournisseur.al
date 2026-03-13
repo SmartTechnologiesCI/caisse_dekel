@@ -9,7 +9,7 @@ report 70049 Client_Fournisseur
     {
         dataitem("Item Weigh Bridge"; "Item Weigh Bridge")
         {
-            RequestFilterFields = "Date validation", "Weighing 1 Date";
+            // RequestFilterFields = "Date validation", "Weighing 1 Date", "Balance Code";
             column(Vehicle_Registration_No_; "Vehicle Registration No.")
             {
 
@@ -81,6 +81,7 @@ report 70049 Client_Fournisseur
             trigger OnPreDataItem()
             var
                 myInt: Integer;
+
             begin
                 // if ((CopyStr(GetFilters, StrPos(GetFilters, ':') + 2)) <> (GetFilter("Date validation"))) then begin
                 //     Filter := CopyStr(GetFilters, StrPos(GetFilters, ':') + 2);
@@ -95,7 +96,8 @@ report 70049 Client_Fournisseur
                 //         Message('Filter: %1', Filter);
                 //     end;
                 PeriodeImpression := CopyStr(GetFilters, StrPos(GetFilters, ':') + 2);
-
+                SetFilter("Date validation", '=%1', Datevalidation);
+                SetFilter("Balance Code", '=%1', BalanceCode);
 
             end;
 
@@ -126,7 +128,7 @@ report 70049 Client_Fournisseur
         {
             area(Content)
             {
-                group(GroupName)
+                group(General)
                 {
                     field(TypeOperation; TypeOperation)
                     {
@@ -137,6 +139,20 @@ report 70049 Client_Fournisseur
                     field(Produit; Produit)
                     {
                         ApplicationArea = All;
+                    }
+                }
+                group(General2)
+                {
+                    Caption = 'CL & Date';
+                    field(Datevalidation; Datevalidation)
+                    {
+                        Caption = 'Date validation';
+                        ApplicationArea = All;
+                    }
+                    field(BalanceCode; BalanceCode)
+                    {
+                        ApplicationArea = All;
+                        Caption = 'CL';
                     }
                 }
             }
@@ -154,7 +170,25 @@ report 70049 Client_Fournisseur
         }
     }
 
+    trigger OnInitReport()
+    var
 
+        UserSetup: Record "User Setup";
+        bal: Record Balance;
+    begin
+        Clear(BalanceCode);
+        Clear(Datevalidation);
+        UserSetup.SetRange("User ID", UserId);
+        if UserSetup.FindFirst() then begin
+            bal.SetRange("Description Origine", UserSetup.DescriotionCL);
+            if bal.FindFirst() then begin
+                BalanceCode := bal.Code;
+            end;
+        end;
+        Datevalidation := WorkDate();
+
+
+    end;
 
     var
         myInt: Integer;
@@ -163,4 +197,6 @@ report 70049 Client_Fournisseur
         Produit: Boolean;
         ValeurTypeOperation: code[100];
         PeriodeImpression: Text[250];
+        Datevalidation: Date;
+        BalanceCode: Code[100];
 }

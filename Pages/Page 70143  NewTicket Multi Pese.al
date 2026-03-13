@@ -334,6 +334,7 @@ page 70143 "New Ticket Multi Pese"
                 field("N° Commande PIC"; "N° Commande PIC")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Process Ticket"; rec."Process Ticket")
                 {
@@ -469,6 +470,7 @@ page 70143 "New Ticket Multi Pese"
                     Rec.TestField("Balance Code");
                     REC.TestField("Nombre de planteurs");
                     rec.TestField("Code Transporteur");
+                    rec.TestField("Code article");
                     balance.get(Rec."Balance Code");
                     jObj.ReadFrom(balance.PostJsonUsingSend());
                     jObj.Get('weight', jTok);
