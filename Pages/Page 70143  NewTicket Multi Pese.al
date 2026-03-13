@@ -477,11 +477,11 @@ page 70143 "New Ticket Multi Pese"
                             begin
 
                                 if (((rec.Transit = false) and (rec."POIDS ENTREE" = 0))) then begin
-                                    /*   evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText());
+                                    /*   evaluate(Rec."POIDS ENTREE", jTok.AsValue().AsText()); */
                                       Rec."Weighing 1 Date" := today();
                                       Rec."Weighing 1 Hour" := Time();
                                       rec.MultiPese := true;
-                                      rec.Transit := true; */
+                                      rec.Transit := true;
                                 end else begin
 
                                     Error('veuillez sortir de la fiche et cliquer sur « Enregistrer sortie » ou « Enregistrer Sortie Multi-pesé » selon le type de ticket dans la liste');

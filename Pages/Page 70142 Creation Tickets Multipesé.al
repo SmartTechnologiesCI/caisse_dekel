@@ -84,7 +84,7 @@ page 70142 Creation_Ticket_Multipese
                 {
                     ApplicationArea = All;
                     TableRelation = MagasinCentreLogistique.Description;
-                    Visible=false;
+                    Visible = false;
                 }
                 field("Code planteur"; "Code planteur")
                 {
@@ -112,10 +112,10 @@ page 70142 Creation_Ticket_Multipese
                 {
                     Editable = false;
                 }
-                
+
                 field("POIDS ENTREE"; "POIDS ENTREE")
                 {
-                    // Editable = false;
+                    Editable = false;
                     Visible = true;
                 }
                 field("POIDS SORTIE"; "POIDS SORTIE")
@@ -132,6 +132,7 @@ page 70142 Creation_Ticket_Multipese
                         ItemWeightBridge2: Record "Item Weigh Bridge";
                     begin
                         //FnGeek 08_09_25
+                        rec.TestField("POIDS ENTREE");
                         if rec.MultiPese = true then begin
                             if rec."POIDS ENTREE" <> 0 then begin
                                 REC."POIDS SORTIE" := rec."POIDS ENTREE" - rec."POIDS NET";
@@ -351,6 +352,10 @@ page 70142 Creation_Ticket_Multipese
                 field(CommentaireT; CommentaireT)
                 {
                     Editable = false;
+                }
+                field("Process Ticket"; rec."Process Ticket")
+                {
+                    ApplicationArea = All;
                 }
                 field("Traitement effectué"; "Traitement effectué")
                 {
