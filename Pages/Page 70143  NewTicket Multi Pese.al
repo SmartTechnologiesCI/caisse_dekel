@@ -330,11 +330,11 @@ page 70143 "New Ticket Multi Pese"
                     ToolTip = 'Specifies the value of the Ticket Planteur field.', Comment = '%';
                     ApplicationArea = All;
                     Editable = false;
-                    trigger OnAssistEdit()
+                   /*  trigger OnAssistEdit()
                     begin
                         if Rec.AssistEdit_PointCaisse(xRec) then
                             CurrPage.Update();
-                    end;
+                    end; */
                 }
                 field("Item Origin"; Rec."Item Origin")
                 {
