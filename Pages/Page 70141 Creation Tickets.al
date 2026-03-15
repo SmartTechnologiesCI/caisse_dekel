@@ -711,6 +711,7 @@ page 70141 Creation_Ticket
                         TicketBuffer: Integer;
                         NombrePlanteursBuffer: Integer;
                         ItemWeighBridgeMultiPese: Record "Item Weigh Bridge";
+                        ItemWeighBridgeMultiPese1: Record "Item Weigh Bridge";
                         ControlVariable: Integer;
                         ItemWeighBridgeMultiPese2: Record "Item Weigh Bridge";
                         ItemWeighBridgeMultiPese3: Record "Item Weigh Bridge";
@@ -757,12 +758,14 @@ page 70141 Creation_Ticket
                             CurrPage.Update(false);
                         end;
                         //<<FnGeek 05_09_25
-                        ItemWeighBridgeMultiPese.SetRange(TICKET, TicketBuffer);
+                        ItemWeighBridgeMultiPese.SetRange("Ticket Planteur", rec."Ticket Planteur");
                         if ItemWeighBridgeMultiPese.FindFirst() then begin
                             // if ItemWeighBridgeMultiPese.MultiPese = true then begin
                             for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
+                                if ItemWeighBridgeMultiPese1.FindLast() then begin
+                                    ItemWeighBridgeMultiPese.TICKET := ItemWeighBridgeMultiPese1.TICKET + 1;
+                                end;
 
-                                ItemWeighBridgeMultiPese.TICKET += (ControlVariable - 1);
                                 ItemWeighBridgeMultiPese."Ticket Planteur" := IncStr(ItemWeighBridgeMultiPese."Ticket Planteur");
                                 ItemWeighBridgeMultiPese.MultiPese := true;
                                 ItemWeighBridgeMultiPese."POIDS ENTREE" := 0;//Fngeek has commented
