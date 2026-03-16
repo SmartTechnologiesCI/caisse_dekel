@@ -455,6 +455,8 @@ page 70141 Creation_Ticket
                             Error('Le ticket %1 n''est pas valide', rec."Ticket Planteur");
                         end else begin
                             rec.TestField(valide, false);
+                            // rec.Transit := false;
+                            rec.Modify();
                             ItemWeighBridge.Reset();
                             ItemWeighBridge.SetRange("Ticket Planteur", Rec."Ticket Planteur");
                             ItemWeighBridge.SetRange(CodeMultiPese, rec.CodeMultiPese);
