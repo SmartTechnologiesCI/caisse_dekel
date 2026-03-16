@@ -139,6 +139,7 @@ page 70142 Creation_Ticket_Multipese
                                 rec."Process Ticket" := rec."Process Ticket"::Validated;
                                 rec."Weighing 2 Date" := WorkDate();
                                 REC."Weighing 2 Hour" := Time;
+                                rec.Transit := false;
                                 rec.Modify();
                                 //*****FnGeek 16_02_26
                                 // ItemWeightBridge.SetFilter(CodeMultiPese, rec.CodeMultiPese);
