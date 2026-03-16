@@ -475,6 +475,7 @@ page 70141 Creation_Ticket
                                 TicketMulti."Date validation" := WorkDate();
                                 TicketMulti.UserName := UserId;
                                 TicketMulti.imprime := true;
+                                TicketMulti.Transit := false;
                                 TicketMulti.Modify();
                             end;
 
