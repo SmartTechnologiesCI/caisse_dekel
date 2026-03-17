@@ -95,15 +95,22 @@ page 70143 "New Ticket Multi Pese"
                 {
                     ApplicationArea = All;
                     Caption = 'Produit';
-                    TableRelation = Item;
-                    trigger OnValidate()
+                    // TableRelation = Item;
+                    trigger OnLookup(Var Text: Text): Boolean
                     var
                         myInt: Integer;
                         Item: Record Item;
                     begin
-                        Item.SetRange("No.", rec."Code article");
-                        if Item.FindFirst() then begin
-                            rec."Désignation article" := Item.Description;
+                        Item.SetFilter("Pesé", '=%1', true);
+                        if Item.FindSet() then begin
+                            if Page.RunModal(Page::"Item Lookups", Item) = Action::LookupOK then begin
+                                Rec."Code article" := Item."No.";
+                                rec."Désignation article" := Item.Description;
+                                // rec."Code magasin" := Bal.Magasin;
+                            end;
+                            // exit(true);
+                        end else begin
+                            Error('Aucun article n''est paramétré pour la pesé');
                         end;
                     end;
                 }
@@ -330,11 +337,11 @@ page 70143 "New Ticket Multi Pese"
                     ToolTip = 'Specifies the value of the Ticket Planteur field.', Comment = '%';
                     ApplicationArea = All;
                     Editable = false;
-                   /*  trigger OnAssistEdit()
-                    begin
-                        if Rec.AssistEdit_PointCaisse(xRec) then
-                            CurrPage.Update();
-                    end; */
+                    /*  trigger OnAssistEdit()
+                     begin
+                         if Rec.AssistEdit_PointCaisse(xRec) then
+                             CurrPage.Update();
+                     end; */
                 }
                 field("Item Origin"; Rec."Item Origin")
                 {
@@ -504,18 +511,18 @@ page 70143 "New Ticket Multi Pese"
                                     Error('veuillez sortir de la fiche et cliquer sur « Enregistrer sortie » ou « Enregistrer Sortie Multi-pesé » selon le type de ticket dans la liste');
                                 end;
                                 //******Gestion de la source de numero
-                               /*  if rec.CodeMultiPese = '' then begin
-                                    if Rec.AssistEdit_PointCaisses(xRec) then
-                                        // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
-                                    CurrPage.Update();
-                                end;
+                                /*  if rec.CodeMultiPese = '' then begin
+                                     if Rec.AssistEdit_PointCaisses(xRec) then
+                                         // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
+                                     CurrPage.Update();
+                                 end;
 
-                               
-                                if rec."Ticket Planteur" = '' then begin
-                                    if Rec.AssistEdit_PointCaisse(xRec) then
-                                        // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
-                                    CurrPage.Update();
-                                end; */
+
+                                 if rec."Ticket Planteur" = '' then begin
+                                     if Rec.AssistEdit_PointCaisse(xRec) then
+                                         // rec.RacineBalance := CopyStr(rec."Ticket Planteur", 1, 2);
+                                     CurrPage.Update();
+                                 end; */
 
                                 //******Gestion de la source de numéro
                             end;
