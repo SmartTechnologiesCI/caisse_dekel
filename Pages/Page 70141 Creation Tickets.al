@@ -456,7 +456,7 @@ page 70141 Creation_Ticket
                         end else begin
                             rec.TestField(valide, false);
                             // rec.Transit := false;
-                            rec.Modify();
+                            // rec.Modify();
                             ItemWeighBridge.Reset();
                             ItemWeighBridge.SetRange("Ticket Planteur", Rec."Ticket Planteur");
                             ItemWeighBridge.SetRange(CodeMultiPese, rec.CodeMultiPese);
