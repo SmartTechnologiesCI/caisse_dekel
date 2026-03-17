@@ -663,6 +663,7 @@ page 70141 Creation_Ticket
 
                         if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
                             Rec := NewRec;
+                            rec.TestField("POIDS ENTREE");
                             //*****
                             if rec."Ticket Planteur" = '' then begin
                                 if Rec.AssistEdit_PointCaisse(xRec) then
@@ -743,6 +744,7 @@ page 70141 Creation_Ticket
                         if page.RunModal(page::"New Ticket Multi Pese", NewRec) = action::LookupOK then begin
                             // NewRec.TestField("Ticket Planteur");
                             Rec := NewRec;
+                            rec.TestField("POIDS ENTREE");
                             //********
                             if rec.CodeMultiPese = '' then begin
                                 if Rec.AssistEdit_PointCaisses(xRec) then
