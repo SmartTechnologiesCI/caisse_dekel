@@ -587,7 +587,7 @@ page 70141 Creation_Ticket
                 action("CreateNewMultiPese")
                 {
                     Visible = false;
-                    CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket Multipese';
+                    CaptionML = ENU = 'Create New T', FRA = 'Créer ticket Multiplanteur';
                     Image = New;
                     Promoted = true;
                     PromotedCategory = Process;
@@ -625,7 +625,7 @@ page 70141 Creation_Ticket
                 }
                 action("CreateNew")
                 {
-                    CaptionML = ENU = 'Create New T', FRA = 'Créer nouveau ticket';
+                    CaptionML = ENU = 'Create New T', FRA = 'Créer ticket';
                     Image = New;
                     Promoted = true;
                     PromotedCategory = Process;
@@ -698,7 +698,7 @@ page 70141 Creation_Ticket
                 //*****Multi-pesée
                 action("CreateNews")
                 {
-                    CaptionML = ENU = 'Create New T', FRA = 'Créer Multi nouveau ticket';
+                    CaptionML = ENU = 'Create New T', FRA = 'Créer ticket Multiplanteur';
                     Image = New;
                     Promoted = true;
                     PromotedCategory = Process;

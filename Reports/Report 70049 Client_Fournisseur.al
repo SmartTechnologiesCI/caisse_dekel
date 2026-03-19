@@ -9,7 +9,7 @@ report 70049 Client_Fournisseur
     {
         dataitem("Item Weigh Bridge"; "Item Weigh Bridge")
         {
-            // RequestFilterFields = "Date validation", "Weighing 1 Date", "Balance Code";
+            RequestFilterFields = "Date validation";
             column(Vehicle_Registration_No_; "Vehicle Registration No.")
             {
 
@@ -96,8 +96,8 @@ report 70049 Client_Fournisseur
                 //         Message('Filter: %1', Filter);
                 //     end;
                 PeriodeImpression := CopyStr(GetFilters, StrPos(GetFilters, ':') + 2);
-                SetFilter("Date validation", '=%1', Datevalidation);
-                SetFilter("Balance Code", '=%1', BalanceCode);
+                // SetFilter("Date validation", '=%1', Datevalidation);
+                SetFilter(ORIGINE, '=%1', BalanceCode);
 
             end;
 
@@ -146,11 +146,13 @@ report 70049 Client_Fournisseur
                     Caption = 'CL & Date';
                     field(Datevalidation; Datevalidation)
                     {
+                        Visible = false;
                         Caption = 'Date validation';
                         ApplicationArea = All;
                     }
                     field(BalanceCode; BalanceCode)
                     {
+
                         ApplicationArea = All;
                         Caption = 'CL';
                     }
@@ -182,10 +184,11 @@ report 70049 Client_Fournisseur
         if UserSetup.FindFirst() then begin
             bal.SetRange("Description Origine", UserSetup.DescriotionCL);
             if bal.FindFirst() then begin
-                BalanceCode := bal.Code;
+                BalanceCode := bal."Description Origine";
             end;
         end;
-        Datevalidation := WorkDate();
+        // Datevalidation := WorkDate();
+
 
 
     end;
