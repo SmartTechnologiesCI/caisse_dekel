@@ -493,6 +493,17 @@ page 70143 "New Ticket Multi Pese"
                     REC.TestField("Nombre de planteurs");
                     rec.TestField("Code Transporteur");
                     rec.TestField("Code article");
+                    //***FnGeek 25_03_26
+                    Rec.TestField("Vehicle Registration No.");
+                    Rec.TestField("Code Conducteur");
+                    Rec.TestField("Code Transporteur");
+                    if (REC."Type of Transportation" = 'RECEPTION') or (rec."Type of Transportation" = 'TRANSFERT') then begin
+                        rec.TestField("Code planteur");
+                    end;
+                    if rec."Type of Transportation" = 'EXPEDITION' then begin
+                        rec.TestField("Code Client");
+                    end;
+                    //***FnGeek 25_03_26
                     balance.get(Rec."Balance Code");
                     jObj.ReadFrom(balance.PostJsonUsingSend());
                     jObj.Get('weight', jTok);
