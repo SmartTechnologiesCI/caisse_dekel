@@ -329,7 +329,7 @@ page 70143 "New Ticket Multi Pese"
                 field("Code magasin"; "Code magasin")
                 {
                     ApplicationArea = All;
-                    Editable = false;
+                    // Editable = false;
                 }
                 //<<Fabrice Smart 05_03_25
                 field("Ticket Planteur"; Rec."Ticket Planteur")
