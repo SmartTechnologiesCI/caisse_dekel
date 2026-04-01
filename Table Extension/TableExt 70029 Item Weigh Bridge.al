@@ -198,12 +198,25 @@ tableextension 70029 "Item Weigh Bridge" extends "Item Weigh Bridge"
         // end;
     end;
 
-    trigger OnDelete()
+    /* trigger OnDelete()
     var
         myInt: Integer;
     begin
         REC.TestField(Transit, false);
         rec.TestField(valide, false);
+    end; */
+    trigger OnDelete()
+    var
+        UserSetup: Record "User Setup";
+    begin
+        if ((USERID <> 'BCADMIN')) then
+            ERROR('Vous n''etes pas autorisé à effectuer cette action');
+        REC.TestField(Transit, false);
+        rec.TestField(valide, false);
+        UserSetup.RESET;
+        if UserSetup.GET(USERID) then
+            if not (UserSetup."Administration ticket") then
+                ERROR('Vous n''êtes pas autorsé à éffectuer cette action');
     end;
 
     trigger OnInsert()

@@ -149,13 +149,19 @@ page 70143 "New Ticket Multi Pese"
                     trigger OnValidate()
                     var
                         vendor: Record Vendor;
+                        ItemWeigth: Record "Item Weigh Bridge";
                     begin
                         vendor.SetRange(Matricule_Vehicule, rec."Vehicle Registration No.");
                         if vendor.FindFirst() then begin
                             rec.TestField("Vehicle Registration No.");
                             rec.validate("Code Transporteur", vendor."No.");
                         end else begin
-                            Message('Le Matricule %1 n''est pas associé à un transporter veuillez Créer le transporteur', rec."Vehicle Registration No.");
+                            // Message('Le Matricule %1 n''est pas associé à un transporter veuillez Créer le transporteur', rec."Vehicle Registration No.");C//FnGeek 01_04_26
+                        end;
+                        ItemWeigth.SetRange("Vehicle Registration No.", rec."Vehicle Registration No.");
+                        ItemWeigth.SetRange(Transit, true);
+                        if ItemWeigth.FindFirst() then begin
+                            Error('le vehicule %1 est en transit', ItemWeigth."Vehicle Registration No.");
                         end;
                     end;
                 }
