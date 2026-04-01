@@ -16,7 +16,7 @@ page 70141 Creation_Ticket
     DeleteAllowed = false;
 
     InsertAllowed = false;
-    UsageCategory = Lists;
+    // UsageCategory = Lists;
     ModifyAllowed = false;
     PageType = List;
     CardPageId = "New Ticket";
@@ -896,7 +896,7 @@ page 70141 Creation_Ticket
                 ERROR('Vous n''êtes pas autorsé à éffectuer cette action');
     end;
 
-    trigger OnDeleteRecord(): Boolean
+   /*  trigger OnDeleteRecord(): Boolean
     var
         UserSetup: Record "User Setup";
     begin
@@ -908,7 +908,7 @@ page 70141 Creation_Ticket
         if UserSetup.GET(USERID) then
             if not (UserSetup."Administration ticket") then
                 ERROR('Vous n''êtes pas autorsé à éffectuer cette action');
-    end;
+    end; */
 
     trigger OnOpenPage()
     var
