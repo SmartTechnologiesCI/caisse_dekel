@@ -34,7 +34,7 @@ page 70141 Creation_Ticket
             {
                 ApplicationArea = All;
                 Visible = isCaissier;
-
+l
             }
              FnGeek commented for the moment in the future we must decomment for the news features*********15_11_25*/
 
@@ -663,7 +663,10 @@ page 70141 Creation_Ticket
 
                         if page.RunModal(page::"New Ticket", NewRec) = action::LookupOK then begin
                             Rec := NewRec;
-                            rec.TestField("POIDS ENTREE");
+                            // rec.TestField("POIDS ENTREE");
+                            // if rec."POIDS ENTREE"=0 then begin
+                            //     Error('Lisez le poids ou cliquez sur Annuler pour quitter le formulaire.');
+                            // end;
                             //*****
                             if rec."Ticket Planteur" = '' then begin
                                 if Rec.AssistEdit_PointCaisse(xRec) then
@@ -761,9 +764,43 @@ page 70141 Creation_Ticket
                             TicketBuffer := REC.TICKET;
                             NombrePlanteursBuffer := rec."Nombre de planteurs";
                             CurrPage.Update(false);
+                            //FnGeek 01_04_24
+                            ItemWeighBridgeMultiPese.SetRange("Ticket Planteur", rec."Ticket Planteur");
+                            if ItemWeighBridgeMultiPese.FindFirst() then begin
+                                // if ItemWeighBridgeMultiPese.MultiPese = true then begin
+                                for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
+                                    if ItemWeighBridgeMultiPese1.FindLast() then begin
+                                        ItemWeighBridgeMultiPese.TICKET := ItemWeighBridgeMultiPese1.TICKET + 1;
+                                    end;
+
+                                    ItemWeighBridgeMultiPese."Ticket Planteur" := IncStr(ItemWeighBridgeMultiPese."Ticket Planteur");
+                                    ItemWeighBridgeMultiPese.MultiPese := true;
+                                    ItemWeighBridgeMultiPese."POIDS ENTREE" := 0;//Fngeek has commented
+                                    ItemWeighBridgeMultiPese.Insert();
+
+                                    //********FnGeek 13_02_26
+                                    Balances.SetRange(Code, ItemWeighBridgeMultiPese."Balance Code");
+                                    if Balances.FindFirst() then begin
+                                        NoSeriesLine.SetRange("Series Code", Balances."Souche N°");
+                                        if NoSeriesLine.FindFirst() then begin
+                                            NoSeriesLine."Last No. Used" := ItemWeighBridgeMultiPese."Ticket Planteur";
+                                            NoSeriesLine.Modify();
+                                            // Message('aaa: %1', NoSeriesLine."Last No. Used");
+                                        end;
+                                    end;
+
+
+                                    //********FnGeek
+                                end;
+                                ItemWeighBridgeMultiPese3.SetFilter(CodeMultiPese, ItemWeighBridgeMultiPese.CodeMultiPese);
+                                if ItemWeighBridgeMultiPese3.FindSet() then begin
+                                    Page.Run(page::Creation_Ticket_Multipese, ItemWeighBridgeMultiPese3);
+                                end;
+                                // end;
+                            end;
                         end;
                         //<<FnGeek 05_09_25
-                        ItemWeighBridgeMultiPese.SetRange("Ticket Planteur", rec."Ticket Planteur");
+                        /* ItemWeighBridgeMultiPese.SetRange("Ticket Planteur", rec."Ticket Planteur");
                         if ItemWeighBridgeMultiPese.FindFirst() then begin
                             // if ItemWeighBridgeMultiPese.MultiPese = true then begin
                             for ControlVariable := 2 to ItemWeighBridgeMultiPese."Nombre de planteurs" do begin
@@ -795,7 +832,7 @@ page 70141 Creation_Ticket
                                 Page.Run(page::Creation_Ticket_Multipese, ItemWeighBridgeMultiPese3);
                             end;
                             // end;
-                        end;
+                        end; */
                         //<<FnGeek 05_09_25
                     end;
                 }
@@ -896,19 +933,27 @@ page 70141 Creation_Ticket
                 ERROR('Vous n''êtes pas autorsé à éffectuer cette action');
     end;
 
-   /*  trigger OnDeleteRecord(): Boolean
-    var
-        UserSetup: Record "User Setup";
-    begin
-        if ((USERID <> 'BCADMIN')) then
-            ERROR('Vous n''etes pas autorisé à effectuer cette action');
-        REC.TestField(Transit, false);
-        rec.TestField(valide, false);
-        UserSetup.RESET;
-        if UserSetup.GET(USERID) then
-            if not (UserSetup."Administration ticket") then
-                ERROR('Vous n''êtes pas autorsé à éffectuer cette action');
-    end;  */
+    /*  trigger OnDeleteRecord(): Boolean
+     var
+         UserSetup: Record "User Setup";
+     begin
+         if ((USERID <> 'BCADMIN')) then
+             ERROR('Vous n''etes pas autorisé à effectuer cette action');
+         REC.TestField(Transit, false);
+         rec.TestField(valide, false);
+         UserSetup.RESET;
+         if UserSetup.GET(USERID) then
+             if not (UserSetup."Administration ticket") then
+                 ERROR('Vous n''êtes pas autorsé à éffectuer cette action');
+     end;  */
+    // trigger OnQueryClosePage(CloseAction: Action): Boolean
+    // begin
+    //     if CloseAction = Action::LookupOK then begin
+    //         if Rec."POIDS ENTREE" = 0 then begin
+    //             Error('Veuillez lire le poids avant de valider.');
+    //         end;
+    //     end;
+    // end;
 
     trigger OnOpenPage()
     var

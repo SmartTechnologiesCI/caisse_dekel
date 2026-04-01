@@ -602,6 +602,15 @@ page 70143 "New Ticket Multi Pese"
 
 
     }
+    trigger OnQueryClosePage(CloseAction: Action): Boolean
+    begin
+        if CloseAction = Action::LookupOK then begin
+            if Rec."POIDS ENTREE" = 0 then begin
+                Error('Lisez le poids ou cliquez sur Annuler pour quitter le formulaire.');
+            end;
+        end;
+    end;
+
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
     var
         myInt: Integer;

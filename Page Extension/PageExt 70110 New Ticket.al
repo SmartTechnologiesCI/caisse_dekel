@@ -9,7 +9,7 @@ pageextension 70110 "New Ticket" extends "New Ticket"
                 ApplicationArea = All;
                 Editable = false;
             }
-            
+
         }
         // modify("Balance Code"){
         //     // TableRelation = Balance.Code;
@@ -121,33 +121,42 @@ pageextension 70110 "New Ticket" extends "New Ticket"
         // end;
     end;
 
+    // trigger OnQueryClosePage(CloseAction: Action): Boolean
+    // var
+    //     myInt: Integer;
+    //     ItemWeight: Record "Item Weigh Bridge";
+    //     NoSeries: Record "No. Series Line";
+    //     Balance: Record Balance;
+
+
+    // begin
+    //     /******FnGeek 10_02_26
+    //     if rec."POIDS ENTREE" = 0 then begin
+    //         Balance.SetRange(Code, rec."Balance Code");
+    //         if Balance.FindFirst() then begin
+    //             NoSeries.SetRange("Series Code", Balance."Souche N°");
+    //             if NoSeries.FindFirst() then begin
+    //                 if rec."Ticket Planteur" <> '' then begin
+    //                     ItemWeight.SetFilter(RacineBalance, '=%1', CopyStr(rec."Ticket Planteur", 1, 2));
+    //                     if ItemWeight.FindLast() then begin
+    //                         NoSeries."Last No. Used" := ItemWeight."Ticket Planteur";
+    //                         NoSeries.Modify();
+    //                     end;
+    //                 end;
+    //             end;
+    //         end;
+
+    //     end;
+    //     */
+    // end;
+
     trigger OnQueryClosePage(CloseAction: Action): Boolean
-    var
-        myInt: Integer;
-        ItemWeight: Record "Item Weigh Bridge";
-        NoSeries: Record "No. Series Line";
-        Balance: Record Balance;
-
-
     begin
-        /******FnGeek 10_02_26
-        if rec."POIDS ENTREE" = 0 then begin
-            Balance.SetRange(Code, rec."Balance Code");
-            if Balance.FindFirst() then begin
-                NoSeries.SetRange("Series Code", Balance."Souche N°");
-                if NoSeries.FindFirst() then begin
-                    if rec."Ticket Planteur" <> '' then begin
-                        ItemWeight.SetFilter(RacineBalance, '=%1', CopyStr(rec."Ticket Planteur", 1, 2));
-                        if ItemWeight.FindLast() then begin
-                            NoSeries."Last No. Used" := ItemWeight."Ticket Planteur";
-                            NoSeries.Modify();
-                        end;
-                    end;
-                end;
+        if CloseAction = Action::LookupOK then begin
+            if Rec."POIDS ENTREE" = 0 then begin
+                Error('Lisez le poids ou cliquez sur Annuler pour quitter le formulaire.');
             end;
-
         end;
-        */
     end;
 
     var
@@ -156,5 +165,5 @@ pageextension 70110 "New Ticket" extends "New Ticket"
         AnnuleDemande: Boolean;
         AnnuleAutorisation: Boolean;
         AnnulationAnnuler: Boolean;
-        // CLogistique: Text[250];
+    // CLogistique: Text[250];
 }
