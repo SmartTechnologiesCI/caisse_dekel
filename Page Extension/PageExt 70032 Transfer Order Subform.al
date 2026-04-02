@@ -29,10 +29,10 @@ pageextension 70032 "Transfer Order SubformExt" extends "Transfer Order Subform"
         myInt: Integer;
     begin
        
-        if not rec.IsEmpty then begin
-            rec.DeleteAll();
-            rec.Reset();
-        end;
+        // if not rec.IsEmpty then begin
+        //     rec.DeleteAll();
+        //     rec.Reset();
+        // end;
     end;
 
     var
