@@ -118,7 +118,8 @@ report 70056 "Etat Bons Paiement Planteur"
                 if PrixAchat.FindFirst() then begin
                     VendorSplitTaxSetup.SetRange("Vendor No.", "Code planteur");
                     if VendorSplitTaxSetup.FindFirst() then begin
-                        Prix := PrixAchat."Direct Unit Cost" - VendorSplitTaxSetup.Cost;
+                        prixSansImpot := PrixAchat."Direct Unit Cost" - VendorSplitTaxSetup.Cost;
+                        Prix := prixSansImpot - (prixSansImpot * (VendorSplitTaxSetup.Percentage / 100));
                         // taxe := (VendorSplitTaxSetup.Percentage / 100);
                     end else begin
                         Message('Prix non trouvé');
@@ -198,6 +199,7 @@ report 70056 "Etat Bons Paiement Planteur"
         DescriptionVehicule: Text[250];
         PrixAchat: Record "Prix Achat";
         Prix: Decimal;
+        prixSansImpot: Decimal;
         totalPoids: Decimal;
         totalMontant: Decimal;
         CompanyInfo: Record "Company Information";
