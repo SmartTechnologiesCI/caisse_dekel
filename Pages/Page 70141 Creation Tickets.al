@@ -961,6 +961,7 @@ l
         UserSetep2: Record "User Setup";
         MagasinCentreLogistique: Record MagasinCentreLogistique;
     begin
+        SetFilter("POIDS ENTREE",'<>%1',0);
         UserSetep2.SetRange("User ID", UserId);
         if UserSetep2.FindFirst() then begin
             MagasinCentreLogistique.SetRange(Prefixe, UserSetep2.CL);
