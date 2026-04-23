@@ -11,23 +11,21 @@ page 70141 Creation_Ticket
     // 1.47     B2B    20-Apr-15    SatishKNV           New Page is created for Item Weight Bridge Functionality related.
 
     CaptionML = ENU = 'Item Weight Bridge', FRA = 'Création tickets';
-
     Editable = false;
     DeleteAllowed = false;
-
     InsertAllowed = false;
-    // UsageCategory = Lists;
     ModifyAllowed = false;
-    PageType = List;
+    // UsageCategory = Documents;
+    PageType = Worksheet;
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
                       ORDER(Descending) where(valide = CONST(false), TicketAnnule = const(false));
-    //   WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
+    //  WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
 
     layout
     {
-        area(content)
+        area(Content)
         {
             /*FnGeek commented for the moment in the future we must decomment for the news features*********15_11_25
             part("Create Payments"; "Create Payment Smart")
@@ -39,7 +37,7 @@ l
              FnGeek commented for the moment in the future we must decomment for the news features*********15_11_25*/
 
 
-            repeater(Group)
+            repeater(General)
             {
                 // field(Selection; rec.Selection)
                 // {
@@ -961,7 +959,8 @@ l
         UserSetep2: Record "User Setup";
         MagasinCentreLogistique: Record MagasinCentreLogistique;
     begin
-        SetFilter("POIDS ENTREE",'<>%1',0);
+         
+        SetFilter("POIDS ENTREE", '<>%1', 0);
         UserSetep2.SetRange("User ID", UserId);
         if UserSetep2.FindFirst() then begin
             MagasinCentreLogistique.SetRange(Prefixe, UserSetep2.CL);
@@ -970,7 +969,7 @@ l
             end;
 
         end;
-
+              // CurrPage.Update();
 
         AnnuleFacture := FALSE;
         UserSetup2.RESET;
@@ -1025,6 +1024,24 @@ l
 
 
     end;
+
+    /*  trigger OnAfterGetCurrRecord()
+     var
+         myInt: Integer;
+         UserSetep: Record "User Setup";
+         UserSetep2: Record "User Setup";
+         MagasinCentreLogistique: Record MagasinCentreLogistique;
+     begin
+         rec.SetFilter("POIDS ENTREE", '<>%1', 0);
+         UserSetep2.SetRange("User ID", UserId);
+         if UserSetep2.FindFirst() then begin
+             MagasinCentreLogistique.SetRange(Prefixe, UserSetep2.CL);
+             if MagasinCentreLogistique.FindFirst() then begin
+                 rec.SetFilter(ORIGINE, '=%1', MagasinCentreLogistique.Description);
+             end;
+
+         end;
+     end; */
 
     var
         PlanterCodeunit: Codeunit "Planter's Post";

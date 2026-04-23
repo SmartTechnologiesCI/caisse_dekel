@@ -512,6 +512,11 @@ page 70143 "New Ticket Multi Pese"
                     //***FnGeek 25_03_26
                     balance.get(Rec."Balance Code");
                     jObj.ReadFrom(balance.PostJsonUsingSend());
+                    //**** FnGeek has added this bloc to explicit the message when there not vehicle on the weighbridge
+                    if jObj.Get('weight', jTok) = false then begin
+                        Error('Il n''y a pas de véhicule sur le pont.');
+                    end;
+                    //***
                     jObj.Get('weight', jTok);
                     case Rec."Process Ticket" of
                         Rec."Process Ticket"::Create:
