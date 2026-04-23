@@ -566,6 +566,7 @@ page 70143 "New Ticket Multi Pese"
                     CurrPage.Update(false);
                 end;
             }
+            
             action(Validation)
             {
                 Caption = 'Valider le ticket';
@@ -603,6 +604,7 @@ page 70143 "New Ticket Multi Pese"
                     end;
                 end;
             }
+            
         }
 
 

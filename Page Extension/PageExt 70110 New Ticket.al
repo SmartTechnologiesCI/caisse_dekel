@@ -1,5 +1,6 @@
 pageextension 70110 "New Ticket" extends "New Ticket"
 {
+    
     layout
     {
         addafter("Process Ticket")

@@ -1,5 +1,7 @@
+
 page 70141 Creation_Ticket
 {
+
     // PROJECT :
     // ****************************************************************************************************************************************************************
     // SIGN
@@ -15,14 +17,14 @@ page 70141 Creation_Ticket
     DeleteAllowed = false;
     InsertAllowed = false;
     ModifyAllowed = false;
-    // UsageCategory = Documents;
-    PageType = Worksheet;
+    AnalysisModeEnabled = false;
+    PageType = List;
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
                       ORDER(Descending) where(valide = CONST(false), TicketAnnule = const(false));
     //  WHERE("Type of Transportation" = CONST('RECEPTION'), "Type of Transportation" = const('EXPEDITION'));
-
+    // UsageCategory = History;
     layout
     {
         area(Content)
@@ -37,7 +39,7 @@ l
              FnGeek commented for the moment in the future we must decomment for the news features*********15_11_25*/
 
 
-            repeater(General)
+            repeater(Control1)
             {
                 // field(Selection; rec.Selection)
                 // {

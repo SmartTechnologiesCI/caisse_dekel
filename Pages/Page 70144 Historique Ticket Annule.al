@@ -14,7 +14,7 @@ page 70144 "Historique Ticket Annule"
 
     Editable = false;
     DeleteAllowed = false;
-
+    AnalysisModeEnabled = false;
     InsertAllowed = false;
     UsageCategory = Lists;
     ModifyAllowed = false;

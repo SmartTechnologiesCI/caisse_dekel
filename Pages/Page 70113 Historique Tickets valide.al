@@ -14,9 +14,13 @@ page 70113 "Historique Tickets valide"
     DeleteAllowed = false;
     Editable = false;
     InsertAllowed = false;
-    UsageCategory = Lists;
+    UsageCategory = History;
     ModifyAllowed = false;
     PageType = List;
+    ApplicationArea = all;
+    AccessByPermission = table "Item Weigh Bridge" = x;
+    ShowFilter = false;
+    AnalysisModeEnabled = false;
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
@@ -321,6 +325,7 @@ page 70113 "Historique Tickets valide"
                     Promoted = true;
                     PromotedCategory = Process;
                     Image = Post;
+                    Visible = false;
                     trigger OnAction()
                     var
                         ItemWeight2: Record "Item Weigh Bridge";
@@ -345,6 +350,7 @@ page 70113 "Historique Tickets valide"
                     Caption = 'Ticket Pont Bascule';
                     Promoted = true;
                     PromotedCategory = Process;
+                    Visible = false;
 
                     trigger OnAction()
                     var
@@ -366,6 +372,7 @@ page 70113 "Historique Tickets valide"
                     ApplicationArea = All;
                     Promoted = true;
                     PromotedCategory = Process;
+                    Visible = false;
                     trigger OnAction()
                     begin
                         Report.Run(70049);
@@ -463,7 +470,7 @@ page 70113 "Historique Tickets valide"
                     Promoted = true;
                     PromotedCategory = Process;
                     PromotedIsBig = true;
-
+                    Visible = false;
                     trigger OnAction()
                     var
                         allRec: Record "Item Weigh Bridge";
@@ -526,6 +533,7 @@ page 70113 "Historique Tickets valide"
                     Promoted = true;
                     PromotedCategory = Process;
                     PromotedIsBig = true;
+                    Visible = false;
 
                     trigger OnAction()
                     var
