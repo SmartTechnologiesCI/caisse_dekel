@@ -903,14 +903,23 @@ l
                             Rec.TransferFields(NewRec);
                             Rec.Modify();
                             CurrPage.Update(false);
-                        end;
-                        //08_09_25 FnGeek
-                        if Rec.MultiPese = true then begin
-                            ItemWeighBridge.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
-                            if ItemWeighBridge.FindSet() then begin
-                                Page.Run(page::Creation_Ticket_Multipese, ItemWeighBridge);
+                            //Added by FnGeek 23_04_26
+                            if Rec.MultiPese = true then begin
+                                ItemWeighBridge.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
+                                if ItemWeighBridge.FindSet() then begin
+                                    Page.Run(page::Creation_Ticket_Multipese, ItemWeighBridge);
+                                end;
                             end;
                         end;
+                        //08_09_25 FnGeek
+                        //Commented By FnGeek 23_04_26
+                        /*  if Rec.MultiPese = true then begin
+                             ItemWeighBridge.SetFilter(CodeMultiPese, '=%1', rec.CodeMultiPese);
+                             if ItemWeighBridge.FindSet() then begin
+                                 Page.Run(page::Creation_Ticket_Multipese, ItemWeighBridge);
+                             end;
+                         end; */
+
                         //08_09_25 FnGeek
                     end;
                 }
@@ -959,7 +968,7 @@ l
         UserSetep2: Record "User Setup";
         MagasinCentreLogistique: Record MagasinCentreLogistique;
     begin
-         
+
         SetFilter("POIDS ENTREE", '<>%1', 0);
         UserSetep2.SetRange("User ID", UserId);
         if UserSetep2.FindFirst() then begin
@@ -969,7 +978,7 @@ l
             end;
 
         end;
-              // CurrPage.Update();
+        // CurrPage.Update();
 
         AnnuleFacture := FALSE;
         UserSetup2.RESET;

@@ -613,8 +613,18 @@ page 70143 "New Ticket Multi Pese"
             if Rec."POIDS ENTREE" = 0 then begin
                 Error('Lisez le poids ou cliquez sur Annuler pour quitter le formulaire.');
             end;
+            if (rec."POIDS ENTREE" <> 0) and (rec."Process Ticket" = rec."Process Ticket"::Update) and (rec."POIDS SORTIE" = 0) then begin
+                Error('Lisez le poids de sortie ou cliquez sur Annuler pour quitter le formulaire.');
+            end;
         end;
     end;
+    /* trigger OnClosePage()
+    var
+        myInt: Integer;
+    begin
+        exit
+    end;
+     */
 
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
     var
