@@ -5,7 +5,7 @@ pageextension 70112 Comptant extends Comptant
         addafter(Tickets){
               cuegroup("AnnutionTicket")
             {
-                Caption = 'Annulatin de tickets';
+                Caption = 'Annulation de tickets';
                 field(EnvoyEnAnnulation; rec.EnvoyEnAnnulation)
                 {
                     ApplicationArea = All;
