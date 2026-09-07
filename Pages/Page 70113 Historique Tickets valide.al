@@ -20,7 +20,7 @@ page 70113 "Historique Tickets valide"
     ApplicationArea = all;
     AccessByPermission = table "Item Weigh Bridge" = x;
     ShowFilter = false;
-    AnalysisModeEnabled = false;
+    // AnalysisModeEnabled = false;
     CardPageId = "New Ticket";
     SourceTable = "Item Weigh Bridge";
     SourceTableView = SORTING(TICKET, "Row No.")
