@@ -20,7 +20,7 @@ pageextension 70112 Comptant extends Comptant
                         // ItemWeignt.SetRange("Autorisé à être annulé",true);
                         ItemWeignt.SetRange(TicketAnnule,false);
                         if ItemWeignt.FindFirst() then begin
-                            Page.Run(50208, ItemWeignt);
+                            Page.Run(70145, ItemWeignt);
                         end;
                     end;
                 }
@@ -36,7 +36,7 @@ pageextension 70112 Comptant extends Comptant
                     begin
                         ItemWeignt.SetRange(Annule, ItemWeignt.Annule::"Envoyé en annulation");
                         if ItemWeignt.FindFirst() then begin
-                            Page.Run(50208, ItemWeignt);
+                            Page.Run(70145, ItemWeignt);
                         end;
                     end;
                 }
@@ -51,7 +51,7 @@ pageextension 70112 Comptant extends Comptant
                     begin
                         ItemWeignt.SetRange(Annule, ItemWeignt.Annule::"Autorisé à être annulé");
                         if ItemWeignt.FindFirst() then begin
-                            Page.Run(50208, ItemWeignt);
+                            Page.Run(70145, ItemWeignt);
                         end;
                     end;
                 }
