@@ -100,6 +100,24 @@ report 70050 Recu_Paiement_Double_Regime
             {
 
             }
+            column(Caissier_Paiement; CaissierPaiement)
+            {
+
+            }
+            //Frais Push
+            column(Push_Actif; PushActif)
+            {
+
+            }
+            column(Push_PartFournisseur; PushPartFournisseur)
+            {
+
+            }
+            column(Push_PartSociete; PushPartSociete)
+            {
+
+            }
+            //Frais Push
             
 
             trigger OnPreDataItem()
@@ -223,6 +241,32 @@ report 70050 Recu_Paiement_Double_Regime
                     end;
                 end;
 
+                //Visa Caissière : la caissière qui a validé le paiement (table 70029/70030, champ Caissier),
+                //et non l'utilisateur qui imprime le reçu
+                Clear(CaissierPaiement);
+                if TicketPlanteur = true then begin
+                    EnteteHeader.SetRange(NumDocExt, NumDocExten);
+                    if EnteteHeader.FindFirst() then
+                        CaissierPaiement := EnteteHeader.Caissier;
+                end else
+                    if TicketTransporteur = true then begin
+                        EnteteHeaderTransp.SetRange(NumeroDocTransport, NumeroDocTransport);
+                        if EnteteHeaderTransp.FindFirst() then
+                            CaissierPaiement := EnteteHeaderTransp.Caissier;
+                    end;
+
+                //Frais Push : part fournisseur (déduite du net à payer) et part société
+                Clear(PushActif);
+                Clear(PushPartFournisseur);
+                Clear(PushPartSociete);
+                if (TicketPlanteur = true) and (Mode_Paiement = Mode_Paiement::Push) then begin
+                    NetLigne := Prix * "POIDS NET";
+                    if TaxeImpot <> 1 then
+                        NetLigne := NetLigne - NetLigne * TaxeImpot;
+                    PushFeeMgt.GetFrais(NetLigne, PushPartFournisseur, PushPartSociete);
+                    PushActif := 1;
+                end;
+
             end;
 
 
@@ -295,5 +339,13 @@ report 70050 Recu_Paiement_Double_Regime
         visibleTransport: Boolean;
         visiblePlanteur: Boolean;
         CL: Code[50];
+        EnteteHeader: Record Entete_Paiement;
+        EnteteHeaderTransp: Record Entete_Paiement_Transporteur;
+        CaissierPaiement: Text[250];
+        PushFeeMgt: Codeunit "Push Fee Mgt";
+        PushActif: Integer;
+        PushPartFournisseur: Decimal;
+        PushPartSociete: Decimal;
+        NetLigne: Decimal;
 
 }

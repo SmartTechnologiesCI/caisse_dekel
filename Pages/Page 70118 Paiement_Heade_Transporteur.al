@@ -127,6 +127,13 @@ page 70118 Paiement_Header_Transporteur
             }
             group(Paiement)
             {
+                field(NombreTicketsSelectionnes; rec.NombreTicketsSelectionnes)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Nombre de tickets sélectionnés';
+                    Editable = false;
+                    ToolTip = 'Nombre de tickets actuellement cochés (Ticket(s) Concerné(s) Transport) pour ce paiement.';
+                }
                 field(Poids_Total; Poids_Total)
                 {
                     ApplicationArea = All;
@@ -462,6 +469,8 @@ page 70118 Paiement_Header_Transporteur
         ItemWeighBridgecaisse.Statut_Total_Paiement := ItemWeigthBridge.Statut_Total_Paiement;
         ItemWeighBridgecaisse.Date_Paiement := WorkDate();
         ItemWeighBridgecaisse.NumeroDocTransport := ItemWeigthBridge.NumeroDocTransport;
+        ItemWeighBridgecaisse."Mode Paiement Transport" := rec.Mode_Paiement;
+        ItemWeighBridgecaisse."CL Paiement" := rec.DescriptionCL;
         ItemWeighBridgecaisse.Insert()
     end;
 

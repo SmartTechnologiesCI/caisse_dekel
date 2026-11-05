@@ -216,6 +216,13 @@ table 70030 Entete_Paiement_Transporteur
             Caption = 'N° paiement transport';
             Editable = false;
         }
+        field(55028; NombreTicketsSelectionnes; Integer)
+        {
+            Caption = 'Nombre de tickets sélectionnés';
+            FieldClass = FlowField;
+            Editable = false;
+            CalcFormula = count("Item Weigh Bridge" where(NumeroDocTransport = field(NumeroDocTransport), Ticket_Concerne_Transport = const(true)));
+        }
         // field(55015; PrixUnitaire; Decimal)
         // {
         //     DataClassification = ToBeClassified;

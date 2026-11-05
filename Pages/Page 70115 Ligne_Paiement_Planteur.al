@@ -103,6 +103,8 @@ page 70115 Ligne_Paiement
                                 REC.Telephone := HeaderPaiement.Telephone;
                                 Rec.CLpaiement := HeaderPaiement.DescriptionCL;
                                 // Message('Yes FnGeek');
+                                //Rafraîchit le nombre de tickets sélectionnés affiché sur l'entête (Page 70114)
+                                CurrPage.Update(false);
                             end;
 
                             //****

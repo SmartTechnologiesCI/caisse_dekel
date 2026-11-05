@@ -206,6 +206,13 @@ table 70029 Entete_Paiement
             DataClassification = ToBeClassified;
             Caption = 'Description CL';
         }
+        field(55027; NombreTicketsSelectionnes; Integer)
+        {
+            Caption = 'Nombre de tickets sélectionnés';
+            FieldClass = FlowField;
+            Editable = false;
+            CalcFormula = count("Item Weigh Bridge" where(NumDocExten = field(NumDocExt), Ticket_Concerne = const(true)));
+        }
 
 
     }
