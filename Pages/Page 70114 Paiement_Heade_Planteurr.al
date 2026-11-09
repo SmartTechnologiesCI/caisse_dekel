@@ -129,6 +129,13 @@ page 70114 Paiement_Header
             }
             group(Paie)
             {
+                field(NombreTicketsSelectionnes; rec.NombreTicketsSelectionnes)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Nombre de tickets sélectionnés';
+                    Editable = false;
+                    ToolTip = 'Nombre de tickets actuellement cochés (Ticket(s) Concerné(s) Planteur) pour ce paiement.';
+                }
                 field(Poids_Total; Poids_Total)
                 {
                     ApplicationArea = All;
@@ -230,6 +237,16 @@ page 70114 Paiement_Header
                                 ItemWeightBridge1.TestField(NCNI);
                                 ItemWeightBridge1.TestField(Telephone);
                                 ItemWeightBridge1.TestField(TicketAnnule, false);
+                                // Contrôle paiement ticket : statuts d'annulation bloquant le paiement,
+                                // avec message clair indiquant la cause au caissier
+                                case ItemWeightBridge1.Annule of
+                                    ItemWeightBridge1.Annule::"Envoyé en annulation":
+                                        Error('Le ticket %1 est en demande d''annulation : le paiement est impossible.', ItemWeightBridge1."Ticket Planteur");
+                                    ItemWeightBridge1.Annule::"Autorisé à être annulé":
+                                        Error('Le ticket %1 est en annulation autorisée : le paiement est impossible.', ItemWeightBridge1."Ticket Planteur");
+                                    ItemWeightBridge1.Annule::"Annulé":
+                                        Error('Le ticket %1 est annulé : le paiement est impossible.', ItemWeightBridge1."Ticket Planteur");
+                                end;
                             end until ItemWeightBridge1.Next() = 0;
                         end;
                         ItemWeightBridge.SetFilter(Ticket_Concerne, '=%1', true);
@@ -433,6 +450,8 @@ page 70114 Paiement_Header
         ItemWeighBridgecaisse.Statut_Total_Paiement := ItemWeigthBridge.Statut_Total_Paiement;
         ItemWeighBridgecaisse.Date_Paiement := WorkDate();
         ItemWeighBridgecaisse.NuDocExtern := ItemWeigthBridge.NumDocExten;
+        ItemWeighBridgecaisse."Mode Paiement Regime" := rec.Mode_Paiement;
+        ItemWeighBridgecaisse."CL Paiement" := rec.DescriptionCL;
         ItemWeighBridgecaisse.Insert()
     end;
 

@@ -98,6 +98,8 @@ page 70119 Ligne_Paiement_Transporteur
                                 REC.Observation := HeaderPaiement.Observation;
                                 REC.Telephone := HeaderPaiement.Telephone;
                                 rec.CLpaiement := HeaderPaiement.DescriptionCL;
+                                //Rafraîchit le nombre de tickets sélectionnés affiché sur l'entête (Page 70118)
+                                CurrPage.Update(false);
                             end;
 
                             //****
