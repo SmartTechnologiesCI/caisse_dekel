@@ -230,6 +230,16 @@ page 70118 Paiement_Header_Transporteur
                                 ItemWeightBridge1.TestField(NCNI);
                                 ItemWeightBridge1.TestField(Telephone);
                                 ItemWeightBridge1.TestField(TicketAnnule, false);
+                                // Contrôle paiement ticket : statuts d'annulation bloquant le paiement,
+                                // avec message clair indiquant la cause au caissier
+                                case ItemWeightBridge1.Annule of
+                                    ItemWeightBridge1.Annule::"Envoyé en annulation":
+                                        Error('Le ticket %1 est en demande d''annulation : le paiement est impossible.', ItemWeightBridge1."Ticket Planteur");
+                                    ItemWeightBridge1.Annule::"Autorisé à être annulé":
+                                        Error('Le ticket %1 est en annulation autorisée : le paiement est impossible.', ItemWeightBridge1."Ticket Planteur");
+                                    ItemWeightBridge1.Annule::"Annulé":
+                                        Error('Le ticket %1 est annulé : le paiement est impossible.', ItemWeightBridge1."Ticket Planteur");
+                                end;
                             end until ItemWeightBridge1.Next() = 0;
                         end;
                         ItemWeightBridge.SetFilter(Ticket_Concerne_Transport, '=%1', true);
